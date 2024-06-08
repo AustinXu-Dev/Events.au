@@ -681,7 +681,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
-				DEVELOPMENT_TEAM = GN86H89432;
+				DEVELOPMENT_TEAM = A89P8LLWX2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
@@ -695,8 +695,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-
-				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.events-au";
 
 				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.dcode.events-au";
 
