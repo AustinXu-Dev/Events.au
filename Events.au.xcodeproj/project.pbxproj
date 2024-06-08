@@ -48,17 +48,7 @@
 		B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A972C14F9E40055DDD9 /* SignUpMock.swift */; };
 		B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A992C14F9EC0055DDD9 /* SignInMock.swift */; };
 		B7C69A9E2C14FA850055DDD9 /* SignOutMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A9D2C14FA850055DDD9 /* SignOutMock.swift */; };
-		BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02432C116C1000A9EE3E /* Events_auApp.swift */; };
-		BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02452C116C1000A9EE3E /* ContentView.swift */; };
-		BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE02472C116C1300A9EE3E /* Assets.xcassets */; };
-		BCBE024B2C116C1300A9EE3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE024A2C116C1300A9EE3E /* Preview Assets.xcassets */; };
-		BCBE02522C116C4400A9EE3E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02512C116C4400A9EE3E /* Service.swift */; };
-		BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02532C116C8E00A9EE3E /* Utility.swift */; };
-		BCBE02562C116CA800A9EE3E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02552C116CA800A9EE3E /* Extension.swift */; };
-		BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02572C116CCA00A9EE3E /* Helper.swift */; };
-		BCBE025A2C116CEB00A9EE3E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02592C116CEB00A9EE3E /* ViewModel.swift */; };
-		BCBE025C2C116CF500A9EE3E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE025B2C116CF500A9EE3E /* View.swift */; };
-		BCBE02602C116D2900A9EE3E /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE025F2C116D2900A9EE3E /* Component.swift */; };
+		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,18 +85,7 @@
 		B7C69A972C14F9E40055DDD9 /* SignUpMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMock.swift; sourceTree = "<group>"; };
 		B7C69A992C14F9EC0055DDD9 /* SignInMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMock.swift; sourceTree = "<group>"; };
 		B7C69A9D2C14FA850055DDD9 /* SignOutMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutMock.swift; sourceTree = "<group>"; };
-		BCBE02402C116C1000A9EE3E /* Events.au.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.au.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCBE02432C116C1000A9EE3E /* Events_auApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_auApp.swift; sourceTree = "<group>"; };
-		BCBE02452C116C1000A9EE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		BCBE02472C116C1300A9EE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BCBE024A2C116C1300A9EE3E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BCBE02512C116C4400A9EE3E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		BCBE02532C116C8E00A9EE3E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		BCBE02552C116CA800A9EE3E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		BCBE02572C116CCA00A9EE3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		BCBE02592C116CEB00A9EE3E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		BCBE025B2C116CF500A9EE3E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		BCBE025F2C116D2900A9EE3E /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -498,7 +477,6 @@
 				B7C69A802C14E2730055DDD9 /* UnitAdminModel.swift in Sources */,
 				B7C69A902C14F8D30055DDD9 /* UserMock.swift in Sources */,
 				BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */,
-				B7C69A6E2C14D9EF0055DDD9 /* OrganizerModel.swift in Sources */,
 				B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */,
 				BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */,
 				B7C69A9E2C14FA850055DDD9 /* SignOutMock.swift in Sources */,
