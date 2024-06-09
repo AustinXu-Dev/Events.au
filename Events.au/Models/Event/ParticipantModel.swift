@@ -32,7 +32,7 @@ struct ParticipantResponseModel : Codable {
 
 
 struct ParticipantModel : Codable {
-    let userId, eventId, organzierId,status, email : String
+    let _id,userId, eventId, organzierId,status, email : String
     let phone : Int
     
 

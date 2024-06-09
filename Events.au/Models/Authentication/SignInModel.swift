@@ -16,6 +16,7 @@ import Foundation
 
  }
  */
+
 struct SignInResponse: Codable {
     let success: Bool
     let message: SignInModel
@@ -24,6 +25,6 @@ struct SignInResponse: Codable {
 
 struct SignInModel : Codable {
     let token : String
-    let user: String
+    let user: UserModel
 
 }
