@@ -38,7 +38,7 @@ struct SignUpResponse: Codable {
 
 
 struct SignUpModel: Codable {
-    let user : String
+    let user : UserModel
     
    
 }

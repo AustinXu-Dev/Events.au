@@ -62,8 +62,6 @@ struct EventResponse: Codable {
 }
 
 
-
-
 struct EventModel : Codable {
     
     let _id,name,description,startDate,endDate,startTime,endTime,

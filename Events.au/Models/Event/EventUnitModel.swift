@@ -54,6 +54,8 @@ struct EventUnitResponse: Codable {
 
 
 struct EventUnitModel : Codable {
-    let eventId,unitId : String
+    let _id : String
+    let eventId : EventModel
+    let unitId : UnitModel
 
 }
