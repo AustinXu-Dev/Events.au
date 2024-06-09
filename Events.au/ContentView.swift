@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
         VStack(spacing:Theme.defaultSpacing) {
             Image(systemName: "globe")
@@ -15,6 +16,10 @@ struct ContentView: View {
             Text("Heading")
                 .font(.system(size: Theme.headingFontSize))
                 .fontWeight(Theme.headingFontWeight)
+            
+        
+            
+
             
             Text("Label!")
                 .font(.system(size: Theme.labelFontSize))

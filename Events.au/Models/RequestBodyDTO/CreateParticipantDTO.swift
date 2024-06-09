@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: Use this as a body to approve a user to an event
 
-struct CreateParticipantDTO {
+struct CreateParticipantDTO : Codable {
     let userId : String
     let status : String
     let organizerId : String
