@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */; };
+		39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */; };
+		39FC54202C13883C00240B93 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541F2C13883C00240B93 /* SignupForm.swift */; };
+		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
+		39FC54242C1388D800240B93 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54232C1388D800240B93 /* SignupView.swift */; };
+		39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */; };
 		BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02432C116C1000A9EE3E /* Events_auApp.swift */; };
 		BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02452C116C1000A9EE3E /* ContentView.swift */; };
 		BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE02472C116C1300A9EE3E /* Assets.xcassets */; };
@@ -23,6 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppNavigationPathValue.swift; sourceTree = "<group>"; };
+		39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppColorTheme.swift; sourceTree = "<group>"; };
+		39FC541F2C13883C00240B93 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
+		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		39FC54232C1388D800240B93 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppAutheticationValue.swift; sourceTree = "<group>"; };
 		BCBE02402C116C1000A9EE3E /* Events.au.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.au.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE02432C116C1000A9EE3E /* Events_auApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_auApp.swift; sourceTree = "<group>"; };
 		BCBE02452C116C1000A9EE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				BCBE02572C116CCA00A9EE3E /* Helper.swift */,
+				39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */,
+				39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */,
+				3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -138,6 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				BCBE025B2C116CF500A9EE3E /* View.swift */,
+				39FC541F2C13883C00240B93 /* SignupForm.swift */,
+				39FC54212C1388BF00240B93 /* SignInView.swift */,
+				39FC54232C1388D800240B93 /* SignupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39FC54202C13883C00240B93 /* SignupForm.swift in Sources */,
 				BCBE025E2C116D0800A9EE3E /* Model.swift in Sources */,
 				BCBE025C2C116CF500A9EE3E /* View.swift in Sources */,
 				BCBE02562C116CA800A9EE3E /* Extension.swift in Sources */,
@@ -245,7 +264,12 @@
 				BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */,
 				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
+				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
+				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
 				BCBE025A2C116CEB00A9EE3E /* ViewModel.swift in Sources */,
+				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
+				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
+				39FC54222C1388BF00240B93 /* SignInView.swift in Sources */,
 				BCBE02602C116D2900A9EE3E /* Component.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
-				DEVELOPMENT_TEAM = A89P8LLWX2;
+				DEVELOPMENT_TEAM = DL35BQ9C6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -393,7 +417,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.Events-au";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.Events-au-a";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -409,7 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
-				DEVELOPMENT_TEAM = A89P8LLWX2;
+				DEVELOPMENT_TEAM = DL35BQ9C6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -422,7 +446,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.Events-au";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.Events-au-a";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
