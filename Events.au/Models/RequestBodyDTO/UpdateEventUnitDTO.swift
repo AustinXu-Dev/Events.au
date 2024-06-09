@@ -22,14 +22,10 @@ import Foundation
  */
 
 
-
-struct UpdateEventUnitResponse: Codable {
-    let success: Bool
-    let message: UpdateEventUnitModel
-}
+//MARK: Use this as a request body for updating units of an event
 
 
-struct UpdateEventUnitModel : Codable {
+struct UpdateEventUnitDTO : Codable {
     
     let action : String
     let units : [String]

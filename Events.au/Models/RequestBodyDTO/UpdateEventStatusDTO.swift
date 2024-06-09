@@ -21,14 +21,9 @@ Id of the admin who is updating the status.
 }
 */
 
-struct UpdateEventStatusResponse: Codable {
-    let success: Bool
-    let message: UpdateEventStatusModel
-}
+//MARK: Use this as a request body for updating event status => approve or reject
 
-
-
-struct UpdateEventStatusModel  : Codable {
+struct UpdateEventStatusDTO  : Codable {
     
     let status,adminId : String
   

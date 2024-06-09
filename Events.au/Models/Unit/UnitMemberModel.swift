@@ -44,7 +44,8 @@ struct UnitMemberResponse: Codable {
 
 
 struct UnitMemberModel : Codable {
-    let userId, unitId : String
-    
+    let _id : String
+    let userId : UserModel
+    let unitId : UnitModel
     
 }

@@ -23,14 +23,9 @@ import Foundation
  }
  */
 
-struct UpdateParticipantStatusResponse: Codable {
-    let success: Bool
-    let message: UpdateParticipantStatusModel
-}
+//MARK: Use this as a request body for updating participant status for an event
 
-
-
-struct UpdateParticipantStatusModel : Codable {
+struct UpdateParticipantStatusDTO : Codable {
     let participants : [String]
     let status : String
     
