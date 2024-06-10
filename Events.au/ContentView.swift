@@ -14,20 +14,22 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
             Text("Heading")
-                .font(.system(size: Theme.headingFontSize))
-                .fontWeight(Theme.headingFontWeight)
+//                .font(.system(size: Theme.headingFontSize))
+//                .fontWeight(Theme.headingFontWeight)
+//                
+//            
             
         
             
 
             
             Text("Label!")
-                .font(.system(size: Theme.labelFontSize))
-                .fontWeight(Theme.labelFontWeight)
+//                .font(.system(size: Theme.labelFontSize))
+//                .fontWeight(Theme.labelFontWeight)
             
             Text("body")
-                .font(.system(size: Theme.bodyFontSize))
-                .fontWeight(Theme.bodyFontWeight)
+//                .font(.system(size: Theme.bodyFontSize))
+//                .fontWeight(Theme.bodyFontWeight)
             
             Image(systemName: "bell.circle")
                 .font(.system(size:Theme.iconSize))
@@ -35,18 +37,17 @@ struct ContentView: View {
             
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                 /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-                    .foregroundStyle(Theme.primaryText)
+                    .foregroundStyle(Theme.primaryTextColor)
             })
-            .padding(Theme.padding)
+//            .padding(Theme.padding)
             .background(
                 Theme.tintColor
             )
             .cornerRadius(Theme.cornerRadius)
-            .shadow(color:Theme.shadowColor,radius: Theme.shadowRadius,x: Theme.shadowX,y:Theme.shadowY)
-                      
+            .applyThemeDoubleShadow()
                 
         }
-        .padding()
+//        .padding(.vertical,Theme.HPadding)
     }
 }
 
