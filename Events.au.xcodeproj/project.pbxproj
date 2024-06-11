@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */; };
+		39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */; };
+		39FC54202C13883C00240B93 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541F2C13883C00240B93 /* SignupForm.swift */; };
+		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
+		39FC54242C1388D800240B93 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54232C1388D800240B93 /* SignupView.swift */; };
+		39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */; };
 		B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6C72C15251D00C28E67 /* APIManager.swift */; };
 		B370C6CB2C15254200C28E67 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6CA2C15254200C28E67 /* GoogleSignIn */; };
 		B370C6CD2C15254200C28E67 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6CC2C15254200C28E67 /* GoogleSignInSwift */; };
@@ -72,6 +78,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppNavigationPathValue.swift; sourceTree = "<group>"; };
+		39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppColorTheme.swift; sourceTree = "<group>"; };
+		39FC541F2C13883C00240B93 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
+		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		39FC54232C1388D800240B93 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppAutheticationValue.swift; sourceTree = "<group>"; };
 		B370C6C72C15251D00C28E67 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B370C6DC2C15259700C28E67 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B370C6E12C1525C200C28E67 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
@@ -404,6 +416,9 @@
 			isa = PBXGroup;
 			children = (
 				BCBE02572C116CCA00A9EE3E /* Helper.swift */,
+				39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */,
+				39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */,
+				3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -420,6 +435,10 @@
 			isa = PBXGroup;
 			children = (
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
+				BCBE025B2C116CF500A9EE3E /* View.swift */,
+				39FC541F2C13883C00240B93 /* SignupForm.swift */,
+				39FC54212C1388BF00240B93 /* SignInView.swift */,
+				39FC54232C1388D800240B93 /* SignupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -588,6 +607,12 @@
 				B731AAE32C160B9B00A3E8C2 /* Date.swift in Sources */,
 				B7C69A682C14D78F0055DDD9 /* SignInModel.swift in Sources */,
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
+				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
+				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
+				BCBE025A2C116CEB00A9EE3E /* ViewModel.swift in Sources */,
+				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
+				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
+				39FC54222C1388BF00240B93 /* SignInView.swift in Sources */,
 				B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */,
 				B7C69A742C14DF380055DDD9 /* UnitModel.swift in Sources */,
 				B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */,

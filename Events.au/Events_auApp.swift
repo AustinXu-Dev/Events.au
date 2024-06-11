@@ -14,7 +14,7 @@ struct Events_auApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ConfirmationView()
+            SignInView()
         }
     }
 }
