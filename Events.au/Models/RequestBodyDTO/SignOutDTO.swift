@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct SignOutDTO {
+struct SignOutDTO : Codable {
     let token : String
 }

@@ -15,7 +15,7 @@ import Foundation
  */
 
 //MARK: Use this as a body when a user want to create event
-struct CreateEventDTO {
+struct CreateEventDTO : Codable {
     let name : String
     let unitId : String
 }

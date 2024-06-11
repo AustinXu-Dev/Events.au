@@ -28,7 +28,5 @@ struct UpdateEventStatusDTO  : Codable {
     let status,adminId : String
   
     
-    
-    
 }
 

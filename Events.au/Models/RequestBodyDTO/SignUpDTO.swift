@@ -22,8 +22,9 @@ import Foundation
  */
 
 
-struct SignUpDTO {
+struct SignUpDTO : Codable {
     let firstName,email : String
     let phone : Int
     let fId,unitId : String
 }
+
