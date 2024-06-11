@@ -47,7 +47,7 @@ struct Theme {
     static let xs : CGFloat = 4
     static let small : CGFloat = 8
     static let medium : CGFloat = 12 //MARK: Use this as a default VPadding
-    static let large : CGFloat = 16 //MARK: Use this as a default HPadding
+    static let large : CGFloat = 16 //MARK: Use this as a default HPadding and Margin Padding
     static let xl : CGFloat = 24
     static let xxl : CGFloat = 32
     static let xxxl : CGFloat = 156

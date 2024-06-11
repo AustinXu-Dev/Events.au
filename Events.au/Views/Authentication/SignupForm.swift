@@ -167,28 +167,21 @@ struct SignupForm: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
             }
-
             
+
             HStack {
                 Spacer()
-
             Button(action: {
                 
             }) {
-                Text("Sign Up")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .frame(height: 36)
-                    .background(Color.eventBackground)
-                    .cornerRadius(8)
+                ReusableButton(title: "Sign Up")
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 8)
+            
         }
 
             Spacer()
         }
+        .padding(.horizontal,Theme.large)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }

@@ -156,6 +156,8 @@ struct SignInView: View {
                     SignupView()
                 case EventAppNavigationPathValue.signUpForm:
                     SignupForm()
+                case EventAppNavigationPathValue.confirmationView:
+                    ConfirmationView(path: $path)
                 default:
                     Text("Default")
                 }

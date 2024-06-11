@@ -11,4 +11,5 @@ struct EventAppNavigationPathValue {
     static let signUpView = "SignUpView"
     static let signInView = "SignInView"
     static let signUpForm = "SignUpForm"
+    static let confirmationView = "ConfirmationView"
 }
