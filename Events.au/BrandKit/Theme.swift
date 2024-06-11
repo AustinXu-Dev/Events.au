@@ -20,16 +20,18 @@ struct Theme {
     
     // MARK: - FontStyle
     // need to import
-    static let labelFont = "SF Pro Display"
-    static let bodyFont = "Inter"
+    static let labelFont = "SFPRODISPLAYREGULAR.OTF"
+    static let headingFont = "SFProDisplay-Semibold.ttf"
+    static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
+    static let buttonFont = "SFProDisplay-Semibold.ttf"
+
     
     
     // MARK: - Fonts
-    
-    static let labelFontStyle: Font = .system(size: 24, weight: Font.Weight.semibold)
-    static let headingFontStyle: Font = .system(size: 16, weight: Font.Weight.semibold)
-    static let bodyFontStyle: Font = .system(size: 16, weight: Font.Weight.regular)
-    static let buttonFontStyle: Font = .system(size: 15, weight: Font.Weight.semibold)
+    static let labelFontStyle : Font = .custom(labelFont,size: 16)
+    static let headingFontStyle: Font = .custom(headingFont,size: 16)
+    static let bodyFontStyle: Font = .custom(bodyFont, size: 16)
+    static let buttonFontStyle: Font = .custom(buttonFont,size: 16)
 
     
     // MARK: - Spacing, Widths and Heights

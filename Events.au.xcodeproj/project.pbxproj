@@ -68,7 +68,6 @@
 		BCBE02522C116C4400A9EE3E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02512C116C4400A9EE3E /* Service.swift */; };
 		BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02532C116C8E00A9EE3E /* Utility.swift */; };
 		BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02572C116CCA00A9EE3E /* Helper.swift */; };
-		BCBE025A2C116CEB00A9EE3E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02592C116CEB00A9EE3E /* ViewModel.swift */; };
 		BCBE02602C116D2900A9EE3E /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE025F2C116D2900A9EE3E /* Component.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +114,9 @@
 		B7DFB3C22C16145D00BB53E7 /* SignOutDTOMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutDTOMock.swift; sourceTree = "<group>"; };
 		B7DFB3D62C16ED4300BB53E7 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 		B7DFB3DA2C17091C00BB53E7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B7DFB4062C17E93B00BB53E7 /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
+		B7DFB40C2C17E97E00BB53E7 /* Events-au-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Events-au-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B7DFB40D2C17EB8900BB53E7 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		B7FCBFF32C15964100C8C531 /* SignUpDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDTO.swift; sourceTree = "<group>"; };
 		B7FCBFF52C15966F00C8C531 /* SignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDTO.swift; sourceTree = "<group>"; };
 		B7FCBFF72C15A15100C8C531 /* CreateEventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventDTO.swift; sourceTree = "<group>"; };
@@ -128,7 +130,6 @@
 		BCBE02512C116C4400A9EE3E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		BCBE02532C116C8E00A9EE3E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		BCBE02572C116CCA00A9EE3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		BCBE02592C116CEB00A9EE3E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BCBE025F2C116D2900A9EE3E /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -297,6 +298,16 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		B7DFB4022C17E91A00BB53E7 /* BrandKit */ = {
+			isa = PBXGroup;
+			children = (
+				B7DFB40D2C17EB8900BB53E7 /* SFProDisplay-Semibold.ttf */,
+				B7DFB4062C17E93B00BB53E7 /* SFPRODISPLAYREGULAR.OTF */,
+				B7720E1B2C11E5B100A053F6 /* Theme.swift */,
+			);
+			path = BrandKit;
+			sourceTree = "<group>";
+		};
 		B7FCBFFB2C15A23100C8C531 /* RequestBodyDTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +344,7 @@
 		BCBE02422C116C1000A9EE3E /* Events.au */ = {
 			isa = PBXGroup;
 			children = (
+				B7DFB40C2C17E97E00BB53E7 /* Events-au-Info.plist */,
 				B370C6E82C15262100C28E67 /* Configuration */,
 				B370C6E52C1525FA00C28E67 /* Handler */,
 				B370C6C62C15251000C28E67 /* Managers */,
@@ -345,8 +357,8 @@
 				BCBE02692C116D9B00A9EE3E /* Models */,
 				BCBE026A2C116DA100A9EE3E /* Components */,
 				BCBE026B2C116DEF00A9EE3E /* DataProviders */,
+				B7DFB4022C17E91A00BB53E7 /* BrandKit */,
 				BCBE02432C116C1000A9EE3E /* Events_auApp.swift */,
-				B7720E1B2C11E5B100A053F6 /* Theme.swift */,
 				BCBE02452C116C1000A9EE3E /* ContentView.swift */,
 				BCBE02472C116C1300A9EE3E /* Assets.xcassets */,
 				BCBE02492C116C1300A9EE3E /* Preview Content */,
@@ -399,7 +411,6 @@
 		BCBE02672C116D8F00A9EE3E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				BCBE02592C116CEB00A9EE3E /* ViewModel.swift */,
 				B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
@@ -578,7 +589,6 @@
 				B7C69A682C14D78F0055DDD9 /* SignInModel.swift in Sources */,
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
 				B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */,
-				BCBE025A2C116CEB00A9EE3E /* ViewModel.swift in Sources */,
 				B7C69A742C14DF380055DDD9 /* UnitModel.swift in Sources */,
 				B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */,
 				B731AADA2C16066E00A3E8C2 /* AdminMock.swift in Sources */,
@@ -722,6 +732,7 @@
 				DEVELOPMENT_TEAM = GN86H89432;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Events-au-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -753,6 +764,7 @@
 				DEVELOPMENT_TEAM = GN86H89432;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Events-au-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

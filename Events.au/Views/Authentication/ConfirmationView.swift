@@ -26,7 +26,7 @@ struct ConfirmationView: View {
                     .frame(width:173,height:35)
                 Text("Signup successful.\nPlease signin again.")
                     .multilineTextAlignment(.center)
-                    .applyBodyFont()
+                    .applyLabelFont()
                 
                 NavigationLink(destination: Text("Home View")) {
                     Text("Sign In")
