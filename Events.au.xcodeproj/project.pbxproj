@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */; };
 		39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */; };
-		39FC54202C13883C00240B93 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541F2C13883C00240B93 /* SignupForm.swift */; };
 		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
 		39FC54242C1388D800240B93 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54232C1388D800240B93 /* SignupView.swift */; };
 		39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */; };
@@ -68,6 +67,7 @@
 		B7FCBFF82C15A15100C8C531 /* CreateEventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF72C15A15100C8C531 /* CreateEventDTO.swift */; };
 		B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */; };
 		B7FCBFFD2C15A85B00C8C531 /* CreateParticipantDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */; };
+		BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27116F2C195D8C00A99157 /* SignupForm.swift */; };
 		BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02432C116C1000A9EE3E /* Events_auApp.swift */; };
 		BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02452C116C1000A9EE3E /* ContentView.swift */; };
 		BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE02472C116C1300A9EE3E /* Assets.xcassets */; };
@@ -80,7 +80,6 @@
 /* Begin PBXFileReference section */
 		3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppNavigationPathValue.swift; sourceTree = "<group>"; };
 		39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppColorTheme.swift; sourceTree = "<group>"; };
-		39FC541F2C13883C00240B93 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
 		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		39FC54232C1388D800240B93 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppAutheticationValue.swift; sourceTree = "<group>"; };
@@ -134,6 +133,7 @@
 		B7FCBFF72C15A15100C8C531 /* CreateEventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventDTO.swift; sourceTree = "<group>"; };
 		B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutDTO.swift; sourceTree = "<group>"; };
 		B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateParticipantDTO.swift; sourceTree = "<group>"; };
+		BC27116F2C195D8C00A99157 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
 		BCBE02402C116C1000A9EE3E /* Events.au.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.au.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE02432C116C1000A9EE3E /* Events_auApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_auApp.swift; sourceTree = "<group>"; };
 		BCBE02452C116C1000A9EE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -435,10 +435,9 @@
 			isa = PBXGroup;
 			children = (
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
-				BCBE025B2C116CF500A9EE3E /* View.swift */,
-				39FC541F2C13883C00240B93 /* SignupForm.swift */,
 				39FC54212C1388BF00240B93 /* SignInView.swift */,
 				39FC54232C1388D800240B93 /* SignupView.swift */,
+				BC27116F2C195D8C00A99157 /* SignupForm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -573,6 +572,7 @@
 				B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */,
 				B7C69A902C14F8D30055DDD9 /* UserMock.swift in Sources */,
 				BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */,
+				BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */,
 				B7DFB3BF2C16145000BB53E7 /* SignUpDTOMock.swift in Sources */,
 				B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */,
 				B7C69A6E2C14D9EF0055DDD9 /* OrganizerModel.swift in Sources */,
@@ -609,7 +609,6 @@
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
 				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
-				BCBE025A2C116CEB00A9EE3E /* ViewModel.swift in Sources */,
 				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
 				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
 				39FC54222C1388BF00240B93 /* SignInView.swift in Sources */,

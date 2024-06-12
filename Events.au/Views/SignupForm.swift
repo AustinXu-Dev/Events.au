@@ -24,17 +24,18 @@ struct SignupForm: View {
     @State private var alertMessage: String = ""
     @State private var selectedFaculty: String = "Select Faculty"
     @State private var selectedGender: String = "Select Gender"
+    @State private var selectedUnitName: String = ""
     @State private var isMenuVisible = false
     
     @State private var faculties: [Faculty] = [
-            Fcaulty(id: 1, name: "VMS"),
-            Fcaulty(id: 2, name: "BBA"),
-            Fcaulty(id: 3, name: "LAW"),
+        Faculty(id: 1, name: "VMS"),
+        Faculty(id: 2, name: "BBA"),
+        Faculty(id: 3, name: "LAW"),
     ]
     
     @State private var genders: [Gender] = [
-            Gender(id: 1, type: "Male"),
-            Gender(id: 2, type: "Female")
+        Gender(id: 1, type: "Male"),
+        Gender(id: 2, type: "Female")
     ]
     
     @State private var selectedFacultyName: String = ""
@@ -42,11 +43,6 @@ struct SignupForm: View {
     
     @State private var selectedGenderType: String = ""
     @State private var selectedGenderId : Int?
-
-
-    let faculties = ["VMS", "BBA", "Other"]
-    let genders = ["Male", "Female", "Other"]
-
 
     var body: some View {
         VStack {
@@ -214,5 +210,6 @@ struct SignupForm_Previews: PreviewProvider {
         SignupForm()
     }
 }
+
 
 
