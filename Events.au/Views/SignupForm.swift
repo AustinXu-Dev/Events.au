@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-struct Unit: Identifiable {
+struct Faculty: Identifiable {
     let id: Int
     let name: String
+}
+
+struct Gender: Identifiable {
+    let id: Int
+    let type: String
 }
 
 struct SignupForm: View {
@@ -21,13 +26,22 @@ struct SignupForm: View {
     @State private var selectedGender: String = "Select Gender"
     @State private var isMenuVisible = false
     
-    @State private var units: [Unit] = [
-            Unit(id: 1, name: "Unit 1"),
-            Unit(id: 2, name: "Unit 2"),
-            Unit(id: 3, name: "Unit 3")
-        ]
-    @State private var selectedUnitName: String = ""
-    @State private var selectedUnitId : Int?
+    @State private var faculties: [Faculty] = [
+            Fcaulty(id: 1, name: "VMS"),
+            Fcaulty(id: 2, name: "BBA"),
+            Fcaulty(id: 3, name: "LAW"),
+    ]
+    
+    @State private var genders: [Gender] = [
+            Gender(id: 1, type: "Male"),
+            Gender(id: 2, type: "Female")
+    ]
+    
+    @State private var selectedFacultyName: String = ""
+    @State private var selectedFacultyId : Int?
+    
+    @State private var selectedGenderType: String = ""
+    @State private var selectedGenderId : Int?
 
 
     let faculties = ["VMS", "BBA", "Other"]
@@ -105,10 +119,10 @@ struct SignupForm: View {
                                     .disabled(true)
                                 Spacer()
                                 Menu {
-                                    ForEach(units, id: \.id) { unit in
-                                        Button(unit.name) {
-                                            selectedUnitId = unit.id
-                                            selectedUnitName = unit.name // Update the TextField display
+                                    ForEach(faculties, id: \.id) { faculty in
+                                        Button(faculty.name) {
+                                            selectedFacultyId = faculty.id
+                                            selectedFacultyName = faculty.name
                                         }
                                     }
                                 } label: {
@@ -144,10 +158,10 @@ struct SignupForm: View {
                                     .disabled(true)
                                 Spacer()
                                 Menu {
-                                    ForEach(units, id: \.id) { unit in
-                                        Button(unit.name) {
-                                            selectedUnitId = unit.id
-                                            selectedUnitName = unit.name // Update the TextField display
+                                    ForEach(genders, id: \.id) { gender in
+                                        Button(gender.type) {
+                                            selectedGenderId = gender.id
+                                            selectedGenderType = gender.type
                                         }
                                     }
                                 } label: {
