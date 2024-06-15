@@ -17,19 +17,19 @@ status*    [...]
 }
 */
 
-
+//MARK: Use this to get one organizer
 struct OrganizerResponse: Codable {
     let success: Bool
     let message: OrganizerModel
 }
 
-
+//MARK: Use this to get all organizers
+struct AllOrganizersResponse: Codable {
+    let success: Bool
+    let message: [OrganizerModel]
+}
 
 struct OrganizerModel  : Codable {
-    
     let _id, userId,eventId : String
     let status : String
-    
-    
-    
 }

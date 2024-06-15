@@ -32,7 +32,6 @@ struct ContentView: View {
 //                .fontWeight(Theme.bodyFontWeight)
             
             Image(systemName: "bell.circle")
-                .font(.system(size:Theme.iconSize))
         
             
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {

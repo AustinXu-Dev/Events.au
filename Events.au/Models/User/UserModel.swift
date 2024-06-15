@@ -45,10 +45,16 @@ import Foundation
  }
  */
 
-
-struct UserResponse: Codable {
+//MARK: For Getting A User
+struct UserResponse : Codable {
     let success: Bool
     let message: UserModel
+}
+
+//MARK: For Getting All Users
+struct AllUsersResponse : Codable {
+    let success: Bool
+    let message: [UserModel]
 }
 
 struct UserModel: Codable {

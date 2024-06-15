@@ -22,9 +22,7 @@ struct SignInResponse: Codable {
     let message: SignInModel
 }
 
-
 struct SignInModel : Codable {
     let token : String
     let user: UserModel
-
 }

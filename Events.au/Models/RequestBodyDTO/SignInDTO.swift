@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 //MARK: Use this as a request body for Sign In Request
 struct SignInDTOModel : Codable {
     let fId : String

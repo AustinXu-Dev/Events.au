@@ -23,14 +23,9 @@ import Foundation
 
 
 //MARK: Use this as a request body for updating units of an event
-
-
 struct UpdateEventUnitDTO : Codable {
-    
     let action : String
     let units : [String]
-    
-    
 }
 
 

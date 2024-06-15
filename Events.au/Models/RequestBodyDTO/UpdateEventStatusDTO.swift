@@ -22,11 +22,7 @@ Id of the admin who is updating the status.
 */
 
 //MARK: Use this as a request body for updating event status => approve or reject
-
 struct UpdateEventStatusDTO  : Codable {
-    
     let status,adminId : String
-  
-    
 }
 

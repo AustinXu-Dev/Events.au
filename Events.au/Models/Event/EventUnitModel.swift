@@ -44,18 +44,14 @@ example: <unitId>
 }
 */
 
+//MARK: For getting unit & event relation
 struct EventUnitResponse: Codable {
     let success: Bool
-    let message: EventUnitModel
+    let message: [EventUnitModel]
 }
-
-
-
-
 
 struct EventUnitModel : Codable {
     let _id : String
     let eventId : EventModel
     let unitId : UnitModel
-
 }

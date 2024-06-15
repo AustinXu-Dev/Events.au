@@ -17,9 +17,10 @@ struct Theme {
     static let backgroundColor = Color("BackgroundColor")
     static let primaryTextColor = Color("PrimaryTextColor")
     static let secondaryTextColor = Color("SecondaryTextColor")
+    static let circleFaintColor = Color("CircleFaintColor")
     
     // MARK: - FontStyle
-    // need to import
+    static let overlayFont = "SFPRODISPLAYREGULAR.OTF" //MARK: Have to change this to sf pro display light
     static let labelFont = "SFPRODISPLAYREGULAR.OTF"
     static let headingFont = "SFProDisplay-Semibold.ttf"
     static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
@@ -28,19 +29,28 @@ struct Theme {
     
     
     // MARK: - Fonts
-    static let labelFontStyle : Font = .custom(labelFont,size: 16)
+    static let overlayFontStyle : Font = .custom(buttonFont,size: 12)
+    static let labelFontStyle : Font = .custom(labelFont,size: 20)
     static let headingFontStyle: Font = .custom(headingFont,size: 16)
     static let bodyFontStyle: Font = .custom(bodyFont, size: 16)
     static let buttonFontStyle: Font = .custom(buttonFont,size: 16)
 
     
-    // MARK: - Spacing, Widths and Heights
+    // MARK: - Spacing, Shapes, Widths and Heights
     static let defaultSpacing: CGFloat = 20
+    static let textFieldHeadingSpacing : CGFloat = 4
+    static let headingBodySpacing : CGFloat = 8
     
     static let buttonHeight : CGFloat = 40
     
     static let textFieldHeight: CGFloat = 40
-    static let textFieldSpacing : CGFloat = 4
+    
+    
+    static let eventImageWidth : CGFloat = 361
+    static let eventImageHeight : CGFloat = 160
+    
+    static let circleWidth : CGFloat = 16
+    static let circleHeight : CGFloat = 16
     
     // MARK: - Paddings
     
@@ -75,7 +85,8 @@ struct Theme {
     
     
     // MARK: - Icon Sizes
-    static let iconSize: CGFloat = 24
+    static let iconWidth: CGFloat = 16
+    static let iconHeight: CGFloat = 16
     
     // MARK: - Image Sizes
     
@@ -88,11 +99,13 @@ struct Theme {
     // MARK: - Animation
     static let animationDuration: Double = 0.3
     
-    // MARK: - Photos
+    // MARK: - Photos & System Images
     static let logo : String = "EventLogo"
     static let logoVector : String = "EventVector"
     static let welcomeText : String = "WelcomeText"
     static let confirmation : String = "Confirmation"
+    static let location : String = "location.fill"
+    static let clock : String = "clock.fill"
     
         
     

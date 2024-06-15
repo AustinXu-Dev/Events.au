@@ -6,10 +6,6 @@
 //
 
 import Foundation
-
-
-//MARK: Use this as a body for sign up request
-
 //JSON
 /*
  {
@@ -21,7 +17,7 @@ import Foundation
  }
  */
 
-
+//MARK: Use this as a body for sign up request
 struct SignUpDTO : Codable {
     let firstName,email : String
     let phone : Int

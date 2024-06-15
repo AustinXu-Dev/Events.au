@@ -17,18 +17,13 @@ import Foundation
  }
  */
 
-
 struct SignOutResponse: Codable {
     let success: Bool
     let message: SignOutModel
 }
 
-
-
 struct SignOutModel  : Codable {
     let token : String
     //Token obtained from SignIn
-    
-
 }
 
