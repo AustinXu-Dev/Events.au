@@ -19,17 +19,20 @@ import Foundation
 
  } */
 
-
+//MARK: Use this to get a unit
 struct UnitResponse: Codable {
     let success: Bool
     let message: UnitModel
 }
 
+//MARK: Use this to get all units
+struct AllUnitsResponse: Codable {
+    let success: Bool
+    let message: [UnitModel]
+}
 
 struct UnitModel  : Codable {
-    
     let _id,name,description : String
-    
 }
 
 

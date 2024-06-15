@@ -17,12 +17,10 @@ import Foundation
  }
  */
 
-
 struct RestrictedTokenResponse : Codable {
     let success : Bool
     let message : String
 }
-
 
 struct RestrictedTokenModel : Codable {
     let token : String

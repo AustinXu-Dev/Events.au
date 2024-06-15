@@ -45,6 +45,10 @@ extension View {
            self.modifier(FontModifier(style: Theme.buttonFontStyle))
        }
     
+    func applyOverlayFont() -> some View {
+        self.modifier(FontModifier(style: Theme.overlayFontStyle))
+    }
+    
 
     
     

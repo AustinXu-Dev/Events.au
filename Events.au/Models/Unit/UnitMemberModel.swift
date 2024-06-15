@@ -36,12 +36,11 @@ import Foundation
  */
 
 
-
+//MARK: Get all users with unit id
 struct UnitMemberResponse: Codable {
     let success: Bool
-    let message: UnitMemberModel
+    let message: [UnitMemberModel]
 }
-
 
 struct UnitMemberModel : Codable {
     let _id : String

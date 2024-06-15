@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 //JSON Model
 
 /*
@@ -24,19 +23,19 @@ import Foundation
  }
  */
 
-
-struct ParticipantResponseModel : Codable {
+//MARK: For getting one participant
+struct ParticipantResponse : Codable {
     let success : Bool
     let message : ParticipantModel
 }
 
+//MARK: For getting all participants
+struct AllParticipantsResponse : Codable {
+    let success : Bool
+    let message : [ParticipantModel]
+}
 
 struct ParticipantModel : Codable {
     let _id,userId, eventId, organzierId,status, email : String
     let phone : Int
-    
-
-    
-    
-    
 }

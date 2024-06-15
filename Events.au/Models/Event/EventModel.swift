@@ -56,15 +56,21 @@ import Foundation
  Status of the event
  */
 
+
+//MARK: For getting one event
 struct EventResponse: Codable {
     let success: Bool
     let message: EventModel
 }
 
+//MARK: For getting all events
+struct AllEventsResponse : Codable {
+    let success: Bool
+    let message: [EventModel]
+}
+
 
 struct EventModel : Codable {
-    
     let _id,name,description,startDate,endDate,startTime,endTime,
         location,rules,coverImageUrL,adminId,status : String
-    
 }

@@ -15,16 +15,11 @@ import Foundation
    "status": "string"
  }
 */
+
 //MARK: Use this as a request body for updating event basic info
-
-
-
-struct UpdateEventInfoDTO  : Codable {
-    
+struct UpdateEventInfoDTO : Codable {
     let name : String
     let organizer : OrganizerModel
     let status : String
-    
-    
 }
 

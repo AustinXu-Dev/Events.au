@@ -24,12 +24,8 @@ import Foundation
  */
 
 //MARK: Use this as a request body for updating participant status for an event
-
 struct UpdateParticipantStatusDTO : Codable {
     let participants : [String]
     let status : String
-    
-    
-    
 }
 
