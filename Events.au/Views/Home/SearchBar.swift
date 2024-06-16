@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var searchText: String
-       @Binding var isFiltering: Bool
+    @Binding var isFiltering: Bool
 
        var body: some View {
            HStack {
@@ -36,7 +36,7 @@ struct SearchBar: View {
                            }
                        }
                    )
-                   .padding(.horizontal, 10)
+//                   .padding(.horizontal, 10)
 
                Button(action: {
                    isFiltering.toggle()
@@ -49,11 +49,15 @@ struct SearchBar: View {
                                .font(.system(size: 24))
                            
                        }
-                       .padding(.trailing, 10)
+//                       .padding(.trailing, 10)
                    
                }
            }
            .padding(.vertical, 10)
            .background(Color.white) // Removed the shadow to eliminate grey lines
        }
+}
+
+#Preview {
+    SearchBar(searchText: .constant("keyword"), isFiltering: .constant(false))
 }

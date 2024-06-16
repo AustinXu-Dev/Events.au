@@ -14,19 +14,30 @@ struct HomeTest: View {
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
+    //MARK: have to change this after api integration
+    @State var events : [EventModel] = AllEventsMock.events
     
     var body: some View {
         NavigationStack(path: $path){
-            VStack{
+            VStack(alignment:.center){
                 SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
-            }
-            //MARK: A scroll view to be integrated here
-            ScrollView{
-                NavigationLink(value: HomeNavigation.child) {
-                    Text("Click me to navigate")
+            
+           
+                categoryScrollView
+                
+                
+            ScrollView(.vertical,showsIndicators: false){
+                VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
+                    Text("Upcoming Events")
+                            .applyLabelFont()
+                    ForEach(events,id: \._id){ event in
+                        EventCard(event: event)
+                        
+                    }
                 }
             }
-            
+        } //end ofVStack
+            .padding(.horizontal,Theme.large)
             
             .navigationDestination(for: HomeNavigation.self) { screen in
                 switch screen{
@@ -58,6 +69,42 @@ struct HomeTest: View {
         }
         .tint(.blue)
         
+    }
+}
+
+
+
+extension HomeTest {
+    private var categoryScrollView : some View {
+        VStack(alignment: .leading) {
+            Text("Categories")
+                .applyLabelFont()
+            ScrollView(.horizontal,showsIndicators: false) {
+                HStack(spacing:Theme.defaultSpacing) {
+                        ForEach(CategoryValue.categories,id:\.id) { category in
+                            VStack {
+                            Image(category.image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width:Theme.categoryImageFrame,height:Theme.categoryImageFrame)
+                                .background(
+                                    Circle()
+                                        .frame(height:64)
+                                        .padding(Theme.circlePadding)
+                                )
+                             
+                                .applyThemeDoubleShadow()
+                            Text(category.name)
+                                    .applyOverlayFont()
+                        }
+                    }
+                }
+                
+                
+            }
+            .padding(.vertical,10)
+            
+        }
     }
 }
 
