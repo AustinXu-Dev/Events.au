@@ -77,6 +77,12 @@
 		B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */; };
 		B7FCBFFD2C15A85B00C8C531 /* CreateParticipantDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */; };
 		BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27116F2C195D8C00A99157 /* SignupForm.swift */; };
+		BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711722C195F8C00A99157 /* TabScreenView.swift */; };
+		BC2711752C19909D00A99157 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711742C19909D00A99157 /* HomeTest.swift */; };
+		BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711762C1990FF00A99157 /* TabViewEnum.swift */; };
+		BC27117B2C1991E400A99157 /* ChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27117A2C1991E400A99157 /* ChildView.swift */; };
+		BC27117F2C19920000A99157 /* SecondChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27117E2C19920000A99157 /* SecondChildView.swift */; };
+		BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6157C42C1E0CF400F78A9E /* SearchBar.swift */; };
 		BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02432C116C1000A9EE3E /* Events_auApp.swift */; };
 		BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02452C116C1000A9EE3E /* ContentView.swift */; };
 		BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE02472C116C1300A9EE3E /* Assets.xcassets */; };
@@ -152,6 +158,12 @@
 		B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutDTO.swift; sourceTree = "<group>"; };
 		B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateParticipantDTO.swift; sourceTree = "<group>"; };
 		BC27116F2C195D8C00A99157 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
+		BC2711722C195F8C00A99157 /* TabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabScreenView.swift; sourceTree = "<group>"; };
+		BC2711742C19909D00A99157 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
+		BC2711762C1990FF00A99157 /* TabViewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewEnum.swift; sourceTree = "<group>"; };
+		BC27117A2C1991E400A99157 /* ChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildView.swift; sourceTree = "<group>"; };
+		BC27117E2C19920000A99157 /* SecondChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondChildView.swift; sourceTree = "<group>"; };
+		BC6157C42C1E0CF400F78A9E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BCBE02402C116C1000A9EE3E /* Events.au.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.au.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE02432C116C1000A9EE3E /* Events_auApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_auApp.swift; sourceTree = "<group>"; };
 		BCBE02452C116C1000A9EE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -380,6 +392,17 @@
 			path = RequestBodyDTO;
 			sourceTree = "<group>";
 		};
+		BC2711712C195F7700A99157 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BC2711742C19909D00A99157 /* HomeTest.swift */,
+				BC27117A2C1991E400A99157 /* ChildView.swift */,
+				BC27117E2C19920000A99157 /* SecondChildView.swift */,
+				BC6157C42C1E0CF400F78A9E /* SearchBar.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		BCBE02372C116C1000A9EE3E = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +486,7 @@
 				39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */,
 				39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */,
 				3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */,
+				BC2711762C1990FF00A99157 /* TabViewEnum.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -479,7 +503,9 @@
 		BCBE02682C116D9700A9EE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BC2711712C195F7700A99157 /* Home */,
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
+				BC2711722C195F8C00A99157 /* TabScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7FCBFF62C15966F00C8C531 /* SignInDTO.swift in Sources */,
+				BC27117F2C19920000A99157 /* SecondChildView.swift in Sources */,
 				B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */,
 				B370C6E22C1525C200C28E67 /* TokenManager.swift in Sources */,
 				B370C6DD2C15259700C28E67 /* FirebaseManager.swift in Sources */,
@@ -624,7 +651,9 @@
 				BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */,
 				B7C69A9E2C14FA850055DDD9 /* SignOutMock.swift in Sources */,
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
+				BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */,
 				B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */,
+				BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */,
 				B7C69A762C14DF880055DDD9 /* UnitMemberModel.swift in Sources */,
 				B7F265042C1D853300033E37 /* ParticipantRow.swift in Sources */,
 				B7DFB3DB2C17091C00BB53E7 /* View.swift in Sources */,
@@ -634,6 +663,7 @@
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
 				B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */,
 				B7C69A7C2C14E1160055DDD9 /* SignOutModel.swift in Sources */,
+				BC2711752C19909D00A99157 /* HomeTest.swift in Sources */,
 				B7C69A822C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift in Sources */,
 				B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */,
 				B7C69A842C14E5C00055DDD9 /* UpdateEventUnitDTO.swift in Sources */,
@@ -652,12 +682,14 @@
 				B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */,
 				B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */,
 				B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */,
+				BC27117B2C1991E400A99157 /* ChildView.swift in Sources */,
 				B731AAE32C160B9B00A3E8C2 /* Date.swift in Sources */,
 				B7FC26DB2C19C37000C1D7FD /* GetAllEventsViewModel.swift in Sources */,
 				B7C69A682C14D78F0055DDD9 /* SignInModel.swift in Sources */,
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
 				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
+				BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */,
 				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
 				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
 				39FC54222C1388BF00240B93 /* SignInView.swift in Sources */,

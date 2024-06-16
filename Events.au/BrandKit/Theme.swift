@@ -19,6 +19,7 @@ struct Theme {
     static let secondaryTextColor = Color("SecondaryTextColor")
     static let greenFaint = Color("GreenFaint")
     static let redFaint = Color("RedFaint")
+    static let backgroundColorPink = Color("BackgroundColorPink")
     
     // MARK: - FontStyle
     static let overlayFont = "SFProDisplayLight.ttf" //MARK: Have to change this to sf pro display light
