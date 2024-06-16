@@ -498,9 +498,6 @@
 			children = (
 				BC2711712C195F7700A99157 /* Home */,
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
-				39FC54212C1388BF00240B93 /* SignInView.swift */,
-				39FC54232C1388D800240B93 /* SignupView.swift */,
-				BC27116F2C195D8C00A99157 /* SignupForm.swift */,
 				BC2711722C195F8C00A99157 /* TabScreenView.swift */,
 			);
 			path = Views;
