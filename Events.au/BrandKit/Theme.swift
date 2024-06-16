@@ -18,6 +18,7 @@ struct Theme {
     static let primaryTextColor = Color("PrimaryTextColor")
     static let secondaryTextColor = Color("SecondaryTextColor")
     static let circleFaintColor = Color("CircleFaintColor")
+    static let backgroundColorPink = Color("BackgroundColorPink")
     
     // MARK: - FontStyle
     static let overlayFont = "SFPRODISPLAYREGULAR.OTF" //MARK: Have to change this to sf pro display light

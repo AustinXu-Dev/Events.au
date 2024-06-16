@@ -10,20 +10,30 @@ import SwiftUI
 struct HomeTest: View {
     
     @Binding var path: [HomeNavigation]
+    @State var user = UserMock.instance
+    @State var isSearching: Bool = false
+    @State var showingSidebar: Bool = false
+    @State var searchText: String = ""
     
     var body: some View {
         NavigationStack(path: $path){
+            VStack{
+                SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
+            }
+            //MARK: A scroll view to be integrated here
             ScrollView{
                 NavigationLink(value: HomeNavigation.child) {
                     Text("Click me to navigate")
                 }
             }
+            
+            
             .navigationDestination(for: HomeNavigation.self) { screen in
                 switch screen{
                 case .child:
-                    ChildView()
+                    Text("Child")
                 case .secondChild(let person):
-                    SecondChildView(person: person)
+                    Text("Second child")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -34,7 +44,7 @@ struct HomeTest: View {
                         .scaledToFit()
                         .frame(width: 35, height: 35)
                         .clipShape(Circle())
-                    Text("Justin Hollan")
+                    Text(user.user1.firstName)
                         .font(Theme.headingFontStyle)
                         
                 }
