@@ -22,8 +22,8 @@ struct Theme {
     static let backgroundColorPink = Color("BackgroundColorPink")
     
     // MARK: - FontStyle
-    static let overlayFont = "SFProDisplayLight.ttf" //MARK: Have to change this to sf pro display light
-    static let labelFont = "SFPRODISPLAYREGULAR.OTF"
+    static let overlayFont = "SFProDisplayLight.ttf"
+    static let labelFont = "SFProDisplay-Semibold.ttf"
     static let headingFont = "SFProDisplay-Semibold.ttf"
     static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
     static let buttonFont = "SFProDisplay-Semibold.ttf"
@@ -57,6 +57,8 @@ struct Theme {
     static let participantSquareImage : CGFloat = 64
     static let participantRectWidth : CGFloat = 361
     static let participantRectHeight : CGFloat = 72
+    
+    static let categoryImageFrame : CGFloat = 26
 
     
     
@@ -70,7 +72,7 @@ struct Theme {
     static let xxl : CGFloat = 32
     static let xxxl : CGFloat = 156
     
-    
+    static let circlePadding : CGFloat = 20
     
     // MARK: - Shapes
     static let cornerRadius: CGFloat = 8
@@ -115,6 +117,13 @@ struct Theme {
     static let location : String = "location.fill"
     static let clock : String = "clock.fill"
     
+    
+    // MARK: - Icon Names
+    static let gamingIcon : String = "gaming_icon"
+    static let techIcon : String = "tech_icon"
+    static let businessIcon : String = "business_icon"
+    static let entertainmentIcon : String = "entertainment_icon"
+    static let academyIcon : String = "academy_icon"
         
     
 }
