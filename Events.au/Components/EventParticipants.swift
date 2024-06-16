@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MARK: - This is a micro component for EventCard
 struct EventParticipants: View {
     let mockData = ProfileImagesMock.instance.images
     
@@ -33,7 +34,7 @@ struct EventParticipants: View {
                 ZStack {
                     Circle()
                         .frame(width: Theme.circleWidth,height: Theme.circleHeight)
-                        .foregroundStyle(Theme.circleFaintColor)
+                        .foregroundStyle(Theme.greenFaint)
                         .overlay(
                             Text("+\(mockData.count-4)")
                                 .applyOverlayFont()

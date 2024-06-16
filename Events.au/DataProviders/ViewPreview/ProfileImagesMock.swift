@@ -22,6 +22,9 @@ struct ProfileImagesMock  {
         ProfileImageModel(id: 7, name: "PersonA"),
         ProfileImageModel(id: 8, name: "PersonB")
     ]
+    
+    
+    
 }
 
 struct ProfileImageModel : Identifiable {
