@@ -17,10 +17,11 @@ struct Theme {
     static let backgroundColor = Color("BackgroundColor")
     static let primaryTextColor = Color("PrimaryTextColor")
     static let secondaryTextColor = Color("SecondaryTextColor")
-    static let circleFaintColor = Color("CircleFaintColor")
+    static let greenFaint = Color("GreenFaint")
+    static let redFaint = Color("RedFaint")
     
     // MARK: - FontStyle
-    static let overlayFont = "SFPRODISPLAYREGULAR.OTF" //MARK: Have to change this to sf pro display light
+    static let overlayFont = "SFProDisplayLight.ttf" //MARK: Have to change this to sf pro display light
     static let labelFont = "SFPRODISPLAYREGULAR.OTF"
     static let headingFont = "SFProDisplay-Semibold.ttf"
     static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
@@ -51,6 +52,12 @@ struct Theme {
     
     static let circleWidth : CGFloat = 16
     static let circleHeight : CGFloat = 16
+    
+    static let participantSquareImage : CGFloat = 64
+    static let participantRectWidth : CGFloat = 361
+    static let participantRectHeight : CGFloat = 72
+
+    
     
     // MARK: - Paddings
     

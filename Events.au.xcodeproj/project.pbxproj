@@ -64,6 +64,9 @@
 		B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DFB3C22C16145D00BB53E7 /* SignOutDTOMock.swift */; };
 		B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DFB3D62C16ED4300BB53E7 /* ConfirmationView.swift */; };
 		B7DFB3DB2C17091C00BB53E7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DFB3DA2C17091C00BB53E7 /* View.swift */; };
+		B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F265012C1D81D900033E37 /* ParticipantManager.swift */; };
+		B7F265042C1D853300033E37 /* ParticipantRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F265032C1D853300033E37 /* ParticipantRow.swift */; };
+		B7F265072C1D8D5A00033E37 /* EventParticipantsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F265062C1D8D5A00033E37 /* EventParticipantsMock.swift */; };
 		B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26D62C19C0B800C1D7FD /* ReusableButton.swift */; };
 		B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26D82C19C19F00C1D7FD /* EventCard.swift */; };
 		B7FC26DB2C19C37000C1D7FD /* GetAllEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */; };
@@ -80,7 +83,6 @@
 		BCBE02522C116C4400A9EE3E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02512C116C4400A9EE3E /* Service.swift */; };
 		BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02532C116C8E00A9EE3E /* Utility.swift */; };
 		BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02572C116CCA00A9EE3E /* Helper.swift */; };
-		BCBE02602C116D2900A9EE3E /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE025F2C116D2900A9EE3E /* Component.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +138,10 @@
 		B7DFB4062C17E93B00BB53E7 /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
 		B7DFB40C2C17E97E00BB53E7 /* Events-au-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Events-au-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B7DFB40D2C17EB8900BB53E7 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
+		B7F265012C1D81D900033E37 /* ParticipantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantManager.swift; sourceTree = "<group>"; };
+		B7F265032C1D853300033E37 /* ParticipantRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantRow.swift; sourceTree = "<group>"; };
+		B7F265052C1D889A00033E37 /* SFProDisplayLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayLight.ttf; sourceTree = "<group>"; };
+		B7F265062C1D8D5A00033E37 /* EventParticipantsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipantsMock.swift; sourceTree = "<group>"; };
 		B7FC26D62C19C0B800C1D7FD /* ReusableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButton.swift; sourceTree = "<group>"; };
 		B7FC26D82C19C19F00C1D7FD /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
 		B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEventsViewModel.swift; sourceTree = "<group>"; };
@@ -154,7 +160,6 @@
 		BCBE02512C116C4400A9EE3E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		BCBE02532C116C8E00A9EE3E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		BCBE02572C116CCA00A9EE3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		BCBE025F2C116D2900A9EE3E /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */,
+				B7F265062C1D8D5A00033E37 /* EventParticipantsMock.swift */,
 			);
 			path = ViewPreview;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 		B7DFB4022C17E91A00BB53E7 /* BrandKit */ = {
 			isa = PBXGroup;
 			children = (
+				B7F265052C1D889A00033E37 /* SFProDisplayLight.ttf */,
 				B7DFB40D2C17EB8900BB53E7 /* SFProDisplay-Semibold.ttf */,
 				B7DFB4062C17E93B00BB53E7 /* SFPRODISPLAYREGULAR.OTF */,
 				B7720E1B2C11E5B100A053F6 /* Theme.swift */,
@@ -493,10 +500,11 @@
 		BCBE026A2C116DA100A9EE3E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				BCBE025F2C116D2900A9EE3E /* Component.swift */,
 				B7FC26D62C19C0B800C1D7FD /* ReusableButton.swift */,
 				B7FC26D82C19C19F00C1D7FD /* EventCard.swift */,
 				B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */,
+				B7F265012C1D81D900033E37 /* ParticipantManager.swift */,
+				B7F265032C1D853300033E37 /* ParticipantRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -618,6 +626,7 @@
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
 				B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */,
 				B7C69A762C14DF880055DDD9 /* UnitMemberModel.swift in Sources */,
+				B7F265042C1D853300033E37 /* ParticipantRow.swift in Sources */,
 				B7DFB3DB2C17091C00BB53E7 /* View.swift in Sources */,
 				B7C69A782C14E0210055DDD9 /* EventUnitModel.swift in Sources */,
 				B7C69A702C14DDAC0055DDD9 /* UpdateEventInfoDTO.swift in Sources */,
@@ -640,6 +649,7 @@
 				B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */,
 				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
 				B7C69A722C14DE900055DDD9 /* UpdateEventStatusDTO.swift in Sources */,
+				B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */,
 				B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */,
 				B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */,
 				B731AAE32C160B9B00A3E8C2 /* Date.swift in Sources */,
@@ -656,8 +666,8 @@
 				B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */,
 				B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */,
 				B731AADA2C16066E00A3E8C2 /* AdminMock.swift in Sources */,
-				BCBE02602C116D2900A9EE3E /* Component.swift in Sources */,
 				B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */,
+				B7F265072C1D8D5A00033E37 /* EventParticipantsMock.swift in Sources */,
 				B7FCBFFD2C15A85B00C8C531 /* CreateParticipantDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
