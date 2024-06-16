@@ -14,33 +14,22 @@ struct HomeTest: View {
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
+    @State var selectedCategory : [String] = []
     //MARK: have to change this after api integration
     @State var events : [EventModel] = AllEventsMock.events
     
+    
     var body: some View {
         NavigationStack(path: $path){
-            VStack(alignment:.center){
+            VStack(alignment:.leading,spacing:Theme.defaultSpacing){
                 SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
-            
-           
                 categoryScrollView
-                
-                
-            ScrollView(.vertical,showsIndicators: false){
-                VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
-                    Text("Upcoming Events")
-                            .applyLabelFont()
-                    ForEach(events,id: \._id){ event in
-                        EventCard(event: event)
-                        
-                    }
-                }
+                eventsScrollView
+
             }
-        } //end ofVStack
             .padding(.horizontal,Theme.large)
-            
             .navigationDestination(for: HomeNavigation.self) { screen in
-                switch screen{
+                switch screen {
                 case .child:
                     Text("Child")
                 case .secondChild(let person):
@@ -48,7 +37,7 @@ struct HomeTest: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
+            .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Image("human_profile")
                         .resizable()
@@ -56,19 +45,16 @@ struct HomeTest: View {
                         .frame(width: 35, height: 35)
                         .clipShape(Circle())
                     Text(user.user1.firstName)
-                        .font(Theme.headingFontStyle)
-                        
+                        .applyHeadingFont()
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Image("noti_icon_active")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    
                 }
             }
         }
         .tint(.blue)
-        
     }
 }
 
@@ -81,29 +67,52 @@ extension HomeTest {
                 .applyLabelFont()
             ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing:Theme.defaultSpacing) {
-                        ForEach(CategoryValue.categories,id:\.id) { category in
-                            VStack {
-                            Image(category.image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width:Theme.categoryImageFrame,height:Theme.categoryImageFrame)
-                                .background(
-                                    Circle()
-                                        .frame(height:64)
-                                        .padding(Theme.circlePadding)
+                    ForEach(CategoryValue.categories,id:\.id) { category in
+                        VStack(alignment:.center,spacing:4) {
+                            Circle()
+                                .frame(height:54)
+                                .scaleEffect(selectedCategory.contains(category.id) ? 1.1 : 1)
+                                .padding(.vertical,Theme.xs)
+                                .foregroundStyle(selectedCategory.contains(category.id) ? Theme.redFaint : Color.white)
+                                .applyThemeDoubleShadow()
+                                .overlay(
+                                    Image(category.image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width:Theme.categoryImageFrame,height:Theme.categoryImageFrame)
                                 )
-                             
                                 .applyThemeDoubleShadow()
                             Text(category.name)
-                                    .applyOverlayFont()
+                                .applyOverlayFont()
+                                .foregroundStyle(selectedCategory.contains(category.id) ? Theme.tintColor : Theme.secondaryTextColor)
+                        }
+                        .onTapGesture {
+                            withAnimation(.spring(duration:0.5)) {
+                                if self.selectedCategory.contains(category.id) {
+                                    selectedCategory.removeAll(where: {$0 == category.id})
+                                } else {
+                                    self.selectedCategory.append(category.id)
+                                }
+                            }
                         }
                     }
                 }
-                
-                
+                .padding(.horizontal,Theme.large)
             }
-            .padding(.vertical,10)
-            
+        }
+    }
+    
+    private var eventsScrollView : some View {
+        VStack(alignment:.leading) {
+            Text("Upcoming Events")
+                .applyLabelFont()
+            ScrollView(.vertical,showsIndicators: false){
+                VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
+                    ForEach(events,id: \._id){ event in
+                        EventCard(event: event)
+                    }
+                }
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ struct EventParticipants: View {
     let mockData = ProfileImagesMock.instance.images
     
     var body: some View {
-        HStack(spacing:4) {
+        HStack(spacing:0) {
             HStack(spacing:-8) {
                 
                 ForEach(mockData.prefix(upTo: 4),id: \.id){ image in
@@ -34,13 +34,14 @@ struct EventParticipants: View {
                 ZStack {
                     Circle()
                         .frame(width: Theme.circleWidth,height: Theme.circleHeight)
-                        .foregroundStyle(Theme.greenFaint)
+                        .foregroundStyle(Theme.redFaint)
                         .overlay(
                             Text("+\(mockData.count-4)")
                                 .applyOverlayFont()
                                 .foregroundStyle(.black)
                             
                         )
+
                     Circle()
                         .stroke(.white,lineWidth: 1)
                         .frame(width: Theme.circleWidth,height:Theme.circleHeight)
