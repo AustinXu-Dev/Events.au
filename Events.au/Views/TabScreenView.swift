@@ -67,7 +67,7 @@ extension TabScreenView {
                 
                 if homeNavigationStack.isEmpty{
                     //User already on home view, scroll to top function here
-                } else{
+                } else {
                     homeNavigationStack = []
                 }
             }

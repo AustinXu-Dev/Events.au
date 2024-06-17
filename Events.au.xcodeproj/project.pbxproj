@@ -35,6 +35,8 @@
 		B731AADA2C16066E00A3E8C2 /* AdminMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAD92C16066E00A3E8C2 /* AdminMock.swift */; };
 		B731AADD2C1606E300A3E8C2 /* UnitMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AADC2C1606E300A3E8C2 /* UnitMock.swift */; };
 		B731AAE32C160B9B00A3E8C2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAE22C160B9B00A3E8C2 /* Date.swift */; };
+		B74956E22C2080AB00C51B30 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74956E12C2080AB00C51B30 /* EventRow.swift */; };
+		B74956E42C2088B900C51B30 /* EventStatusColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74956E32C2088B900C51B30 /* EventStatusColor.swift */; };
 		B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75057392C160F9300D742E8 /* UnitAdminModel.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
@@ -114,6 +116,8 @@
 		B731AADC2C1606E300A3E8C2 /* UnitMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitMock.swift; sourceTree = "<group>"; };
 		B731AAE02C16085700A3E8C2 /* UnitAdminModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAdminModel.swift; sourceTree = "<group>"; };
 		B731AAE22C160B9B00A3E8C2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		B74956E12C2080AB00C51B30 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		B74956E32C2088B900C51B30 /* EventStatusColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatusColor.swift; sourceTree = "<group>"; };
 		B75057392C160F9300D742E8 /* UnitAdminModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAdminModel.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
@@ -283,6 +287,32 @@
 			path = UnitPreview;
 			sourceTree = "<group>";
 		};
+		B74956DE2C20801E00C51B30 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B74956DF2C20805B00C51B30 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				B7FC26D82C19C19F00C1D7FD /* EventCard.swift */,
+				B74956E12C2080AB00C51B30 /* EventRow.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		B74956E02C20806700C51B30 /* Participants */ = {
+			isa = PBXGroup;
+			children = (
+				B7F265032C1D853300033E37 /* ParticipantRow.swift */,
+				B7F265012C1D81D900033E37 /* ParticipantManager.swift */,
+				B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */,
+			);
+			path = Participants;
+			sourceTree = "<group>";
+		};
 		B7C69A872C14F6FF0055DDD9 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +408,7 @@
 				B7DFB40D2C17EB8900BB53E7 /* SFProDisplay-Semibold.ttf */,
 				B7DFB4062C17E93B00BB53E7 /* SFPRODISPLAYREGULAR.OTF */,
 				B7720E1B2C11E5B100A053F6 /* Theme.swift */,
+				B74956E32C2088B900C51B30 /* EventStatusColor.swift */,
 			);
 			path = BrandKit;
 			sourceTree = "<group>";
@@ -509,6 +540,7 @@
 		BCBE02682C116D9700A9EE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B74956DE2C20801E00C51B30 /* Profile */,
 				BC2711712C195F7700A99157 /* Home */,
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
 				BC2711722C195F8C00A99157 /* TabScreenView.swift */,
@@ -532,11 +564,9 @@
 		BCBE026A2C116DA100A9EE3E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B74956E02C20806700C51B30 /* Participants */,
+				B74956DF2C20805B00C51B30 /* Event */,
 				B7FC26D62C19C0B800C1D7FD /* ReusableButton.swift */,
-				B7FC26D82C19C19F00C1D7FD /* EventCard.swift */,
-				B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */,
-				B7F265012C1D81D900033E37 /* ParticipantManager.swift */,
-				B7F265032C1D853300033E37 /* ParticipantRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -641,6 +671,7 @@
 				B370C6E22C1525C200C28E67 /* TokenManager.swift in Sources */,
 				B370C6DD2C15259700C28E67 /* FirebaseManager.swift in Sources */,
 				B7FCBFF82C15A15100C8C531 /* CreateEventDTO.swift in Sources */,
+				B74956E42C2088B900C51B30 /* EventStatusColor.swift in Sources */,
 				B7C69A922C14F93D0055DDD9 /* OrganizerMock.swift in Sources */,
 				B7C69A7E2C14E18B0055DDD9 /* AdminModel.swift in Sources */,
 				B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */,
@@ -672,6 +703,7 @@
 				BC2711752C19909D00A99157 /* HomeTest.swift in Sources */,
 				B7C69A822C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift in Sources */,
 				B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */,
+				B74956E22C2080AB00C51B30 /* EventRow.swift in Sources */,
 				B7C69A842C14E5C00055DDD9 /* UpdateEventUnitDTO.swift in Sources */,
 				B7FCBFF42C15964100C8C531 /* SignUpDTO.swift in Sources */,
 				B370C6E42C1525DC00C28E67 /* WebService.swift in Sources */,

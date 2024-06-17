@@ -21,6 +21,10 @@ struct Theme {
     static let redFaint = Color("RedFaint")
     static let backgroundColorPink = Color("BackgroundColorPink")
     
+    
+    static let pendingEventColor = "PendingEventStatus"
+    static let approvedEventColor = "ApprovedEventStatus"
+    
     // MARK: - FontStyle
     static let overlayFont = "SFProDisplayLight.ttf"
     static let labelFont = "SFProDisplay-Semibold.ttf"

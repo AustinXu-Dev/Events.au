@@ -166,17 +166,17 @@ extension ParticipantManager {
 
 struct ParticipantManager_Previews : PreviewProvider {
     static var previews: some View {
-//        Group {
+        Group {
             ParticipantManager()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-//            ParticipantManager(pendingParticipants: .constant(EventParticipantsMock.instance.pendingParticipants), approvedParticipants: .constant(EventParticipantsMock.instance.approvedParticipants))
-//                .previewLayout(.sizeThatFits)
-//                .preferredColorScheme(.dark)
-//                .padding()
-//        }
+            ParticipantManager()
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+                .padding()
+        }
 
     }
 }

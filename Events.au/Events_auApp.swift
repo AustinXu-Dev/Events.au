@@ -11,10 +11,11 @@ import SwiftUI
 struct Events_auApp: App {
     
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    @State private var homeNavigationStack: [HomeNavigation] = []
+
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            HomeTest(path: $homeNavigationStack)
         }
     }
 }
