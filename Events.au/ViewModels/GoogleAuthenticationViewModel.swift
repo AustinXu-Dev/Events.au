@@ -19,6 +19,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
     @Published var isNewUser: Bool = false
     @Published var fId: String?
     @Published var email: String?
+    @Published var userId: String?
     
     
     //MARK: - Goolge Sign In Function
@@ -80,23 +81,17 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 
                 //MARK: - Condition with Token Valid and Login successful with google auth
                 if !isNewUser{
-                    if let email = authResult.user.email {
-                        let firebaseId = authResult.user.uid
-                        self.postSignInFirebaseId(firebaseId: firebaseId)
-                        DispatchQueue.main.async {
-                            TokenManager.share.isTokenValid = true
-                            print(TokenManager.share.isTokenValid, "Token state")
-                        }
+                    DispatchQueue.main.async {
+                        self.postSignInFirebaseId(firebaseId: authResult.user.uid)
                     }
-                    print("This user already exists")
+                    TokenManager.share.isTokenValid = true
+                    print("This user already exists.")
                 } else {
-                    print("There's a new user!!!")
-                    if let email = authResult.user.email {
-                        let firebaseId = authResult.user.uid
-                        //                        self.postFirebaseId(firebaseId: firebaseId)
+                    if authResult.user.email != nil {
+                        _ = authResult.user.uid
                         DispatchQueue.main.async {
                             //post new user here
-                            
+                            print("There's a new user.")
                         }
                     }
                 }
@@ -109,11 +104,13 @@ class GoogleAuthenticationViewModel: ObservableObject {
         let webService = WebService()
         webService.signin(firebaseId: firebaseId) { result in
             switch result {
-            case .success(let token):
+            case .success(let (token, userId)):
                 print("Login successful with token: \(token)")
+                print("Login successful with user _id: \(userId)")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
                     self.token = token
+                    self.userId = userId
                     TokenManager.share.saveTokens(token: token)
                 }
             case .failure(let error):
@@ -208,22 +205,6 @@ class GoogleAuthenticationViewModel: ObservableObject {
         }
     }
     
-//    func postUserIfNew(firstName: String, email: String, phone: Int, unitId: String, completion: @escaping (Result<Void, Error>) -> Void) {
-//        guard isNewUser, let fId = fId else {
-////            completion(.failure(error))
-//            return
-//        }
-//
-//        let testSignUp = TestSignUp()
-//        testSignUp.postUser(firstName: firstName, email: email, phone: phone, fId: fId, unitId: unitId) { result in
-//            switch result {
-//            case .success:
-//                completion(.success(()))
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
-//    }
     //MARK: - Goolge Sign Out Function
     func signOutWithGoogle() {
         do {

@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeTest: View {
     
     @Binding var path: [HomeNavigation]
+    @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     @State var user = UserMock.instance
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
@@ -48,9 +49,18 @@ struct HomeTest: View {
                         .applyHeadingFont()
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Image("noti_icon_active")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+//                    Image("noti_icon_active")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+                    //MARK: -This will be the sign out button during the development phase
+                    Button {
+                        authVM.signOutWithGoogle()
+                    } label: {
+                        Text("Log Out")
+                            .applyOverlayFont()
+                            .foregroundStyle(Color.red)
+                    }
+
                 }
             }
         }
