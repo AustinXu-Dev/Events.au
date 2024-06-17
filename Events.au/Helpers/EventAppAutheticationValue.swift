@@ -31,5 +31,6 @@ struct EventAppAutheticationValue {
     static let passwordConfrimPlaceHolder = "confrim password";
     
     static let signInWithGoogle = "Sign in with Google";
+    static let signUpWithGoogle = "Sign up with Google";
 
 }

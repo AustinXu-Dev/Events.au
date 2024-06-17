@@ -13,26 +13,27 @@ struct SignupView: View {
     @State private var confirmPassword: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-
+    @State private var navigateToSignupForm: Bool = false
+    
     var body: some View {
         VStack {
             Spacer()
             VStack {
-                  Image("event_logo")
-                      .resizable()
-                      .frame(width: 100, height: 100)
-                      .padding(.bottom, 10)
-                  
-                  HStack(spacing: 2) {
-                      Text("Events.")
-                      Text("AU")
-                          .foregroundColor(Color.eventBackground)
-                  }
-                  .font(.system(size: 20))
-                  .bold()
-              }
-              .padding(.bottom, 20)
-
+                Image("event_logo")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .padding(.bottom, 10)
+                
+                HStack(spacing: 2) {
+                    Text("Events.")
+                    Text("AU")
+                        .foregroundColor(Color.eventBackground)
+                }
+                .font(.system(size: 20))
+                .bold()
+            }
+            .padding(.bottom, 20)
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.emailAddress)
                     .font(.headline)
@@ -51,7 +52,7 @@ struct SignupView: View {
                     )
             }
             .padding(.top, 10)
-
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.password)
                     .font(.headline)
@@ -87,7 +88,7 @@ struct SignupView: View {
                     )
             }
             .padding(.top, 4)
-
+            
             HStack {
                 Spacer()
                 
@@ -102,33 +103,33 @@ struct SignupView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
-        }
+            }
             
             HStack {
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(Color.eventDivider)
-                    
-                    Text("or")
-                        .foregroundColor(Color.eventDivider)
-                        .padding(.horizontal, 8)
-                    
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(Color.eventDivider)
-                }
-                .frame(width: 361)
-                .padding(.vertical, 20)
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.eventDivider)
+                
+                Text("or")
+                    .foregroundColor(Color.eventDivider)
+                    .padding(.horizontal, 8)
+                
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.eventDivider)
+            }
+            .frame(width: 361)
+            .padding(.vertical, 20)
             
             Button(action: {
-                
+                navigateToSignupForm = true
             }) {
                 HStack {
                     Image("google_icon")
                         .resizable()
                         .frame(width: 27, height: 28)
                     
-                    Text(EventAppAutheticationValue.signInWithGoogle)
+                    Text(EventAppAutheticationValue.signUpWithGoogle)
                         .font(.headline) // Adjust font as needed
                         .foregroundColor(.primary)
                 }
@@ -143,7 +144,7 @@ struct SignupView: View {
             }
             
             HStack {
-                Text("Don't have an account?")
+                Text("Already have an account?")
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
                 
@@ -156,11 +157,14 @@ struct SignupView: View {
             }
             .frame(height: 22)
             .padding(.top, 2)
-
+            
             Spacer()
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .navigationDestination(isPresented: $navigateToSignupForm) {
+            SignupForm()
         }
     }
 
@@ -193,4 +197,3 @@ struct SignupView_Previews: PreviewProvider {
         SignupView()
     }
 }
-

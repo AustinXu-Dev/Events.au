@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct AppStateHandler {
-    
-    static func saveAccountAvailability(userId: String){
-        UserDefaults.standard.set(userId, forKey: "ExistedAccount")
-    }
-}
+//struct AppStateHandler {
+//    
+//    static func saveAccountAvailability(userId: String){
+//        UserDefaults.standard.set(userId, forKey: "ExistedAccount")
+//    }
+//}

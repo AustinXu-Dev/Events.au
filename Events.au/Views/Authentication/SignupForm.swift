@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
+import GoogleSignIn
 
 struct Faculty: Identifiable {
     let id: Int
@@ -24,8 +26,14 @@ struct SignupForm: View {
     @State private var alertMessage: String = ""
     @State private var selectedFaculty: String = "Select Faculty"
     @State private var selectedGender: String = "Select Gender"
-    @State private var selectedUnitName: String = ""
+    @State private var selectedUnitName: String = "666d483d9ad6b85eeaea33a7"
     @State private var isMenuVisible = false
+    
+//    @ObservedObject var allUnitsViewModel = AllUnitsViewModel()
+    @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
+    @ObservedObject var userSignUpViewModel = UserSignUpViewModel()
+    
+    @State var errorMessage: String? = ""
     
     @State private var faculties: [Faculty] = [
         Faculty(id: 1, name: "VMS"),
@@ -43,26 +51,26 @@ struct SignupForm: View {
     
     @State private var selectedGenderType: String = ""
     @State private var selectedGenderId : Int?
-
+    
     var body: some View {
         VStack {
             Spacer()
             VStack {
-                  Image("event_logo")
-                      .resizable()
-                      .frame(width: 100, height: 100)
-                      .padding(.bottom, 10)
-                  
-                  HStack(spacing: 2) {
-                      Text("Events.")
-                      Text("AU")
-                          .foregroundColor(Color.eventBackground)
-                  }
-                  .font(.system(size: 20))
-                  .bold()
-              }
-              .padding(.bottom, 20)
-
+                Image("event_logo")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .padding(.bottom, 10)
+                
+                HStack(spacing: 2) {
+                    Text("Events.")
+                    Text("AU")
+                        .foregroundColor(Color.eventBackground)
+                }
+                .font(.system(size: 20))
+                .bold()
+            }
+            .padding(.bottom, 20)
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.name)
                     .font(.headline)
@@ -81,13 +89,13 @@ struct SignupForm: View {
                     )
             }
             .padding(.top, 10)
-
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.contact)
                     .font(.headline)
                     .padding(.horizontal, 0)
                 
-                SecureField(EventAppAutheticationValue.contactPlaceHolder, text: $contact)
+                TextField(EventAppAutheticationValue.contactPlaceHolder, text: $contact)
                     .autocapitalization(.none)
                     .padding()
                     .frame(width: 361, height: 41.49)
@@ -115,12 +123,12 @@ struct SignupForm: View {
                                     .disabled(true)
                                 Spacer()
                                 Menu {
-                                    ForEach(faculties, id: \.id) { faculty in
-                                        Button(faculty.name) {
-                                            selectedFacultyId = faculty.id
-                                            selectedFacultyName = faculty.name
-                                        }
-                                    }
+                                    //                                    ForEach(allUnitsViewModel.units, id: \.name) { unit in
+                                    //                                        Button(unit.name) {
+                                    ////                                            selectedFacultyId = unit.id
+                                    //                                            selectedFacultyName = unit.name
+                                    //                                        }
+                                    //                                    }
                                 } label: {
                                     Image(systemName: "arrowtriangle.down.fill")
                                         .resizable()
@@ -129,6 +137,9 @@ struct SignupForm: View {
                                 }
                             }
                             .padding()
+                            .onTapGesture {
+                                //                                allUnitsViewModel.fetchAllUnits()
+                            }
                         }
                             .tint(Color("text_color_grey"))
                     )
@@ -150,7 +161,7 @@ struct SignupForm: View {
                     .overlay(
                         Group {
                             HStack {
-                                TextField("Select Gender", text: $selectedUnitName)
+                                TextField("Select Gender", text: $selectedGender)
                                     .disabled(true)
                                 Spacer()
                                 Menu {
@@ -177,30 +188,61 @@ struct SignupForm: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
             }
-
             
             HStack {
                 Spacer()
-
-            Button(action: {
                 
-            }) {
-                Text("Sign Up")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .frame(height: 36)
-                    .background(Color.eventBackground)
-                    .cornerRadius(8)
+                Button(action: {
+                    //sign up with google
+                    signUpWithGoogle()
+                }) {
+                    Text("Sign Up")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .frame(height: 36)
+                        .background(Color.eventBackground)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 8)
-        }
-
+            
             Spacer()
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    private func signUpWithGoogle() {
+        guard let phoneInt = Int(contact) else {
+            showAlert = true
+            alertMessage = "Invalid phone number."
+            return
+        }
+        
+        authViewModel.signUpWithGoogle(presenting: Application_utility.rootViewController) { error, isNewUser in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.errorMessage = error.localizedDescription
+                }
+                if isNewUser{
+                    //post here
+                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, fId: authViewModel.fId ?? "", unitId: self.selectedUnitName) { result in
+                        switch result {
+                        case .success:
+                            self.alertMessage = "User registration successful"
+                            authViewModel.signOutWithGoogle()
+                        case .failure(let error):
+                            self.alertMessage = "Registration failed \(error)"
+                        }
+                        self.showAlert = true
+                    }
+                } else {
+                    //handle error
+                }
+            }
         }
     }
 }
@@ -210,6 +252,5 @@ struct SignupForm_Previews: PreviewProvider {
         SignupForm()
     }
 }
-
 
 
