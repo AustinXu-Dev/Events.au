@@ -80,7 +80,7 @@ extension ParticipantManager {
                 Text("Current")
                     .applyLabelFont()
                     .onTapGesture {
-                        withAnimation(.interactiveSpring) {
+                        withAnimation {
                             self.showPending = false
                         }
                     }
@@ -95,7 +95,7 @@ extension ParticipantManager {
                 Text("Pending")                            
                     .applyLabelFont()
                     .onTapGesture {
-                        withAnimation(.default) {
+                        withAnimation {
                             self.showPending = true
                         }
                     }
@@ -166,17 +166,17 @@ extension ParticipantManager {
 
 struct ParticipantManager_Previews : PreviewProvider {
     static var previews: some View {
-//        Group {
+        Group {
             ParticipantManager()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-//            ParticipantManager(pendingParticipants: .constant(EventParticipantsMock.instance.pendingParticipants), approvedParticipants: .constant(EventParticipantsMock.instance.approvedParticipants))
-//                .previewLayout(.sizeThatFits)
-//                .preferredColorScheme(.dark)
-//                .padding()
-//        }
+            ParticipantManager()
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+                .padding()
+        }
 
     }
 }
