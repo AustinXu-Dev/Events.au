@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Events_auApp: App {
     
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var homeNavigationStack: [HomeNavigation] = []
 
     var body: some Scene {
