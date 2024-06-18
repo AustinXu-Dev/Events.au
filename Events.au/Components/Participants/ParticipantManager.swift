@@ -80,7 +80,7 @@ extension ParticipantManager {
                 Text("Current")
                     .applyLabelFont()
                     .onTapGesture {
-                        withAnimation(.interactiveSpring) {
+                        withAnimation {
                             self.showPending = false
                         }
                     }
@@ -95,7 +95,7 @@ extension ParticipantManager {
                 Text("Pending")                            
                     .applyLabelFont()
                     .onTapGesture {
-                        withAnimation(.default) {
+                        withAnimation {
                             self.showPending = true
                         }
                     }
