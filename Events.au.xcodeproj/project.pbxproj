@@ -12,6 +12,11 @@
 		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
 		39FC54242C1388D800240B93 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54232C1388D800240B93 /* SignupView.swift */; };
 		39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */; };
+		B36CA95D2C1F8D4500FE6D46 /* AllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36CA95C2C1F8D4500FE6D46 /* AllEvents.swift */; };
+		B36CA95F2C1F8D7100FE6D46 /* AllEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */; };
+		B36CA9612C1F8E1D00FE6D46 /* UserSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36CA9602C1F8E1D00FE6D46 /* UserSignUpViewModel.swift */; };
+		B36CA9632C1F8E7E00FE6D46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B36CA9622C1F8E7E00FE6D46 /* GoogleService-Info.plist */; };
+		B36CA9652C20648300FE6D46 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36CA9642C20648300FE6D46 /* KeychainManager.swift */; };
 		B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6C72C15251D00C28E67 /* APIManager.swift */; };
 		B370C6CB2C15254200C28E67 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6CA2C15254200C28E67 /* GoogleSignIn */; };
 		B370C6CD2C15254200C28E67 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6CC2C15254200C28E67 /* GoogleSignInSwift */; };
@@ -102,6 +107,11 @@
 		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		39FC54232C1388D800240B93 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppAutheticationValue.swift; sourceTree = "<group>"; };
+		B36CA95C2C1F8D4500FE6D46 /* AllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEvents.swift; sourceTree = "<group>"; };
+		B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEventsViewModel.swift; sourceTree = "<group>"; };
+		B36CA9602C1F8E1D00FE6D46 /* UserSignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpViewModel.swift; sourceTree = "<group>"; };
+		B36CA9622C1F8E7E00FE6D46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B36CA9642C20648300FE6D46 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		B370C6C72C15251D00C28E67 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B370C6DC2C15259700C28E67 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B370C6E12C1525C200C28E67 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
@@ -204,12 +214,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B36CA95A2C1F8D1B00FE6D46 /* NetworkUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				B36CA95B2C1F8D3800FE6D46 /* Event */,
+			);
+			path = NetworkUseCases;
+			sourceTree = "<group>";
+		};
+		B36CA95B2C1F8D3800FE6D46 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				B36CA95C2C1F8D4500FE6D46 /* AllEvents.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		B370C6C62C15251000C28E67 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				B370C6C72C15251D00C28E67 /* APIManager.swift */,
 				B370C6DC2C15259700C28E67 /* FirebaseManager.swift */,
 				B370C6E12C1525C200C28E67 /* TokenManager.swift */,
+				B36CA9642C20648300FE6D46 /* KeychainManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -463,7 +490,9 @@
 		BCBE02422C116C1000A9EE3E /* Events.au */ = {
 			isa = PBXGroup;
 			children = (
+				B36CA9622C1F8E7E00FE6D46 /* GoogleService-Info.plist */,
 				B7DFB40C2C17E97E00BB53E7 /* Events-au-Info.plist */,
+				B36CA95A2C1F8D1B00FE6D46 /* NetworkUseCases */,
 				B370C6E82C15262100C28E67 /* Configuration */,
 				B370C6E52C1525FA00C28E67 /* Handler */,
 				B370C6C62C15251000C28E67 /* Managers */,
@@ -536,6 +565,8 @@
 			children = (
 				B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */,
 				B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */,
+				B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */,
+				B36CA9602C1F8E1D00FE6D46 /* UserSignUpViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -657,6 +688,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B36CA9632C1F8E7E00FE6D46 /* GoogleService-Info.plist in Resources */,
 				BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +714,7 @@
 				B7C69A902C14F8D30055DDD9 /* UserMock.swift in Sources */,
 				BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */,
 				BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */,
+				B36CA9652C20648300FE6D46 /* KeychainManager.swift in Sources */,
 				B7DFB3BF2C16145000BB53E7 /* SignUpDTOMock.swift in Sources */,
 				B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */,
 				B7C69A6E2C14D9EF0055DDD9 /* OrganizerModel.swift in Sources */,
@@ -693,6 +726,7 @@
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
 				BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */,
 				B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */,
+				B36CA9612C1F8E1D00FE6D46 /* UserSignUpViewModel.swift in Sources */,
 				BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */,
 				B7C69A762C14DF880055DDD9 /* UnitMemberModel.swift in Sources */,
 				B7F265042C1D853300033E37 /* ParticipantRow.swift in Sources */,
@@ -716,6 +750,7 @@
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
 				B731AADD2C1606E300A3E8C2 /* UnitMock.swift in Sources */,
 				B7C69A8D2C14F7850055DDD9 /* SignUpModel.swift in Sources */,
+				B36CA95F2C1F8D7100FE6D46 /* AllEventsViewModel.swift in Sources */,
 				B731AAD72C16006900A3E8C2 /* EventUnitMock.swift in Sources */,
 				B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */,
 				B7C69A7A2C14E0D40055DDD9 /* RestrictedTokenModel.swift in Sources */,
@@ -735,6 +770,7 @@
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
 				BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */,
 				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
+				B36CA95D2C1F8D4500FE6D46 /* AllEvents.swift in Sources */,
 				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
 				39FC54222C1388BF00240B93 /* SignInView.swift in Sources */,
 				B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */,
@@ -888,6 +924,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -911,7 +948,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
-				DEVELOPMENT_TEAM = GN86H89432;
+				DEVELOPMENT_TEAM = MAFKHQX2GF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
@@ -920,6 +957,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

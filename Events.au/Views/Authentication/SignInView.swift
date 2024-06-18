@@ -14,6 +14,7 @@ struct SignInView: View {
     @State private var alertMessage: String = ""
     
     @State private var path = NavigationPath()
+    @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -107,7 +108,7 @@ struct SignInView: View {
                     .padding(.vertical, 20)
                 
                 Button(action: {
-                    
+                    signInWithGoogle()
                 }) {
                     HStack {
                         Image("google_icon")
@@ -190,6 +191,21 @@ struct SignInView: View {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    private func signInWithGoogle() {
+        authViewModel.signInWithGoogle(presenting: Application_utility.rootViewController) { error, isNewUser in
+            if let error = error {
+                self.alertMessage = "Error Signing In with credentials."
+            }
+            if !isNewUser {
+                self.alertMessage = "Login Successful"
+                self.showAlert = true
+            } else {
+                self.alertMessage = "Login Failed"
+                self.showAlert = true
+            }
+        }
     }
 }
 
