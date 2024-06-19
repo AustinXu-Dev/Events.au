@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct ParticipantManager: View {
-    //MARK: Change Binding to all when you merge with parent view
-    @State private var showPending : Bool = false
-    @State var pendingParticipants : [EventParticipantMockModel] =  EventParticipantsMock.instance.pendingParticipants
-                                                                
-    @State var approvedParticipants : [EventParticipantMockModel] =
-        EventParticipantsMock.instance.approvedParticipants
+    @Binding var showPending : Bool
+    let unit : UnitModel
+    @Binding var pendingParticipants : [ParticipantModel]
+    @Binding var approvedParticipants : [ParticipantModel]
     
     var body: some View {
         VStack(alignment:.center) {
@@ -22,8 +20,8 @@ struct ParticipantManager: View {
             
             if !showPending {
                 VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(approvedParticipants,id: \.id){ partipant in
-                        ParticipantRow(participant: partipant)
+                    ForEach(approvedParticipants,id: \._id){ partipant in
+                        ParticipantRow(participant: partipant, unit: unit)
                            
                     }
                 }.transition(.move(edge: .leading))
@@ -31,9 +29,9 @@ struct ParticipantManager: View {
             
             if showPending {
                 VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(pendingParticipants,id: \.id){ partipant in
+                    ForEach(pendingParticipants,id: \._id){ partipant in
                         ZStack {
-                            ParticipantRow(participant: partipant)
+                            ParticipantRow(participant: partipant, unit: unit)
                                 
                             HStack {
                                 approveButton
@@ -151,7 +149,7 @@ extension ParticipantManager {
 
 extension ParticipantManager {
     
-    private func approvalHandler(isApproving : Bool,participant : EventParticipantMockModel){
+    private func approvalHandler(isApproving : Bool,participant : ParticipantModel){
         if isApproving {
             approvedParticipants.append(participant)
         }
@@ -164,19 +162,19 @@ extension ParticipantManager {
 
 
 
-struct ParticipantManager_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            ParticipantManager()
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.light)
-                .padding()
-            
-            ParticipantManager()
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-                .padding()
-        }
-
-    }
-}
+//struct ParticipantManager_Previews : PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ParticipantManager()
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.light)
+//                .padding()
+//            
+//            ParticipantManager()
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.dark)
+//                .padding()
+//        }
+//
+//    }
+//}

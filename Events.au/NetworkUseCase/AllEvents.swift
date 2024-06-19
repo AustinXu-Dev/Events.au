@@ -1,4 +1,3 @@
-//
 //  AllEvents.swift
 //  Events.au
 //
@@ -13,4 +12,3 @@ class AllEvents: APIManager {
         return "/events"
     }
 }
-

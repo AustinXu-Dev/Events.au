@@ -31,15 +31,17 @@ struct Theme {
     static let headingFont = "SFProDisplay-Semibold.ttf"
     static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
     static let buttonFont = "SFProDisplay-Semibold.ttf"
+    static let profileNameFont = "SFProDisplay-Semibold.ttf"
 
     
     
-    // MARK: - Fonts
+    // MARK: - Fonts ( Just add .apply_FontStyle as view modifier)
     static let overlayFontStyle : Font = .custom(buttonFont,size: 12)
     static let labelFontStyle : Font = .custom(labelFont,size: 20)
     static let headingFontStyle: Font = .custom(headingFont,size: 16)
     static let bodyFontStyle: Font = .custom(bodyFont, size: 16)
     static let buttonFontStyle: Font = .custom(buttonFont,size: 16)
+    static let profileNameStyle : Font = .custom(profileNameFont, size: 32)
 
     
     // MARK: - Spacing, Shapes, Widths and Heights
@@ -128,7 +130,10 @@ struct Theme {
     static let businessIcon : String = "business_icon"
     static let entertainmentIcon : String = "entertainment_icon"
     static let academyIcon : String = "academy_icon"
-        
+    
+    static let lightModePencil : String = "pencil_icon_lightmode"
+    static let darkModePencil : String = "pencil_icon_darkmode"
+    static let clickedPencil : String = "pencil_icon_clicked"
     
 }
 

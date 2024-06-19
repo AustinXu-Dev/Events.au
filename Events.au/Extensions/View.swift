@@ -49,6 +49,9 @@ extension View {
         self.modifier(FontModifier(style: Theme.overlayFontStyle))
     }
     
+    func applyProfileNameFont() -> some View {
+        self.modifier(FontModifier(style: Theme.profileNameStyle))
+    }
 
     
     

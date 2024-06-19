@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AdminProfileView: View {
+    let event : EventModel
     var body: some View {
         NavigationView {
             ScrollView {
@@ -42,8 +43,8 @@ struct AdminProfileView: View {
                         .bold()
                     
                     VStack(spacing: 10) {
-                        EventRow(image: "admin_one", title: "Event Title", date: "5th Jun, 18:00-20:00", status: "Approved")
-                        EventRow(image: "admin_two", title: "Event Title", date: "5th Jun, 18:00-20:00", status: "Pending")
+                        EventRow(event: EventMock.instacne.eventA)
+                        EventRow(event: EventMock.instacne.eventB)
                     }
                     .padding(.horizontal)
                     
@@ -91,47 +92,47 @@ struct EditProfileView: View {
     }
 }
 
-struct EventRow: View {
-    var image: String
-    var title: String
-    var date: String
-    var status: String
-    
-    var body: some View {
-        HStack {
-            Image(image)
-                .resizable()
-                .frame(width: 64, height: 64)
-                .cornerRadius(5)
-            
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                Text(date)
-                    .font(.system(size: 12))
-            }
-            
-            Spacer()
-            
-            Text(status)
-                .foregroundColor(status == "Approved" ? .black : .gray)
-                .padding([.leading, .trailing], 10)
-                .padding([.top, .bottom], 2)
-                .font(.system(size: 12))
-                .background(status == "Approved" ? Color.approved : Color.pending)
-                .cornerRadius(5)
-                .padding(.bottom, 25)
-        }
-        .padding(4)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 2)
-        .padding(.horizontal, 16)
-    }
-}
+//struct EventRow: View {
+//    var image: String
+//    var title: String
+//    var date: String
+//    var status: String
+//    
+//    var body: some View {
+//        HStack {
+//            Image(image)
+//                .resizable()
+//                .frame(width: 64, height: 64)
+//                .cornerRadius(5)
+//            
+//            VStack(alignment: .leading) {
+//                Text(title)
+//                    .font(.headline)
+//                Text(date)
+//                    .font(.system(size: 12))
+//            }
+//            
+//            Spacer()
+//            
+//            Text(status)
+//                .foregroundColor(status == "Approved" ? .black : .gray)
+//                .padding([.leading, .trailing], 10)
+//                .padding([.top, .bottom], 2)
+//                .font(.system(size: 12))
+//                .background(status == "Approved" ? Color.approved : Color.pending)
+//                .cornerRadius(5)
+//                .padding(.bottom, 25)
+//        }
+//        .padding(4)
+//        .background(Color.white)
+//        .cornerRadius(10)
+//        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 2)
+//        .padding(.horizontal, 16)
+//    }
+//}
 
 struct AdminProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        AdminProfileView()
+        AdminProfileView(event: EventMock.instacne.eventA)
     }
 }

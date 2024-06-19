@@ -8,45 +8,38 @@
 import SwiftUI
 
 struct EventManager: View {
-    //MARK: Change Binding to all when you merge with parent view
-    @State private var showUpcoming : Bool = false
-    @State var ongoingEvents : [EventModel] = EventMock.instacne.allEvents
-    
-    @State var upcomingEvents : [EventModel] = EventMock.instacne.allEvents
+    @Binding var showUpcoming : Bool 
+    @Binding var ongoingEvents : [EventModel]
+    @Binding var upcomingEvents : [EventModel]
     
     var body: some View {
         VStack(alignment:.center) {
             eventManagerHeader
-            
-            
             if !showUpcoming {
-                VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(ongoingEvents,id: \._id){ event in
-                        EventRow(event: event)
-                        
-                    }
-                }.transition(.move(edge: .leading))
+                ScrollView(.vertical,showsIndicators: false) {
+                    VStack(alignment:.center,spacing:Theme.medium) {
+                        ForEach(ongoingEvents,id: \._id){ event in
+                            EventRow(event: event)
+                            
+                        }
+                    }.transition(.move(edge: .leading))
+                }
             }
-            
             if showUpcoming {
-                VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(upcomingEvents,id: \._id){ event in
-                        EventRow(event: event)
-                        
-                    }
-                }.transition(.move(edge: .trailing))
-                
+                ScrollView(.vertical,showsIndicators: false) {
+                    VStack(alignment:.center,spacing:Theme.medium) {
+                        ForEach(upcomingEvents,id: \._id){ event in
+                            EventRow(event: event)
+                        }
+                    }.transition(.move(edge: .trailing))
+                }
             }
-            
         }
         Spacer(minLength: 0)
     }
     
     
 }
-
-
-
 
 extension EventManager {
     private var eventManagerHeader : some View {
@@ -64,7 +57,6 @@ extension EventManager {
                     .frame(width:150,height:3)
                     .opacity(showUpcoming ? 0 : 1)
             }
-            
             Spacer(minLength: 0)
             VStack(alignment:.center) {
                 Text("Upcoming")
@@ -78,31 +70,25 @@ extension EventManager {
                     .foregroundStyle(Theme.tintColor)
                     .frame(width:150,height:3)
                     .opacity(showUpcoming ? 1 : 0)
-                
             }
             
         }
     }
-    
-    
-    
-    
 }
 
 
 struct EventManager_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventManager()
+            EventManager(showUpcoming: .constant(false), ongoingEvents: .constant(EventMock.instacne.allEvents), upcomingEvents: .constant(EventMock.instacne.allEvents))
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventManager()
+            EventManager(showUpcoming: .constant(false), ongoingEvents: .constant(EventMock.instacne.allEvents), upcomingEvents: .constant(EventMock.instacne.allEvents))
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()
         }
     }
-    
 }
