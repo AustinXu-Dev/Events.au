@@ -10,14 +10,6 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
-struct LoginRequestBody: Codable {
-    let firebaseId: String
-}
-
-struct LoginResponse: Codable {
-    let token: String?
-}
-
 enum AuthenticationError: Error {
     case custom(errorMessage: String)
     case invalidCredentials
@@ -27,30 +19,29 @@ enum AuthenticationError: Error {
 // MARK: - Getting the token from the API with email and firebaseId
 class WebService {
     
-    func signin(firebaseId: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
+    func signin(firebaseId: String, completion: @escaping (Result<(String, String), AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://events-au-v2.vercel.app/auth/signin") else {
-            completion(.failure(.custom(errorMessage: "This is not the correct URL!")))
+            completion(.failure(.custom(errorMessage: "Invalid URL")))
             return
         }
-        
-        // MARK: - form-data body to post to API
-        let body = LoginRequestBody(firebaseId: firebaseId)
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let body: [String: Any] = ["fId": firebaseId]
+        
         do {
-            request.httpBody = try JSONEncoder().encode(body)
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
         } catch {
-            completion(.failure(.custom(errorMessage: "Failed to encode request body.")))
+            completion(.failure(.custom(errorMessage: "Failed to encode request body")))
             return
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
-                completion(.failure(.custom(errorMessage: "No Data")))
+                completion(.failure(.custom(errorMessage: "Network error")))
                 return
             }
             
@@ -64,28 +55,26 @@ class WebService {
                 return
             }
             
-            guard let data = data else {
-                completion(.failure(.custom(errorMessage: "No Data")))
-                return
-            }
-            
-            do {
-                let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-                
-                if let token = loginResponse.token {
-                    completion(.success(token))
-                    print("Status : \(httpResponse.statusCode)")
-                } else if httpResponse.statusCode == 401 {
-                    completion(.failure(AuthenticationError.invalidCredentials))
-                    TokenManager.share.isTokenValid = false
-                    print("Authorization Error!!!")
-                } else {
-                    completion(.failure(.invalidCredentials))
-                    TokenManager.share.isTokenValid = false
+            if let data = data {
+                do {
+                    if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let message = jsonResponse["message"] as? [String: Any],
+                       let token = message["token"] as? String,
+                       let user = message["user"] as? [String: Any],
+                       let userId = user["_id"] as? String {
+                        // Store user ID in Keychain
+                        try KeychainManager.shared.keychain.set(userId, key: "appUserId")
+                        
+                        // Return the token and user ID
+                        completion(.success((token, userId)))
+                    } else {
+                        completion(.failure(.custom(errorMessage: "Invalid response format")))
+                    }
+                } catch {
+                    completion(.failure(.custom(errorMessage: "Error decoding response: \(error.localizedDescription)")))
                 }
-            } catch {
-                print("Decoding error: \(error.localizedDescription)")
-                completion(.failure(.custom(errorMessage: "Failed to decode response.")))
+            } else {
+                completion(.failure(.serverError))
             }
         }
         .resume()

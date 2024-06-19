@@ -9,9 +9,8 @@ import SwiftUI
 
 struct EventCard: View {
     //    @ObservedObject var eventVM : GetAllEventsViewModel
-    @Binding var eventTitle : String
-    @Binding var time : String
-    @Binding var date : String
+    let event : EventModel
+  
     
     var body: some View {
         VStack(alignment:.leading) {
@@ -20,7 +19,7 @@ struct EventCard: View {
                 .scaledToFill()
                 .frame(width: Theme.eventImageWidth,height:Theme.eventImageHeight)
             VStack(alignment:.leading,spacing:Theme.headingBodySpacing) {
-                Text(eventTitle)
+                Text(event.name)
                     .applyHeadingFont()
                 locationAndTime
             }
@@ -41,7 +40,7 @@ extension EventCard {
             
             
             Spacer()
-            Text("\(date),\(time)")
+            Text("\(event.startDate),\(event.startTime)-\(event.endTime)")
                 .applyOverlayFont()
             
         }
@@ -51,12 +50,12 @@ extension EventCard {
 struct EventCard_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventCard(eventTitle: .constant("Event Title"), time: .constant("18:00-20:00"), date: .constant(Date().formattedDate()))
+            EventCard(event: AllEventsMock.oneEvent)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventCard(eventTitle: .constant("Event Title"), time: .constant("18:00-20:00"), date: .constant(Date().formattedDate()))
+            EventCard(event: AllEventsMock.oneEvent)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

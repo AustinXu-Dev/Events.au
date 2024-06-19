@@ -10,11 +10,16 @@ import SwiftUI
 @main
 struct Events_auApp: App {
     
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+    @State var homeNavigation : [HomeNavigation] = []
     
     var body: some Scene {
         WindowGroup {
-            ProfileView()
+
+            ContentView()
+                .environmentObject(TokenManager.share)
+
         }
     }
 }

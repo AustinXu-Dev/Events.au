@@ -9,47 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var tokenManager: TokenManager
+    @State var homeNavigationStack: [HomeNavigation] = []
+    
     var body: some View {
         VStack(spacing:Theme.defaultSpacing) {
-            Image(systemName: "globe")
-                .imageScale(.large)
-            Text("Heading")
-//                .font(.system(size: Theme.headingFontSize))
-//                .fontWeight(Theme.headingFontWeight)
-//                
-//            
-            
-        
-            
-
-            
-            Text("Label!")
-//                .font(.system(size: Theme.labelFontSize))
-//                .fontWeight(Theme.labelFontWeight)
-            
-            Text("body")
-//                .font(.system(size: Theme.bodyFontSize))
-//                .fontWeight(Theme.bodyFontWeight)
-            
-            Image(systemName: "bell.circle")
-        
-            
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-                    .foregroundStyle(Theme.primaryTextColor)
-            })
-//            .padding(Theme.padding)
-            .background(
-                Theme.tintColor
-            )
-            .cornerRadius(Theme.cornerRadius)
-            .applyThemeDoubleShadow()
-                
+            if tokenManager.isTokenValid {
+                HomeTest(path: $homeNavigationStack)
+            } else {
+                SignInView()
+            }
         }
-//        .padding(.vertical,Theme.HPadding)
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}

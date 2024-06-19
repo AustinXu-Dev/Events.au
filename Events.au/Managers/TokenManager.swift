@@ -12,12 +12,12 @@ class TokenManager: ObservableObject {
     
     @Published var isTokenValid = false
     static let share = TokenManager()
-    private let keychain = Keychain(service: "course_cyclopedia_user_tokens")
     
     // MARK: - Save Tokens in keychain
     func saveTokens(token: String) {
         do {
-            try keychain.set(token, key: "userToken")
+            try KeychainManager.shared.keychain.set(token, key: "userToken")
+            print("Saved Tokens: \(String(describing: try KeychainManager.shared.keychain.get("userToken")))")
         } catch {
             print("Error saving tokens: \(error)")
         }
@@ -26,7 +26,7 @@ class TokenManager: ObservableObject {
     // MARK: - Get Tokens for headers and API calls
     func getToken() -> String? {
         do {
-            return try keychain.get("userToken")
+            return try KeychainManager.shared.keychain.get("userToken")
         } catch {
             print("Error retrieving token: \(error)")
             return nil
@@ -36,7 +36,7 @@ class TokenManager: ObservableObject {
     // MARK: - Delete Tokens
     func deleteToken() {
         do {
-            try keychain.remove("userToken")
+            try KeychainManager.shared.keychain.remove("userToken")
             print("All token deleted")
         } catch {
             print("Error deleting token: \(error)")

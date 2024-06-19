@@ -20,9 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     //MARK: - Initializing code for Firebase (App Configuration)
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        NetworkMonitor.shared.monitorNetwork()
-//        TokenManager.share.deleteToken()
         FirebaseApp.configure()
+//        TokenManager.share.deleteToken()
         return true
     }
     
