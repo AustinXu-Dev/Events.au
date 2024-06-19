@@ -18,7 +18,8 @@ struct HomeTest: View {
     @State var selectedCategory : [String] = []
     //MARK: have to change this after api integration
     @State var events : [EventModel] = AllEventsMock.events
-    
+    @State var approvedParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
+
     
     var body: some View {
         NavigationStack(path: $path){
@@ -119,7 +120,7 @@ extension HomeTest {
             ScrollView(.vertical,showsIndicators: false){
                 VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
                     ForEach(events,id: \._id){ event in
-                        EventCard(event: event)
+                        EventCard(event: event, approvedParticipants: $approvedParticipants)
                     }
                 }
             }

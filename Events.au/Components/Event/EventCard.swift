@@ -10,6 +10,7 @@ import SwiftUI
 struct EventCard: View {
     //    @ObservedObject var eventVM : GetAllEventsViewModel
     let event : EventModel
+    @Binding var approvedParticipants : [ParticipantModel]
   
     
     var body: some View {
@@ -36,7 +37,7 @@ struct EventCard: View {
 extension EventCard {
     private var locationAndTime : some View {
         HStack(alignment:.center,spacing:Theme.defaultSpacing) {
-            EventParticipants()
+            EventParticipants(participants: approvedParticipants, participantStatus: "joining")
             
             
             Spacer()
@@ -50,12 +51,12 @@ extension EventCard {
 struct EventCard_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventCard(event: AllEventsMock.oneEvent)
+            EventCard(event: AllEventsMock.oneEvent, approvedParticipants: .constant(ParticipantMock.instacne.participants))
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventCard(event: AllEventsMock.oneEvent)
+            EventCard(event: AllEventsMock.oneEvent,approvedParticipants: .constant(ParticipantMock.instacne.participants))
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

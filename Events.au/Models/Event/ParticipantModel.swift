@@ -35,7 +35,7 @@ struct AllParticipantsResponse : Codable {
     let message : [ParticipantModel]
 }
 
-struct ParticipantModel : Codable {
+struct ParticipantModel : Codable, Equatable {
     let _id,userId, eventId, organzierId,status, email : String
     let phone : Int
 }

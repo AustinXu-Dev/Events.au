@@ -16,26 +16,18 @@ struct EventRow: View {
             .frame(width: Theme.participantRectWidth,height: Theme.participantRectHeight)
             .foregroundStyle(Theme.backgroundColor)
             .applyThemeDoubleShadow()
-           
-        
-        
             HStack(alignment:.center,spacing:Theme.medium) {
                 Image(EventImageMock.image)
                 .resizable()
                 .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
                 .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
                 .scaledToFit()
-            
-            
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     Text(event.name)
                     .applyHeadingFont()
                     Text("\(event.startDate),\(event.startTime)-\(event.endTime)")
                     .applyOverlayFont()
-                
-                
             }
-                
                 Spacer()
                 VStack {
                     Text(event.status)
@@ -47,21 +39,10 @@ struct EventRow: View {
                         )
                         .cornerRadius(Theme.xs)
                         .offset(y:-20)
-                       
                 }
-              
-
         }
         .padding(Theme.xs)
-            
-
-        
         }
-        
-      
-        
-        
-        
     }
 }
 
