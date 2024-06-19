@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		396685CE2C1F4AFF00AAD5D4 /* AdminProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685CD2C1F4AFF00AAD5D4 /* AdminProfileView.swift */; };
+		396685D02C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */; };
+		396685D22C1F645100AAD5D4 /* AdminProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685D12C1F645100AAD5D4 /* AdminProfileEditView.swift */; };
+		396685D52C1F6D6700AAD5D4 /* EventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685D42C1F6D6700AAD5D4 /* EventDetailsView.swift */; };
+		396685D72C1F707A00AAD5D4 /* EventDetailsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */; };
+		396685D92C1FD4FF00AAD5D4 /* EventParticipationCurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685D82C1FD4FF00AAD5D4 /* EventParticipationCurrentView.swift */; };
+		396685DB2C1FD50900AAD5D4 /* EventParticipationPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685DA2C1FD50900AAD5D4 /* EventParticipationPendingView.swift */; };
+		396685DD2C1FEBA400AAD5D4 /* GribView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685DC2C1FEBA400AAD5D4 /* GribView.swift */; };
 		3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */; };
+		39A732102C20B2570042734E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7320F2C20B2570042734E /* ProfileView.swift */; };
 		39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */; };
 		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
 		39FC54242C1388D800240B93 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54232C1388D800240B93 /* SignupView.swift */; };
@@ -92,7 +101,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		396685CD2C1F4AFF00AAD5D4 /* AdminProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileView.swift; sourceTree = "<group>"; };
+		396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileColorTheme.swift; sourceTree = "<group>"; };
+		396685D12C1F645100AAD5D4 /* AdminProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileEditView.swift; sourceTree = "<group>"; };
+		396685D42C1F6D6700AAD5D4 /* EventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsView.swift; sourceTree = "<group>"; };
+		396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsEditView.swift; sourceTree = "<group>"; };
+		396685D82C1FD4FF00AAD5D4 /* EventParticipationCurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipationCurrentView.swift; sourceTree = "<group>"; };
+		396685DA2C1FD50900AAD5D4 /* EventParticipationPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipationPendingView.swift; sourceTree = "<group>"; };
+		396685DC2C1FEBA400AAD5D4 /* GribView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GribView.swift; sourceTree = "<group>"; };
 		3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppNavigationPathValue.swift; sourceTree = "<group>"; };
+		39A7320F2C20B2570042734E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppColorTheme.swift; sourceTree = "<group>"; };
 		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		39FC54232C1388D800240B93 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -194,6 +212,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		396685CC2C1F4AD000AAD5D4 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				396685CD2C1F4AFF00AAD5D4 /* AdminProfileView.swift */,
+				396685D12C1F645100AAD5D4 /* AdminProfileEditView.swift */,
+				39A7320F2C20B2570042734E /* ProfileView.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		396685D32C1F6D4C00AAD5D4 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				396685D42C1F6D6700AAD5D4 /* EventDetailsView.swift */,
+				396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */,
+				396685D82C1FD4FF00AAD5D4 /* EventParticipationCurrentView.swift */,
+				396685DA2C1FD50900AAD5D4 /* EventParticipationPendingView.swift */,
+				396685DC2C1FEBA400AAD5D4 /* GribView.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		B370C6C62C15251000C28E67 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +526,7 @@
 				39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */,
 				39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */,
 				3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */,
+				396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */,
 				BC2711762C1990FF00A99157 /* TabViewEnum.swift */,
 			);
 			path = Helpers;
@@ -503,6 +544,8 @@
 		BCBE02682C116D9700A9EE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				396685D32C1F6D4C00AAD5D4 /* Event */,
+				396685CC2C1F4AD000AAD5D4 /* Admin */,
 				BC2711712C195F7700A99157 /* Home */,
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
 				BC2711722C195F8C00A99157 /* TabScreenView.swift */,
@@ -630,8 +673,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7FCBFF62C15966F00C8C531 /* SignInDTO.swift in Sources */,
+				396685D02C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift in Sources */,
 				BC27117F2C19920000A99157 /* SecondChildView.swift in Sources */,
 				B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */,
+				396685D22C1F645100AAD5D4 /* AdminProfileEditView.swift in Sources */,
 				B370C6E22C1525C200C28E67 /* TokenManager.swift in Sources */,
 				B370C6DD2C15259700C28E67 /* FirebaseManager.swift in Sources */,
 				B7FCBFF82C15A15100C8C531 /* CreateEventDTO.swift in Sources */,
@@ -651,13 +696,16 @@
 				BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */,
 				B7C69A9E2C14FA850055DDD9 /* SignOutMock.swift in Sources */,
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
+				396685DD2C1FEBA400AAD5D4 /* GribView.swift in Sources */,
 				BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */,
 				B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */,
 				BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */,
 				B7C69A762C14DF880055DDD9 /* UnitMemberModel.swift in Sources */,
 				B7F265042C1D853300033E37 /* ParticipantRow.swift in Sources */,
 				B7DFB3DB2C17091C00BB53E7 /* View.swift in Sources */,
+				396685DB2C1FD50900AAD5D4 /* EventParticipationPendingView.swift in Sources */,
 				B7C69A782C14E0210055DDD9 /* EventUnitModel.swift in Sources */,
+				396685D92C1FD4FF00AAD5D4 /* EventParticipationCurrentView.swift in Sources */,
 				B7C69A702C14DDAC0055DDD9 /* UpdateEventInfoDTO.swift in Sources */,
 				BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */,
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
@@ -672,12 +720,15 @@
 				B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */,
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
 				B731AADD2C1606E300A3E8C2 /* UnitMock.swift in Sources */,
+				396685CE2C1F4AFF00AAD5D4 /* AdminProfileView.swift in Sources */,
 				B7C69A8D2C14F7850055DDD9 /* SignUpModel.swift in Sources */,
 				B731AAD72C16006900A3E8C2 /* EventUnitMock.swift in Sources */,
 				B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */,
 				B7C69A7A2C14E0D40055DDD9 /* RestrictedTokenModel.swift in Sources */,
 				B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */,
 				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
+				39A732102C20B2570042734E /* ProfileView.swift in Sources */,
+				396685D52C1F6D6700AAD5D4 /* EventDetailsView.swift in Sources */,
 				B7C69A722C14DE900055DDD9 /* UpdateEventStatusDTO.swift in Sources */,
 				B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */,
 				B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */,
@@ -693,6 +744,7 @@
 				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
 				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
 				39FC54222C1388BF00240B93 /* SignInView.swift in Sources */,
+				396685D72C1F707A00AAD5D4 /* EventDetailsEditView.swift in Sources */,
 				B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */,
 				B7C69A742C14DF380055DDD9 /* UnitModel.swift in Sources */,
 				B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */,
