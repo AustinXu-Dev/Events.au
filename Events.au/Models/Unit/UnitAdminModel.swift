@@ -8,10 +8,11 @@
 import Foundation
 
 
-//MARK: For getting the unit and admin relation
+
+//MARK: For getting the unit and admin relation or getting the admins under a unit
 struct UnitAdminResponse: Codable {
     let success: Bool
-    let message: UnitAdminModel
+    let message: [UnitAdminModel]
 }
 
 struct UnitAdminModel : Codable {

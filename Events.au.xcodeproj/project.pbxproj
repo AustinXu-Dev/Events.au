@@ -50,6 +50,8 @@
 		B731AAE32C160B9B00A3E8C2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAE22C160B9B00A3E8C2 /* Date.swift */; };
 		B74956E22C2080AB00C51B30 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74956E12C2080AB00C51B30 /* EventRow.swift */; };
 		B74956E42C2088B900C51B30 /* EventStatusColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74956E32C2088B900C51B30 /* EventStatusColor.swift */; };
+		B74C42862C26FA2C009E3E63 /* UpdateUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74C42852C26FA2C009E3E63 /* UpdateUserDTO.swift */; };
+		B74C42882C26FAF9009E3E63 /* AdminSignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74C42872C26FAF9009E3E63 /* AdminSignUpModel.swift */; };
 		B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75057392C160F9300D742E8 /* UnitAdminModel.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
@@ -74,7 +76,6 @@
 		B7C69A922C14F93D0055DDD9 /* OrganizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A912C14F93D0055DDD9 /* OrganizerMock.swift */; };
 		B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A972C14F9E40055DDD9 /* SignUpMock.swift */; };
 		B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A992C14F9EC0055DDD9 /* SignInMock.swift */; };
-		B7C69A9E2C14FA850055DDD9 /* SignOutMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A9D2C14FA850055DDD9 /* SignOutMock.swift */; };
 		B7DFB3BF2C16145000BB53E7 /* SignUpDTOMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DFB3BE2C16145000BB53E7 /* SignUpDTOMock.swift */; };
 		B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DFB3C02C16145800BB53E7 /* SignInDTOMock.swift */; };
 		B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DFB3C22C16145D00BB53E7 /* SignOutDTOMock.swift */; };
@@ -93,7 +94,6 @@
 		B7FCBFF62C15966F00C8C531 /* SignInDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF52C15966F00C8C531 /* SignInDTO.swift */; };
 		B7FCBFF82C15A15100C8C531 /* CreateEventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF72C15A15100C8C531 /* CreateEventDTO.swift */; };
 		B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */; };
-		B7FCBFFD2C15A85B00C8C531 /* CreateParticipantDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */; };
 		BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27116F2C195D8C00A99157 /* SignupForm.swift */; };
 		BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711722C195F8C00A99157 /* TabScreenView.swift */; };
 		BC2711752C19909D00A99157 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711742C19909D00A99157 /* HomeTest.swift */; };
@@ -145,6 +145,8 @@
 		B731AAE22C160B9B00A3E8C2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B74956E12C2080AB00C51B30 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		B74956E32C2088B900C51B30 /* EventStatusColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatusColor.swift; sourceTree = "<group>"; };
+		B74C42852C26FA2C009E3E63 /* UpdateUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserDTO.swift; sourceTree = "<group>"; };
+		B74C42872C26FAF9009E3E63 /* AdminSignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSignUpModel.swift; sourceTree = "<group>"; };
 		B75057392C160F9300D742E8 /* UnitAdminModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAdminModel.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
@@ -169,7 +171,6 @@
 		B7C69A912C14F93D0055DDD9 /* OrganizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerMock.swift; sourceTree = "<group>"; };
 		B7C69A972C14F9E40055DDD9 /* SignUpMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMock.swift; sourceTree = "<group>"; };
 		B7C69A992C14F9EC0055DDD9 /* SignInMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMock.swift; sourceTree = "<group>"; };
-		B7C69A9D2C14FA850055DDD9 /* SignOutMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutMock.swift; sourceTree = "<group>"; };
 		B7DFB3BE2C16145000BB53E7 /* SignUpDTOMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDTOMock.swift; sourceTree = "<group>"; };
 		B7DFB3C02C16145800BB53E7 /* SignInDTOMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDTOMock.swift; sourceTree = "<group>"; };
 		B7DFB3C22C16145D00BB53E7 /* SignOutDTOMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutDTOMock.swift; sourceTree = "<group>"; };
@@ -192,7 +193,6 @@
 		B7FCBFF52C15966F00C8C531 /* SignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDTO.swift; sourceTree = "<group>"; };
 		B7FCBFF72C15A15100C8C531 /* CreateEventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventDTO.swift; sourceTree = "<group>"; };
 		B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutDTO.swift; sourceTree = "<group>"; };
-		B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateParticipantDTO.swift; sourceTree = "<group>"; };
 		BC27116F2C195D8C00A99157 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
 		BC2711722C195F8C00A99157 /* TabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabScreenView.swift; sourceTree = "<group>"; };
 		BC2711742C19909D00A99157 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
@@ -406,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				B7C69A8C2C14F7850055DDD9 /* SignUpModel.swift */,
+				B74C42872C26FAF9009E3E63 /* AdminSignUpModel.swift */,
 				B7C69A672C14D78F0055DDD9 /* SignInModel.swift */,
 				B7C69A792C14E0D40055DDD9 /* RestrictedTokenModel.swift */,
 				B7C69A7B2C14E1160055DDD9 /* SignOutModel.swift */,
@@ -427,7 +428,6 @@
 			children = (
 				B7C69A972C14F9E40055DDD9 /* SignUpMock.swift */,
 				B7C69A992C14F9EC0055DDD9 /* SignInMock.swift */,
-				B7C69A9D2C14FA850055DDD9 /* SignOutMock.swift */,
 			);
 			path = AuthenticationPreview;
 			sourceTree = "<group>";
@@ -470,9 +470,9 @@
 			children = (
 				B7FCBFF32C15964100C8C531 /* SignUpDTO.swift */,
 				B7FCBFF52C15966F00C8C531 /* SignInDTO.swift */,
+				B74C42852C26FA2C009E3E63 /* UpdateUserDTO.swift */,
 				B7FCBFF92C15A19A00C8C531 /* SignOutDTO.swift */,
 				B7FCBFF72C15A15100C8C531 /* CreateEventDTO.swift */,
-				B7FCBFFC2C15A85B00C8C531 /* CreateParticipantDTO.swift */,
 				B7C69A6F2C14DDAC0055DDD9 /* UpdateEventInfoDTO.swift */,
 				B7C69A712C14DE900055DDD9 /* UpdateEventStatusDTO.swift */,
 				B7C69A812C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift */,
@@ -745,10 +745,10 @@
 				B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */,
 				B7C69A6E2C14D9EF0055DDD9 /* OrganizerModel.swift in Sources */,
 				B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */,
+				B74C42882C26FAF9009E3E63 /* AdminSignUpModel.swift in Sources */,
 				B370C6E72C15260600C28E67 /* AppStateHandler.swift in Sources */,
 				B731AAD32C15FEFC00A3E8C2 /* EventMock.swift in Sources */,
 				BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */,
-				B7C69A9E2C14FA850055DDD9 /* SignOutMock.swift in Sources */,
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
 				396685DD2C1FEBA400AAD5D4 /* GribView.swift in Sources */,
 				BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */,
@@ -761,6 +761,7 @@
 				396685DB2C1FD50900AAD5D4 /* EventParticipantManagementView.swift in Sources */,
 				B7C69A782C14E0210055DDD9 /* EventUnitModel.swift in Sources */,
 				B7C69A702C14DDAC0055DDD9 /* UpdateEventInfoDTO.swift in Sources */,
+				B74C42862C26FA2C009E3E63 /* UpdateUserDTO.swift in Sources */,
 				BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */,
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
 				B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */,
@@ -811,7 +812,6 @@
 				B731AADA2C16066E00A3E8C2 /* AdminMock.swift in Sources */,
 				B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */,
 				B7F265072C1D8D5A00033E37 /* EventParticipantsMock.swift in Sources */,
-				B7FCBFFD2C15A85B00C8C531 /* CreateParticipantDTO.swift in Sources */,
 				B704B6C82C22CB69006E3DDF /* AllEvents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

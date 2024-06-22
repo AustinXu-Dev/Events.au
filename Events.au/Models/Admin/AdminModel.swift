@@ -33,14 +33,20 @@ example: <unitId>
 }
 */
 
+//MARK: For getting a specific admin
+struct AdminResponse : Codable {
+    let success: Bool
+    let message: AdminModel
+}
+
 //MARK: For getting all admins
-struct AdminResponse: Codable {
+struct AllAdminResponse: Codable {
     let success: Bool
     let message: [AdminModel]
 }
 
 struct AdminModel : Codable {
     let _id : String
-    let userId : String
-    let unitId : String
+    let userId : UserModel
+    let unitId : UnitModel
 }
