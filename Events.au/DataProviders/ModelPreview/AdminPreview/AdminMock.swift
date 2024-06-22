@@ -14,7 +14,6 @@ struct AdminMock  {
     
     private init(){}
     
-    let adminA = AdminModel(_id: "661ff7eb38ad5b5348ac79ba", userId: "661ff7eb38ad5b5348ac79b8", unitId: "661e1d459d67f48368bafbb6")
-    let adminB = AdminModel(_id: "6646e1d0d02d2dbdd7bb19b9", userId: "6646e1d0d02d2dbdd7bb19b7", unitId: "661e1d459d67f48368bafbb6")
-    
+    let adminA = AdminModel(_id: "661ff7eb38ad5b5348ac79ba", userId: UserMock.instance.user1, unitId: UnitMock.instacne.unitA)
+    let adminB = AdminModel(_id: "6646e1d0d02d2dbdd7bb19b9", userId: UserMock.instance.user2, unitId: UnitMock.instacne.unitB)
 }

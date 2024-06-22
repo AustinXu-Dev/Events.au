@@ -18,8 +18,7 @@ import Foundation
 
 //MARK: Use this as a request body for updating event basic info
 struct UpdateEventInfoDTO : Codable {
-    let name : String
-    let organizer : OrganizerModel
-    let status : String
+    let name, description, location, startDate, 
+        endDate, startTime, endTime, rules,imageUrl,unitId : String
 }
 

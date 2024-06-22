@@ -30,6 +30,8 @@ struct AllOrganizersResponse: Codable {
 }
 
 struct OrganizerModel  : Codable {
-    let _id, userId,eventId : String
+    let _id : String
+    let userId : UserModel
+    let eventId : EventModel
     let status : String
 }

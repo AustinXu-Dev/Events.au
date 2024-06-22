@@ -23,9 +23,15 @@ import Foundation
  }
  */
 
-//MARK: Use this as a request body for updating participant status for an event
-struct UpdateParticipantStatusDTO : Codable {
-    let participants : [String]
+//MARK: request body for updating participant status for an event ( approval or rejection )
+
+struct ParticipantApprovalDTO : Codable {
+    let participantId : String
     let status : String
 }
 
+//MARK: request body for updating [all participants] status for an event ( approval or rejection )
+struct AllParticipantsApprovalDTO : Codable {
+    let participantIds : [String]
+    let status : String
+}

@@ -153,7 +153,7 @@ extension ParticipantManager {
         if isApproving {
             approvedParticipants.append(participant)
         }
-        pendingParticipants.removeAll{ $0 == participant }
+        pendingParticipants.removeAll{ $0._id == participant._id }
     }
     
 }
