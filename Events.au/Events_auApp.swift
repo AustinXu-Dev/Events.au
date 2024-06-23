@@ -11,15 +11,19 @@ import SwiftUI
 struct Events_auApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
-    @State var homeNavigation : [HomeNavigation] = []
+    @State var homeNavigationStack: [HomeNavigation] = []
+    @AppStorage("appState") var isSingIn = false
     
     var body: some Scene {
         WindowGroup {
-
-            ContentView()
-                .environmentObject(TokenManager.share)
-
+            Group{
+                if isSingIn {
+//                    HomeTest(path: $homeNavigationStack)
+                    TestView()
+                } else {
+                    SignInView()
+                }
+            }
         }
     }
 }

@@ -44,6 +44,9 @@ extension APIManager {
         }
         
         // MARK: - Header
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
@@ -57,6 +60,10 @@ extension APIManager {
             }
             print(httpResponse.statusCode)
             
+            if getMethod == "POST" || getMethod == "PUT" {
+                return
+            }
+            
             //MARK: - Get and Delete
             if let responseData = data {
                 do {
@@ -65,7 +72,6 @@ extension APIManager {
                     print("Successsfully fetched data with valid token.")
                 } catch {
                     completion(.failure(error))
-                    print("Token Expired.")
                 }
             } else if getMethod == "DELETE" && (200...299).contains(httpResponse.statusCode) {
                 do {
@@ -77,7 +83,7 @@ extension APIManager {
                     print("Token expired or decoding error.")
                 }
             } else {
-                completion(.failure(URLError(.badServerResponse)))
+                print("Post and Put methods executed.")
             }
         }
         task.resume()
