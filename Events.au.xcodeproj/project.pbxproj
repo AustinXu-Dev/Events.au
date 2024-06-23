@@ -41,7 +41,6 @@
 		B370C6D42C15257F00C28E67 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6D32C15257F00C28E67 /* FirebaseAnalyticsSwift */; };
 		B370C6D62C15257F00C28E67 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6D52C15257F00C28E67 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		B370C6D82C15257F00C28E67 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6D72C15257F00C28E67 /* FirebaseAppCheck */; };
-		B370C6DB2C15258C00C28E67 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6DA2C15258C00C28E67 /* KeychainAccess */; };
 		B370C6DD2C15259700C28E67 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6DC2C15259700C28E67 /* FirebaseManager.swift */; };
 		B370C6E02C1525AE00C28E67 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B370C6DF2C1525AE00C28E67 /* FirebaseAuth */; };
 		B370C6E22C1525C200C28E67 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6E12C1525C200C28E67 /* TokenManager.swift */; };
@@ -238,7 +237,6 @@
 				B370C6CD2C15254200C28E67 /* GoogleSignInSwift in Frameworks */,
 				B370C6D02C15257F00C28E67 /* FirebaseAnalytics in Frameworks */,
 				B370C6E02C1525AE00C28E67 /* FirebaseAuth in Frameworks */,
-				B370C6DB2C15258C00C28E67 /* KeychainAccess in Frameworks */,
 				B370C6D82C15257F00C28E67 /* FirebaseAppCheck in Frameworks */,
 				B370C6D22C15257F00C28E67 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				B370C6D42C15257F00C28E67 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -744,7 +742,6 @@
 				B370C6D32C15257F00C28E67 /* FirebaseAnalyticsSwift */,
 				B370C6D52C15257F00C28E67 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				B370C6D72C15257F00C28E67 /* FirebaseAppCheck */,
-				B370C6DA2C15258C00C28E67 /* KeychainAccess */,
 				B370C6DF2C1525AE00C28E67 /* FirebaseAuth */,
 				B36302FB2C28A07800537586 /* KeychainSwift */,
 			);
@@ -779,7 +776,6 @@
 			packageReferences = (
 				B370C6C92C15254200C28E67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B370C6CE2C15257F00C28E67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				B36302FA2C28A07800537586 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = BCBE02412C116C1000A9EE3E /* Products */;
@@ -1144,14 +1140,6 @@
 				minimumVersion = 10.27.0;
 			};
 		};
-		B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1194,11 +1182,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B370C6CE2C15257F00C28E67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
-		};
-		B370C6DA2C15258C00C28E67 /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
 		};
 		B370C6DF2C1525AE00C28E67 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
