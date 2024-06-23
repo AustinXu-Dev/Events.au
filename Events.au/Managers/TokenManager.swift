@@ -10,36 +10,26 @@ import KeychainAccess
 
 class TokenManager: ObservableObject {
     
-    @Published var isTokenValid = false
     static let share = TokenManager()
+    
+    private init(){
+        
+    }
     
     // MARK: - Save Tokens in keychain
     func saveTokens(token: String) {
-        do {
-            try KeychainManager.shared.keychain.set(token, key: "userToken")
-            print("Saved Tokens: \(String(describing: try KeychainManager.shared.keychain.get("userToken")))")
-        } catch {
-            print("Error saving tokens: \(error)")
-        }
+        KeychainManager.shared.keychain.set(token, forKey: "userToken")
+        print("Saved Tokens: \(String(describing: KeychainManager.shared.keychain.get("userToken")))")
     }
     
     // MARK: - Get Tokens for headers and API calls
     func getToken() -> String? {
-        do {
-            return try KeychainManager.shared.keychain.get("userToken")
-        } catch {
-            print("Error retrieving token: \(error)")
-            return nil
-        }
+        return KeychainManager.shared.keychain.get("userToken")
     }
     
     // MARK: - Delete Tokens
     func deleteToken() {
-        do {
-            try KeychainManager.shared.keychain.remove("userToken")
-            print("All token deleted")
-        } catch {
-            print("Error deleting token: \(error)")
-        }
+        KeychainManager.shared.keychain.delete("userToken")
+        print("All token deleted")
     }
 }

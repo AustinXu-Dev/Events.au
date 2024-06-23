@@ -84,7 +84,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.postSignInFirebaseId(firebaseId: authResult.user.uid)
                     }
-                    TokenManager.share.isTokenValid = true
+                    print("This is the URL of Image: \(String(describing: authResult.user.photoURL))")
                     print("This user already exists.")
                 } else {
                     if authResult.user.email != nil {
@@ -112,10 +112,15 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     self.token = token
                     self.userId = userId
                     TokenManager.share.saveTokens(token: token)
+                    KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
+                    if let token = TokenManager.share.getToken() {
+                        UserDefaults.standard.set(true, forKey: "appState")
+                    }
                 }
             case .failure(let error):
                 print("Login failed with error: \(error)")
                 DispatchQueue.main.async {
+                    UserDefaults.standard.set(false, forKey: "appState")
                     self.errorMessage = "Failed to login with WebService: \(error)"
                 }
             }
@@ -211,9 +216,10 @@ class GoogleAuthenticationViewModel: ObservableObject {
             try FirebaseManager.shared.auth.signOut()
             DispatchQueue.main.async {
                 TokenManager.share.deleteToken()
-                self.isAuthenticated = false
-                TokenManager.share.isTokenValid = false
+                KeychainManager.shared.keychain.delete("appUserId")
                 self.token = nil
+                self.isAuthenticated = false
+                UserDefaults.standard.set(false, forKey: "appState")
             }
         } catch let signOutError as NSError {
             self.errorMessage = "Failed to sign out with error: \(signOutError)"

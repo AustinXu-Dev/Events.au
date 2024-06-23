@@ -78,11 +78,11 @@ let pendingParticipants = [
     Participant(name: "Patricia Brown", role: "VMES", imageName: "PersonE")
 ]
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventParticipantManagementView(unit: UnitMock.instacne.unitA)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventParticipantManagementView(unit: UnitMock.instacne.unitA)
+//    }
+//}
 
 
 //    HStack(spacing: 0) {
