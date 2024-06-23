@@ -14,11 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing:Theme.defaultSpacing) {
-            if tokenManager.isTokenValid {
-                HomeTest(path: $homeNavigationStack)
-            } else {
-                SignInView()
-            }
+            
         }
     }
 }

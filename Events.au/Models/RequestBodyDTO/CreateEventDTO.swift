@@ -16,7 +16,5 @@ import Foundation
 
 //MARK: Use this as a body when a user want to create event
 struct CreateEventDTO : Codable {
-    let name, description,startDate,endDate,startTime,endTime,
-        location,rules,imageUrl, unitId  : String
-    
+    let name, description, location, startDate, endDate, startTime, endTime, rules, imageUrl, unitId: String
 }

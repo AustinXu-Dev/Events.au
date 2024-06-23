@@ -6,14 +6,15 @@
 //
 
 import Foundation
-import KeychainAccess
+import KeychainSwift
 
 class KeychainManager {
+    
     static let shared = KeychainManager()
     
-    let keychain: Keychain
+    let keychain = KeychainSwift()
     
     private init() {
-        keychain = Keychain(service: "com.austinxu.decode.events-au")
+        
     }
 }

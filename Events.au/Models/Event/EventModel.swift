@@ -69,7 +69,6 @@ struct AllEventsResponse : Codable {
     let message: [EventModel]
 }
 
-
 struct EventModel : Codable {
     let _id,name,description,startDate,endDate,startTime,endTime,
         location,rules,coverImageUrL,adminId,status : String
