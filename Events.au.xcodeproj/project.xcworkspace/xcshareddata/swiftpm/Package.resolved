@@ -1,7 +1,5 @@
 {
-
-  "originHash" : "f65f7ddb44358f24c699aa1182f8bf5e2d4c0efd05ef894948a3825787c444e6",
-
+  "originHash" : "c1375a7397f02c831ffda25a444d65fdfb629e77af429ce30c578e550f976e8c",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -17,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/app-check.git",
       "state" : {
-        "revision" : "076b241a625e25eac22f8849be256dfb960fcdfe",
-        "version" : "10.19.1"
+        "revision" : "3b62f154d00019ae29a71e9738800bb6f18b236d",
+        "version" : "10.19.2"
       }
     },
     {
@@ -35,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "8bcaf973b1d84e119b7c7c119abad72ed460979f",
-        "version" : "10.27.0"
+        "revision" : "e57841b296d04370ea23580f908881b0ccab17b9",
+        "version" : "10.28.1"
       }
     },
     {
@@ -44,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "70df02431e216bed98dd461e0c4665889245ba70",
-        "version" : "10.27.0"
+        "revision" : "fe727587518729046fc1465625b9afd80b5ab361",
+        "version" : "10.28.0"
       }
     },
     {
@@ -121,6 +119,15 @@
       }
     },
     {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e0c7eebc5a4465a3c4680764f26b7a61f567cdaf"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
@@ -166,5 +173,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
