@@ -48,7 +48,7 @@ import Foundation
 //MARK: For Getting A User
 struct UserResponse : Codable {
     let success: Bool
-    let message: UserModel
+    let message: UserModel2
 }
 
 //MARK: For Getting All Users
@@ -61,4 +61,9 @@ struct UserModel: Codable {
     let _id,fId, firstName,lastName,email,gender : String
     let age, phone : Int
     let isAdmin : Bool
+}
+
+struct UserModel2: Codable {
+    let _id,fId, firstName,email: String
+    let phone : Int
 }

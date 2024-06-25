@@ -19,6 +19,4 @@ struct EventUnitMock  {
     let eventUnitB = EventUnitModel(_id: "661f820ddbe871a975363503", eventId: EventModel(_id: "6617a7a05da1ed206211d461", name: "update testing basic info", description: "No description", startDate: Date().formattedDateAndMonth(), endDate: Date().formattedDateAndMonth(), startTime: Date().formattedTime(), endTime: Date().formattedTime(), location: "ABAC", rules: "There will be no ground rules.", coverImageUrL:  "https://picsum.photos/1200", adminId: "6646e25dd02d2dbdd7bb19cd", status: "rejected"), unitId: UnitModel(_id: "661e96e1c6ca7a788be0025e", name: "unit 2", description: "Testing data for description"))
     
     
-    
-    
 }

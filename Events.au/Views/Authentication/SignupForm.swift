@@ -26,10 +26,11 @@ struct SignupForm: View {
     @State private var alertMessage: String = ""
     @State private var selectedFaculty: String = "Select Faculty"
     @State private var selectedGender: String = "Select Gender"
-    @State private var selectedUnitName: String = "666d483d9ad6b85eeaea33a7"
+    @State private var selectedUnitName: String = ""
+    @State private var selectedUnitId: String = ""
     @State private var isMenuVisible = false
     
-//    @ObservedObject var allUnitsViewModel = AllUnitsViewModel()
+    @ObservedObject var allUnitsViewModel = AllUnitsViewModel()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
     @ObservedObject var userSignUpViewModel = UserSignUpViewModel()
     
@@ -123,12 +124,12 @@ struct SignupForm: View {
                                     .disabled(true)
                                 Spacer()
                                 Menu {
-                                    //                                    ForEach(allUnitsViewModel.units, id: \.name) { unit in
-                                    //                                        Button(unit.name) {
-                                    ////                                            selectedFacultyId = unit.id
-                                    //                                            selectedFacultyName = unit.name
-                                    //                                        }
-                                    //                                    }
+                                    ForEach(allUnitsViewModel.units, id: \.id){ unit in
+                                        Button(unit.name ?? "No Unit Found") {
+                                            selectedUnitId = unit.id
+                                            selectedUnitName = unit.name ?? ""
+                                        }
+                                    }
                                 } label: {
                                     Image(systemName: "arrowtriangle.down.fill")
                                         .resizable()
@@ -137,9 +138,9 @@ struct SignupForm: View {
                                 }
                             }
                             .padding()
-                            .onTapGesture {
-                                //                                allUnitsViewModel.fetchAllUnits()
-                            }
+//                            .onTapGesture {
+//                                allUnitsViewModel.fetchUnits()
+//                            }
                         }
                             .tint(Color("text_color_grey"))
                     )
@@ -213,6 +214,9 @@ struct SignupForm: View {
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
+        .onAppear{
+            allUnitsViewModel.fetchUnits()
+        }
     }
     
     private func signUpWithGoogle() {
@@ -229,13 +233,14 @@ struct SignupForm: View {
                 }
                 if isNewUser{
                     //post here
-                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, fId: authViewModel.fId ?? "", unitId: self.selectedUnitName) { result in
+                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, fId: authViewModel.fId ?? "", unitId: self.selectedUnitId) { result in
                         switch result {
                         case .success:
                             self.alertMessage = "User registration successful"
                             authViewModel.signOutWithGoogle()
                         case .failure(let error):
                             self.alertMessage = "Registration failed \(error)"
+                            authViewModel.signOutWithGoogle()
                         }
                         self.showAlert = true
                     }
@@ -252,5 +257,3 @@ struct SignupForm_Previews: PreviewProvider {
         SignupForm()
     }
 }
-
-

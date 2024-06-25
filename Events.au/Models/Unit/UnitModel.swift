@@ -31,8 +31,16 @@ struct AllUnitsResponse: Codable {
     let message: [UnitModel]
 }
 
-struct UnitModel  : Codable {
-    let _id,name,description : String
+struct UnitModel: Codable {
+    let id : String
+    let name: String?
+    let description: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case name
+        case description
+    }
 }
 
 
