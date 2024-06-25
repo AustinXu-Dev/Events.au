@@ -48,6 +48,11 @@
 		B370C6E72C15260600C28E67 /* AppStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6E62C15260600C28E67 /* AppStateHandler.swift */; };
 		B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6E92C15263200C28E67 /* AppDelegate.swift */; };
 		B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */; };
+		B3A571A32C29C464000B7AB6 /* UpdateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */; };
+		B3A571A72C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A62C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift */; };
+		B3A571A92C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */; };
+		B3A571AC2C29D600000B7AB6 /* GetAdminById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571AB2C29D600000B7AB6 /* GetAdminById.swift */; };
+		B3A571AF2C29D807000B7AB6 /* GetAdminByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571AE2C29D807000B7AB6 /* GetAdminByIdViewModel.swift */; };
 		B704B6C82C22CB69006E3DDF /* AllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B704B6C72C22CB69006E3DDF /* AllEvents.swift */; };
 		B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */; };
 		B731AAD32C15FEFC00A3E8C2 /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAD22C15FEFC00A3E8C2 /* EventMock.swift */; };
@@ -150,6 +155,11 @@
 		B370C6E62C15260600C28E67 /* AppStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHandler.swift; sourceTree = "<group>"; };
 		B370C6E92C15263200C28E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticationViewModel.swift; sourceTree = "<group>"; };
+		B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserViewModel.swift; sourceTree = "<group>"; };
+		B3A571A62C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventBasicInfo.swift; sourceTree = "<group>"; };
+		B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventBasicInfoViewModel.swift; sourceTree = "<group>"; };
+		B3A571AB2C29D600000B7AB6 /* GetAdminById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAdminById.swift; sourceTree = "<group>"; };
+		B3A571AE2C29D807000B7AB6 /* GetAdminByIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAdminByIdViewModel.swift; sourceTree = "<group>"; };
 		B704B6C72C22CB69006E3DDF /* AllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEvents.swift; sourceTree = "<group>"; };
 		B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagesMock.swift; sourceTree = "<group>"; };
 		B731AAD22C15FEFC00A3E8C2 /* EventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMock.swift; sourceTree = "<group>"; };
@@ -260,6 +270,7 @@
 			children = (
 				B704B6C72C22CB69006E3DDF /* AllEvents.swift */,
 				B36303002C28A0EB00537586 /* CreateEvent.swift */,
+				B3A571A62C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -296,6 +307,7 @@
 				B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */,
 				B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */,
 				B363030A2C28A20500537586 /* CreateEventViewModel.swift */,
+				B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -312,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				B36303102C28A36A00537586 /* GetOneUserByIdViewModel.swift */,
+				B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -350,9 +363,26 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		B3A571AA2C29D5DA000B7AB6 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				B3A571AB2C29D600000B7AB6 /* GetAdminById.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		B3A571AD2C29D7AC000B7AB6 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				B3A571AE2C29D807000B7AB6 /* GetAdminByIdViewModel.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
 		B704B6C62C22CB47006E3DDF /* NetworkUseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B3A571AA2C29D5DA000B7AB6 /* Admin */,
 				B36302FF2C28A0CF00537586 /* User */,
 				B36302FE2C28A0C200537586 /* Unit */,
 				B36302FD2C28A0BC00537586 /* Event */,
@@ -665,6 +695,7 @@
 		BCBE02672C116D8F00A9EE3E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B3A571AD2C29D7AC000B7AB6 /* Admin */,
 				B363030F2C28A35900537586 /* User */,
 				B363030C2C28A32600537586 /* Unit */,
 				B36303092C28A1CA00537586 /* Event */,
@@ -863,17 +894,20 @@
 				B7ECB5432C1F4FE8004CCFA7 /* AllEventsMock.swift in Sources */,
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
 				B731AADD2C1606E300A3E8C2 /* UnitMock.swift in Sources */,
+				B3A571A72C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift in Sources */,
 				396685CE2C1F4AFF00AAD5D4 /* AdminProfileView.swift in Sources */,
 				B7C69A8D2C14F7850055DDD9 /* SignUpModel.swift in Sources */,
 				B36CA95F2C1F8D7100FE6D46 /* AllEventsViewModel.swift in Sources */,
 				B731AAD72C16006900A3E8C2 /* EventUnitMock.swift in Sources */,
 				B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */,
+				B3A571AC2C29D600000B7AB6 /* GetAdminById.swift in Sources */,
 				B7C69A7A2C14E0D40055DDD9 /* RestrictedTokenModel.swift in Sources */,
 				B36303112C28A36A00537586 /* GetOneUserByIdViewModel.swift in Sources */,
 				B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */,
 				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
 				B36303012C28A0EB00537586 /* CreateEvent.swift in Sources */,
 				39A732102C20B2570042734E /* ProfileView.swift in Sources */,
+				B3A571A32C29C464000B7AB6 /* UpdateUserViewModel.swift in Sources */,
 				396685D52C1F6D6700AAD5D4 /* EventDetailsView.swift in Sources */,
 				B7C69A722C14DE900055DDD9 /* UpdateEventStatusDTO.swift in Sources */,
 				B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */,
@@ -888,6 +922,7 @@
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
 				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
+				B3A571AF2C29D807000B7AB6 /* GetAdminByIdViewModel.swift in Sources */,
 				BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */,
 				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,
 				39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */,
@@ -901,6 +936,7 @@
 				B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */,
 				B7F265072C1D8D5A00033E37 /* EventParticipantsMock.swift in Sources */,
 				B704B6C82C22CB69006E3DDF /* AllEvents.swift in Sources */,
+				B3A571A92C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

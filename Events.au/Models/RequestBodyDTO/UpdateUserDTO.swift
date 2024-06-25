@@ -9,6 +9,6 @@ import Foundation
 
 //MARK: request body for updating a user info
 struct UpdateUserDTO : Codable {
-    let firstName,lastName, email : String
+    let firstName,lastName : String
 }
 

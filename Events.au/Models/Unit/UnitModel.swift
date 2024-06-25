@@ -42,5 +42,3 @@ struct UnitModel: Codable {
         case description
     }
 }
-
-
