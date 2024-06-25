@@ -1,5 +1,5 @@
 {
-  "originHash" : "814cc533b2a25172c629dacefacad336bfa5778bee6b0227811b7dbf600c2ca8",
+  "originHash" : "f65f7ddb44358f24c699aa1182f8bf5e2d4c0efd05ef894948a3825787c444e6",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -143,6 +143,15 @@
       "state" : {
         "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
         "version" : "2.4.0"
+      }
+    },
+    {
+      "identity" : "remoteimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/crelies/RemoteImage.git",
+      "state" : {
+        "revision" : "7de20453a8b9733eb8e28ae762801c60a5a5f59d",
+        "version" : "4.0.0"
       }
     },
     {

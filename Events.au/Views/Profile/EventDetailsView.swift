@@ -52,7 +52,7 @@ extension OrganizedEventDetails {
     }
     
     private var toolBarPencil : some View {
-        NavigationLink(destination: EditProfileView()) {
+        NavigationLink(destination: EventDetailsEditView()) {
             Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
                 .frame(width:Theme.iconWidth,height:Theme.iconHeight)
         }

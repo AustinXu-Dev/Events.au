@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    func formattedDate() -> String {
+    func formattedDateAndMonth() -> String {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d"
             let dayString = dateFormatter.string(from: self)
@@ -38,6 +38,21 @@ extension Date {
 
             return "\(day)\(suffix) \(monthString)"
         }
+    
+    
+    func formatDateOnly() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d"
+        return dateFormatter.string(from: self)
+    }
+    
+    func formatMonthOnly() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        return dateFormatter.string(from: self)
+    }
+    
+    
     
     func formattedTime() -> String {
         let dateFormatter = DateFormatter()
