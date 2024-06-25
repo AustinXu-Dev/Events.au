@@ -53,6 +53,8 @@ extension View {
         self.modifier(FontModifier(style: Theme.profileNameStyle))
     }
 
-    
+    func applyMediumFont() -> some View {
+        self.modifier(FontModifier(style: Theme.mediumFontStyle))
+    }
     
 }

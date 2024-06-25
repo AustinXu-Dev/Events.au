@@ -162,19 +162,19 @@ extension ParticipantManager {
 
 
 
-//struct ParticipantManager_Previews : PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ParticipantManager()
-//                .previewLayout(.sizeThatFits)
-//                .preferredColorScheme(.light)
-//                .padding()
-//            
-//            ParticipantManager()
-//                .previewLayout(.sizeThatFits)
-//                .preferredColorScheme(.dark)
-//                .padding()
-//        }
-//
-//    }
-//}
+struct ParticipantManager_Previews : PreviewProvider {
+    static var previews: some View {
+        Group {
+            ParticipantManager(showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants))
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.light)
+                .padding()
+            
+            ParticipantManager(showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants))
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+                .padding()
+        }
+
+    }
+}

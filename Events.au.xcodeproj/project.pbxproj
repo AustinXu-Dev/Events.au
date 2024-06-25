@@ -60,6 +60,9 @@
 		B74956E42C2088B900C51B30 /* EventStatusColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74956E32C2088B900C51B30 /* EventStatusColor.swift */; };
 		B74C42862C26FA2C009E3E63 /* UpdateUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74C42852C26FA2C009E3E63 /* UpdateUserDTO.swift */; };
 		B74C42882C26FAF9009E3E63 /* AdminSignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74C42872C26FAF9009E3E63 /* AdminSignUpModel.swift */; };
+		B74C428B2C271B33009E3E63 /* RemoteImage in Frameworks */ = {isa = PBXBuildFile; productRef = B74C428A2C271B33009E3E63 /* RemoteImage */; };
+		B74C428F2C272314009E3E63 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74C428E2C272314009E3E63 /* EventDetail.swift */; };
+		B74C42912C272508009E3E63 /* SFPRODISPLAYMEDIUM.OTF in Resources */ = {isa = PBXBuildFile; fileRef = B74C42902C272507009E3E63 /* SFPRODISPLAYMEDIUM.OTF */; };
 		B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75057392C160F9300D742E8 /* UnitAdminModel.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
@@ -169,6 +172,8 @@
 		B74956E32C2088B900C51B30 /* EventStatusColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatusColor.swift; sourceTree = "<group>"; };
 		B74C42852C26FA2C009E3E63 /* UpdateUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserDTO.swift; sourceTree = "<group>"; };
 		B74C42872C26FAF9009E3E63 /* AdminSignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSignUpModel.swift; sourceTree = "<group>"; };
+		B74C428E2C272314009E3E63 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
+		B74C42902C272507009E3E63 /* SFPRODISPLAYMEDIUM.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYMEDIUM.OTF; sourceTree = "<group>"; };
 		B75057392C160F9300D742E8 /* UnitAdminModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAdminModel.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
@@ -249,6 +254,8 @@
 				B370C6CD2C15254200C28E67 /* GoogleSignInSwift in Frameworks */,
 				B370C6D02C15257F00C28E67 /* FirebaseAnalytics in Frameworks */,
 				B370C6E02C1525AE00C28E67 /* FirebaseAuth in Frameworks */,
+				B370C6DB2C15258C00C28E67 /* KeychainAccess in Frameworks */,
+				B74C428B2C271B33009E3E63 /* RemoteImage in Frameworks */,
 				B370C6D82C15257F00C28E67 /* FirebaseAppCheck in Frameworks */,
 				B370C6D22C15257F00C28E67 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				B370C6D42C15257F00C28E67 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -549,6 +556,7 @@
 			children = (
 				B7F265052C1D889A00033E37 /* SFProDisplayLight.ttf */,
 				B7DFB40D2C17EB8900BB53E7 /* SFProDisplay-Semibold.ttf */,
+				B74C42902C272507009E3E63 /* SFPRODISPLAYMEDIUM.OTF */,
 				B7DFB4062C17E93B00BB53E7 /* SFPRODISPLAYREGULAR.OTF */,
 				B7720E1B2C11E5B100A053F6 /* Theme.swift */,
 				B74956E32C2088B900C51B30 /* EventStatusColor.swift */,
@@ -597,6 +605,7 @@
 				BC27117A2C1991E400A99157 /* ChildView.swift */,
 				BC27117E2C19920000A99157 /* SecondChildView.swift */,
 				BC6157C42C1E0CF400F78A9E /* SearchBar.swift */,
+				B74C428E2C272314009E3E63 /* EventDetail.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -785,6 +794,7 @@
 				B370C6D52C15257F00C28E67 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				B370C6D72C15257F00C28E67 /* FirebaseAppCheck */,
 				B370C6DF2C1525AE00C28E67 /* FirebaseAuth */,
+				B74C428A2C271B33009E3E63 /* RemoteImage */,
 				B36302FB2C28A07800537586 /* KeychainSwift */,
 			);
 			productName = Events.au;
@@ -818,7 +828,10 @@
 			packageReferences = (
 				B370C6C92C15254200C28E67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B370C6CE2C15257F00C28E67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */,
 				B36302FA2C28A07800537586 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+
 			);
 			productRefGroup = BCBE02412C116C1000A9EE3E /* Products */;
 			projectDirPath = "";
@@ -834,6 +847,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B74C42912C272508009E3E63 /* SFPRODISPLAYMEDIUM.OTF in Resources */,
 				B36CA9632C1F8E7E00FE6D46 /* GoogleService-Info.plist in Resources */,
 				BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */,
 			);
@@ -872,6 +886,7 @@
 				B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */,
 				B74C42882C26FAF9009E3E63 /* AdminSignUpModel.swift in Sources */,
 				B370C6E72C15260600C28E67 /* AppStateHandler.swift in Sources */,
+				B74C428F2C272314009E3E63 /* EventDetail.swift in Sources */,
 				B731AAD32C15FEFC00A3E8C2 /* EventMock.swift in Sources */,
 				BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */,
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
@@ -1188,6 +1203,24 @@
 				minimumVersion = 10.27.0;
 			};
 		};
+
+		B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/crelies/RemoteImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1235,6 +1268,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B370C6CE2C15257F00C28E67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		B74C428A2C271B33009E3E63 /* RemoteImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */;
+			productName = RemoteImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

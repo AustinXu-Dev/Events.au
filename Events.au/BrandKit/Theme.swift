@@ -32,6 +32,7 @@ struct Theme {
     static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
     static let buttonFont = "SFProDisplay-Semibold.ttf"
     static let profileNameFont = "SFProDisplay-Semibold.ttf"
+    static let mediumFont = "SFPRODISPLAYMEDIUM.OTF"
 
     
     
@@ -42,6 +43,8 @@ struct Theme {
     static let bodyFontStyle: Font = .custom(bodyFont, size: 16)
     static let buttonFontStyle: Font = .custom(buttonFont,size: 16)
     static let profileNameStyle : Font = .custom(profileNameFont, size: 32)
+    static let mediumFontStyle : Font = .custom(mediumFont, size: 12)
+
 
     
     // MARK: - Spacing, Shapes, Widths and Heights
@@ -52,7 +55,7 @@ struct Theme {
     static let buttonHeight : CGFloat = 40
     
     static let textFieldHeight: CGFloat = 40
-    
+    static let textFieldWidth : CGFloat = 261
     
     static let eventImageWidth : CGFloat = 361
     static let eventImageHeight : CGFloat = 160
@@ -122,6 +125,7 @@ struct Theme {
     static let confirmation : String = "Confirmation"
     static let location : String = "location.fill"
     static let clock : String = "clock.fill"
+    static let calendar : String = "calendar"
     static let congratsText: String = "CongratsText"
     
     
@@ -135,6 +139,11 @@ struct Theme {
     static let lightModePencil : String = "pencil_icon_lightmode"
     static let darkModePencil : String = "pencil_icon_darkmode"
     static let clickedPencil : String = "pencil_icon_clicked"
+    
+    static let locationLight : String = "location_light"
+    static let locationDark : String = "location_dark"
+    
+    static let eventImage : String = "EventImagePreview"
     
 }
 
