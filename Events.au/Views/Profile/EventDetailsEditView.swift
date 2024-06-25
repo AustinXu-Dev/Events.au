@@ -30,7 +30,7 @@ struct EventDetailsEditView: View {
         let event = EventMock.instacne.eventA
         let unit = UnitMock.instacne.unitA
         _name = State(initialValue: event.name)
-        _faculty = State(initialValue: unit.name)
+        _faculty = State(initialValue: unit.name ?? "No Faculty")
         _startDate = State(initialValue: event.startDate)
         _endDate = State(initialValue: event.endDate)
         _from = State(initialValue: event.startTime)
