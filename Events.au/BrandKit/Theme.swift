@@ -127,6 +127,8 @@ struct Theme {
     static let clock : String = "clock.fill"
     static let calendar : String = "calendar"
     static let congratsText: String = "CongratsText"
+    static let eventauText: String = "EventAUText"
+    static let createEventImage: String = "CreateEventImage"
     
     
     // MARK: - Icon Names
