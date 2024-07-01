@@ -37,7 +37,7 @@ struct Theme {
     
     
     // MARK: - Fonts ( Just add .apply_FontStyle as view modifier)
-    static let overlayFontStyle : Font = .custom(buttonFont,size: 12)
+    static let overlayFontStyle : Font = .custom(overlayFont,size: 12)
     static let labelFontStyle : Font = .custom(labelFont,size: 20)
     static let headingFontStyle: Font = .custom(headingFont,size: 16)
     static let bodyFontStyle: Font = .custom(bodyFont, size: 16)
@@ -135,6 +135,7 @@ struct Theme {
     static let businessIcon : String = "business_icon"
     static let entertainmentIcon : String = "entertainment_icon"
     static let academyIcon : String = "academy_icon"
+    static let participantIcon : String = "participant_icon"
     
     static let lightModePencil : String = "pencil_icon_lightmode"
     static let darkModePencil : String = "pencil_icon_darkmode"

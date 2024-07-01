@@ -29,13 +29,13 @@ struct EventDetailsEditView: View {
         //MARK: after we get the view model the event and unit has to be changed
         let event = EventMock.instacne.eventA
         let unit = UnitMock.instacne.unitA
-        _name = State(initialValue: event.name)
+        _name = State(initialValue: event.name ?? "")
         _faculty = State(initialValue: unit.name ?? "No Faculty")
-        _startDate = State(initialValue: event.startDate)
-        _endDate = State(initialValue: event.endDate)
-        _from = State(initialValue: event.startTime)
-        _to = State(initialValue: event.endTime)
-        _description = State(initialValue: event.description)
+        _startDate = State(initialValue: event.startDate ?? "")
+        _endDate = State(initialValue: event.endDate ?? "")
+        _from = State(initialValue: event.startTime ?? "")
+        _to = State(initialValue: event.endTime ?? "")
+        _description = State(initialValue: event.description ?? "No description")
     }
     
     var body: some View {

@@ -11,13 +11,14 @@ struct HomeTest: View {
     
     @Binding var path: [HomeNavigation]
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
-    @State var user = UserMock.instance
+    @StateObject private var eventVM : AllEventsViewModel = AllEventsViewModel()
+    @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
+    let unit : UnitModel = UnitMock.instacne.unitA
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
     //MARK: have to change this after api integration
-    @State var events : [EventModel] = AllEventsMock.events
     @State var approvedParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
 
     
@@ -46,8 +47,10 @@ struct HomeTest: View {
                         .scaledToFit()
                         .frame(width: 35, height: 35)
                         .clipShape(Circle())
-                    Text(user.user1.firstName)
-                        .applyHeadingFont()
+                    if let userName = profileVM.userDetail?.firstName {
+                        Text(userName)
+                            .applyHeadingFont()
+                    }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
 //                    Image("noti_icon_active")
@@ -65,6 +68,12 @@ struct HomeTest: View {
                 }
             }
         }
+        .onAppear(perform: {
+            eventVM.fetchEvents()
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
+        })
         .tint(.blue)
     }
 }
@@ -119,8 +128,14 @@ extension HomeTest {
                 .applyLabelFont()
             ScrollView(.vertical,showsIndicators: false){
                 VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
-                    ForEach(events,id: \._id){ event in
-                        EventCard(event: event, approvedParticipants: $approvedParticipants)
+                    ForEach(eventVM.events,id: \._id){ event in
+                        NavigationLink {
+                            EventDetail(event: event, unit:unit, approvedParticipants: approvedParticipants)
+                        } label: {
+                            EventCard(event: event, approvedParticipants: $approvedParticipants)
+                        }
+                        .tint(Theme.secondaryTextColor)
+                       
                     }
                 }
             }

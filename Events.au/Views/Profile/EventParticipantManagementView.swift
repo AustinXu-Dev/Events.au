@@ -19,27 +19,20 @@ struct EventParticipantManagementView: View {
             ScrollView(.vertical,showsIndicators: false) {
                 VStack (alignment: .leading,spacing: Theme.defaultSpacing) {
                   
-                    HStack {
-                      
-                        Image("event_details")
+                  
+                    HStack(spacing:Theme.small) {
+                        Image(Theme.participantIcon)
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
-                      
+                            .frame(width: Theme.iconWidth,height: Theme.iconHeight)
+                            .scaledToFill()
+                        Text("\(approvedParticipants.count) Attending")
+                            .applyHeadingFont()
+                            .foregroundStyle(Theme.tintColor)
+                        Text("(\(pendingParticipants.count) pending)")
+                            .applyOverlayFont()
+                            .foregroundStyle(Theme.secondaryTextColor.opacity(0.5))
                     }
-                    .padding([.leading, .trailing], 16)
-                    .padding(.bottom, 20)
                     
-                    if self.index == 1 {
-                        Text("Event Participants")
-                            .font(.system(size: 20))
-                            .bold()
-                            .padding(.horizontal, 16)
-                    } else if self.index == 2 {
-                        Text("Participants")
-                            .font(.system(size: 20))
-                            .bold()
-                            .padding(.horizontal, 16)
-                    }
                     ParticipantManager(showPending: $showPending, unit: unit, pendingParticipants: $pendingParticipants, approvedParticipants: $approvedParticipants)
                 }
                
@@ -48,14 +41,7 @@ struct EventParticipantManagementView: View {
             .padding(.horizontal,Theme.large)
             
                 .navigationBarTitle("Event Details", displayMode: .inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: EditProfileView()) {
-                            Image(systemName: "pencil")
-                                .imageScale(.large)
-                        }
-                    }
-                }
+                
             }
         
     }
@@ -154,3 +140,7 @@ let pendingParticipants = [
 //                        GridView(participants: pendingParticipants)
 //                    }
 //                    Spacer()
+
+#Preview {
+    EventParticipantManagementView(showPending: false, pendingParticipants: ParticipantMock.instacne.participants, approvedParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
+}

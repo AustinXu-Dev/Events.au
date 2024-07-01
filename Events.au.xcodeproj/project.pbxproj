@@ -864,7 +864,6 @@
 			packageReferences = (
 				B370C6C92C15254200C28E67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B370C6CE2C15257F00C28E67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */,
 				B36302FA2C28A07800537586 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);

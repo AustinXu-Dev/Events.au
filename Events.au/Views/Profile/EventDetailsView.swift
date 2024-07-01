@@ -41,13 +41,13 @@ extension OrganizedEventDetails {
     
     private var eventDetails : some View {
         VStack(alignment: .leading, spacing: Theme.headingBodySpacing) {
-            ProfileDetailRow(label: "Name", value: event.name)
+            ProfileDetailRow(label: "Name", value: event.name ?? "")
             ProfileDetailRow(label: "Faculty", value: "VMES")
-            ProfileDetailRow(label: "Start Date", value: event.startDate)
-            ProfileDetailRow(label: "End Date", value: event.endDate)
-            ProfileDetailRow(label: "From", value: event.startTime)
-            ProfileDetailRow(label: "To", value: event.endTime)
-            ProfileDetailRow(label: "Description", value: event.description)
+            ProfileDetailRow(label: "Start Date", value: event.startDate ?? "")
+            ProfileDetailRow(label: "End Date", value: event.endDate ?? "")
+            ProfileDetailRow(label: "From", value: event.startTime ?? "")
+            ProfileDetailRow(label: "To", value: event.endTime ?? "")
+            ProfileDetailRow(label: "Description", value: event.description ?? "No description")
         }
     }
     
