@@ -23,19 +23,19 @@ struct EventRow: View {
                 .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
                 .scaledToFit()
                 VStack(alignment:.leading,spacing:Theme.medium) {
-                    Text(event.name)
+                    Text(event.name ?? "")
                     .applyHeadingFont()
                     Text("\(event.startDate),\(event.startTime)-\(event.endTime)")
                     .applyOverlayFont()
             }
                 Spacer()
                 VStack {
-                    Text(event.status)
+                    Text(event.status ?? "")
                         .applyOverlayFont()
                         .padding(.horizontal,8)
                         .padding(.vertical,2)
                         .background(
-                            EventStatus.instance.colorHandler(status: event.status)
+                            EventStatus.instance.colorHandler(status: event.status ?? "")
                         )
                         .cornerRadius(Theme.xs)
                         .offset(y:-20)

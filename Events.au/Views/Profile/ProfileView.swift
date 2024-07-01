@@ -22,14 +22,17 @@ struct ProfileView: View {
         Faculty(id: 2, name: "BBA"),
         Faculty(id: 3, name: "LAW"),
     ]
+    @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
+    
     
     var body: some View {
         VStack(spacing:Theme.defaultSpacing) {
             VStack(alignment:.leading) {
                 headerProfile
-                //                Spacer()
-                Text("Justin Hollan")
-                    .applyProfileNameFont()
+                if let userName = profileVM.userDetail?.firstName {
+                    Text(userName)
+                        .applyProfileNameFont()
+                }
                 HStack {
                     accountSelectionRow
                     Spacer()
@@ -40,6 +43,12 @@ struct ProfileView: View {
             EventManager(showUpcoming: $showUpcoming, ongoingEvents: $ongoingEvents, upcomingEvents: $upcomingEvents)
         }
         .padding(.horizontal,Theme.large)
+        .onAppear(perform: {
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
+        })
+      
     }
 }
 

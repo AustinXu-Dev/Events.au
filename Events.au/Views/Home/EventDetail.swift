@@ -49,14 +49,14 @@ extension EventDetail {
     }
     private var details : some View {
         VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
-            Text(event.name)
+            Text(event.name ?? "")
                 .applyLabelFont()
             Text(unit.name ?? "Default")
                 .applyMediumFont()
                 .foregroundColor(Theme.tintColor)
             
             VStack(alignment:.leading,spacing:Theme.xs) {
-                Text(event.description)
+                Text(event.description ?? "No Description")
                     .applyBodyFont()
                     .lineLimit(isParagraph ? .max : 6)
                 Button {
@@ -104,7 +104,7 @@ extension EventDetail {
                         .resizable()
                         .frame(width: Theme.iconWidth,height: Theme.iconHeight)
                         .scaledToFill()
-                    Text(event.location)
+                    Text(event.location ?? "")
                         .applyMediumFont()
                 }
             }
