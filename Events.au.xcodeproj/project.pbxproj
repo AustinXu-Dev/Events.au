@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3920CD6C2C32846700632B3C /* AttendeesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920CD6B2C32846700632B3C /* AttendeesListView.swift */; };
+		3920CD6E2C3289FA00632B3C /* CreatedSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920CD6D2C3289FA00632B3C /* CreatedSuccessView.swift */; };
 		396685CE2C1F4AFF00AAD5D4 /* AdminProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685CD2C1F4AFF00AAD5D4 /* AdminProfileView.swift */; };
 		396685D02C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */; };
 		396685D22C1F645100AAD5D4 /* AdminProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685D12C1F645100AAD5D4 /* AdminProfileEditView.swift */; };
@@ -132,6 +134,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3920CD6B2C32846700632B3C /* AttendeesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesListView.swift; sourceTree = "<group>"; };
+		3920CD6D2C3289FA00632B3C /* CreatedSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedSuccessView.swift; sourceTree = "<group>"; };
 		396685CD2C1F4AFF00AAD5D4 /* AdminProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileView.swift; sourceTree = "<group>"; };
 		396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileColorTheme.swift; sourceTree = "<group>"; };
 		396685D12C1F645100AAD5D4 /* AdminProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileEditView.swift; sourceTree = "<group>"; };
@@ -264,7 +268,6 @@
 				B370C6CD2C15254200C28E67 /* GoogleSignInSwift in Frameworks */,
 				B370C6D02C15257F00C28E67 /* FirebaseAnalytics in Frameworks */,
 				B370C6E02C1525AE00C28E67 /* FirebaseAuth in Frameworks */,
-				B370C6DB2C15258C00C28E67 /* KeychainAccess in Frameworks */,
 				B74C428B2C271B33009E3E63 /* RemoteImage in Frameworks */,
 				B370C6D82C15257F00C28E67 /* FirebaseAppCheck in Frameworks */,
 				B370C6D22C15257F00C28E67 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -624,6 +627,8 @@
 			children = (
 				BC1CC9772C29502C0020DD06 /* EventRegistrationView.swift */,
 				BC1CC9792C2979F40020DD06 /* EventRegistrationSuccessView.swift */,
+				3920CD6B2C32846700632B3C /* AttendeesListView.swift */,
+				3920CD6D2C3289FA00632B3C /* CreatedSuccessView.swift */,
 			);
 			path = EventRegistration;
 			sourceTree = "<group>";
@@ -862,7 +867,6 @@
 				B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */,
 				B36302FA2C28A07800537586 /* XCRemoteSwiftPackageReference "keychain-swift" */,
-
 			);
 			productRefGroup = BCBE02412C116C1000A9EE3E /* Products */;
 			projectDirPath = "";
@@ -904,6 +908,7 @@
 				B7C69A922C14F93D0055DDD9 /* OrganizerMock.swift in Sources */,
 				B36303032C28A11600537586 /* AllUnits.swift in Sources */,
 				B7C69A7E2C14E18B0055DDD9 /* AdminModel.swift in Sources */,
+				3920CD6E2C3289FA00632B3C /* CreatedSuccessView.swift in Sources */,
 				B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */,
 				B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */,
 				B7C69A902C14F8D30055DDD9 /* UserMock.swift in Sources */,
@@ -949,6 +954,7 @@
 				B7FCBFF42C15964100C8C531 /* SignUpDTO.swift in Sources */,
 				B370C6E42C1525DC00C28E67 /* WebService.swift in Sources */,
 				B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */,
+				3920CD6C2C32846700632B3C /* AttendeesListView.swift in Sources */,
 				B363030E2C28A34400537586 /* AllUnitsViewModel.swift in Sources */,
 				B7ECB5432C1F4FE8004CCFA7 /* AllEventsMock.swift in Sources */,
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
@@ -1239,7 +1245,6 @@
 				minimumVersion = 10.27.0;
 			};
 		};
-
 		B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
@@ -1256,7 +1261,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */

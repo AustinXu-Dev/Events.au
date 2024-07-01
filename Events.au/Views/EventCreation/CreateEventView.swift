@@ -27,9 +27,9 @@ struct CreateEventView: View {
     @State var selectedOptionIndex: Int = 0
     @State var showDropDown: Bool = false
     @State var units: [UnitModel] = [
-        UnitModel(_id: "1", name: "D*Code", description: ""),
-        UnitModel(_id: "2", name: "VMES", description: ""),
-        UnitModel(_id: "3", name: "BBA", description: ""),
+        UnitModel(id: "1", name: "D*Code", description: ""),
+        UnitModel(id: "2", name: "VMES", description: ""),
+        UnitModel(id: "3", name: "BBA", description: ""),
     ]
     @State var dateValue: Date = Date()
     @State var selectedDate: Date = Date()

@@ -51,7 +51,7 @@ extension EventDetail {
         VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
             Text(event.name)
                 .applyLabelFont()
-            Text(unit.name)
+            Text(unit.name ?? "Default")
                 .applyMediumFont()
                 .foregroundColor(Theme.tintColor)
             

@@ -32,7 +32,7 @@ struct DropDownMenu: View {
                     }
                 }, label: {
                     HStack(spacing: nil) {
-                        Text(options[selectedOptionIndex].name)
+                        Text(options[selectedOptionIndex].name ?? "Default")
 //                            .foregroundStyle(Color.gray.opacity(0.6))
                             .font(Theme.bodyFontStyle)
                         Spacer()
@@ -58,7 +58,7 @@ struct DropDownMenu: View {
 
                                 }, label: {
                                     HStack {
-                                        Text(options[index].name)
+                                        Text(options[index].name ?? "Default")
                                             .font(Theme.bodyFontStyle)
                                         Spacer()
                                         if (index == selectedOptionIndex) {
