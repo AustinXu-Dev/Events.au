@@ -131,6 +131,12 @@
 		BCBE02522C116C4400A9EE3E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02512C116C4400A9EE3E /* Service.swift */; };
 		BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02532C116C8E00A9EE3E /* Utility.swift */; };
 		BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02572C116CCA00A9EE3E /* Helper.swift */; };
+		BCF4F9FB2C2EF89600D5E009 /* CreateEventPreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4F9FA2C2EF89600D5E009 /* CreateEventPreScreen.swift */; };
+		BCF4F9FD2C2FA83A00D5E009 /* CreateEventSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4F9FC2C2FA83A00D5E009 /* CreateEventSuccessView.swift */; };
+		BCF4FAA72C3189A200D5E009 /* CreatePollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4FAA62C3189A200D5E009 /* CreatePollView.swift */; };
+		BCF4FAAA2C3191F600D5E009 /* CustomToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4FAA92C3191F600D5E009 /* CustomToggleStyle.swift */; };
+		BCF4FAAE2C31B2DB00D5E009 /* PollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4FAAD2C31B2DB00D5E009 /* PollView.swift */; };
+		BCF4FAB02C31B30300D5E009 /* PollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4FAAF2C31B30300D5E009 /* PollViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -255,6 +261,12 @@
 		BCBE02512C116C4400A9EE3E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		BCBE02532C116C8E00A9EE3E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		BCBE02572C116CCA00A9EE3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		BCF4F9FA2C2EF89600D5E009 /* CreateEventPreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPreScreen.swift; sourceTree = "<group>"; };
+		BCF4F9FC2C2FA83A00D5E009 /* CreateEventSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventSuccessView.swift; sourceTree = "<group>"; };
+		BCF4FAA62C3189A200D5E009 /* CreatePollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollView.swift; sourceTree = "<group>"; };
+		BCF4FAA92C3191F600D5E009 /* CustomToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleStyle.swift; sourceTree = "<group>"; };
+		BCF4FAAD2C31B2DB00D5E009 /* PollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollView.swift; sourceTree = "<group>"; };
+		BCF4FAAF2C31B30300D5E009 /* PollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -648,8 +660,13 @@
 		BCAD2B032C28756B00E6B87D /* EventCreation */ = {
 			isa = PBXGroup;
 			children = (
+				BCF4F9FA2C2EF89600D5E009 /* CreateEventPreScreen.swift */,
 				BCAD2B042C2875B100E6B87D /* CreateEventView.swift */,
+				BCF4FAA62C3189A200D5E009 /* CreatePollView.swift */,
+				BCF4F9FC2C2FA83A00D5E009 /* CreateEventSuccessView.swift */,
 				BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */,
+				BCF4FAAD2C31B2DB00D5E009 /* PollView.swift */,
+				BCF4FAAF2C31B30300D5E009 /* PollViewModel.swift */,
 			);
 			path = EventCreation;
 			sourceTree = "<group>";
@@ -788,6 +805,7 @@
 		BCBE026A2C116DA100A9EE3E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BCF4FAA82C3191D400D5E009 /* CreateEvent */,
 				BC1CC9712C289CAD0020DD06 /* UIComponents */,
 				B74956E02C20806700C51B30 /* Participants */,
 				B74956DF2C20805B00C51B30 /* Event */,
@@ -803,6 +821,14 @@
 				B715B8CB2C1C8D670018130B /* ModelPreview */,
 			);
 			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		BCF4FAA82C3191D400D5E009 /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				BCF4FAA92C3191F600D5E009 /* CustomToggleStyle.swift */,
+			);
+			path = CreateEvent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -899,6 +925,7 @@
 				BC27117F2C19920000A99157 /* SecondChildView.swift in Sources */,
 				B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */,
 				396685D22C1F645100AAD5D4 /* AdminProfileEditView.swift in Sources */,
+				BCF4FAA72C3189A200D5E009 /* CreatePollView.swift in Sources */,
 				B36303052C28A12E00537586 /* UpdateUserById.swift in Sources */,
 				B370C6E22C1525C200C28E67 /* TokenManager.swift in Sources */,
 				B370C6DD2C15259700C28E67 /* FirebaseManager.swift in Sources */,
@@ -909,6 +936,7 @@
 				B7C69A7E2C14E18B0055DDD9 /* AdminModel.swift in Sources */,
 				3920CD6E2C3289FA00632B3C /* CreatedSuccessView.swift in Sources */,
 				B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */,
+				BCF4F9FB2C2EF89600D5E009 /* CreateEventPreScreen.swift in Sources */,
 				B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */,
 				B7C69A902C14F8D30055DDD9 /* UserMock.swift in Sources */,
 				BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */,
@@ -945,9 +973,11 @@
 				B363030B2C28A20500537586 /* CreateEventViewModel.swift in Sources */,
 				B7B208D22C21274600DB1450 /* EventManager.swift in Sources */,
 				BC2711752C19909D00A99157 /* HomeTest.swift in Sources */,
+				BCF4FAB02C31B30300D5E009 /* PollViewModel.swift in Sources */,
 				BC1CC9732C289CD10020DD06 /* TextFieldWithIcon.swift in Sources */,
 				B7C69A822C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift in Sources */,
 				B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */,
+				BCF4F9FD2C2FA83A00D5E009 /* CreateEventSuccessView.swift in Sources */,
 				B74956E22C2080AB00C51B30 /* EventRow.swift in Sources */,
 				B7C69A842C14E5C00055DDD9 /* UpdateEventUnitDTO.swift in Sources */,
 				B7FCBFF42C15964100C8C531 /* SignUpDTO.swift in Sources */,
@@ -968,6 +998,7 @@
 				B3A571AC2C29D600000B7AB6 /* GetAdminById.swift in Sources */,
 				B7C69A7A2C14E0D40055DDD9 /* RestrictedTokenModel.swift in Sources */,
 				B36303112C28A36A00537586 /* GetOneUserByIdViewModel.swift in Sources */,
+				BCF4FAAA2C3191F600D5E009 /* CustomToggleStyle.swift in Sources */,
 				B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */,
 				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
 				B36303012C28A0EB00537586 /* CreateEvent.swift in Sources */,
@@ -1004,6 +1035,7 @@
 				BCAD2B052C2875B100E6B87D /* CreateEventView.swift in Sources */,
 				B7F265072C1D8D5A00033E37 /* EventParticipantsMock.swift in Sources */,
 				B704B6C82C22CB69006E3DDF /* AllEvents.swift in Sources */,
+				BCF4FAAE2C31B2DB00D5E009 /* PollView.swift in Sources */,
 				B3A571A92C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

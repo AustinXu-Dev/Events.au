@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CreateEventView: View {
     
+    @Binding var path: NavigationPath
+    @Binding var selectedTab: Tab
+    
     var eventNamePlaceholder: String = "Name your event"
     var eventTypePlaceholder: String = "Event Type"
     var locationPlaceholder: String = "Add location"
@@ -59,19 +62,23 @@ struct CreateEventView: View {
                     descriptionField
                         .padding(.bottom, Theme.headingBodySpacing)
 
-                    Text("Create Event")
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(Theme.primaryTextColor)
-                        .applyButtonFont()
-                        .padding(.vertical, Theme.medium)
-                        .padding(.horizontal, Theme.large)
-                        .background(
-                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                                .frame(height:Theme.buttonHeight)
-                                .foregroundStyle(Theme.tintColor)
-                        )
+                    NavigationLink(value: CreateEventNavigation.createPoll) {
+                        Text("Next")
+                            .frame(maxWidth: .infinity)
+                            .foregroundStyle(Theme.primaryTextColor)
+                            .applyButtonFont()
+                            .padding(.vertical, Theme.medium)
+                            .padding(.horizontal, Theme.large)
+                            .background(
+                                RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                                    .frame(height:Theme.buttonHeight)
+                                    .foregroundStyle(Theme.tintColor)
+                            )
+                    }
+                    
                     
                 }
+                .padding(.top, 30)
                 .padding(.horizontal, Theme.large)
                 .frame(width: geometry.size.width) // Make VStack span the full width of the screen
                 
@@ -83,7 +90,18 @@ struct CreateEventView: View {
                    showDateSheet = false
                }
            }
+           .navigationBarBackButtonHidden()
            .navigationTitle("Event Details")
+           .toolbar{
+               ToolbarItem(placement: .topBarLeading) {
+                   Button(action: {
+                       path.removeLast()
+                   }, label: {
+                       Image(systemName: "chevron.left")
+                           .foregroundStyle(Theme.tintColor)
+                   })
+               }
+           }
        }
     }
     
@@ -132,18 +150,18 @@ extension CreateEventView{
             TextFieldWithIcon(
                 placeHolder: locationPlaceholder, 
                 selectedPlaceholder: $location,
-                image: "noti_icon")
+                image: "location_icon")
 
             Spacer().frame(height: Theme.large)
 
-            TextWithIcon(placeHolder: datePlaceholder, image: "noti_icon")
+            TextWithIcon(placeHolder: datePlaceholder, image: "calendar_icon")
                 .onTapGesture {
                     showDateSheet.toggle()
                 }
                 
             Spacer().frame(height: Theme.large)
 
-            TextWithIcon(placeHolder: timePlaceholder, image: "noti_icon")
+            TextWithIcon(placeHolder: timePlaceholder, image: "clock_icon_20")
                 .onTapGesture {
                     showTimeSheet.toggle()
                 }
@@ -198,43 +216,6 @@ extension CreateEventView{
                     showTimeSheet.toggle()
                 }
             }, placeholder: "Add time", isSheetPresented: $showTimeSheet)
-            
-//            Section{
-//                HStack{
-//                    Text(startTimePlaceholder)
-//                        .padding(8)
-//                        .frame(maxWidth: .infinity, maxHeight: Theme.textFieldHeight, alignment: .leading)
-//                    Spacer()
-//                    Image("noti_icon") // Replace with your desired icon
-//                        .foregroundColor(.gray)
-//                        .padding(.trailing, 8)
-//                    
-//                }
-//                .frame(maxWidth: .infinity)
-//                .background(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.3), lineWidth: 1))
-//                .onTapGesture {
-//                    showStartTimeWheel.toggle()
-//                }
-//                
-//                if showStartTimeWheel{
-//                    DatePicker("", selection: $startTime, displayedComponents: [.hourAndMinute])
-//                        .datePickerStyle(WheelDatePickerStyle())
-//                        .zIndex(100)
-//                }
-//            }
-//            .padding()
-
-//            Section{
-//                DatePicker("Start Time", selection: $startTime, displayedComponents: [.hourAndMinute])
-//                .frame(maxWidth: .infinity, maxHeight: Theme.textFieldHeight)
-//                .datePickerStyle(CompactDatePickerStyle())
-//                .background(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.3), lineWidth: 1))
-//                .padding()
-//            }
-//            .padding()
-//            .onTapGesture {
-//                showStartTimeWheel.toggle()
-//            }
                 
             VStack{
                 DatePicker("Start time", selection: $startTime, displayedComponents: [.hourAndMinute])
@@ -278,5 +259,8 @@ extension CreateEventView{
 
 
 #Preview {
-    CreateEventView()
+    CreateEventView(
+        path: .constant(NavigationPath.init()),
+        selectedTab: .constant(Tab.createEvent)
+    )
 }

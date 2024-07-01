@@ -13,10 +13,11 @@ struct TabScreenView: View {
 
     @State private var selectedTab: Tab = .home
     @State private var homeNavigationStack: [HomeNavigation] = []
+    @State private var createEventNavigationStack: NavigationPath = .init()
     
     var body: some View {
   
-        TabView(selection: tabSelection()) {
+        TabView(selection: $selectedTab) {
             //Home View
             HomeTest(path: $homeNavigationStack)
                 .tabItem {
@@ -24,12 +25,12 @@ struct TabScreenView: View {
                 }
                 .tag(Tab.home)
                 
-            //Remark View
-            Text("Remark")
+            //Create Event View
+            CreateEventPreScreen(path: $createEventNavigationStack, selectedTab: $selectedTab)
                 .tabItem {
                     remarkTabLabel
                 }
-                .tag(Tab.remarks)
+                .tag(Tab.createEvent)
          
             //Profile View
             Text("Profile")
@@ -49,7 +50,7 @@ extension TabScreenView {
     }
     
     private var remarkTabLabel: some View{
-        Label("Remarks", image: selectedTab==Tab.remarks ? "remark_icon_active" : "remark_icon")
+        Label("Remarks", image: selectedTab==Tab.createEvent ? "create_icon_active" : "create_icon")
             .font(Theme.labelFontStyle)
     }
     

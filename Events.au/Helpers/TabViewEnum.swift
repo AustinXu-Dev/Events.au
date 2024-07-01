@@ -8,7 +8,7 @@
 import Foundation
 
 enum Tab {
-    case home, remarks, profile
+    case home, createEvent, profile
 }
 
 enum HomeNavigation: Hashable{
@@ -16,8 +16,8 @@ enum HomeNavigation: Hashable{
     case child, secondChild(Person)
 }
 
-enum RemarkNavigation: Hashable{
-    case remark1, remark2
+enum CreateEventNavigation: Hashable{
+    case preScreen, fillEventData, createPoll, congrats
 }
 
 enum ProfileNavigation: Hashable{

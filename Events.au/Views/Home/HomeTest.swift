@@ -35,7 +35,7 @@ struct HomeTest: View {
                 switch screen {
                 case .child:
                     Text("Child")
-                case .secondChild(let person):
+                case .secondChild(_):
                     Text("Second child")
                 }
             }

@@ -32,7 +32,7 @@ struct DropDownMenu: View {
                     }
                 }, label: {
                     HStack(spacing: nil) {
-                        Text(options[selectedOptionIndex].name ?? "Default")
+                        Text(options[selectedOptionIndex].name ?? "VMS")
 //                            .foregroundStyle(Color.gray.opacity(0.6))
                             .font(Theme.bodyFontStyle)
                         Spacer()
@@ -41,8 +41,7 @@ struct DropDownMenu: View {
                     }
                 })
                 .padding(.horizontal, 8)
-                .frame(width: .infinity, height: buttonHeight, alignment: .leading)
-
+                .frame(maxWidth: .infinity, minHeight: buttonHeight, alignment: .leading)
                 
                 // selection menu
                 if (showDropdown) {
@@ -58,7 +57,7 @@ struct DropDownMenu: View {
 
                                 }, label: {
                                     HStack {
-                                        Text(options[index].name ?? "Default")
+                                        Text(options[index].name ?? "VMS")
                                             .font(Theme.bodyFontStyle)
                                         Spacer()
                                         if (index == selectedOptionIndex) {
@@ -69,8 +68,7 @@ struct DropDownMenu: View {
                                 
                                 })
                                 .padding(.horizontal, 20)
-                                .frame(width: .infinity, height: buttonHeight, alignment: .leading)
-
+                                .frame(maxWidth: .infinity, minHeight: buttonHeight, alignment: .leading)
                             }
                         }
                         .scrollTargetLayout()
@@ -96,7 +94,7 @@ struct DropDownMenu: View {
             )
             
         }
-        .frame(width: .infinity, height: buttonHeight, alignment: .top)
-        .zIndex(100)        
+        .frame(maxWidth: .infinity, minHeight: buttonHeight, alignment: .top)
+        .zIndex(100)
     }
 }
