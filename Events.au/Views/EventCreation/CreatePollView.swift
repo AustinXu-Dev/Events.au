@@ -39,23 +39,6 @@ struct CreatePollView: View {
                 
                 Spacer().frame(height: 75)
                 
-//                Button(action: {
-//                    for i in pollVM.polls{
-//                        print(i.pollTitle, i.options, i.allowMultipleAnswer)
-//                    }
-//                }, label: {
-//                    Text("Create Event")
-//                        .frame(maxWidth: .infinity)
-//                        .foregroundStyle(Theme.primaryTextColor)
-//                        .applyButtonFont()
-//                        .padding(.vertical, Theme.medium)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-//                                .frame(height:Theme.buttonHeight)
-//                                .foregroundStyle(Theme.tintColor)
-//                        )
-//                        .padding(.horizontal, Theme.large)
-//                })
                 NavigationLink(value: CreateEventNavigation.congrats) {
                     Text("Create Event")
                         .frame(maxWidth: .infinity)
