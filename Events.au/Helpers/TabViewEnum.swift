@@ -11,9 +11,13 @@ enum Tab {
     case home, createEvent, profile
 }
 
-enum HomeNavigation: Hashable{
+enum HomeNavigation: Hashable {
     // Dummy enum for testing
-    case child, secondChild(Person)
+    case home
+    case eventDetail(EventModel)
+    case eventRegistration(EventModel)
+    case attendeesList(ParticipantModel)
+    case registrationSuccess
 }
 
 enum CreateEventNavigation: Hashable{

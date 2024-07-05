@@ -11,6 +11,8 @@ struct EventDetail: View {
     let event : EventModel
     let unit : UnitModel
     let approvedParticipants : [ParticipantModel]
+    @Binding var path: [HomeNavigation]
+    @Binding var selectedTab: Tab
     @Environment(\.colorScheme) var colorScheme
     @State private var isParagraph : Bool = false
     
@@ -123,9 +125,19 @@ extension EventDetail {
     }
     
     private var registerButton : some View {
-        Button {
-            print("Hello nigga")
-        } label: {
+//        Button {
+//            print("Hello")
+//        } label: {
+//            Text("Register Now")
+//                .applyButtonFont()
+//                .foregroundStyle(Theme.primaryTextColor)
+//                .padding(.horizontal,Theme.large)
+//                .frame(maxWidth: .infinity)
+//                .frame(height: 40)
+//                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+//                .foregroundStyle(Theme.tintColor)
+//        }
+        NavigationLink(value: HomeNavigation.eventRegistration(event)) {
             Text("Register Now")
                 .applyButtonFont()
                 .foregroundStyle(Theme.primaryTextColor)
@@ -134,9 +146,8 @@ extension EventDetail {
                 .frame(height: 40)
                 .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
                 .foregroundStyle(Theme.tintColor)
-            
-            
         }
+        
     }
     
 }
@@ -144,7 +155,7 @@ extension EventDetail {
 
 #Preview {
     NavigationStack {
-        EventDetail(event: EventMock.instacne.eventA, unit: UnitMock.instacne.unitA, approvedParticipants: ParticipantMock.instacne.participants)
+        EventDetail(event: EventMock.instacne.eventA, unit: UnitMock.instacne.unitA, approvedParticipants: ParticipantMock.instacne.participants, path: .constant([]), selectedTab: .constant(.home))
     }
     .padding(.horizontal,Theme.large)
     

@@ -57,7 +57,7 @@ struct AllUsersResponse : Codable {
     let message: [UserModel]
 }
 
-struct UserModel: Codable {
+struct UserModel: Codable, Hashable {
     let _id,fId, firstName,lastName,email,gender : String
     let age, phone : Int
     let isAdmin : Bool

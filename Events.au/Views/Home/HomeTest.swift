@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeTest: View {
     
     @Binding var path: [HomeNavigation]
+    @Binding var selectedTab: Tab
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     @StateObject private var eventVM : AllEventsViewModel = AllEventsViewModel()
     @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
@@ -31,14 +32,7 @@ struct HomeTest: View {
 
             }
             .padding(.horizontal,Theme.large)
-            .navigationDestination(for: HomeNavigation.self) { screen in
-                switch screen {
-                case .child:
-                    Text("Child")
-                case .secondChild(_):
-                    Text("Second child")
-                }
-            }
+
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
@@ -67,6 +61,22 @@ struct HomeTest: View {
 
                 }
             }
+            //MARK: - HOME NAVIGATION HANDLER HERE
+            .navigationDestination(for: HomeNavigation.self) { screen in
+                switch screen {
+                case .eventDetail(let currentEvent):
+                    EventDetail(event: currentEvent, unit: unit, approvedParticipants: approvedParticipants, path: $path, selectedTab: $selectedTab)
+                case .attendeesList(let currentParticipants):
+                    AttendeesListView()
+                case .eventRegistration(let currentEvent):
+                    EventRegistrationView(event: currentEvent, path: $path, selectedTab: $selectedTab)
+                case .registrationSuccess:
+                    EventRegistrationSuccessView(path: $path, selectedTab: $selectedTab)
+                default:
+                    Text("Navigation Crashed")
+                }
+            }
+            
         }
         .onAppear(perform: {
             eventVM.fetchEvents()
@@ -129,13 +139,10 @@ extension HomeTest {
             ScrollView(.vertical,showsIndicators: false){
                 VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
                     ForEach(eventVM.events,id: \._id){ event in
-                        NavigationLink {
-                            EventDetail(event: event, unit:unit, approvedParticipants: approvedParticipants)
-                        } label: {
+                        // Change here
+                        NavigationLink(value: HomeNavigation.eventDetail(event)) {
                             EventCard(event: event, approvedParticipants: $approvedParticipants)
-                        }
-                        .tint(Theme.secondaryTextColor)
-                       
+                        }.tint(Theme.secondaryTextColor)
                     }
                 }
             }
@@ -144,5 +151,5 @@ extension HomeTest {
 }
 
 #Preview {
-    HomeTest(path: .constant([]))
+    HomeTest(path: .constant([]), selectedTab: .constant(.home))
 }

@@ -13,16 +13,17 @@ struct CreateEventView: View {
     @Binding var selectedTab: Tab
     
     var eventNamePlaceholder: String = "Name your event"
-    var eventTypePlaceholder: String = "Event Type"
+    var imagePlaceholder: String = "Add image"
+    var eventTypePlaceholder: String = "Event type"
     var locationPlaceholder: String = "Add location"
     var descriptionPlaceholder: String = "Describe your event..."
+    //MARK: - This two variables are to display the custom selected text"
     @State var datePlaceholder: String = "Add date"
     @State var timePlaceholder: String = "Add time"
-    @State var startTimePlaceholder: String = "Start Time"
-    @State var endTimePlaceholder: String = "End Time"
+    
+    @State var showDateValidationAlert: Bool = false
     @State var showTimeValidationAlert: Bool = false
 
-    var imagePlaceholder: String = "Add image"
 
     @State var name: String = ""
     @State var eventType: String = ""
@@ -34,13 +35,14 @@ struct CreateEventView: View {
         UnitModel(id: "2", name: "VMES", description: ""),
         UnitModel(id: "3", name: "BBA", description: ""),
     ]
-    @State var dateValue: Date = Date()
-    @State var selectedDate: Date = Date()
+    @State var startDate: Date = Date()
+    @State var endDate: Date = Date()
     @State var showDateSheet: Bool = false
     @State var startTime: Date = Date()
     @State var endTime: Date = Date()
     @State var showTimeSheet: Bool = false
     @State var description: String = ""
+    @State var image: String = ""
     
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
@@ -119,6 +121,18 @@ extension CreateEventView{
         }
     }
     
+    private var imageField: some View{
+        VStack(alignment: .leading){
+            Text("Image")
+                .font(Theme.headingFontStyle)
+                .fontWeight(.semibold)
+            TextField(imagePlaceholder, text: $image, axis: .vertical)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .lineLimit(3, reservesSpace: true)
+            
+        }
+    }
+    
     private var descriptionField: some View{
         VStack(alignment: .leading){
             Text("Description")
@@ -187,14 +201,34 @@ extension CreateEventView{
             ToolbarView(leftAction: {
                 showDateSheet.toggle()
             }, rightAction: {
-                // need to fix
-                datePlaceholder = dateToString(date: selectedDate)
-                showDateSheet.toggle()
+                if startDate > endDate{
+                    showDateValidationAlert.toggle()
+                } else{
+                    let startDateValue = dateToString(date: startDate)
+                    let endDateValue = dateToString(date: endDate)
+                    datePlaceholder = "\(startDateValue) - \(endDateValue)"
+                    showDateSheet.toggle()
+                }
             }, placeholder: "Add date", isSheetPresented: $showDateSheet)
             
-            DatePicker("Add Date", selection: $selectedDate, in: dateRange, displayedComponents: [.date])
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .padding(.horizontal, Theme.large)
+            VStack{
+                DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
+                    .datePickerStyle(CompactDatePickerStyle())
+                DatePicker("End Date", selection: $endDate, displayedComponents: [.date])
+                    .datePickerStyle(CompactDatePickerStyle())
+            }
+            .padding(.top, Theme.large)
+            .padding(.horizontal, Theme.large)
+            .alert("Incorrect Date", isPresented: $showDateValidationAlert) {
+                Button(action: {
+                    
+                }, label: {
+                    Text("Ok")
+                })
+                
+            } message: {
+                Text("Please adjust your date.")
+            }
             Spacer()
         }
         
@@ -233,7 +267,7 @@ extension CreateEventView{
                 })
                 
             } message: {
-                Text("Please adjust your time")
+                Text("Please adjust your time.")
             }
             Spacer()
                 

@@ -29,7 +29,7 @@ struct AllOrganizersResponse: Codable {
     let message: [OrganizerModel]
 }
 
-struct OrganizerModel  : Codable {
+struct OrganizerModel  : Codable, Hashable {
     let _id : String
     let userId : UserModel
     let eventId : EventModel

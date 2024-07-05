@@ -20,10 +20,10 @@ struct ChildView: View {
             VStack{
                 Text("Child View")
                 ForEach(persons, id: \.self){person in
-                    NavigationLink(value: HomeNavigation.secondChild(person)) {
-                        Text("Click to enter second View")
-                    }
-                    .navigationTitle("Child")
+//                    NavigationLink(value: HomeNavigation.secondChild(person)) {
+//                        Text("Click to enter second View")
+//                    }
+//                    .navigationTitle("Child")
                 }
             }
         }
