@@ -33,7 +33,6 @@ struct DropDownMenu: View {
                 }, label: {
                     HStack(spacing: nil) {
                         Text(options[selectedOptionIndex].name ?? "VMS")
-//                            .foregroundStyle(Color.gray.opacity(0.6))
                             .font(Theme.bodyFontStyle)
                         Spacer()
                         Image(systemName: "chevron.down")

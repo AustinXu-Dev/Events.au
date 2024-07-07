@@ -95,7 +95,7 @@ extension EventDetail {
                         .resizable()
                         .frame(width: Theme.iconWidth,height: Theme.iconHeight)
                         .scaledToFill()
-                    Text("\(event.startTime)-\(event.endTime)")
+                    Text("\(String(describing:event.startTime))-\(String(describing:event.endTime))")
                         .applyMediumFont()
                 }
                 
