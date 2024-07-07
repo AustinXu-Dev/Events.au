@@ -42,6 +42,8 @@ struct CreateEventView: View {
     @State var showTimeSheet: Bool = false
     @State var description: String = ""
     
+    @StateObject var allUnitsViewModel = AllUnitsViewModel()
+    
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
         let startDate = calendar.startOfDay(for: Date())
@@ -103,6 +105,9 @@ struct CreateEventView: View {
                }
            }
        }
+        .onAppear{
+            allUnitsViewModel.fetchUnits()
+        }
     }
     
 }

@@ -12,6 +12,7 @@ struct EventManager: View {
     @Binding var ongoingEvents : [EventModel]
     @Binding var upcomingEvents : [EventModel]
     
+    
     var body: some View {
         VStack(alignment:.center) {
             eventManagerHeader
