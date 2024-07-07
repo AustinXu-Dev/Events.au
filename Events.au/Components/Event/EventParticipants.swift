@@ -13,42 +13,44 @@ struct EventParticipants: View {
     let participantStatus : String
     
     var body: some View {
-        HStack(spacing:0) {
-            HStack(spacing:-8) {
-                
-                ForEach(participants.prefix(upTo: 4),id: \._id){ participant in
+        if participants.count >= 8 {
+            HStack(spacing:0) {
+                HStack(spacing:-8) {
+                    ForEach(participants.prefix(upTo: 4),id: \._id){ participant in
+                        ZStack {
+                            //MARK: have to change to image downloading logic from server
+                            //MARK: only get the approved participant here
+                            Image("PersonB")
+                                .resizable()
+                                .clipShape(Circle())
+                                .frame(width: Theme.circleWidth,height:Theme.circleHeight)
+                                .aspectRatio(contentMode:.fit)
+                            Circle()
+                                .stroke(.white,lineWidth: 1)
+                                .frame(width: Theme.circleWidth,height:Theme.circleHeight)
+                        }
+                        
+                    } //end of ForEach loop
                     ZStack {
-                        //MARK: have to change to image downloading logic from server
-                        Image("PersonB")
-                            .resizable()
-                            .clipShape(Circle())
-                            .frame(width: Theme.circleWidth,height:Theme.circleHeight)
-                            .aspectRatio(contentMode:.fit)
+                        Circle()
+                            .frame(width: Theme.circleWidth,height: Theme.circleHeight)
+                            .foregroundStyle(Theme.redFaint)
+                            .overlay(
+                                Text("+\(participants.count-4)")
+                                    .applyOverlayFont()
+                                    .foregroundStyle(.black)
+                                
+                            )
                         Circle()
                             .stroke(.white,lineWidth: 1)
                             .frame(width: Theme.circleWidth,height:Theme.circleHeight)
                     }
-                   
-                } //end of ForEach loop
-                ZStack {
-                    Circle()
-                        .frame(width: Theme.circleWidth,height: Theme.circleHeight)
-                        .foregroundStyle(Theme.redFaint)
-                        .overlay(
-                            Text("+\(participants.count-4)")
-                                .applyOverlayFont()
-                                .foregroundStyle(.black)
-                            
-                        )
-                    Circle()
-                        .stroke(.white,lineWidth: 1)
-                        .frame(width: Theme.circleWidth,height:Theme.circleHeight)
                 }
+                Text(participantStatus)
+                    .applyOverlayFont()
+                    .padding(.horizontal,Theme.small)
             }
-            Text(participantStatus)
-                .applyOverlayFont()
-                .padding(.horizontal,Theme.small)
-        }
+        } // end of conditional
     }
 }
 

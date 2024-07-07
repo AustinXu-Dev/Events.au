@@ -369,9 +369,9 @@ extension CreateEventView{
 }
 
 
-//#Preview {
-//    CreateEventView(
-//        path: .constant(NavigationPath.init()),
-//        selectedTab: .constant(Tab.createEvent)
-//    )
-//}
+#Preview {
+    CreateEventView(
+        path: .constant(NavigationPath.init()),
+        selectedTab: .constant(Tab.createEvent), createEventViewModel: CreateEventViewModel(rules: "")
+    )
+}

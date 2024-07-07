@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct EventCard: View {
-    //    @ObservedObject var eventVM : GetAllEventsViewModel
+    @ObservedObject var participantsVM : GetParticipantsByEventIdViewModel
     let event : EventModel
-    @Binding var approvedParticipants : [ParticipantModel]
-  
     
     var body: some View {
         VStack(alignment:.leading) {
@@ -31,19 +29,29 @@ struct EventCard: View {
                 .foregroundStyle(Theme.backgroundColor)
         )
         .applyThemeDoubleShadow()
+        .onAppear(perform: {
+            if let eventId = event._id {
+                participantsVM.fetchParticipants(id: eventId)
+            }
+        })
+        
     }
 }
 
 extension EventCard {
     private var locationAndTime : some View {
         HStack(alignment:.center,spacing:Theme.defaultSpacing) {
-            EventParticipants(participants: approvedParticipants, participantStatus: "joining")
+           
+            //MARK: - only pass the approved participant to child view
+                
+            EventParticipants(participants: participantsVM.allParticipants, participantStatus: "joining")
             
             
             Spacer()
-            Text("\(String(describing:event.startDate)),\(String(describing:event.startTime))-\(String(describing:event.endTime))")
-                .applyOverlayFont()
-            
+            if let startDate = event.startDate?.toDate()?.dayWithMonth(), let startTime = event.startTime, let endTime = event.endTime {
+                Text("\(String(describing: startDate)), \(String(describing: startTime))-\(String(describing: endTime))")
+                    .applyOverlayFont()
+            }
         }
     }
 }
@@ -51,17 +59,18 @@ extension EventCard {
 struct EventCard_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventCard(event: AllEventsMock.oneEvent, approvedParticipants: .constant(ParticipantMock.instacne.participants))
+            EventCard(participantsVM: ParticipantMock.instacne.participantVM, event: AllEventsMock.oneEvent)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventCard(event: AllEventsMock.oneEvent,approvedParticipants: .constant(ParticipantMock.instacne.participants))
+            EventCard(participantsVM : ParticipantMock.instacne.participantVM,event: AllEventsMock.oneEvent)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()
             
         }
     }
-
+    
 }
+
