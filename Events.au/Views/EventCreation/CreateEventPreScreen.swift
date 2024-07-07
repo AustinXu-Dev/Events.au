@@ -41,7 +41,7 @@ struct CreateEventPreScreen: View {
                 case .preScreen:
                     CreateEventPreScreen(path: $path, selectedTab: $selectedTab)
                 case .fillEventData:
-                    CreateEventView(path: $path, selectedTab: $selectedTab)
+                    CreateEventView(path: $path, selectedTab: $selectedTab, createEventViewModel: CreateEventViewModel())
                 case .createPoll:
                     CreatePollView(path: $path, selectedTab: $selectedTab, pollVM: pollVM)
                 case .congrats:

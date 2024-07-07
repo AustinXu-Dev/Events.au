@@ -19,9 +19,11 @@ struct Events_auApp: App {
             Group{
                 if isSingIn {
                     TabScreenView()
+//                    TestView()
                 } else {
                     SignInView()
-                }            }
+                }
+            }
         }
     }
 }

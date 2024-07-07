@@ -36,11 +36,8 @@ struct CreateEventView: View {
     @State var rules: String = ""
     @State var image: String = ""
     @State var eventType: String = ""
-    @State var units: [UnitModel] = [
-        UnitModel(id: "1", name: "D*Code", description: ""),
-        UnitModel(id: "2", name: "VMES", description: ""),
-        UnitModel(id: "3", name: "BBA", description: ""),
-    ]
+//    @State var units: [UnitModel] = []
+
     @State var selectedOptionIndex: Int = 0
 
     @State var startDate: Date = Date()
@@ -55,6 +52,7 @@ struct CreateEventView: View {
     @State var showAlert: Bool = false
     
     @StateObject var allUnitsViewModel = AllUnitsViewModel()
+    @StateObject var createEventViewModel: CreateEventViewModel
     
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
@@ -114,9 +112,7 @@ struct CreateEventView: View {
                 
             }
        }
-        .onAppear{
-            allUnitsViewModel.fetchUnits()
-        }
+        
     }
     
 }
@@ -175,11 +171,18 @@ extension CreateEventView{
             
             //MARK: To get the selected option, use units[selectedOptionIndex]
             DropDownMenu(
-                options: units,
+                options: allUnitsViewModel.units,
                 menuWidth: .constant(menuWidth),
                 selectedOptionIndex: $selectedOptionIndex,
                 showDropdown: $showDropDown
             )
+            .onAppear{
+                allUnitsViewModel.fetchUnits()
+            }
+//            .onSubmit {
+//                createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
+//            }
+            
             
             Spacer().frame(height: Theme.large)
             
@@ -228,6 +231,8 @@ extension CreateEventView{
                 } else{
                     startDateValue = dateToString(date: startDate)
                     endDateValue = dateToString(date: endDate)
+//                    createEventViewModel.startDate = dateToString(date: startDate)
+//                    createEventViewModel.endDate = dateToString(date: endDate)
                     datePlaceholder = "\(startDateValue) - \(endDateValue)"
                     showDateSheet.toggle()
                 }
@@ -268,6 +273,8 @@ extension CreateEventView{
                 else {
                     startTimeValue = timeToString(date: startTime)
                     endTimeValue = timeToString(date: endTime)
+//                    createEventViewModel.startTime = timeToString(date: startTime)
+//                    createEventViewModel.endTime = timeToString(date: endTime)
                     timePlaceholder = "\(startTimeValue) - \(endTimeValue)"
                     showTimeSheet.toggle()
                 }
@@ -298,7 +305,7 @@ extension CreateEventView{
     
     private func dateToString(date: Date) -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateFormatter.dateFormat = "dd-MM-yyyy"
 
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -318,14 +325,28 @@ extension CreateEventView{
             withAnimation {
                 isLoading = true
             }
+            createEventViewModel.name = name
+            createEventViewModel.description = description
+            createEventViewModel.startDate = startDateValue
+            createEventViewModel.endDate = endDateValue
+            createEventViewModel.startTime = startTimeValue
+            createEventViewModel.endTime = endTimeValue
+            createEventViewModel.location = location
+            createEventViewModel.rules = rules
+            createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
+            
+            
+            
+            
+            createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
+//            CreateEventViewModel.createEvent()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // Hide loading spinner and show success screen
                 withAnimation {
-                    print(name, description, location, startDateValue, endDateValue, startTimeValue, endTimeValue, rules, image, units[selectedOptionIndex])
+                    print(name, description, location, startDateValue, endDateValue, startTimeValue, endTimeValue, rules, image, allUnitsViewModel.units[selectedOptionIndex].id)
                     //MARK: -API POST LOGIC HERE
                     //If post is success set the isloading to false to show registration success
                     isLoading = false
-                    
                     showAlert = true
                 }
             }
@@ -340,17 +361,17 @@ extension CreateEventView{
                 .foregroundStyle(Theme.tintColor)
         })
         .alert("Your event is created successfully.", isPresented: $showAlert) {
-            NavigationLink(value: CreateEventNavigation.createPoll) {
+//            NavigationLink(value: CreateEventNavigation.createPoll) {
                 Text("OK")
-            }
+//            }
         }
     }
 }
 
 
-#Preview {
-    CreateEventView(
-        path: .constant(NavigationPath.init()),
-        selectedTab: .constant(Tab.createEvent)
-    )
-}
+//#Preview {
+//    CreateEventView(
+//        path: .constant(NavigationPath.init()),
+//        selectedTab: .constant(Tab.createEvent)
+//    )
+//}
