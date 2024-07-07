@@ -61,7 +61,7 @@ class CreateEventViewModel: ObservableObject {
                     print("Event created successfully: \(event)")
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
-                    print("Failed to create event: \(error)")
+                    print("Failed to create event: \(error.localizedDescription)")
                 }
             }
         }

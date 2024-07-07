@@ -32,8 +32,13 @@ struct DropDownMenu: View {
                     }
                 }, label: {
                     HStack(spacing: nil) {
-                        Text(options[selectedOptionIndex].name ?? "VMS")
-                            .font(Theme.bodyFontStyle)
+                        if selectedOptionIndex < options.count {
+                            Text(options[selectedOptionIndex].name ?? "Select an option")
+                                .font(Theme.bodyFontStyle)
+                        } else {
+                            Text("Select an option")
+                                .font(Theme.bodyFontStyle)
+                        }
                         Spacer()
                         Image(systemName: "chevron.down")
                             .rotationEffect(.degrees((showDropdown ? -180 : 0)))

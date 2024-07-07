@@ -12,6 +12,10 @@ class AllUnitsViewModel: ObservableObject {
     
     private let getAllUnits = AllUnits()
     
+    init(){
+        fetchUnits()
+    }
+    
     func fetchUnits() {
         getAllUnits.execute(token: nil) { [weak self] result in
             switch result {
