@@ -7,37 +7,27 @@
 
 import SwiftUI
 
-struct Attendee: Identifiable {
-    let id = UUID()
-    let name: String
-    let imageName: String
-    let role: String
-}
+
 
 struct AttendeesListView: View {
-    
+    let approvedParticipants : [ParticipantModel]
     @State private var searchText = ""
 
-    let attendees: [Attendee] = [
-        Attendee(name: "Participant One", imageName: "PersonD", role: "VMES"),
-        Attendee(name: "Participant Two", imageName: "PersonE", role: "VMES")
-    ]
-    
-    var filteredAttendees: [Attendee] {
+    var filteredAttendees: [ParticipantModel] {
             if searchText.isEmpty {
-                return attendees
+                return approvedParticipants
             } else {
-                return attendees.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+                return approvedParticipants.filter { $0.userId.firstName.lowercased().contains(searchText.lowercased()) || $0.userId.lastName.lowercased().contains(searchText.lowercased()) }
             }
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
+        ScrollView(.vertical,showsIndicators: false) {
+            VStack(alignment:.leading) {
                 HStack {
                     Image("group_fill")
                         .aspectRatio(contentMode: .fit)
-                    Text("\(attendees.count) Attending")
+                    Text("\(approvedParticipants.count) Attending")
                         .foregroundColor(.red)
                         .bold()
                     Spacer()
@@ -45,17 +35,17 @@ struct AttendeesListView: View {
                 .padding()
 
                 SearchBarAttendee(text: $searchText)
-
-                List(filteredAttendees) { attendee in
+                ForEach(filteredAttendees,id: \._id) { attendee in
                     HStack {
-                        Image(attendee.imageName)
+//                        Image(attendee.imageName)
+                        Image("PersonB")
                             .resizable()
                             .frame(width: 64, height: 64)
                             .cornerRadius(5)
                         VStack(alignment: .leading) {
-                            Text(attendee.name)
+                            Text("\(attendee.userId.firstName) \(attendee.userId.lastName)")
                                 .font(.headline)
-                            Text(attendee.role)
+                            Text("User Unit")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }

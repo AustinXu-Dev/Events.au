@@ -14,13 +14,13 @@ struct HomeTest: View {
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     @StateObject private var eventVM : AllEventsViewModel = AllEventsViewModel()
     @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
-    let unit : UnitModel = UnitMock.instacne.unitA
+//    let unit : UnitModel = UnitMock.instacne.unitA
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
     //MARK: have to change this after api integration
-    @State var approvedParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
+    @StateObject var participantsVM = GetParticipantsByEventIdViewModel()
 
     
     var body: some View {
@@ -64,10 +64,10 @@ struct HomeTest: View {
             //MARK: - HOME NAVIGATION HANDLER HERE
             .navigationDestination(for: HomeNavigation.self) { screen in
                 switch screen {
-                case .eventDetail(let currentEvent):
-                    EventDetail(event: currentEvent, unit: unit, approvedParticipants: approvedParticipants, path: $path, selectedTab: $selectedTab)
+                case .eventDetail(let currentEvent, let approvedParticipants):
+                    EventDetail(event: currentEvent, approvedParticipants: approvedParticipants, path: $path, selectedTab: $selectedTab)
                 case .attendeesList(let _):
-                    AttendeesListView()
+                    AttendeesListView(approvedParticipants: participantsVM.allParticipants)
                 case .eventRegistration(let currentEvent):
                     EventRegistrationView(event: currentEvent, path: $path, selectedTab: $selectedTab)
                 case .registrationSuccess:
@@ -140,8 +140,8 @@ extension HomeTest {
                 VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
                     ForEach(eventVM.events,id: \._id){ event in
                         // Change here
-                        NavigationLink(value: HomeNavigation.eventDetail(event)) {
-                            EventCard(event: event, approvedParticipants: $approvedParticipants)
+                        NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.allParticipants)) {
+                            EventCard(participantsVM: participantsVM, event: event)
                         }.tint(Theme.secondaryTextColor)
                     }
                 }
