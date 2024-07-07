@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct EventRegistrationSuccessView: View {
-    @Environment(\.dismiss) var dismiss
+    @Binding var path: [HomeNavigation]
+    @Binding var selectedTab: Tab
     
     var body: some View {
         VStack(alignment:.center,spacing:Theme.defaultSpacing){
@@ -24,15 +25,15 @@ struct EventRegistrationSuccessView: View {
                 .multilineTextAlignment(.center)
                 .applyLabelFont()
             Button(action: {
-//                path.removeLast()
-                dismiss()
+                path = []
+                selectedTab = .home
             }) {
                 ReusableButton(title: "Back to Home")
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
-    EventRegistrationSuccessView()
+    EventRegistrationSuccessView(path: .constant([]), selectedTab: .constant(.home))
 }

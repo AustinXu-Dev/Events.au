@@ -13,12 +13,8 @@ enum FocusField: Hashable {
 }
 
 struct PollView: View {
-//    @State private var pollTitle: String = ""
-//    @State private var options: [String] = ["", ""]
-//    @State private var allowMultipleAnswer: Bool = false
-    
+
     @ObservedObject var poll: PollModel
-//    @Binding var isOnEditing: Bool
     @ObservedObject var pollVM: PollViewModel
     @FocusState private var focusedField: FocusField?
     
@@ -33,64 +29,71 @@ struct PollView: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(.horizontal, 8)
             .padding(.vertical, 8)
-            
-            
-            ForEach($poll.options.indices, id: \.self) { index in
-                HStack {
-                    Image("checkbox_active_icon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 16, height: 16)
-                        
-                    TextField("Option \(index + 1)", text: $poll.options[index], onCommit: {
-                        if index < poll.options.count - 1 {
-                            focusedField = .option(index: index + 1)
-                        } else {
-                            poll.options.append("")
-                            DispatchQueue.main.async {
-                                focusedField = .option(index: poll.options.count - 1)
-                            }
-                        }
-                    })
-                    .focused($focusedField, equals: .option(index: index))
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .padding(.leading, 8)
-                    
-                    Button(action: {
-                        poll.options.remove(at: index)
-                    }) {
-                        Image(systemName: "minus.circle.fill")
-                            .foregroundColor(.red)
-                    }
+            .onTapGesture {
+                withAnimation {
+                    pollVM.toggleEditing(for: pollVM.polls.firstIndex(where: {$0.id == poll.id}) ?? -1)
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 4)
             }
-            
-            addOptionButton
-//            
-//            if isOnEditing{
-//                editBox
-//            }
-            
+
             if pollVM.editingPollIndex == pollVM.polls.firstIndex(where: {$0.id == poll.id}){
+                optionField
+                addOptionButton
                 editBox
+            } else{
+                HStack{
+                    Spacer()
+                    Text("\(poll.options.count) Options")
+                        .applyBodyFont()
+                        .foregroundStyle(Theme.tintColor)
+                }.padding(.horizontal, 8)
             }
 
             Divider()
         }
         .padding(.horizontal, 8)
-        .onTapGesture {
+        .onReceive(pollVM.$polls) { polls in
             withAnimation {
-                pollVM.toggleEditing(for: pollVM.polls.firstIndex(where: {$0.id == poll.id}) ?? -1)
-//                isOnEditing = true
+                pollVM.editingPollIndex = polls.lastIndex(of: poll)
             }
         }
-        
     }
 }
 
 extension PollView{
+    private var optionField: some View{
+        ForEach($poll.options.indices, id: \.self) { index in
+            HStack {
+                Image("checkbox_active_icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16, height: 16)
+                    
+                TextField("Option \(index + 1)", text: $poll.options[index], onCommit: {
+                    if index < poll.options.count - 1 {
+                        focusedField = .option(index: index + 1)
+                    } else {
+                        poll.options.append("")
+                        DispatchQueue.main.async {
+                            focusedField = .option(index: poll.options.count - 1)
+                        }
+                    }
+                })
+                .focused($focusedField, equals: .option(index: index))
+                .textFieldStyle(PlainTextFieldStyle())
+                .padding(.leading, 8)
+                
+                Button(action: {
+                    poll.options.remove(at: index)
+                }) {
+                    Image(systemName: "minus.circle.fill")
+                        .foregroundColor(.red)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 4)
+        }
+    }
+    
     private var editBox: some View{
         VStack{
             HStack {

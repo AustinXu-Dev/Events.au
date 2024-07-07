@@ -35,7 +35,7 @@ struct AllParticipantsResponse : Codable {
     let message : [ParticipantModel]
 }
 
-struct ParticipantModel : Codable {
+struct ParticipantModel : Codable, Hashable {
     let _id : String
     let userId : UserModel
     let eventId : EventModel

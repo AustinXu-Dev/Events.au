@@ -9,6 +9,10 @@ import SwiftUI
 
 struct EventRegistrationView: View {
     
+    let event : EventModel
+    @Binding var path: [HomeNavigation]
+    @Binding var selectedTab: Tab
+
     var nickNamePlaceholder: String = "Nick Name"
     var lineIdPlaceholder: String = "Line ID"
     var contactNumberPlaceholder: String = "+66"
@@ -21,6 +25,7 @@ struct EventRegistrationView: View {
     @State var remark: String = ""
     @State var showSuccess: Bool = false
     @State var isLoading: Bool = false
+    @State var showAlert: Bool = false
     
     var body: some View {
         GeometryReader{ geometry in
@@ -40,8 +45,12 @@ struct EventRegistrationView: View {
                 }.frame(width: geometry.size.width, height: geometry.size.height)
                     .navigationTitle("Register Now")
                 if isLoading { LoadingView() }
+                
                     
             }
+            .onAppear(perform: {
+                print(event.name ?? "")
+            })
         }
     }
 }
@@ -105,12 +114,11 @@ extension EventRegistrationView{
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // Hide loading spinner and show success screen
                 withAnimation {
-                    
-                    //MARK: API POST LOGIC HERE
+                    //MARK: -API POST LOGIC HERE
                     print(nickName, lineId, contactNumber, remark)
                     //If post is success set the isloading to false to show registration success
                     isLoading = false
-                    showSuccess.toggle()
+                    showAlert = true
                 }
             }
         }, label: {
@@ -123,14 +131,11 @@ extension EventRegistrationView{
                 }
                 .foregroundStyle(Theme.tintColor)
         })
-        .fullScreenCover(isPresented: $showSuccess, onDismiss: .none, content: {
-            withAnimation {
-                EventRegistrationSuccessView()
+        .alert("Your registration is successful.", isPresented: $showAlert) {
+            NavigationLink(value: HomeNavigation.registrationSuccess) {
+                Text("OK")
             }
-        })
-        
-        
-        
+        }
     }
     
     private func validatePhoneNumber(_ number: String) -> Bool {
@@ -164,6 +169,5 @@ struct LoadingView: View {
 }
 
 #Preview {
-    EventRegistrationView()
-    
+    EventRegistrationView(event: EventMock.instacne.eventA, path: .constant([]), selectedTab: .constant(.home))
 }

@@ -120,8 +120,6 @@
 		BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711722C195F8C00A99157 /* TabScreenView.swift */; };
 		BC2711752C19909D00A99157 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711742C19909D00A99157 /* HomeTest.swift */; };
 		BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711762C1990FF00A99157 /* TabViewEnum.swift */; };
-		BC27117B2C1991E400A99157 /* ChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27117A2C1991E400A99157 /* ChildView.swift */; };
-		BC27117F2C19920000A99157 /* SecondChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27117E2C19920000A99157 /* SecondChildView.swift */; };
 		BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6157C42C1E0CF400F78A9E /* SearchBar.swift */; };
 		BCAD2B052C2875B100E6B87D /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAD2B042C2875B100E6B87D /* CreateEventView.swift */; };
 		BCAD2B072C2881E300E6B87D /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */; };
@@ -248,8 +246,6 @@
 		BC2711722C195F8C00A99157 /* TabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabScreenView.swift; sourceTree = "<group>"; };
 		BC2711742C19909D00A99157 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
 		BC2711762C1990FF00A99157 /* TabViewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewEnum.swift; sourceTree = "<group>"; };
-		BC27117A2C1991E400A99157 /* ChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildView.swift; sourceTree = "<group>"; };
-		BC27117E2C19920000A99157 /* SecondChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondChildView.swift; sourceTree = "<group>"; };
 		BC6157C42C1E0CF400F78A9E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BCAD2B042C2875B100E6B87D /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
@@ -649,8 +645,6 @@
 			isa = PBXGroup;
 			children = (
 				BC2711742C19909D00A99157 /* HomeTest.swift */,
-				BC27117A2C1991E400A99157 /* ChildView.swift */,
-				BC27117E2C19920000A99157 /* SecondChildView.swift */,
 				BC6157C42C1E0CF400F78A9E /* SearchBar.swift */,
 				B74C428E2C272314009E3E63 /* EventDetail.swift */,
 			);
@@ -922,7 +916,6 @@
 			files = (
 				B7FCBFF62C15966F00C8C531 /* SignInDTO.swift in Sources */,
 				396685D02C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift in Sources */,
-				BC27117F2C19920000A99157 /* SecondChildView.swift in Sources */,
 				B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */,
 				396685D22C1F645100AAD5D4 /* AdminProfileEditView.swift in Sources */,
 				BCF4FAA72C3189A200D5E009 /* CreatePollView.swift in Sources */,
@@ -1011,7 +1004,6 @@
 				BCAD2B072C2881E300E6B87D /* DropDownMenu.swift in Sources */,
 				B7ECB5472C1F5C6C004CCFA7 /* CategoryValue.swift in Sources */,
 				B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */,
-				BC27117B2C1991E400A99157 /* ChildView.swift in Sources */,
 				B731AAE32C160B9B00A3E8C2 /* Date.swift in Sources */,
 				B36303132C28AA4F00537586 /* TestView.swift in Sources */,
 				B7FC26DB2C19C37000C1D7FD /* GetAllEventsViewModel.swift in Sources */,
@@ -1274,14 +1266,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.27.0;
-			};
-		};
-		B370C6D92C15258C00C28E67 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */ = {

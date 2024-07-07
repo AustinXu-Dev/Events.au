@@ -13,34 +13,46 @@ struct CreateEventView: View {
     @Binding var selectedTab: Tab
     
     var eventNamePlaceholder: String = "Name your event"
-    var eventTypePlaceholder: String = "Event Type"
+    var imagePlaceholder: String = "Add image"
+    var eventTypePlaceholder: String = "Event type"
     var locationPlaceholder: String = "Add location"
     var descriptionPlaceholder: String = "Describe your event..."
+    var rulesPlaceholder: String = "Describe any rules..."
+    //MARK: - This two variables are to display the custom selected text"
     @State var datePlaceholder: String = "Add date"
     @State var timePlaceholder: String = "Add time"
-    @State var startTimePlaceholder: String = "Start Time"
-    @State var endTimePlaceholder: String = "End Time"
+    
+    @State var showDateValidationAlert: Bool = false
     @State var showTimeValidationAlert: Bool = false
 
-    var imagePlaceholder: String = "Add image"
-
+    //MARK: - DATA FOR API CALL
     @State var name: String = ""
-    @State var eventType: String = ""
+    @State var description: String = ""
     @State var location: String = ""
-    @State var selectedOptionIndex: Int = 0
-    @State var showDropDown: Bool = false
+    @State var startDateValue: String = ""
+    @State var endDateValue: String = ""
+    @State var startTimeValue: String = ""
+    @State var endTimeValue: String = ""
+    @State var rules: String = ""
+    @State var image: String = ""
+    @State var eventType: String = ""
     @State var units: [UnitModel] = [
         UnitModel(id: "1", name: "D*Code", description: ""),
         UnitModel(id: "2", name: "VMES", description: ""),
         UnitModel(id: "3", name: "BBA", description: ""),
     ]
-    @State var dateValue: Date = Date()
-    @State var selectedDate: Date = Date()
-    @State var showDateSheet: Bool = false
+    @State var selectedOptionIndex: Int = 0
+
+    @State var startDate: Date = Date()
+    @State var endDate: Date = Date()
     @State var startTime: Date = Date()
     @State var endTime: Date = Date()
+
+    @State var showDropDown: Bool = false
+    @State var showDateSheet: Bool = false
     @State var showTimeSheet: Bool = false
-    @State var description: String = ""
+    @State var isLoading: Bool = false
+    @State var showAlert: Bool = false
     
     @StateObject var allUnitsViewModel = AllUnitsViewModel()
     
@@ -55,55 +67,52 @@ struct CreateEventView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                VStack(alignment: .center,spacing:Theme.defaultSpacing) {
-                   
-                    nameTextField
-                    detailsField(geometry.size.width)
-                   
-                    descriptionField
-                        .padding(.bottom, Theme.headingBodySpacing)
-
-                    NavigationLink(value: CreateEventNavigation.createPoll) {
-                        Text("Next")
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(Theme.primaryTextColor)
-                            .applyButtonFont()
-                            .padding(.vertical, Theme.medium)
-                            .padding(.horizontal, Theme.large)
-                            .background(
-                                RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                                    .frame(height:Theme.buttonHeight)
-                                    .foregroundStyle(Theme.tintColor)
-                            )
+            ZStack{
+                ScrollView {
+                    VStack(alignment: .center,spacing:Theme.defaultSpacing) {
+                        
+                        nameTextField
+                        imageField
+                        detailsField(geometry.size.width)
+                        
+                        descriptionField
+                            .padding(.bottom, Theme.headingBodySpacing)
+                        
+                        rulesField
+                            .padding(.bottom, Theme.headingBodySpacing)
+                        
+                        nextButton
                     }
-                    
+                    .padding(.top, 30)
+                    .padding(.horizontal, Theme.large)
+                    .frame(width: geometry.size.width) // Make VStack span the full width of the screen
                     
                 }
-                .padding(.top, 30)
-                .padding(.horizontal, Theme.large)
-                .frame(width: geometry.size.width) // Make VStack span the full width of the screen
+                .frame(width: geometry.size.width, height: geometry.size.height) // Make ScrollView span the full screen
+                .onTapGesture {
+                    withAnimation {
+                        showDropDown = false
+                        showDateSheet = false
+                    }
+                }
+                .navigationBarBackButtonHidden()
+                .navigationTitle("Event Details")
+                .toolbar{
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {
+                            path.removeLast()
+                        }, label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundStyle(Theme.tintColor)
+                        })
+                    }
+                }
                 
-           }
-           .frame(width: geometry.size.width, height: geometry.size.height) // Make ScrollView span the full screen
-           .onTapGesture {
-               withAnimation {
-                   showDropDown = false
-                   showDateSheet = false
-               }
-           }
-           .navigationBarBackButtonHidden()
-           .navigationTitle("Event Details")
-           .toolbar{
-               ToolbarItem(placement: .topBarLeading) {
-                   Button(action: {
-                       path.removeLast()
-                   }, label: {
-                       Image(systemName: "chevron.left")
-                           .foregroundStyle(Theme.tintColor)
-                   })
-               }
-           }
+                if isLoading{
+                    LoadingView()
+                }
+                
+            }
        }
         .onAppear{
             allUnitsViewModel.fetchUnits()
@@ -124,12 +133,34 @@ extension CreateEventView{
         }
     }
     
+    private var imageField: some View{
+        VStack(alignment: .leading){
+            Text("Image")
+                .font(Theme.headingFontStyle)
+                .fontWeight(.semibold)
+            TextField(imagePlaceholder, text: $image, axis: .vertical)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
+    }
+    
     private var descriptionField: some View{
         VStack(alignment: .leading){
             Text("Description")
                 .font(Theme.headingFontStyle)
                 .fontWeight(.semibold)
             TextField(descriptionPlaceholder, text: $description, axis: .vertical)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .lineLimit(3, reservesSpace: true)
+            
+        }
+    }
+    
+    private var rulesField: some View{
+        VStack(alignment: .leading){
+            Text("Rules")
+                .font(Theme.headingFontStyle)
+                .fontWeight(.semibold)
+            TextField(rulesPlaceholder, text: $rules, axis: .vertical)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .lineLimit(3, reservesSpace: true)
             
@@ -192,14 +223,34 @@ extension CreateEventView{
             ToolbarView(leftAction: {
                 showDateSheet.toggle()
             }, rightAction: {
-                // need to fix
-                datePlaceholder = dateToString(date: selectedDate)
-                showDateSheet.toggle()
+                if startDate > endDate{
+                    showDateValidationAlert.toggle()
+                } else{
+                    startDateValue = dateToString(date: startDate)
+                    endDateValue = dateToString(date: endDate)
+                    datePlaceholder = "\(startDateValue) - \(endDateValue)"
+                    showDateSheet.toggle()
+                }
             }, placeholder: "Add date", isSheetPresented: $showDateSheet)
             
-            DatePicker("Add Date", selection: $selectedDate, in: dateRange, displayedComponents: [.date])
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .padding(.horizontal, Theme.large)
+            VStack{
+                DatePicker("Start Date", selection: $startDate, displayedComponents: [.date])
+                    .datePickerStyle(CompactDatePickerStyle())
+                DatePicker("End Date", selection: $endDate, displayedComponents: [.date])
+                    .datePickerStyle(CompactDatePickerStyle())
+            }
+            .padding(.top, Theme.large)
+            .padding(.horizontal, Theme.large)
+            .alert("Incorrect Date", isPresented: $showDateValidationAlert) {
+                Button(action: {
+                    
+                }, label: {
+                    Text("Ok")
+                })
+                
+            } message: {
+                Text("Please adjust your date.")
+            }
             Spacer()
         }
         
@@ -215,8 +266,8 @@ extension CreateEventView{
                     showTimeValidationAlert.toggle()
                 }
                 else {
-                    let startTimeValue = timeToString(date: startTime)
-                    let endTimeValue = timeToString(date: endTime)
+                    startTimeValue = timeToString(date: startTime)
+                    endTimeValue = timeToString(date: endTime)
                     timePlaceholder = "\(startTimeValue) - \(endTimeValue)"
                     showTimeSheet.toggle()
                 }
@@ -238,7 +289,7 @@ extension CreateEventView{
                 })
                 
             } message: {
-                Text("Please adjust your time")
+                Text("Please adjust your time.")
             }
             Spacer()
                 
@@ -259,6 +310,40 @@ extension CreateEventView{
 
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
+    }
+    
+    private var nextButton: some View{
+        Button(action: {
+            //MARK: Create button action here
+            withAnimation {
+                isLoading = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                // Hide loading spinner and show success screen
+                withAnimation {
+                    print(name, description, location, startDateValue, endDateValue, startTimeValue, endTimeValue, rules, image, units[selectedOptionIndex])
+                    //MARK: -API POST LOGIC HERE
+                    //If post is success set the isloading to false to show registration success
+                    isLoading = false
+                    
+                    showAlert = true
+                }
+            }
+        }, label: {
+            RoundedRectangle(cornerRadius: 10)
+                .frame(maxWidth: .infinity, idealHeight: Theme.buttonHeight)
+                .overlay {
+                    Text("Next")
+                        .applyButtonFont()
+                        .foregroundStyle(Theme.primaryTextColor)
+                }
+                .foregroundStyle(Theme.tintColor)
+        })
+        .alert("Your event is created successfully.", isPresented: $showAlert) {
+            NavigationLink(value: CreateEventNavigation.createPoll) {
+                Text("OK")
+            }
+        }
     }
 }
 

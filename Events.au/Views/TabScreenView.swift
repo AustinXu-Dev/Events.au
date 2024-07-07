@@ -19,7 +19,7 @@ struct TabScreenView: View {
   
         TabView(selection: $selectedTab) {
             //Home View
-            HomeTest(path: $homeNavigationStack)
+            HomeTest(path: $homeNavigationStack, selectedTab: $selectedTab)
                 .tabItem {
                     homeTabLabel
                 }

@@ -21,8 +21,7 @@ struct Events_auApp: App {
                     TabScreenView()
                 } else {
                     SignInView()
-                }
-            }
+                }            }
         }
     }
 }
