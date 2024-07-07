@@ -66,7 +66,7 @@ struct HomeTest: View {
                 switch screen {
                 case .eventDetail(let currentEvent):
                     EventDetail(event: currentEvent, unit: unit, approvedParticipants: approvedParticipants, path: $path, selectedTab: $selectedTab)
-                case .attendeesList(let currentParticipants):
+                case .attendeesList(let _):
                     AttendeesListView()
                 case .eventRegistration(let currentEvent):
                     EventRegistrationView(event: currentEvent, path: $path, selectedTab: $selectedTab)

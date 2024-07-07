@@ -22,8 +22,7 @@ struct Events_auApp: App {
 //                    TestView()
                 } else {
                     SignInView()
-                }
-            }
+                }            }
         }
     }
 }
