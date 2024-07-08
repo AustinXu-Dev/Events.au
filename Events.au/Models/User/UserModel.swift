@@ -66,4 +66,5 @@ struct UserModel: Codable, Hashable {
 struct UserModel2: Codable {
     let _id,fId, firstName,email: String
     let phone : Int
+    let isOrganizer : Bool
 }

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct EventManager: View {
-    @Binding var showUpcoming : Bool 
-    @Binding var ongoingEvents : [EventModel]
-    @Binding var upcomingEvents : [EventModel]
+    
+    let events : [EventModel]
+    
+    @Binding var showUpcoming : Bool
+   
     
     
     var body: some View {
@@ -19,9 +21,16 @@ struct EventManager: View {
             if !showUpcoming {
                 ScrollView(.vertical,showsIndicators: false) {
                     VStack(alignment:.center,spacing:Theme.medium) {
-                        ForEach(ongoingEvents,id: \._id){ event in
-                            EventRow(event: event)
-                            
+                        if events.count != 0 {
+                            ForEach(events,id: \._id){ event in
+                                if event.startDate?.toDate() == Date() {
+                                    EventRow(event: event)
+                                }
+                                
+                            }
+                        } else {
+                            noEventsView
+                            .offset(y:100)
                         }
                     }.transition(.move(edge: .leading))
                 }
@@ -29,8 +38,13 @@ struct EventManager: View {
             if showUpcoming {
                 ScrollView(.vertical,showsIndicators: false) {
                     VStack(alignment:.center,spacing:Theme.medium) {
-                        ForEach(upcomingEvents,id: \._id){ event in
-                            EventRow(event: event)
+                        if events.count != 0 {
+                            ForEach(events,id: \._id){ event in
+                                EventRow(event: event)
+                            }
+                        } else {
+                            noEventsView
+                                .offset(y:100)
                         }
                     }.transition(.move(edge: .trailing))
                 }
@@ -75,18 +89,31 @@ extension EventManager {
             
         }
     }
+    private var noEventsView : some View {
+        VStack(alignment:.center,spacing:Theme.defaultSpacing) {
+            Image(systemName: "xmark.circle")
+                .font(.system(size: 100))
+                .foregroundStyle(Color.gray.opacity(0.55))
+                .applyThemeDoubleShadow()
+            Text("There is no events \nin the meantime")
+                .multilineTextAlignment(.center)
+                .lineLimit(3)
+                .applyLabelFont()
+                .foregroundStyle(Theme.secondaryTextColor)
+        }
+    }
 }
 
 
 struct EventManager_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventManager(showUpcoming: .constant(false), ongoingEvents: .constant(EventMock.instacne.allEvents), upcomingEvents: .constant(EventMock.instacne.allEvents))
+            EventManager(events: EventMock.instacne.allEvents, showUpcoming: .constant(false))
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventManager(showUpcoming: .constant(false), ongoingEvents: .constant(EventMock.instacne.allEvents), upcomingEvents: .constant(EventMock.instacne.allEvents))
+            EventManager(events:EventMock.instacne.allEvents,showUpcoming: .constant(false))
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

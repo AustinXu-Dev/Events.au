@@ -25,8 +25,10 @@ struct EventRow: View {
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     Text(event.name ?? "")
                     .applyHeadingFont()
-                    Text("\(String(describing:event.startDate)),\(String(describing:event.startTime))-\(String(describing:event.endTime))")
-                    .applyOverlayFont()
+                    if let startDate = event.startDate, let startTime = event.startTime, let endTime = event.endTime {
+                        Text("\(startDate), \(startTime)-\(endTime)")
+                            .applyOverlayFont()
+                    }
             }
                 Spacer()
                 VStack {
