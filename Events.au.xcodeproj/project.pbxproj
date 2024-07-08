@@ -76,6 +76,9 @@
 		B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75057392C160F9300D742E8 /* UnitAdminModel.swift */; };
 		B75A0F332C3B256F007D150F /* ParticipantByEventId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F322C3B256F007D150F /* ParticipantByEventId.swift */; };
 		B75A0F362C3B265A007D150F /* GetParticipantsByEventIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F352C3B265A007D150F /* GetParticipantsByEventIdViewModel.swift */; };
+		B75A0F3C2C3BB789007D150F /* ProfileDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3B2C3BB789007D150F /* ProfileDropDown.swift */; };
+		B75A0F3E2C3BC03C007D150F /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3D2C3BC03B007D150F /* UserState.swift */; };
+		B75A0F402C3BCBE8007D150F /* ReusableLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
 		B7B208D22C21274600DB1450 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B208D12C21274600DB1450 /* EventManager.swift */; };
@@ -203,6 +206,9 @@
 		B75057392C160F9300D742E8 /* UnitAdminModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAdminModel.swift; sourceTree = "<group>"; };
 		B75A0F322C3B256F007D150F /* ParticipantByEventId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantByEventId.swift; sourceTree = "<group>"; };
 		B75A0F352C3B265A007D150F /* GetParticipantsByEventIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetParticipantsByEventIdViewModel.swift; sourceTree = "<group>"; };
+		B75A0F3B2C3BB789007D150F /* ProfileDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDropDown.swift; sourceTree = "<group>"; };
+		B75A0F3D2C3BC03B007D150F /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableLoader.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
 		B7B208D12C21274600DB1450 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
@@ -655,6 +661,8 @@
 			children = (
 				BC1CC9722C289CD10020DD06 /* TextFieldWithIcon.swift */,
 				BC1CC9742C289FBA0020DD06 /* ToolbarView.swift */,
+				B75A0F3B2C3BB789007D150F /* ProfileDropDown.swift */,
+				B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -782,6 +790,7 @@
 				3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */,
 				396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */,
 				BC2711762C1990FF00A99157 /* TabViewEnum.swift */,
+				B75A0F3D2C3BC03B007D150F /* UserState.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -967,6 +976,7 @@
 				BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */,
 				B36CA9652C20648300FE6D46 /* KeychainManager.swift in Sources */,
 				B7DFB3BF2C16145000BB53E7 /* SignUpDTOMock.swift in Sources */,
+				B75A0F3E2C3BC03C007D150F /* UserState.swift in Sources */,
 				B75A0F332C3B256F007D150F /* ParticipantByEventId.swift in Sources */,
 				B743C99E2C3B1D590001B311 /* AllUnitsByEventId.swift in Sources */,
 				B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */,
@@ -1012,7 +1022,9 @@
 				B370C6E42C1525DC00C28E67 /* WebService.swift in Sources */,
 				B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */,
 				3920CD6C2C32846700632B3C /* AttendeesListView.swift in Sources */,
+				B75A0F3C2C3BB789007D150F /* ProfileDropDown.swift in Sources */,
 				B363030E2C28A34400537586 /* AllUnitsViewModel.swift in Sources */,
+				B75A0F402C3BCBE8007D150F /* ReusableLoader.swift in Sources */,
 				B7ECB5432C1F4FE8004CCFA7 /* AllEventsMock.swift in Sources */,
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
 				BC1CC9782C29502C0020DD06 /* EventRegistrationView.swift in Sources */,

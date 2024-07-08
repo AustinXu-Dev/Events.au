@@ -33,7 +33,7 @@ struct TabScreenView: View {
                 .tag(Tab.createEvent)
          
             //Profile View
-            Text("Profile")
+            ProfileView()
                 .tabItem {
                     profileTabLabel
                 }
