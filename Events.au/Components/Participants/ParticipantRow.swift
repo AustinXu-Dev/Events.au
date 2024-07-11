@@ -49,17 +49,17 @@ struct ParticipantRow: View {
     }
 }
 
-//struct ParticipantRow_Previews : PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ParticipantRow(participant: ParticipantMock.instacne.participantA, unit: UnitMock.instacne.unitA)
-//                .previewLayout(.sizeThatFits)
-//                .preferredColorScheme(.light)
-//                .padding()
-//            ParticipantRow(participant: ParticipantMock.instacne.participantB,unit: UnitMock.instacne.unitB)
-//                .previewLayout(.sizeThatFits)
-//                .preferredColorScheme(.dark)
-//                .padding()
-//        }
-//    }
-//}
+struct ParticipantRow_Previews : PreviewProvider {
+    static var previews: some View {
+        Group {
+            ParticipantRow(participant: ParticipantMock.instacne.participantA, unit: UnitMock.instacne.unitA)
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.light)
+                .padding()
+            ParticipantRow(participant: ParticipantMock.instacne.participantB,unit: UnitMock.instacne.unitB)
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+                .padding()
+        }
+    }
+}
