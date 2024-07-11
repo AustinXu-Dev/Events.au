@@ -14,25 +14,27 @@ struct HomeTest: View {
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     @StateObject private var eventVM : AllEventsViewModel = AllEventsViewModel()
     @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
-//    let unit : UnitModel = UnitMock.instacne.unitA
+    @StateObject var participantsVM : GetParticipantsByEventIdViewModel = GetParticipantsByEventIdViewModel()
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
-    //MARK: have to change this after api integration
-    @StateObject var participantsVM = GetParticipantsByEventIdViewModel()
 
     
     var body: some View {
         NavigationStack(path: $path){
             VStack(alignment:.leading,spacing:Theme.defaultSpacing){
-                SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
-                categoryScrollView
-                eventsScrollView
-
+                if eventVM.loader {
+                    ProgressView()
+                        .tint(Theme.tintColor)
+                } else {
+                    SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
+                    categoryScrollView
+                    eventsScrollView
+                    Spacer(minLength: 0)
+                }
             }
             .padding(.horizontal,Theme.large)
-
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
@@ -65,9 +67,9 @@ struct HomeTest: View {
             .navigationDestination(for: HomeNavigation.self) { screen in
                 switch screen {
                 case .eventDetail(let currentEvent, let approvedParticipants):
-                    EventDetail(event: currentEvent, approvedParticipants: approvedParticipants, path: $path, selectedTab: $selectedTab)
-                case .attendeesList(let _):
-                    AttendeesListView(approvedParticipants: participantsVM.allParticipants)
+                    EventDetail(event: currentEvent, path: $path, selectedTab: $selectedTab, approvedParticipants: participantsVM.approvedParticipants)
+                case .attendeesList(let approvedParticipants):
+                    AttendeesListView(approvedParticipants: participantsVM.approvedParticipants)
                 case .eventRegistration(let currentEvent):
                     EventRegistrationView(event: currentEvent, path: $path, selectedTab: $selectedTab)
                 case .registrationSuccess:
@@ -79,10 +81,13 @@ struct HomeTest: View {
             
         }
         .onAppear(perform: {
+            //fetch events
             eventVM.fetchEvents()
+            //fetch currentUser
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 profileVM.getOneUserById(id: userId)
             }
+        
         })
         .tint(.blue)
     }
@@ -133,19 +138,19 @@ extension HomeTest {
     }
     
     private var eventsScrollView : some View {
-        VStack(alignment:.leading) {
+        VStack(alignment:.leading,spacing: Theme.defaultSpacing) {
             Text("Upcoming Events")
                 .applyLabelFont()
-            ScrollView(.vertical,showsIndicators: false){
-                VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
-                    ForEach(eventVM.events,id: \._id){ event in
-                        // Change here
-                        NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.allParticipants)) {
-                            EventCard(participantsVM: participantsVM, event: event)
-                        }.tint(Theme.secondaryTextColor)
+                ScrollView(.vertical,showsIndicators: false){
+                    VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
+                        ForEach(eventVM.events,id: \._id){ event in
+                            // Change here
+                            NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
+                                EventCard(participantsVM: participantsVM, event: event)
+                            }.tint(Theme.secondaryTextColor)
+                        }
                     }
                 }
-            }
         }
     }
 }

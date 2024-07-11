@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventCard: View {
     @ObservedObject var participantsVM : GetParticipantsByEventIdViewModel
+    
     let event : EventModel
     
     var body: some View {
@@ -32,6 +33,7 @@ struct EventCard: View {
         .onAppear(perform: {
             if let eventId = event._id {
                 participantsVM.fetchParticipants(id: eventId)
+                print("FETCHED  PARTICIPANTS BY EVENTID")
             }
         })
         
@@ -43,7 +45,6 @@ extension EventCard {
         HStack(alignment:.center,spacing:Theme.defaultSpacing) {
            
             //MARK: - only pass the approved participant to child view
-                
             EventParticipants(participants: participantsVM.allParticipants, participantStatus: "joining")
             
             

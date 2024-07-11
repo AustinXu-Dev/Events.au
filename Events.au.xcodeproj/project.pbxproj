@@ -56,6 +56,8 @@
 		B3A571AC2C29D600000B7AB6 /* GetAdminById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571AB2C29D600000B7AB6 /* GetAdminById.swift */; };
 		B3A571AF2C29D807000B7AB6 /* GetAdminByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571AE2C29D807000B7AB6 /* GetAdminByIdViewModel.swift */; };
 		B704B6C82C22CB69006E3DDF /* AllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B704B6C72C22CB69006E3DDF /* AllEvents.swift */; };
+		B70C04972C3FF0100032B5BB /* AllUnitsByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C04962C3FF0100032B5BB /* AllUnitsByUserId.swift */; };
+		B70C04992C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C04982C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift */; };
 		B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */; };
 		B731AAD32C15FEFC00A3E8C2 /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAD22C15FEFC00A3E8C2 /* EventMock.swift */; };
 		B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAD42C16003300A3E8C2 /* ParticipantMock.swift */; };
@@ -186,6 +188,8 @@
 		B3A571AB2C29D600000B7AB6 /* GetAdminById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAdminById.swift; sourceTree = "<group>"; };
 		B3A571AE2C29D807000B7AB6 /* GetAdminByIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAdminByIdViewModel.swift; sourceTree = "<group>"; };
 		B704B6C72C22CB69006E3DDF /* AllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEvents.swift; sourceTree = "<group>"; };
+		B70C04962C3FF0100032B5BB /* AllUnitsByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUnitsByUserId.swift; sourceTree = "<group>"; };
+		B70C04982C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUnitsByUserIdViewModel.swift; sourceTree = "<group>"; };
 		B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagesMock.swift; sourceTree = "<group>"; };
 		B731AAD22C15FEFC00A3E8C2 /* EventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMock.swift; sourceTree = "<group>"; };
 		B731AAD42C16003300A3E8C2 /* ParticipantMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantMock.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 			children = (
 				B36303022C28A11600537586 /* AllUnits.swift */,
 				B743C99D2C3B1D590001B311 /* AllUnitsByEventId.swift */,
+				B70C04962C3FF0100032B5BB /* AllUnitsByUserId.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 			children = (
 				B363030D2C28A34400537586 /* AllUnitsViewModel.swift */,
 				B743C99B2C3B1D3C0001B311 /* GetUnitsByEventIdViewModel.swift */,
+				B70C04982C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -1015,6 +1021,7 @@
 				B7C69A822C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift in Sources */,
 				B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */,
 				B743C99A2C3B1D0A0001B311 /* String+Extension.swift in Sources */,
+				B70C04992C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift in Sources */,
 				BCF4F9FD2C2FA83A00D5E009 /* CreateEventSuccessView.swift in Sources */,
 				B74956E22C2080AB00C51B30 /* EventRow.swift in Sources */,
 				B7C69A842C14E5C00055DDD9 /* UpdateEventUnitDTO.swift in Sources */,
@@ -1058,6 +1065,7 @@
 				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
 				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
+				B70C04972C3FF0100032B5BB /* AllUnitsByUserId.swift in Sources */,
 				B3A571AF2C29D807000B7AB6 /* GetAdminByIdViewModel.swift in Sources */,
 				BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */,
 				39FC54242C1388D800240B93 /* SignupView.swift in Sources */,

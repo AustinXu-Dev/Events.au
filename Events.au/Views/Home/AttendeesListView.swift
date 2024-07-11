@@ -11,6 +11,7 @@ import SwiftUI
 
 struct AttendeesListView: View {
     let approvedParticipants : [ParticipantModel]
+    @StateObject var userUnitsVM = GetUnitsByUserIdViewModel()
     @State private var searchText = ""
 
     var filteredAttendees: [ParticipantModel] {
@@ -37,7 +38,6 @@ struct AttendeesListView: View {
                 SearchBarAttendee(text: $searchText)
                 ForEach(filteredAttendees,id: \._id) { attendee in
                     HStack {
-//                        Image(attendee.imageName)
                         Image("PersonB")
                             .resizable()
                             .frame(width: 64, height: 64)
@@ -45,11 +45,21 @@ struct AttendeesListView: View {
                         VStack(alignment: .leading) {
                             Text("\(attendee.userId.firstName) \(attendee.userId.lastName)")
                                 .font(.headline)
-                            Text("User Unit")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                                HStack {
+                                    ForEach(userUnitsVM.userUnits,id: \.id) { unit in
+                                        Text(unit.name ?? "No Faculty")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                                
+                            
                         }
                         .padding(.leading, 12)
+                    }
+                    .onAppear {
+                        userUnitsVM.getUnitsByUserId(id: attendee.userId._id)
+                        //fetch unit of each approved participant (User)
                     }
                 }
                 .listStyle(PlainListStyle())
@@ -58,6 +68,7 @@ struct AttendeesListView: View {
             }
             .navigationBarTitle(Text("Attendees"), displayMode: .inline)
         }
+      
     }
 }
 
@@ -92,8 +103,8 @@ struct SearchBarAttendee: UIViewRepresentable {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct AttendeesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AttendeesListView(approvedParticipants: ParticipantMock.instacne.participants, userUnitsVM: GetUnitsByUserIdViewModel())
     }
 }

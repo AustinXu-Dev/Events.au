@@ -9,19 +9,16 @@ import SwiftUI
 
 struct EventDetail: View {
     let event : EventModel
-    let approvedParticipants : [ParticipantModel]
     @Binding var path: [HomeNavigation]
     @Binding var selectedTab: Tab
     @StateObject private var eventUnitsVM : GetUnitsByEventViewModel = GetUnitsByEventViewModel()
     @Environment(\.colorScheme) var colorScheme
     @State private var isParagraph : Bool = false
+    let approvedParticipants : [ParticipantModel]
     
     var body: some View {
         
         //MARK: - for consideration :
-        /*
-         Should we fetch the eventUnits since the beginning at home view and pass it down to its child views. Even though we don't need it at home view, we don't need to put loader in this view that way.
-         */
         ScrollView(.vertical,showsIndicators: false) {
             if eventUnitsVM.loader {
                 ProgressView()
@@ -36,34 +33,31 @@ struct EventDetail: View {
                     dateAndLocation
                 }
                 VStack(alignment:.leading) {
-                    if approvedParticipants.count >= 8 {
-                        NavigationLink {
-                            AttendeesListView(approvedParticipants: approvedParticipants)
-                        } label: {
-                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                                .foregroundStyle(Theme.backgroundColor)
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                                .frame(height: 80)
-                                .applyThemeDoubleShadow()
-                                .overlay (
-                                    HStack {
-                                        attendees
-                                            .tint(Theme.secondaryTextColor)
-                                        Spacer()
-                                    }
-                                        .padding()
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                )
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
+                    if approvedParticipants.count > 0 {
+                    NavigationLink {
+                        AttendeesListView(approvedParticipants: approvedParticipants)
+                    } label: {
+                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                            .foregroundStyle(Theme.backgroundColor)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .frame(height: 80)
+                            .applyThemeDoubleShadow()
+                            .overlay (
+                                HStack {
+                                    attendees
+                                        .tint(Theme.secondaryTextColor)
+                                    Spacer()
+                                }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            )
                     }
+                    
+                } // end of condition
+                        
+                        
+                        
+                    
                     registerButton
                         .padding(.vertical,8)
                 }
@@ -72,8 +66,10 @@ struct EventDetail: View {
         .padding(.horizontal,Theme.large)
         .onAppear(perform: {
             if let eventId = event._id {
+                //fetching units by eventID
                 eventUnitsVM.getUnitsByEvent(id: eventId)
             }
+            
         })
         
         
@@ -171,7 +167,7 @@ extension EventDetail {
             
             Text("Participants")
                 .applyHeadingFont()
-            EventParticipants(participants: approvedParticipants, participantStatus: "joining")
+            EventParticipants(participants:approvedParticipants, participantStatus: "joining")
                 .applyHeadingFont()
             
         }
@@ -212,7 +208,7 @@ extension EventDetail {
 
 #Preview {
     NavigationStack {
-        EventDetail(event: EventMock.instacne.eventA, approvedParticipants: ParticipantMock.instacne.participants, path: .constant([]), selectedTab: .constant(.home))
+        EventDetail(event: EventMock.instacne.eventA, path: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
     }
     .padding(.horizontal,Theme.large)
     

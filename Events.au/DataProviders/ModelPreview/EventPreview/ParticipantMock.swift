@@ -24,10 +24,10 @@ struct ParticipantMock  {
         ParticipantModel(_id: "664455d8168e2d6ca4eb8101", userId: UserMock.instance.user2, eventId: EventMock.instacne.eventB, status: "approved", email: "admin7@gmail.com", phone: 0928999292),
         ParticipantModel(_id: "661eb2f90ee1d9755719ad0d", userId: UserMock.instance.user1, eventId: EventMock.instacne.eventA, status: "pending", email: "sai2@gmail.com", phone: 09199292232),
         ParticipantModel(_id: "664455d8168e2d6ca4eb8101", userId: UserMock.instance.user2, eventId: EventMock.instacne.eventB, status: "approved", email: "admin7@gmail.com", phone: 0928999292),
-        ParticipantModel(_id: "661eb2f90ee1d9755719ad0d", userId: UserMock.instance.user1, eventId: EventMock.instacne.eventA, status: "pending", email: "sai2@gmail.com", phone: 09199292232),
-        ParticipantModel(_id: "664455d8168e2d6ca4eb8101", userId: UserMock.instance.user2, eventId: EventMock.instacne.eventB, status: "approved", email: "admin7@gmail.com", phone: 0928999292),
-        ParticipantModel(_id: "661eb2f90ee1d9755719ad0d", userId: UserMock.instance.user1, eventId: EventMock.instacne.eventA, status: "pending", email: "sai2@gmail.com", phone: 09199292232),
-        ParticipantModel(_id: "664455d8168e2d6ca4eb8101", userId: UserMock.instance.user2, eventId: EventMock.instacne.eventB, status: "approved", email: "admin7@gmail.com", phone: 0928999292),
+//        ParticipantModel(_id: "661eb2f90ee1d9755719ad0d", userId: UserMock.instance.user1, eventId: EventMock.instacne.eventA, status: "pending", email: "sai2@gmail.com", phone: 09199292232),
+//        ParticipantModel(_id: "664455d8168e2d6ca4eb8101", userId: UserMock.instance.user2, eventId: EventMock.instacne.eventB, status: "approved", email: "admin7@gmail.com", phone: 0928999292),
+//        ParticipantModel(_id: "661eb2f90ee1d9755719ad0d", userId: UserMock.instance.user1, eventId: EventMock.instacne.eventA, status: "pending", email: "sai2@gmail.com", phone: 09199292232),
+//        ParticipantModel(_id: "664455d8168e2d6ca4eb8101", userId: UserMock.instance.user2, eventId: EventMock.instacne.eventB, status: "approved", email: "admin7@gmail.com", phone: 0928999292),
     ]
     
     

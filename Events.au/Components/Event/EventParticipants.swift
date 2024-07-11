@@ -9,14 +9,17 @@ import SwiftUI
 
 //MARK: - This is a micro component for EventCard
 struct EventParticipants: View {
+    
+    //MARK: - this can either be pending or approved participants
     let participants : [ParticipantModel]
     let participantStatus : String
     
     var body: some View {
-        if participants.count >= 8 {
             HStack(spacing:0) {
                 HStack(spacing:-8) {
-                    ForEach(participants.prefix(upTo: 4),id: \._id){ participant in
+                    
+                    //I will only display the number circle if participant count >= 5
+                    ForEach(participants.count == 5 ? Array(participants.prefix(upTo: 4)) : participants,id: \._id) { participant in
                         ZStack {
                             //MARK: have to change to image downloading logic from server
                             //MARK: only get the approved participant here
@@ -31,26 +34,32 @@ struct EventParticipants: View {
                         }
                         
                     } //end of ForEach loop
-                    ZStack {
-                        Circle()
-                            .frame(width: Theme.circleWidth,height: Theme.circleHeight)
-                            .foregroundStyle(Theme.redFaint)
-                            .overlay(
-                                Text("+\(participants.count-4)")
-                                    .applyOverlayFont()
-                                    .foregroundStyle(.black)
-                                
-                            )
-                        Circle()
-                            .stroke(.white,lineWidth: 1)
-                            .frame(width: Theme.circleWidth,height:Theme.circleHeight)
-                    }
+                    if participants.count >= 5 {
+                        // only show this if the count is >= 5
+                        ZStack {
+                            Circle()
+                                .frame(width: Theme.circleWidth,height: Theme.circleHeight)
+                                .foregroundStyle(Theme.redFaint)
+                                .overlay(
+                                    Text("+\(participants.count-4)")
+                                        .applyOverlayFont()
+                                        .foregroundStyle(.black)
+                                    
+                                )
+                            Circle()
+                                .stroke(.white,lineWidth: 1)
+                                .frame(width: Theme.circleWidth,height:Theme.circleHeight)
+                        }
+                    } // end of condition
                 }
-                Text(participantStatus)
-                    .applyOverlayFont()
-                    .padding(.horizontal,Theme.small)
+                .applyThemeDoubleShadow()
+                if participants.count > 0 {
+                    Text(participantStatus)
+                        .applyOverlayFont()
+                        .padding(.horizontal,Theme.small)
+                }
             }
-        } // end of conditional
+        
     }
 }
 
