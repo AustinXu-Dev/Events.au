@@ -16,7 +16,7 @@ enum HomeNavigation: Hashable {
     case home
     case eventDetail(EventModel,[ParticipantModel])
     case eventRegistration(EventModel)
-    case attendeesList(ParticipantModel)
+    case attendeesList([ParticipantModel])
     case registrationSuccess
 }
 

@@ -33,26 +33,23 @@ struct EventDetail: View {
                     dateAndLocation
                 }
                 VStack(alignment:.leading) {
-                    if approvedParticipants.count > 0 {
-                    NavigationLink {
-                        AttendeesListView(approvedParticipants: approvedParticipants)
-                    } label: {
-                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                            .foregroundStyle(Theme.backgroundColor)
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                            .frame(height: 80)
-                            .applyThemeDoubleShadow()
-                            .overlay (
-                                HStack {
-                                    attendees
-                                        .tint(Theme.secondaryTextColor)
-                                    Spacer()
-                                }
-                                    .padding()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            )
-                    }
-                    
+                    if approvedParticipants.count >  0 {
+                        NavigationLink(value: HomeNavigation.attendeesList(approvedParticipants)) {
+                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                                .foregroundStyle(Theme.backgroundColor)
+                                .frame(maxWidth: .infinity,alignment: .leading)
+                                .frame(height: 80)
+                                .applyThemeDoubleShadow()
+                                .overlay (
+                                    HStack {
+                                        attendees
+                                            .tint(Theme.secondaryTextColor)
+                                        Spacer()
+                                    }
+                                        .padding()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                )
+                        }
                 } // end of condition
                         
                         
