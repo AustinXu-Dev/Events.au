@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct OrganizedEventDetails: View {
+struct EventPreEditView: View {
     let event : EventModel
     let approvedParticipants : [ParticipantModel]
     let pendingParticipants : [ParticipantModel]
+    let unit : UnitModel
     //for accessing the users device light/dark mode
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
@@ -18,7 +19,11 @@ struct OrganizedEventDetails: View {
             VStack(alignment: .leading,spacing:Theme.defaultSpacing) {
                 eventImage
                 eventDetails
-                participantsOverview
+                NavigationLink {
+                    EventParticipantManagementView(event: event, unit: unit)
+                } label: {
+                    participantsOverview
+                }
             }
         } //End of Scroll View
         .padding(.horizontal,Theme.large)
@@ -31,7 +36,7 @@ struct OrganizedEventDetails: View {
     }
 }
 
-extension OrganizedEventDetails {
+extension EventPreEditView {
     
     private var eventImage : some View {
         Image("event_details")
@@ -59,6 +64,7 @@ extension OrganizedEventDetails {
     }
     
     private var participantsOverview : some View {
+        
         RoundedRectangle(cornerRadius: Theme.cornerRadius)
             .foregroundStyle(Theme.backgroundColor)
             .applyThemeDoubleShadow()
@@ -83,6 +89,6 @@ extension OrganizedEventDetails {
 
 #Preview {
     NavigationStack {
-        OrganizedEventDetails(event: EventMock.instacne.eventA, approvedParticipants: ParticipantMock.instacne.participants, pendingParticipants: ParticipantMock.instacne.participants)
+        EventPreEditView(event: EventMock.instacne.eventA, approvedParticipants: ParticipantMock.instacne.participants, pendingParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
     }
 }

@@ -10,9 +10,11 @@ import SwiftUI
 struct EventManager: View {
     
     let events : [EventModel]
-    
+    @AppStorage("userRole") private var userRole: String?
     @Binding var showUpcoming : Bool
-   
+    @ObservedObject var allEventsVM : AllEventsViewModel
+    @ObservedObject var organizerEventsVM : OrganizerEventsViewModel
+
     
     
     var body: some View {
@@ -24,7 +26,14 @@ struct EventManager: View {
                         if events.count != 0 {
                             ForEach(events,id: \._id){ event in
                                 if event.startDate?.toDate() == Date() {
-                                    EventRow(event: event)
+                                    NavigationLink {
+                                        //MARK: -api fetching should happen in this child view using observed object both for events and participants
+                                        EventPreEditView(event: event, approvedParticipants: ParticipantMock.instacne.participants, pendingParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
+                                    } label: {
+                                        EventRow(event: event)
+
+                                    }
+
                                 }
                                 
                             }
@@ -51,6 +60,19 @@ struct EventManager: View {
             }
         }
         Spacer(minLength: 0)
+            .onAppear(perform: {
+                print("App storage userRole in child view is \(String(describing: userRole))")
+                if let userId = KeychainManager.shared.keychain.get("appUserId") {
+
+                //get all events based on userRole
+                if userRole == UserState.audience.rawValue {
+                    self.allEventsVM.fetchEvents()
+                } else {
+                    self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                }
+            }
+                
+                })
     }
     
     
@@ -91,15 +113,25 @@ extension EventManager {
     }
     private var noEventsView : some View {
         VStack(alignment:.center,spacing:Theme.defaultSpacing) {
-            Image(systemName: "xmark.circle")
-                .font(.system(size: 100))
-                .foregroundStyle(Color.gray.opacity(0.55))
+            Image(Theme.noEventVector)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100,height: 100)
                 .applyThemeDoubleShadow()
-            Text("There is no events \nin the meantime")
-                .multilineTextAlignment(.center)
-                .lineLimit(3)
+            Text("No Event Upcoming")
                 .applyLabelFont()
-                .foregroundStyle(Theme.secondaryTextColor)
+            HStack {
+                NavigationLink {
+                    HomeTest(path: .constant([]) , selectedTab: .constant(.home))
+                } label: {
+                    Text("Join Event")
+                        .underline()
+                        .foregroundStyle(Theme.tintColor)
+                }
+                
+                Text("for more exciting experiences")
+
+            }
         }
     }
 }
@@ -108,15 +140,18 @@ extension EventManager {
 struct EventManager_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventManager(events: EventMock.instacne.allEvents, showUpcoming: .constant(false))
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.light)
-                .padding()
-            
-            EventManager(events:EventMock.instacne.allEvents,showUpcoming: .constant(false))
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-                .padding()
+            NavigationStack {
+                EventManager(events: EventMock.instacne.allEvents, showUpcoming: .constant(true),allEventsVM : AllEventsViewModel(), organizerEventsVM: OrganizerEventsViewModel())
+                    .previewLayout(.sizeThatFits)
+                    .preferredColorScheme(.light)
+                    .padding()
+            }
+            NavigationStack {
+                EventManager(events:EventMock.instacne.allEvents,showUpcoming: .constant(true),allEventsVM : AllEventsViewModel(), organizerEventsVM: OrganizerEventsViewModel())
+                    .previewLayout(.sizeThatFits)
+                    .preferredColorScheme(.dark)
+                    .padding()
+            }
         }
     }
 }

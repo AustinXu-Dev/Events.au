@@ -26,13 +26,13 @@ struct Theme {
     static let approvedEventColor = "ApprovedEventStatus"
     
     // MARK: - FontStyle
-    static let overlayFont = "SFProDisplayLight.ttf"
-    static let labelFont = "SFProDisplay-Semibold.ttf"
-    static let headingFont = "SFProDisplay-Semibold.ttf"
-    static let bodyFont = "SFPRODISPLAYREGULAR.OTF"
-    static let buttonFont = "SFProDisplay-Semibold.ttf"
-    static let profileNameFont = "SFProDisplay-Semibold.ttf"
-    static let mediumFont = "SFPRODISPLAYMEDIUM.OTF"
+    static let overlayFont = "SFProDisplayLight"
+    static let labelFont = "SFProDisplay-Semibold"
+    static let headingFont = "SFProDisplay-Semibold"
+    static let bodyFont = "SFPRODISPLAYREGULAR"
+    static let buttonFont = "SFProDisplay-Semibold"
+    static let profileNameFont = "SFProDisplay-Semibold"
+    static let mediumFont = "SFPRODISPLAYMEDIUM"
 
     
     
@@ -147,6 +147,8 @@ struct Theme {
     static let locationDark : String = "location_dark"
     
     static let eventImage : String = "EventImagePreview"
+    
+    static let noEventVector : String = "no_event_vector"
     
 }
 

@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct EventParticipantManagementView: View {
+    let event : EventModel
     @State private var index = 1
     @State var showPending : Bool = false
+    //MARK: have to remove these state var and replace with view model publishers
     @State var pendingParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
     @State var approvedParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
     let unit : UnitModel
+    @StateObject var participantVM = GetParticipantsByEventIdViewModel()
+
     
     var body: some View {
         NavigationView {
@@ -25,15 +29,15 @@ struct EventParticipantManagementView: View {
                             .resizable()
                             .frame(width: Theme.iconWidth,height: Theme.iconHeight)
                             .scaledToFill()
-                        Text("\(approvedParticipants.count) Attending")
+                        Text("\(participantVM.approvedParticipants.count) Attending")
                             .applyHeadingFont()
                             .foregroundStyle(Theme.tintColor)
-                        Text("(\(pendingParticipants.count) pending)")
+                        Text("(\(participantVM.allParticipants.count) pending)")
                             .applyOverlayFont()
                             .foregroundStyle(Theme.secondaryTextColor.opacity(0.5))
                     }
                     
-                    ParticipantManager(showPending: $showPending, unit: unit, pendingParticipants: $pendingParticipants, approvedParticipants: $approvedParticipants)
+                    ParticipantManager(event: event ,showPending: $showPending, unit: unit, pendingParticipants: $pendingParticipants, approvedParticipants: $approvedParticipants,participantVM: participantVM)
                 }
                
             }
@@ -142,5 +146,5 @@ let pendingParticipants = [
 //                    Spacer()
 
 #Preview {
-    EventParticipantManagementView(showPending: false, pendingParticipants: ParticipantMock.instacne.participants, approvedParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
+    EventParticipantManagementView(event: EventMock.instacne.eventA, showPending: false, pendingParticipants: ParticipantMock.instacne.participants, approvedParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
 }

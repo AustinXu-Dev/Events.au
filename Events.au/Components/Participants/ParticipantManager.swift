@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ParticipantManager: View {
+    let event : EventModel
     @Binding var showPending : Bool
     let unit : UnitModel
     @Binding var pendingParticipants : [ParticipantModel]
     @Binding var approvedParticipants : [ParticipantModel]
-    
+    @ObservedObject var participantVM : GetParticipantsByEventIdViewModel
     var body: some View {
         VStack(alignment:.center) {
                 participantManagerHeader
@@ -20,7 +21,7 @@ struct ParticipantManager: View {
             
             if !showPending {
                 VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(approvedParticipants,id: \._id){ partipant in
+                    ForEach(participantVM.approvedParticipants,id: \._id){ partipant in
                         ParticipantRow(participant: partipant, unit: unit)
                            
                     }
@@ -29,7 +30,7 @@ struct ParticipantManager: View {
             
             if showPending {
                 VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(pendingParticipants,id: \._id){ partipant in
+                    ForEach(participantVM.allParticipants,id: \._id){ partipant in
                         ZStack {
                             ParticipantRow(participant: partipant, unit: unit)
                                 
@@ -39,8 +40,8 @@ struct ParticipantManager: View {
                                         withAnimation(.default) {
                                             approvalHandler(isApproving: true, participant: partipant)
                                         }
-                                        print("Pending:\(pendingParticipants.count)")
-                                        print("Approved:\(approvedParticipants.count)")
+//                                        print("Pending:\(pendingParticipants.count)")
+//                                        print("Approved:\(approvedParticipants.count)")
 
                                     }
                                 rejectButton
@@ -48,8 +49,8 @@ struct ParticipantManager: View {
                                         withAnimation(.default) {
                                             approvalHandler(isApproving: false, participant: partipant)
                                         }
-                                        print("Pending:\(pendingParticipants.count)")
-                                        print("Approved:\(approvedParticipants.count)")
+//                                        print("Pending:\(pendingParticipants.count)")
+//                                        print("Approved:\(approvedParticipants.count)")
 
                                     }
                             }
@@ -64,6 +65,11 @@ struct ParticipantManager: View {
             }
             Spacer(minLength: 0)
         }
+        .onAppear(perform: {
+            if let eventId = event._id {
+                participantVM.fetchParticipants(id: eventId)
+            }
+        })
         
       
     }
@@ -165,12 +171,12 @@ extension ParticipantManager {
 struct ParticipantManager_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            ParticipantManager(showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants))
+            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel())
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            ParticipantManager(showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants))
+            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel())
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

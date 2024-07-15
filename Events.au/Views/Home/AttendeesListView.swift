@@ -18,7 +18,8 @@ struct AttendeesListView: View {
             if searchText.isEmpty {
                 return approvedParticipants
             } else {
-                return approvedParticipants.filter { $0.userId.firstName.lowercased().contains(searchText.lowercased()) || $0.userId.lastName.lowercased().contains(searchText.lowercased()) }
+                return approvedParticipants
+//                return approvedParticipants.filter { $0.userId?.firstName.lowercased().contains((searchText.lowercased()) ?? "dd") || (($0.userId?.lastName.lowercased().contains(searchText.lowercased())) != nil) }
             }
     }
     
@@ -43,7 +44,7 @@ struct AttendeesListView: View {
                             .frame(width: 64, height: 64)
                             .cornerRadius(5)
                         VStack(alignment: .leading) {
-                            Text("\(attendee.userId.firstName) \(attendee.userId.lastName)")
+                            Text("\(attendee.userId?.firstName ?? "") \(attendee.userId?.lastName ?? "" )")
                                 .font(.headline)
                                 HStack {
                                     ForEach(userUnitsVM.userUnits,id: \.id) { unit in
@@ -58,7 +59,7 @@ struct AttendeesListView: View {
                         .padding(.leading, 12)
                     }
                     .onAppear {
-                        userUnitsVM.getUnitsByUserId(id: attendee.userId._id)
+                        userUnitsVM.getUnitsByUserId(id: attendee.userId?._id ?? "")
                         //fetch unit of each approved participant (User)
                     }
                 }

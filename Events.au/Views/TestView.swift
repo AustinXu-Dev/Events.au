@@ -11,6 +11,7 @@ struct TestView: View {
     @StateObject private var viewModel = CreateEventViewModel()
     @StateObject private var authVM = GoogleAuthenticationViewModel()
     @StateObject private var getOneUserVM = GetOneUserByIdViewModel()
+    @StateObject private var getParticipantsByEventId = GetParticipantsByEventIdViewModel()
 
     var body: some View {
         NavigationView {
@@ -66,7 +67,8 @@ struct TestView: View {
                     }
 
                     Button("Create Event") {
-                        viewModel.createEvent(token: TokenManager.share.getToken() ?? "")
+                        print(getParticipantsByEventId.fetchParticipants(id: "666d5af3ae0978ca4fce7f61"))
+//                        viewModel.createEvent(token: TokenManager.share.getToken() ?? "")
 //                        if let userId = KeychainManager.shared.keychain.get("appUserId") {
 //                            getOneUserVM.getOneUserById(userId: userId)
 //                        }

@@ -10,9 +10,11 @@ import Foundation
 class AllEventsViewModel: ObservableObject {
     @Published var events: [EventModel] = []
     @Published var loader : Bool = false
+    @Published var errorMessage : String? = nil
     
     private let getAllEvents = AllEvents()
     
+    //MARK: This is for fetching all events for participants
     func fetchEvents() {
         loader = true
         getAllEvents.execute(token: nil) { [weak self] result in
@@ -21,7 +23,7 @@ class AllEventsViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.loader = false
                     self?.events = eventResponse.message
-                    print(eventResponse.message)
+                    print("FETCHED EVENTS IN HOME VIEW")
                 }
             case .failure(let error):
                 self?.loader = false
@@ -30,4 +32,7 @@ class AllEventsViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    
 }
