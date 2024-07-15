@@ -36,10 +36,11 @@ struct AllParticipantsResponse : Codable {
 }
 
 struct ParticipantModel : Codable, Hashable {
-    let _id : String
-    let userId : UserModel
-    let eventId : EventModel
-//    let organzierId : OrganizerModel
-    let status, email : String
-    let phone : Int
+    let _id : String?
+    let userId : UserModel?
+    let eventId : EventModel?
+    let organzierId : OrganizerModel?
+    let status, email : String?
+    let phone : Int?
 }
+

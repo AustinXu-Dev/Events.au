@@ -58,13 +58,18 @@ struct AllUsersResponse : Codable {
 }
 
 struct UserModel: Codable, Hashable {
-    let _id,fId, firstName,lastName,email,gender : String
-    let age, phone : Int
-    let isAdmin : Bool
+    let _id,fId, firstName,lastName,email,gender : String?
+    let age, phone : Int?
+    let isAdmin : Bool?
 }
 
 struct UserModel2: Codable {
     let _id,fId, firstName,email: String
     let phone : Int
     let isOrganizer : Bool
+}
+
+struct UserModel3: Codable, Hashable {
+    let _id,fId, firstName,lastName,email : String?
+    let age, phone : Int?
 }

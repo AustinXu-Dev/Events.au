@@ -31,7 +31,7 @@ struct ParticipantRow: View {
             
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     //MARK: - this should be participant name
-                Text(participant.email)
+                Text(participant.email ?? "nigga@gmail.com")
                     .applyHeadingFont()
 //                    Text(unit.name)
                     .applyOverlayFont()

@@ -15,10 +15,10 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SFProDisplay-Semibold.ttf</string>
-		<string>SFPRODISPLAYREGULAR.OTF</string>
-		<string>SFProDisplayLight.ttf</string>
-		<string>SFPRODISPLAYMEDIUM.OTF</string>
+		<string>SFProDisplay-Semibold</string>
+		<string>SFPRODISPLAYREGULAR</string>
+		<string>SFProDisplayLight</string>
+		<string>SFPRODISPLAYMEDIUM</string>
 	</array>
 </dict>
 </plist>

@@ -8,18 +8,17 @@
 import Foundation
 
 class GetParticipantByEventId : APIManager {
-    let eventId : String
-    init(eventId: String) {
-        self.eventId = eventId
+    let id : String
+    init(id: String) {
+        self.id = id
     }
     typealias ModelType = AllParticipantsResponse
     
     var methodPath: String {
-        return "/participants/event/\(eventId)"
+        return "/participants/event/\(id)"
     }
 
     
-    
-    
-    
 }
+
+
