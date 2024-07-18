@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-struct AdminProfileEditView: View {
-    @State private var firstName: String = "Justin"
-    @State private var lastName: String = "Hollan"
-    @State private var email: String = "u6511923@au.edu"
-    @State private var phone: String = "0660297968"
-    @State private var gender: String = "Male"
-    @State private var dateOfBirth: String = "05/05/2001"
+struct ProfileEditView: View {
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
+    @State private var email: String = "mgshine69zzz@gmail.com"
+//    @State private var phone: String = "0660297968"
+//    @State private var gender: String = "Male"
+//    @State private var dateOfBirth: String = "05/05/2001"
     
+    
+    @StateObject var updateUserViewModel = UpdateUserViewModel()
+    let user : UserModel2
     var body: some View {
         NavigationView {
             VStack {
@@ -67,39 +70,45 @@ struct AdminProfileEditView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(maxWidth: 200)
                     }
-                    HStack {
-                        Text("Phone")
-                            .font(.body)
-                            .bold()
-                        Spacer()
-                        TextField("", text: $phone)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(maxWidth: 200)
-                    }
-                    HStack {
-                        Text("Gender")
-                            .font(.body)
-                            .bold()
-                        Spacer()
-                        TextField("", text: $gender)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(maxWidth: 200)
-                    }
-                    HStack {
-                        Text("Date of Birth")
-                            .font(.body)
-                            .bold()
-                        Spacer()
-                        TextField("", text: $dateOfBirth)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(maxWidth: 200)
-                    }
+//                    HStack {
+//                        Text("Phone")
+//                            .font(.body)
+//                            .bold()
+//                        Spacer()
+//                        TextField("", text: $phone)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                            .frame(maxWidth: 200)
+//                    }
+//                    HStack {
+//                        Text("Gender")
+//                            .font(.body)
+//                            .bold()
+//                        Spacer()
+//                        TextField("", text: $gender)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                            .frame(maxWidth: 200)
+//                    }
+//                    HStack {
+//                        Text("Date of Birth")
+//                            .font(.body)
+//                            .bold()
+//                        Spacer()
+//                        TextField("", text: $dateOfBirth)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                            .frame(maxWidth: 200)
+//                    }
                 }
                 .padding()
                 .cornerRadius(10)
                 .padding(.horizontal)
                 
                 Button(action: {
+                    updateUserViewModel.firstName = firstName
+                    updateUserViewModel.lastName = lastName
+                    updateUserViewModel.email = email
+                    if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                        updateUserViewModel.updateUser(id: userId, token: TokenManager.share.getToken() ?? "")
+                    }
                 }) {
                     Text("Save")
                         .font(.headline)
@@ -114,20 +123,20 @@ struct AdminProfileEditView: View {
                 
                 Spacer()
             }
+            
             .toolbar {
                ToolbarItem(placement: .navigationBarTrailing) {
-                   NavigationLink(destination: EditProfileView()) {
                        Image(systemName: "pencil")
                            .imageScale(.large)
-                   }
+                   
                }
            }
         }
     }
 }
 
-struct AdminProfileEditView_Previews: PreviewProvider {
+struct ProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
-        AdminProfileEditView()
+        ProfileEditView(user: UserMock.instance.user3)
     }
 }

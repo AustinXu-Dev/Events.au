@@ -299,7 +299,6 @@ extension CreateEventView{
                 Text("Please adjust your time.")
             }
             Spacer()
-                
         }
     }
     
@@ -325,6 +324,8 @@ extension CreateEventView{
             withAnimation {
                 isLoading = true
             }
+            
+            //MARK: -Integrating Create Event API Integration
             createEventViewModel.name = name
             createEventViewModel.description = description
             createEventViewModel.startDate = startDateValue
@@ -334,12 +335,8 @@ extension CreateEventView{
             createEventViewModel.location = location
             createEventViewModel.rules = rules
             createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
-            
-            
-            
-            
             createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
-//            CreateEventViewModel.createEvent()
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // Hide loading spinner and show success screen
                 withAnimation {

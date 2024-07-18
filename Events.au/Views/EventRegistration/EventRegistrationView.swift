@@ -27,6 +27,8 @@ struct EventRegistrationView: View {
     @State var isLoading: Bool = false
     @State var showAlert: Bool = false
     
+    @StateObject var userJoineEventViewModel = UserJoinEventViewModel()
+    
     var body: some View {
         GeometryReader{ geometry in
             ZStack{
@@ -110,6 +112,9 @@ extension EventRegistrationView{
             //MARK: Register button action here
             withAnimation {
                 isLoading = true
+                if let eventId = event._id, let token = TokenManager.share.getToken() {
+                    userJoineEventViewModel.userJoinEvent(eventId: eventId, token: token)
+                }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // Hide loading spinner and show success screen

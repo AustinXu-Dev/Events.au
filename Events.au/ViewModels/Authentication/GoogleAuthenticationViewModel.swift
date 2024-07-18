@@ -80,20 +80,22 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 }
                 
                 //MARK: - Condition with Token Valid and Login successful with google auth
-                if !isNewUser{
+                if isNewUser {
+                    //Delete the new user account
+                    authResult.user.delete { error in
+                        if let error = error {
+                            print("Error deleting new user: \(error)")
+                        } else {
+                            print("New user account deleted successfully.")
+                        }
+                    }
+                    print("New User")
+                } else {
                     DispatchQueue.main.async {
                         self.postSignInFirebaseId(firebaseId: authResult.user.uid)
                     }
                     print("This is the URL of Image: \(String(describing: authResult.user.photoURL))")
                     print("This user already exists.")
-                } else {
-                    if authResult.user.email != nil {
-                        _ = authResult.user.uid
-                        DispatchQueue.main.async {
-                            //post new user here
-                            print("There's a new user.")
-                        }
-                    }
                 }
             }
         }
@@ -204,7 +206,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 if isNewUser{
                     print("There's a new user!!!")
                 } else {
-                    print("This user already exists")
+                    print("User already exists.")
                 }
             }
         }
