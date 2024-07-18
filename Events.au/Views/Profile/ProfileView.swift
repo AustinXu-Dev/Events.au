@@ -76,7 +76,9 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        NavigationStack {
+            ProfileView()
+        }
     }
 }
 
@@ -146,9 +148,10 @@ extension ProfileView {
     }
     
     private var profileDetailButton : some View {
-        Button(action: {
-            print("Button clicked")
-        }) {
+    
+        NavigationLink {
+            ProfileViewInfo(event: EventMock.instacne.eventA, user: profileVM.userDetail ?? UserMock.instance.user3)
+        } label: {
             HStack {
                 Image(systemName: "pencil")
                 Text("Profile Detail")
@@ -165,6 +168,11 @@ extension ProfileView {
 //        .frame(width: 174.5)
         .background(Theme.tintColor)
         .cornerRadius(Theme.cornerRadius)
+        
+        
+        
+        
+       
     }
     
 }

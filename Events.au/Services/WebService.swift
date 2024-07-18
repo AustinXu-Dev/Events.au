@@ -16,7 +16,7 @@ enum AuthenticationError: Error {
     case serverError
 }
 
-// MARK: - Getting the token from the API with email and firebaseId
+// MARK: - Getting the token from the API with firebaseId
 class WebService {
     
     func signin(firebaseId: String, completion: @escaping (Result<(String, String), AuthenticationError>) -> Void) {

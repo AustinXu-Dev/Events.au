@@ -57,7 +57,7 @@ extension EventPreEditView {
     }
     
     private var toolBarPencil : some View {
-        NavigationLink(destination: EventDetailsEditView()) {
+        NavigationLink(destination: EventDetailsEditView(event: event, unit: UnitMock.instacne.unitA)) {
             Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
                 .frame(width:Theme.iconWidth,height:Theme.iconHeight)
         }

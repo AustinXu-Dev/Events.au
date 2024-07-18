@@ -18,8 +18,10 @@ struct Events_auApp: App {
         WindowGroup {
             Group{
                 if isSingIn {
-                    TabScreenView()
-//                    TestView()
+                    NavigationStack {
+                        TabScreenView()
+                    }
+//                    ProfileView()
                 } else {
                     SignInView()
                 }

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import FirebaseAuth
 
 struct SignInView: View {
     @State private var email: String = ""
@@ -196,13 +198,20 @@ struct SignInView: View {
     private func signInWithGoogle() {
         authViewModel.signInWithGoogle(presenting: Application_utility.rootViewController) { error, isNewUser in
             if let error = error {
-                self.alertMessage = "Error Signing In with credentials."
-            }
-            if !isNewUser {
-                self.alertMessage = "Login Successful"
+                // Handle the error case, including user cancellation
+                if (error as NSError).code == GIDSignInError.canceled.rawValue {
+                    // T_T
+                } else {
+                    self.alertMessage = "Error Signing In with credentials: \(error.localizedDescription)"
+                    self.showAlert = true
+                }
+            } else if isNewUser {
+                // Handle the new user case
+                self.alertMessage = "Welcome! Please complete your profile."
                 self.showAlert = true
             } else {
-                self.alertMessage = "Login Failed"
+                // Handle the existing user case
+                self.alertMessage = "Login Successful"
                 self.showAlert = true
             }
         }
