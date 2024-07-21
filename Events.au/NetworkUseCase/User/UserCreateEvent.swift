@@ -1,13 +1,13 @@
 //
-//  CreateEvent.swift
+//  UserCreateEvent.swift
 //  Events.au
 //
-//  Created by Akito Daiki on 22/06/2024.
+//  Created by Akito Daiki on 21/07/2024.
 //
 
 import Foundation
 
-class CreateEvent: APIManager {
+class UserCreateEvent: APIManager {
     typealias ModelType = CreateEventDTO
     var methodPath: String {
         return "/user/create/event"

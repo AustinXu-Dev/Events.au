@@ -31,7 +31,6 @@
 		B34CB3A02C3D339D0034A562 /* FindUnitsForAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34CB39F2C3D339D0034A562 /* FindUnitsForAUser.swift */; };
 		B34CB3A22C3D33F80034A562 /* FindUnitsForAUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34CB3A12C3D33F80034A562 /* FindUnitsForAUserViewModel.swift */; };
 		B36302FC2C28A07800537586 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B36302FB2C28A07800537586 /* KeychainSwift */; };
-		B36303012C28A0EB00537586 /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36303002C28A0EB00537586 /* CreateEvent.swift */; };
 		B36303032C28A11600537586 /* AllUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36303022C28A11600537586 /* AllUnits.swift */; };
 		B36303052C28A12E00537586 /* UpdateUserById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36303042C28A12E00537586 /* UpdateUserById.swift */; };
 		B36303072C28A14B00537586 /* GetUserById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36303062C28A14B00537586 /* GetUserById.swift */; };
@@ -58,6 +57,7 @@
 		B370C6E72C15260600C28E67 /* AppStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6E62C15260600C28E67 /* AppStateHandler.swift */; };
 		B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6E92C15263200C28E67 /* AppDelegate.swift */; };
 		B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */; };
+		B391CD4D2C4D732D0045BB96 /* UserCreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391CD4C2C4D732D0045BB96 /* UserCreateEvent.swift */; };
 		B3A571A32C29C464000B7AB6 /* UpdateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */; };
 		B3A571A72C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A62C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift */; };
 		B3A571A92C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */; };
@@ -169,7 +169,6 @@
 		B34CB39B2C3D2FD70034A562 /* FindEventForUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventForUnitViewModel.swift; sourceTree = "<group>"; };
 		B34CB39F2C3D339D0034A562 /* FindUnitsForAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUnitsForAUser.swift; sourceTree = "<group>"; };
 		B34CB3A12C3D33F80034A562 /* FindUnitsForAUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUnitsForAUserViewModel.swift; sourceTree = "<group>"; };
-		B36303002C28A0EB00537586 /* CreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEvent.swift; sourceTree = "<group>"; };
 		B36303022C28A11600537586 /* AllUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUnits.swift; sourceTree = "<group>"; };
 		B36303042C28A12E00537586 /* UpdateUserById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserById.swift; sourceTree = "<group>"; };
 		B36303062C28A14B00537586 /* GetUserById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserById.swift; sourceTree = "<group>"; };
@@ -188,6 +187,7 @@
 		B370C6E62C15260600C28E67 /* AppStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHandler.swift; sourceTree = "<group>"; };
 		B370C6E92C15263200C28E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticationViewModel.swift; sourceTree = "<group>"; };
+		B391CD4C2C4D732D0045BB96 /* UserCreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateEvent.swift; sourceTree = "<group>"; };
 		B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserViewModel.swift; sourceTree = "<group>"; };
 		B3A571A62C29CFE0000B7AB6 /* UpdateEventBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventBasicInfo.swift; sourceTree = "<group>"; };
 		B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventBasicInfoViewModel.swift; sourceTree = "<group>"; };
@@ -302,13 +302,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		396685CC2C1F4AD000AAD5D4 /* Admin */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Admin;
-			sourceTree = "<group>";
-		};
 		B34CB38E2C3D24C90034A562 /* Organizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,10 +340,10 @@
 		B36302FF2C28A0CF00537586 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				B36303002C28A0EB00537586 /* CreateEvent.swift */,
 				B36303042C28A12E00537586 /* UpdateUserById.swift */,
 				B36303062C28A14B00537586 /* GetUserById.swift */,
 				B34CB3942C3D27560034A562 /* UserJoinEvent.swift */,
+				B391CD4C2C4D732D0045BB96 /* UserCreateEvent.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -813,7 +806,6 @@
 			children = (
 				BC1CC9762C294F2D0020DD06 /* EventRegistration */,
 				BCAD2B032C28756B00E6B87D /* EventCreation */,
-				396685CC2C1F4AD000AAD5D4 /* Admin */,
 				B74956DE2C20801E00C51B30 /* Profile */,
 				BC2711712C195F7700A99157 /* Home */,
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
@@ -1019,6 +1011,7 @@
 				B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */,
 				3920CD6C2C32846700632B3C /* AttendeesListView.swift in Sources */,
 				B363030E2C28A34400537586 /* AllUnitsViewModel.swift in Sources */,
+				B391CD4D2C4D732D0045BB96 /* UserCreateEvent.swift in Sources */,
 				B7ECB5432C1F4FE8004CCFA7 /* AllEventsMock.swift in Sources */,
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
 				BC1CC9782C29502C0020DD06 /* EventRegistrationView.swift in Sources */,
@@ -1036,7 +1029,6 @@
 				BCF4FAAA2C3191F600D5E009 /* CustomToggleStyle.swift in Sources */,
 				B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */,
 				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
-				B36303012C28A0EB00537586 /* CreateEvent.swift in Sources */,
 				39A732102C20B2570042734E /* ProfileView.swift in Sources */,
 				B3A571A32C29C464000B7AB6 /* UpdateUserViewModel.swift in Sources */,
 				396685D52C1F6D6700AAD5D4 /* EventDetailsView.swift in Sources */,
