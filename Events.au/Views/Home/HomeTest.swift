@@ -97,6 +97,7 @@ struct HomeTest: View {
         .onAppear(perform: {
             //fetch events
             eventVM.fetchEvents()
+            
             //fetch currentUser
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 profileVM.getOneUserById(id: userId)
@@ -162,7 +163,9 @@ extension HomeTest {
                             NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
                                 EventCard(participantsVM: participantsVM, event: event)
                             }.tint(Theme.secondaryTextColor)
+                                
                         }
+                        
                     }
                 }
         }

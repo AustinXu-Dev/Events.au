@@ -14,20 +14,19 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
     @Published var errorMessage : String = ""
     
     
+    
     var approvedParticipants: [ParticipantModel] {
-        print("FETCHED APPROVED PARTICIPANTS IN VIEW MODEL")
-        return allParticipants.filter { $0.status == "pending" || $0.status == "participating" }
+        return allParticipants.filter { $0.status == "participating" }
      }
      
     
     func fetchParticipants(id:String) {
-        let eventParticipantsURL = GetParticipantByEventId(eventId: id)
+        let eventParticipantsURL = GetParticipantByEventId(id: id)
         eventParticipantsURL.execute(getMethod:"GET",token: nil) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedParticipants):
-                    print("FETCHED ALL PARTICIPANTS IN VIEW MODEL")
-                    print("Participants Total: \(fetchedParticipants.message.count)")
+                    print("All Participants Total: \(fetchedParticipants.message) of the eventId : \(id)")
                     self?.allParticipants = fetchedParticipants.message
                 case .failure(let error):
                     self?.errorMessage = "Error fetching the participants of an event. \(error.localizedDescription)"
@@ -35,9 +34,4 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
             }
         }
     }
-    
-    
-    
-    
-    
 }

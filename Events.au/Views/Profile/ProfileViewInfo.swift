@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct AdminProfileView: View {
+struct ProfileViewInfo: View {
     let event : EventModel
+    let user : UserModel2
     var body: some View {
         NavigationView {
             ScrollView {
@@ -24,12 +25,14 @@ struct AdminProfileView: View {
                     .padding(.top, 20)
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        ProfileDetailRow(label: "First Name", value: "Justin")
-                        ProfileDetailRow(label: "Last Name", value: "Hollan")
-                        ProfileDetailRow(label: "Email", value: "u6511923@au.edu")
-                        ProfileDetailRow(label: "Phone", value: "0660297968")
-                        ProfileDetailRow(label: "Gender", value: "Male")
-                        ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
+                            ProfileDetailRow(label: "First Name", value: user.firstName)
+                            //MARK: add last name after dropping user database
+                            ProfileDetailRow(label: "Last Name", value : "Gay")
+                            ProfileDetailRow(label: "Email", value: user.email)
+                            ProfileDetailRow(label: "Phone", value: "\(user.phone)")
+                            ProfileDetailRow(label: "Gender", value: "Gay")
+                            ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
+                        
                     }
                     .padding()
                     .padding(.horizontal, 16)
@@ -53,7 +56,7 @@ struct AdminProfileView: View {
             }
             .toolbar {
                ToolbarItem(placement: .navigationBarTrailing) {
-                   NavigationLink(destination: EditProfileView()) {
+                   NavigationLink(destination: ProfileEditView(user: user)) {
                        Image(systemName: "pencil")
                            .imageScale(.large)
                    }
@@ -85,12 +88,12 @@ struct ProfileDetailRow: View {
     }
 }
 
-struct EditProfileView: View {
-    var body: some View {
-        Text("Edit Profile")
-            .navigationBarTitle("Edit Profile", displayMode: .inline)
-    }
-}
+//struct EditProfileView: View {
+//    var body: some View {
+//        Text("Edit Profile")
+//            .navigationBarTitle("Edit Profile", displayMode: .inline)
+//    }
+//}
 
 //struct EventRow: View {
 //    var image: String
@@ -131,8 +134,8 @@ struct EditProfileView: View {
 //    }
 //}
 
-struct AdminProfileView_Previews: PreviewProvider {
+struct ProfileViewInfo_Previews: PreviewProvider {
     static var previews: some View {
-        AdminProfileView(event: EventMock.instacne.eventA)
+        ProfileViewInfo(event: EventMock.instacne.eventA, user: UserMock.instance.user3)
     }
 }
