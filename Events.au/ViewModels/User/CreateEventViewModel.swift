@@ -49,7 +49,7 @@ class CreateEventViewModel: ObservableObject {
             unitId: unitId
         )
 
-        let createEventManager = CreateEvent()
+        let createEventManager = UserCreateEvent()
         isLoading = true
         errorMessage = nil
 
