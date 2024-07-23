@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct EventDetail: View {
+    let user : UserModel2
     let event : EventModel
     @Binding var path: [HomeNavigation]
     @Binding var selectedTab: Tab
     @StateObject private var eventUnitsVM : GetUnitsByEventViewModel = GetUnitsByEventViewModel()
+    @StateObject private var participantVM = GetParticipantsByEventIdViewModel()
+    
     @Environment(\.colorScheme) var colorScheme
     @State private var isParagraph : Bool = false
     let approvedParticipants : [ParticipantModel]
@@ -34,32 +37,35 @@ struct EventDetail: View {
                 }
                 VStack(alignment:.leading) {
                     if approvedParticipants.count > 0 {
-                    NavigationLink {
-                        AttendeesListView(approvedParticipants: approvedParticipants)
-                    } label: {
-                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                            .foregroundStyle(Theme.backgroundColor)
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                            .frame(height: 80)
-                            .applyThemeDoubleShadow()
-                            .overlay (
-                                HStack {
-                                    attendees
-                                        .tint(Theme.secondaryTextColor)
-                                    Spacer()
-                                }
-                                    .padding()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            )
+                        NavigationLink {
+                            AttendeesListView(approvedParticipants: approvedParticipants)
+                        } label: {
+                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                                .foregroundStyle(Theme.backgroundColor)
+                                .frame(maxWidth: .infinity,alignment: .leading)
+                                .frame(height: 80)
+                                .applyThemeDoubleShadow()
+                                .overlay (
+                                    HStack {
+                                        attendees
+                                            .tint(Theme.secondaryTextColor)
+                                        Spacer()
+                                    }
+                                        .padding()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                )
+                        }
+                        
+                    } // end of condition
+                    
+                    
+                    if participantVM.participantExists(userId: user._id) {
+                        alreadyRegisteredButton
+                            .padding(.vertical, 8)
+                    } else {
+                        registerButton
+                            .padding(.vertical, 8)
                     }
-                    
-                } // end of condition
-                        
-                        
-                        
-                    
-                    registerButton
-                        .padding(.vertical,8)
                 }
             }
         }
@@ -68,6 +74,8 @@ struct EventDetail: View {
             if let eventId = event._id {
                 //fetching units by eventID
                 eventUnitsVM.getUnitsByEvent(id: eventId)
+                //fetching participants of an event
+                participantVM.fetchParticipants(id: eventId)
             }
             
         })
@@ -178,18 +186,6 @@ extension EventDetail {
     }
     
     private var registerButton : some View {
-        //        Button {
-        //            print("Hello")
-        //        } label: {
-        //            Text("Register Now")
-        //                .applyButtonFont()
-        //                .foregroundStyle(Theme.primaryTextColor)
-        //                .padding(.horizontal,Theme.large)
-        //                .frame(maxWidth: .infinity)
-        //                .frame(height: 40)
-        //                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-        //                .foregroundStyle(Theme.tintColor)
-        //        }
         NavigationLink(value: HomeNavigation.eventRegistration(event)) {
             Text("Register Now")
                 .applyButtonFont()
@@ -203,12 +199,29 @@ extension EventDetail {
         
     }
     
+    private var alreadyRegisteredButton : some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: Theme.cornerRadius)
+            Text("Already Registered")
+                .applyButtonFont()
+                .foregroundStyle(Theme.primaryTextColor)
+                .padding(.horizontal,Theme.large)
+                .frame(maxWidth: .infinity)
+                .frame(height: 40)
+                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                .foregroundStyle(Theme.tintColor)
+        }
+        
+        
+        
+    }
+    
 }
 
 
 #Preview {
     NavigationStack {
-        EventDetail(event: EventMock.instacne.eventA, path: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
+        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
     }
     .padding(.horizontal,Theme.large)
     

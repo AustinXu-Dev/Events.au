@@ -54,7 +54,7 @@ struct UserResponse : Codable {
 //MARK: For Getting All Users
 struct AllUsersResponse : Codable {
     let success: Bool
-    let message: [UserModel]
+    let message: [UserModel2]
 }
 
 struct UserModel: Codable, Hashable {
