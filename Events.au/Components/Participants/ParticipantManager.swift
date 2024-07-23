@@ -14,6 +14,7 @@ struct ParticipantManager: View {
     @Binding var pendingParticipants : [ParticipantModel]
     @Binding var approvedParticipants : [ParticipantModel]
     @ObservedObject var participantVM : GetParticipantsByEventIdViewModel
+    @ObservedObject var approvalVM : UpdateParticipantStatusViewModel
     var body: some View {
         VStack(alignment:.center) {
                 participantManagerHeader
@@ -38,7 +39,10 @@ struct ParticipantManager: View {
                                 approveButton
                                     .onTapGesture {
                                         withAnimation(.default) {
-                                            approvalHandler(isApproving: true, participant: partipant)
+                                            if let eventId = event._id, let token = KeychainManager.shared.keychain.get("appUserId") {
+                                                approvalVM.updateEventBasicInfo(eventId: eventId, token: token)
+                                                approvalHandler(isApproving: true, participant: partipant)
+                                            }
                                         }
 //                                        print("Pending:\(pendingParticipants.count)")
 //                                        print("Approved:\(approvedParticipants.count)")
@@ -171,12 +175,12 @@ extension ParticipantManager {
 struct ParticipantManager_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel())
+            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel(), approvalVM: UpdateParticipantStatusViewModel())
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel())
+            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel(),approvalVM: UpdateParticipantStatusViewModel())
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

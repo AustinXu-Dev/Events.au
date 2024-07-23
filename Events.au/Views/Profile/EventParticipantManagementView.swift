@@ -16,6 +16,8 @@ struct EventParticipantManagementView: View {
     @State var approvedParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
     let unit : UnitModel
     @StateObject var participantVM = GetParticipantsByEventIdViewModel()
+    @StateObject var approvalVM = UpdateParticipantStatusViewModel()
+
 
     
     var body: some View {
@@ -37,7 +39,7 @@ struct EventParticipantManagementView: View {
                             .foregroundStyle(Theme.secondaryTextColor.opacity(0.5))
                     }
                     
-                    ParticipantManager(event: event ,showPending: $showPending, unit: unit, pendingParticipants: $pendingParticipants, approvedParticipants: $approvedParticipants,participantVM: participantVM)
+                    ParticipantManager(event: event ,showPending: $showPending, unit: unit, pendingParticipants: $pendingParticipants, approvedParticipants: $approvedParticipants,participantVM: participantVM, approvalVM: approvalVM)
                 }
                
             }

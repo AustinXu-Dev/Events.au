@@ -25,19 +25,46 @@ struct ProfileView: View {
             if roleSwitched {
                 ReusableLoader(loaderText: "Switching Roles", isLoading: $isLoading, textLoader:$textLoader)
             } else {
-            VStack(alignment:.center) {
-                headerProfile
-                if let userName = profileVM.userDetail?.firstName {
-                    Text(userName)
-                        .applyProfileNameFont()
+                VStack(alignment:.leading) {
+                    headerProfile
+                    if let userName = profileVM.userDetail?.firstName {
+                        HStack {
+                            Text(userName)
+                                .font(.system(size:20))
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .frame(maxWidth: UIScreen.main.bounds.width / 2)
+                            Spacer()
+                            if let user = profileVM.userDetail {
+                                if !user.isOrganizer {
+                                    NavigationLink {
+                                        if let userModel = profileVM.userDetail {
+                                            ProfileViewInfo(user: userModel)
+                                        }
+                                    } label: {
+                                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                                            .foregroundStyle(Theme.tintColor)
+                                            .frame(width:30,height:30)
+                                            .overlay(
+                                                Image(Theme.darkModePencil))
+                                            .frame(width:8,height:8)
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    HStack {
+                        if let user = profileVM.userDetail {
+                            if user.isOrganizer {
+                                accountSelectionRow
+                                Spacer()
+                                profileDetailButton
+                            }
+                        }
+                    }
                 }
-                HStack {
-                    accountSelectionRow
-                    Spacer()
-                    profileDetailButton
-                }
-            }
-            
+                
                 if userRole == UserState.audience.rawValue {
                     EventManager(events: allEventsVM.events,showUpcoming: $showUpcoming ,allEventsVM : allEventsVM, organizerEventsVM : organizerEventsVM)
                 } else if userRole == UserState.organizer.rawValue {
@@ -48,8 +75,8 @@ struct ProfileView: View {
         }
         .padding(.horizontal,Theme.large)
         .onChange(of: selectedUserState) { userState in
-                updateUserRole()
-               }
+            updateUserRole()
+        }
         .onAppear(perform: {
             //get user role from previous state user defaults
             if let role = userRole, let userState = UserState(rawValue: role) {
@@ -60,13 +87,13 @@ struct ProfileView: View {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 //get user
                 profileVM.getOneUserById(id: userId)
-            //get all events based on userRole
-//            if userRole == UserState.audience.rawValue {
-//                self.allEventsVM.fetchEvents()
-//            } else {
-//                self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
-//            }
-        }
+                //get all events based on userRole
+                //            if userRole == UserState.audience.rawValue {
+                //                self.allEventsVM.fetchEvents()
+                //            } else {
+                //                self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                //            }
+            }
         })
         
     }
@@ -122,18 +149,13 @@ extension ProfileView {
     
     private var accountSelectionRow : some View {
         VStack {
-            if let user = profileVM.userDetail {
-                if user.isOrganizer {
-                    ProfileDropDown(prompt: "Select", selectedCategory: $selectedUserState )
-                }
-            }
-            
+            ProfileDropDown(prompt: "Select", selectedCategory: $selectedUserState)
         }
     }
     
     private func updateUserRole() {
         guard let userState = selectedUserState else { return }
-            roleSwitched = true
+        roleSwitched = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             roleSwitched = false
             if let userRoleSelection = selectedUserState {
@@ -148,9 +170,9 @@ extension ProfileView {
     }
     
     private var profileDetailButton : some View {
-    
+        
         NavigationLink {
-            ProfileViewInfo(event: EventMock.instacne.eventA, user: profileVM.userDetail ?? UserMock.instance.user3)
+            ProfileViewInfo(user: profileVM.userDetail ?? UserMock.instance.user3)
         } label: {
             HStack {
                 Image(systemName: "pencil")
@@ -162,17 +184,14 @@ extension ProfileView {
         }
         .padding(.vertical,Theme.medium)
         .padding(.horizontal,Theme.large)
-        
         .frame(maxWidth: .infinity)
-        
-//        .frame(width: 174.5)
         .background(Theme.tintColor)
         .cornerRadius(Theme.cornerRadius)
         
         
         
         
-       
+        
     }
     
 }
