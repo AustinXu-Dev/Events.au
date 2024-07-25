@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileViewInfo: View {
-    let event : EventModel
     let user : UserModel2
     var body: some View {
         NavigationView {
@@ -136,6 +135,6 @@ struct ProfileDetailRow: View {
 
 struct ProfileViewInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileViewInfo(event: EventMock.instacne.eventA, user: UserMock.instance.user3)
+        ProfileViewInfo(user: UserMock.instance.user3)
     }
 }

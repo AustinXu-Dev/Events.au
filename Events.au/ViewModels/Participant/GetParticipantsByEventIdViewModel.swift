@@ -19,6 +19,10 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
         return allParticipants.filter { $0.status == "participating" }
      }
      
+    //checking if the event has participant or not
+    func participantExists(userId: String) -> Bool {
+         return allParticipants.contains { $0._id == userId }
+     }
     
     func fetchParticipants(id:String) {
         let eventParticipantsURL = GetParticipantByEventId(id: id)
