@@ -28,6 +28,7 @@ struct EventRegistrationView: View {
     @State var showAlert: Bool = false
     
     @StateObject var userJoineEventViewModel = UserJoinEventViewModel()
+    @StateObject var getPollsByEventIdVM = GetPollsByEventIdViewModel()
     
     var body: some View {
         GeometryReader{ geometry in
@@ -37,6 +38,8 @@ struct EventRegistrationView: View {
                         imageField
                         
                         detailsField
+                        
+                        pollField
                         registerButton
                         
                     }
@@ -51,6 +54,7 @@ struct EventRegistrationView: View {
                     
             }
             .onAppear(perform: {
+                getPollsByEventIdVM.getPollsByEventId(id: event._id ?? "")
                 print(event.name ?? "")
             })
         }
@@ -67,7 +71,7 @@ extension EventRegistrationView{
     
     private var detailsField: some View{
         VStack(alignment: .leading, spacing: Theme.headingBodySpacing){
-            Text("Name")
+            Text("Nick Name")
                 .applyHeadingFont()
             TextField(nickNamePlaceholder, text: $nickName)
                 .frame(height: Theme.textFieldHeight)
@@ -143,6 +147,23 @@ extension EventRegistrationView{
         }
     }
     
+    private var pollField: some View{
+        VStack(alignment: .leading, spacing: Theme.headingBodySpacing){
+            ForEach(getPollsByEventIdVM.polls, id: \._id){ poll in
+                RegistrationPollView(poll: poll)
+            }
+        }
+    }
+    
+    private var submitpollResultButton: some View{
+        Button {
+            //
+        } label: {
+            Text("Submit poll result")
+        }
+
+    }
+    
     private func validatePhoneNumber(_ number: String) -> Bool {
         let phoneNumberPattern = "^\\+?[1-9]\\d{1,14}$"
         let result = number.range(of: phoneNumberPattern, options: .regularExpression)
@@ -169,6 +190,51 @@ struct LoadingView: View {
                 .frame(width: 200, height: 200)
             }
             .offset(y: -70)
+        }
+    }
+}
+
+struct RegistrationPollView: View{
+    var poll: PollModel
+    @State private var selectedOptions: [String] = []
+//    @State private var textFieldInputs: [String: String] = [:]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: Theme.headingBodySpacing) {
+            Text(poll.title)
+                .applyHeadingFont()
+            
+            ForEach(poll.options, id: \._id) { option in
+                Button(action: {
+                    if poll.multi_select {
+                        if selectedOptions.contains(option._id) {
+                            selectedOptions.removeAll { $0 == option._id }
+                        } else {
+                            selectedOptions.append(option._id)
+                        }
+                    } else {
+                        selectedOptions = [option._id]
+                    }
+                }) {
+                    HStack {
+                        if selectedOptions.contains(option._id) {
+                            Image("checkbox_active_icon")
+                        } else{
+                            Image("checkbox_icon")
+                        }
+                        Text(option.title)
+                            .applyBodyFont()
+                            .foregroundStyle(Theme.secondaryTextColor)
+                        Spacer()
+                    }
+                }
+            }
+            
+            if poll.multi_select{
+                Text("*Select multiple options if needed")
+                    .font(.footnote)
+                    .fontWeight(.light)
+            }
         }
     }
 }

@@ -105,6 +105,7 @@ struct HomeTest: View {
         
         })
         .tint(.blue)
+        .clipped() // Solution for tabbar bug
     }
 }
 

@@ -11,7 +11,7 @@ struct CreateEventPreScreen: View {
     
     @Binding var path: NavigationPath
     @Binding var selectedTab: Tab
-    @ObservedObject var pollVM = PollViewModel()
+    @ObservedObject var pollVM = CreatePollViewModel()
     
 
     var body: some View {
@@ -30,24 +30,36 @@ struct CreateEventPreScreen: View {
                     .lineLimit(3)
                     .applyBodyFont()
                     .padding(.horizontal)
-                NavigationLink(value: CreateEventNavigation.fillEventData) {
+                NavigationLink(value: "FillEventData") {
                     ReusableButton(title: "Host an Event")
                 }
             }
             
             //MARK: - CONTROL NAVIGATION HERE
-            .navigationDestination(for: CreateEventNavigation.self) { screen in
+            .navigationDestination(for: String.self) { screen in
                 switch screen{
-                case .preScreen:
-                    CreateEventPreScreen(path: $path, selectedTab: $selectedTab)
-                case .fillEventData:
+                case "FillEventData":
                     CreateEventView(path: $path, selectedTab: $selectedTab, createEventViewModel: CreateEventViewModel())
-                case .createPoll:
+                case "CreatePoll":
                     CreatePollView(path: $path, selectedTab: $selectedTab, pollVM: pollVM)
-                case .congrats:
+                case "Congrats":
                     CreateEventSuccessView(path: $path, selectedTab: $selectedTab, pollVM: pollVM)
+                default:
+                    Text("")
                 }
             }
+//            .navigationDestination(for: CreateEventNavigation.self) { screen in
+//                switch screen{
+//                case .preScreen:
+//                    CreateEventPreScreen(path: $path, selectedTab: $selectedTab)
+//                case .fillEventData:
+//                    CreateEventView(path: $path, selectedTab: $selectedTab, createEventViewModel: CreateEventViewModel())
+//                case .createPoll:
+//                    CreatePollView(path: $path, selectedTab: $selectedTab, pollVM: pollVM)
+//                case .congrats:
+//                    CreateEventSuccessView(path: $path, selectedTab: $selectedTab, pollVM: pollVM)
+//                }
+//            }
         }
     }
 }
