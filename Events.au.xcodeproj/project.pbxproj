@@ -149,6 +149,15 @@
 		BCBE02522C116C4400A9EE3E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02512C116C4400A9EE3E /* Service.swift */; };
 		BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02532C116C8E00A9EE3E /* Utility.swift */; };
 		BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02572C116CCA00A9EE3E /* Helper.swift */; };
+		BCE68B782C4F8D45000C5102 /* PollDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B772C4F8D45000C5102 /* PollDTO.swift */; };
+		BCE68B7A2C4F8E00000C5102 /* UserCreatePoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */; };
+		BCE68B7C2C4F8E69000C5102 /* CreatePollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */; };
+		BCE68B7E2C50E87D000C5102 /* GetPollsByEventId.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B7D2C50E87D000C5102 /* GetPollsByEventId.swift */; };
+		BCE68B822C50EB7C000C5102 /* PollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B812C50EB7C000C5102 /* PollModel.swift */; };
+		BCE68B842C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B832C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift */; };
+		BCE68B862C512F93000C5102 /* PollResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B852C512F93000C5102 /* PollResultDTO.swift */; };
+		BCE68B882C5135B3000C5102 /* UserSubmitPollResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B872C5135B3000C5102 /* UserSubmitPollResult.swift */; };
+		BCE68B8A2C513651000C5102 /* SubmitPollResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B892C513651000C5102 /* SubmitPollResultViewModel.swift */; };
 		BCF4F9FB2C2EF89600D5E009 /* CreateEventPreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4F9FA2C2EF89600D5E009 /* CreateEventPreScreen.swift */; };
 		BCF4F9FD2C2FA83A00D5E009 /* CreateEventSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4F9FC2C2FA83A00D5E009 /* CreateEventSuccessView.swift */; };
 		BCF4FAA72C3189A200D5E009 /* CreatePollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF4FAA62C3189A200D5E009 /* CreatePollView.swift */; };
@@ -297,6 +306,15 @@
 		BCBE02512C116C4400A9EE3E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		BCBE02532C116C8E00A9EE3E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		BCBE02572C116CCA00A9EE3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		BCE68B772C4F8D45000C5102 /* PollDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollDTO.swift; sourceTree = "<group>"; };
+		BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreatePoll.swift; sourceTree = "<group>"; };
+		BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollViewModel.swift; sourceTree = "<group>"; };
+		BCE68B7D2C50E87D000C5102 /* GetPollsByEventId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPollsByEventId.swift; sourceTree = "<group>"; };
+		BCE68B812C50EB7C000C5102 /* PollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollModel.swift; sourceTree = "<group>"; };
+		BCE68B832C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPollsByEventIdViewModel.swift; sourceTree = "<group>"; };
+		BCE68B852C512F93000C5102 /* PollResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollResultDTO.swift; sourceTree = "<group>"; };
+		BCE68B872C5135B3000C5102 /* UserSubmitPollResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSubmitPollResult.swift; sourceTree = "<group>"; };
+		BCE68B892C513651000C5102 /* SubmitPollResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPollResultViewModel.swift; sourceTree = "<group>"; };
 		BCF4F9FA2C2EF89600D5E009 /* CreateEventPreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPreScreen.swift; sourceTree = "<group>"; };
 		BCF4F9FC2C2FA83A00D5E009 /* CreateEventSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventSuccessView.swift; sourceTree = "<group>"; };
 		BCF4FAA62C3189A200D5E009 /* CreatePollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollView.swift; sourceTree = "<group>"; };
@@ -349,6 +367,7 @@
 				B7E3AA9B2C41474D00E463C6 /* AllEventsByUserId.swift */,
 				B34CB3992C3D2DD30034A562 /* FindEventForUnit.swift */,
 				B391CD4A2C4D723A0045BB96 /* UpdateEventBasicInfo.swift */,
+				BCE68B7D2C50E87D000C5102 /* GetPollsByEventId.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -371,6 +390,8 @@
 				B36303062C28A14B00537586 /* GetUserById.swift */,
 				B34CB3942C3D27560034A562 /* UserJoinEvent.swift */,
 				B391CD462C4D71D70045BB96 /* UserCreateEvent.swift */,
+				BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */,
+				BCE68B872C5135B3000C5102 /* UserSubmitPollResult.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -392,6 +413,7 @@
 				B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */,
 				B7F979C22C451F2C00D993F3 /* OrganizerEventsViewModel.swift */,
 				B34CB39B2C3D2FD70034A562 /* FindEventForUnitViewModel.swift */,
+				BCE68B832C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -414,6 +436,8 @@
 				B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */,
 				B363030A2C28A20500537586 /* CreateEventViewModel.swift */,
 				B34CB3962C3D29EF0034A562 /* UserJoinEventViewModel.swift */,
+				BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */,
+				BCE68B892C513651000C5102 /* SubmitPollResultViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -598,6 +622,7 @@
 				B7C69A6B2C14D8B40055DDD9 /* EventModel.swift */,
 				B7C69A852C14E5D50055DDD9 /* ParticipantModel.swift */,
 				B7C69A772C14E0210055DDD9 /* EventUnitModel.swift */,
+				BCE68B812C50EB7C000C5102 /* PollModel.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -696,6 +721,8 @@
 				B7C69A712C14DE900055DDD9 /* UpdateEventStatusDTO.swift */,
 				B7C69A812C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift */,
 				B7C69A832C14E5C00055DDD9 /* UpdateEventUnitDTO.swift */,
+				BCE68B772C4F8D45000C5102 /* PollDTO.swift */,
+				BCE68B852C512F93000C5102 /* PollResultDTO.swift */,
 			);
 			path = RequestBodyDTO;
 			sourceTree = "<group>";
@@ -999,6 +1026,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B391CD4B2C4D723A0045BB96 /* UpdateEventBasicInfo.swift in Sources */,
+				BCE68B862C512F93000C5102 /* PollResultDTO.swift in Sources */,
 				B7FCBFF62C15966F00C8C531 /* SignInDTO.swift in Sources */,
 				396685D02C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift in Sources */,
 				B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */,
@@ -1012,6 +1040,8 @@
 				B7C69A922C14F93D0055DDD9 /* OrganizerMock.swift in Sources */,
 				B34CB3A22C3D33F80034A562 /* FindUnitsForAUserViewModel.swift in Sources */,
 				B36303032C28A11600537586 /* AllUnits.swift in Sources */,
+				BCE68B782C4F8D45000C5102 /* PollDTO.swift in Sources */,
+				BCE68B8A2C513651000C5102 /* SubmitPollResultViewModel.swift in Sources */,
 				B7C69A7E2C14E18B0055DDD9 /* AdminModel.swift in Sources */,
 				3920CD6E2C3289FA00632B3C /* CreatedSuccessView.swift in Sources */,
 				B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */,
@@ -1040,6 +1070,9 @@
 				BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */,
 				B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */,
 				B36CA9612C1F8E1D00FE6D46 /* UserSignUpViewModel.swift in Sources */,
+				BCE68B7C2C4F8E69000C5102 /* CreatePollViewModel.swift in Sources */,
+				BCE68B7E2C50E87D000C5102 /* GetPollsByEventId.swift in Sources */,
+				BCE68B882C5135B3000C5102 /* UserSubmitPollResult.swift in Sources */,
 				BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */,
 				B7C69A762C14DF880055DDD9 /* UnitMemberModel.swift in Sources */,
 				B7F265042C1D853300033E37 /* ParticipantRow.swift in Sources */,
@@ -1050,6 +1083,7 @@
 				B7C69A702C14DDAC0055DDD9 /* UpdateEventInfoDTO.swift in Sources */,
 				B74C42862C26FA2C009E3E63 /* UpdateUserDTO.swift in Sources */,
 				BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */,
+				BCE68B822C50EB7C000C5102 /* PollModel.swift in Sources */,
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
 				B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */,
 				B7C69A7C2C14E1160055DDD9 /* SignOutModel.swift in Sources */,
@@ -1081,6 +1115,7 @@
 				B7C69A8D2C14F7850055DDD9 /* SignUpModel.swift in Sources */,
 				B36CA95F2C1F8D7100FE6D46 /* AllEventsViewModel.swift in Sources */,
 				B731AAD72C16006900A3E8C2 /* EventUnitMock.swift in Sources */,
+				BCE68B7A2C4F8E00000C5102 /* UserCreatePoll.swift in Sources */,
 				B7FCBFFA2C15A19A00C8C531 /* SignOutDTO.swift in Sources */,
 				B3A571AC2C29D600000B7AB6 /* GetAdminById.swift in Sources */,
 				B34CB3952C3D27560034A562 /* UserJoinEvent.swift in Sources */,
@@ -1098,6 +1133,7 @@
 				B34CB3902C3D24E90034A562 /* UpdateParticipantStatus.swift in Sources */,
 				B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */,
 				BCAD2B072C2881E300E6B87D /* DropDownMenu.swift in Sources */,
+				BCE68B842C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift in Sources */,
 				B7ECB5472C1F5C6C004CCFA7 /* CategoryValue.swift in Sources */,
 				B34CB3972C3D29EF0034A562 /* UserJoinEventViewModel.swift in Sources */,
 				B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */,

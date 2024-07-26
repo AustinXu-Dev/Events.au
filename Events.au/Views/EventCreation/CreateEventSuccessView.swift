@@ -11,7 +11,7 @@ struct CreateEventSuccessView: View {
     
     @Binding var path: NavigationPath
     @Binding var selectedTab: Tab
-    @ObservedObject var pollVM: PollViewModel
+    @ObservedObject var pollVM: CreatePollViewModel
 
     var body: some View {
         VStack(alignment:.center,spacing:Theme.defaultSpacing){
@@ -37,9 +37,9 @@ struct CreateEventSuccessView: View {
             }
             
             Button(action: {
-                for i in pollVM.polls{
-                    print(i.pollTitle, i.options, i.allowMultipleAnswer)
-                }
+//                for i in pollVM.polls{
+//                    print(i.pollTitle, i.options, i.allowMultipleAnswer)
+//                }
             }, label: {
                 Text("Test Poll")
                     .frame(maxWidth: .infinity)
@@ -60,6 +60,6 @@ struct CreateEventSuccessView: View {
 #Preview {
     CreateEventSuccessView(
         path: .constant(NavigationPath.init()),
-        selectedTab: .constant(Tab.createEvent), pollVM: PollViewModel()
+        selectedTab: .constant(Tab.createEvent), pollVM: CreatePollViewModel()
     )
 }

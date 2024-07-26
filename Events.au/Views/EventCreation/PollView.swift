@@ -13,14 +13,18 @@ enum FocusField: Hashable {
 }
 
 struct PollView: View {
-
-    @ObservedObject var poll: PollModel
-    @ObservedObject var pollVM: PollViewModel
+    
+    @ObservedObject var poll: PollDTO
+    @ObservedObject var pollVM: CreatePollViewModel
+    @Binding var isEditing: Bool
+    
+//    @ObservedObject var poll: PollModel
+//    @ObservedObject var pollVM: PollViewModel
     @FocusState private var focusedField: FocusField?
     
     var body: some View {
         VStack(alignment: .leading) {
-            TextField("Ask a question", text: $poll.pollTitle, onCommit: {
+            TextField("Ask a question", text: $poll.title, onCommit: {
                 if !$poll.options.isEmpty {
                     focusedField = .option(index: 0)
                 }
@@ -31,11 +35,25 @@ struct PollView: View {
             .padding(.vertical, 8)
             .onTapGesture {
                 withAnimation {
-                    pollVM.toggleEditing(for: pollVM.polls.firstIndex(where: {$0.id == poll.id}) ?? -1)
+//                    pollVM.toggleEditing(for: pollVM.polls.firstIndex(where: {$0.id == poll.id}) ?? -1)
+                    isEditing = true
                 }
             }
 
-            if pollVM.editingPollIndex == pollVM.polls.firstIndex(where: {$0.id == poll.id}){
+//            if pollVM.editingPollIndex == pollVM.polls.firstIndex(where: {$0.id == poll.id}){
+//                optionField
+//                addOptionButton
+//                editBox
+//            } else{
+//                HStack{
+//                    Spacer()
+//                    Text("\(poll.options.count) Options")
+//                        .applyBodyFont()
+//                        .foregroundStyle(Theme.tintColor)
+//                }.padding(.horizontal, 8)
+//            }
+            
+            if isEditing{
                 optionField
                 addOptionButton
                 editBox
@@ -47,6 +65,7 @@ struct PollView: View {
                         .foregroundStyle(Theme.tintColor)
                 }.padding(.horizontal, 8)
             }
+            
 
             Divider()
         }
@@ -68,11 +87,11 @@ extension PollView{
                     .scaledToFit()
                     .frame(width: 16, height: 16)
                     
-                TextField("Option \(index + 1)", text: $poll.options[index], onCommit: {
+                TextField("Option \(index + 1)", text: $poll.options[index].title, onCommit: {
                     if index < poll.options.count - 1 {
                         focusedField = .option(index: index + 1)
                     } else {
-                        poll.options.append("")
+                        poll.options.append(OptionDTO())
                         DispatchQueue.main.async {
                             focusedField = .option(index: poll.options.count - 1)
                         }
@@ -92,6 +111,9 @@ extension PollView{
             .padding(.horizontal, 16)
             .padding(.bottom, 4)
         }
+        .onTapGesture {
+            isEditing = true
+        }
     }
     
     private var editBox: some View{
@@ -100,7 +122,7 @@ extension PollView{
                 Spacer()
                 Text("Allowed multiple answers")
                     .applyOverlayFont()
-                Toggle("", isOn: $poll.allowMultipleAnswer)
+                Toggle("", isOn: $poll.multi_select)
                     .labelsHidden()
                     .controlSize(.mini)
                     .toggleStyle(CustomToggleStyle())
@@ -143,12 +165,15 @@ extension PollView{
         }
         .padding(.horizontal, 8)
         .animation(.easeInOut, value: pollVM.editingPollIndex)
+        .onTapGesture {
+            isEditing = true
+        }
     }
     
     private var addOptionButton: some View{
         HStack{
             Button(action: {
-                poll.options.append("")
+                poll.options.append(OptionDTO())
             }) {
                 HStack {
                     Image(systemName: "plus")
@@ -163,10 +188,13 @@ extension PollView{
             .padding(.leading, 16)
             Spacer()
         }
+        .onTapGesture {
+            isEditing = true
+        }
     }
     
 }
 
 #Preview {
-    PollView(poll: PollModel(), pollVM: PollViewModel())
+    PollView(poll: PollDTO(), pollVM: CreatePollViewModel(), isEditing: .constant(true))
 }

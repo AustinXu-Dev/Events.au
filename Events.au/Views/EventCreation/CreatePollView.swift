@@ -11,19 +11,20 @@ struct CreatePollView: View {
     
     @Binding var path: NavigationPath
     @Binding var selectedTab: Tab
+    @State var isEditing: Bool = false
     
-    @ObservedObject var pollVM: PollViewModel
+    @ObservedObject var pollVM: CreatePollViewModel
 
     var body: some View {
         GeometryReader{ geometry in
             ScrollView {
                 ForEach(pollVM.polls) { poll in
-                    PollView(poll: poll, pollVM: pollVM)
+                    PollView(poll: poll, pollVM: pollVM, isEditing: $isEditing)
                 }
                 HStack{
                     Spacer()
                     Button(action: {
-                        pollVM.polls.append(PollModel())
+                        pollVM.polls.append(PollDTO())
                     }, label: {
                         Text("New Poll")
                             .frame(width: 93, height: 40)
@@ -39,7 +40,19 @@ struct CreatePollView: View {
                 
                 Spacer().frame(height: 75)
                 
-                NavigationLink(value: CreateEventNavigation.congrats) {
+                Button {
+                    print(pollVM.polls[0].title)
+                } label: {
+                    Text("Get all poll")
+                }
+                
+                Button {
+                    pollVM.createPoll(token: TokenManager.share.getToken() ?? "")
+                } label: {
+                    Text("Post Poll")
+                }
+                
+                NavigationLink(value: "Congrats") {
                     Text("Create Event")
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(Theme.primaryTextColor)
@@ -69,7 +82,7 @@ struct CreatePollView: View {
             }
             .onReceive(pollVM.$polls) { polls in
                 if polls.isEmpty {
-                    pollVM.polls.append(PollModel())
+                    pollVM.polls.append(PollDTO())
                 }
             }
             
@@ -77,6 +90,7 @@ struct CreatePollView: View {
             withAnimation {
                 pollVM.editingPollIndex = -1
             }
+            isEditing = false
         }
         
     }
@@ -85,6 +99,6 @@ struct CreatePollView: View {
 #Preview {
     CreatePollView(
         path: .constant(NavigationPath.init()),
-        selectedTab: .constant(Tab.createEvent), pollVM: PollViewModel()
+        selectedTab: .constant(Tab.createEvent), pollVM: CreatePollViewModel()
     )
 }

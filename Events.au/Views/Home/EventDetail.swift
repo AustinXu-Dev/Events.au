@@ -55,10 +55,7 @@ struct EventDetail: View {
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 )
                         }
-                        
                     } // end of condition
-                    
-                    
                     if participantVM.participantExists(userId: user._id) {
                         alreadyRegisteredButton
                             .padding(.vertical, 8)

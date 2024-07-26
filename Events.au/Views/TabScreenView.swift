@@ -16,7 +16,7 @@ struct TabScreenView: View {
     @State private var createEventNavigationStack: NavigationPath = .init()
     
     var body: some View {
-  
+
         TabView(selection: $selectedTab) {
             //Home View
             HomeTest(path: $homeNavigationStack, selectedTab: $selectedTab)
@@ -39,6 +39,7 @@ struct TabScreenView: View {
                 }
                 .tag(Tab.profile)
         }
+        .background(Color.white)
         .tint(Theme.tintColor)
     }
 }
@@ -70,6 +71,12 @@ extension TabScreenView {
                     //User already on home view, scroll to top function here
                 } else {
                     homeNavigationStack = []
+                }
+                
+                if createEventNavigationStack.isEmpty{
+                    
+                } else {
+                    createEventNavigationStack = NavigationPath()
                 }
             }
             //Set the tab to the tabbed tab

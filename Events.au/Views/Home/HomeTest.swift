@@ -19,20 +19,34 @@ struct HomeTest: View {
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
-
+    
+    // Filtered Events for search text
+    var filteredEvents: [EventModel]{
+        withAnimation {
+            if searchText.isEmpty{
+                return eventVM.events
+            } else{
+                return eventVM.events.filter { $0.name?.localizedStandardContains(searchText) ?? false}
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack(path: $path){
             VStack(alignment:.leading,spacing:Theme.defaultSpacing){
+
+                SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
+                if searchText.isEmpty {
+                    categoryScrollView
+                }
                 if eventVM.loader {
                     ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .tint(Theme.tintColor)
                 } else {
-                    SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
-                    categoryScrollView
                     eventsScrollView
-                    Spacer(minLength: 0)
                 }
+                                
             }
             .padding(.horizontal,Theme.large)
             .navigationBarTitleDisplayMode(.inline)
@@ -93,6 +107,7 @@ struct HomeTest: View {
         
         })
         .tint(.blue)
+        .clipped() // Solution for tabbar bug
     }
 }
 
@@ -142,11 +157,11 @@ extension HomeTest {
     
     private var eventsScrollView : some View {
         VStack(alignment:.leading,spacing: Theme.defaultSpacing) {
-            Text("Upcoming Events")
+            Text(searchText.isEmpty ? "Upcoming Events" : "Search results")
                 .applyLabelFont()
                 ScrollView(.vertical,showsIndicators: false){
                     VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
-                        ForEach(eventVM.events,id: \._id){ event in
+                        ForEach(filteredEvents,id: \._id){ event in
                             // Change here
                             NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
                                 EventCard(participantsVM: participantsVM, event: event)
