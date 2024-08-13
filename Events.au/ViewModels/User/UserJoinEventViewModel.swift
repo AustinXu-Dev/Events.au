@@ -23,7 +23,8 @@ class UserJoinEventViewModel: ObservableObject {
                 self?.isLoading = false
                 switch result {
                 case .success(let participantStatusResult):
-                    print("Event basic info updated successfully: \(participantStatusResult)")
+//                    print("Event basic info updated successfully: \(participantStatusResult)")
+                    print("Event basic info updated successfully")
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                     print("Failed to create event: \(error)")

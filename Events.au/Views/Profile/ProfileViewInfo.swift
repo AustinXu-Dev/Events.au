@@ -8,60 +8,64 @@
 import SwiftUI
 
 struct ProfileViewInfo: View {
+    
+    @Binding var path: [ProfileNavigation]
+    @Binding var selectedTab: Tab
+    
     let user : UserModel2
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Spacer()
-                        Image("human_profile")
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                        Spacer()
-                    }
-                    .padding(.top, 20)
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                            ProfileDetailRow(label: "First Name", value: user.firstName)
-                            //MARK: add last name after dropping user database
-                            ProfileDetailRow(label: "Last Name", value : "Gay")
-                            ProfileDetailRow(label: "Email", value: user.email)
-                            ProfileDetailRow(label: "Phone", value: "\(user.phone)")
-                            ProfileDetailRow(label: "Gender", value: "Gay")
-                            ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
-                        
-                    }
-                    .padding()
-                    .padding(.horizontal, 16)
-                    
-                    Divider()
-                    
-                    Text("Event History")
-                        .font(.system(size: 20))
-                        .padding(.top, 20)
-                        .padding(.horizontal, 34)
-                        .bold()
-                    
-                    VStack(spacing: 10) {
-                        EventRow(event: EventMock.instacne.eventA)
-                        EventRow(event: EventMock.instacne.eventB)
-                    }
-                    .padding(.horizontal)
-                    
+        ScrollView {
+            VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    Image("human_profile")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
                     Spacer()
                 }
+                .padding(.top, 20)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                        ProfileDetailRow(label: "First Name", value: user.firstName)
+                        //MARK: add last name after dropping user database
+                        ProfileDetailRow(label: "Last Name", value : "Last Name")
+                        ProfileDetailRow(label: "Email", value: user.email)
+                        ProfileDetailRow(label: "Phone", value: "\(user.phone)")
+                        ProfileDetailRow(label: "Gender", value: "Gender")
+                        ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
+                    
+                }
+                .padding()
+                .padding(.horizontal, 16)
+                
+                Divider()
+                
+                Text("Event History")
+                    .font(.system(size: 20))
+                    .padding(.top, 20)
+                    .padding(.horizontal, 34)
+                    .bold()
+                
+                VStack(spacing: 10) {
+                    EventRow(event: EventMock.instacne.eventA)
+                    EventRow(event: EventMock.instacne.eventB)
+                }
+                .padding(.horizontal)
+                
+                Spacer()
             }
-            .toolbar {
-               ToolbarItem(placement: .navigationBarTrailing) {
-                   NavigationLink(destination: ProfileEditView(user: user)) {
-                       Image(systemName: "pencil")
-                           .imageScale(.large)
-                   }
-               }
-           }
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(value: ProfileNavigation.profileEditView(user)) {
+                    Image(systemName: "pencil")
+                        .imageScale(.large)
+                }
+            }
+        }
+
+        
     }
 }
 
@@ -135,6 +139,6 @@ struct ProfileDetailRow: View {
 
 struct ProfileViewInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileViewInfo(user: UserMock.instance.user3)
+        ProfileViewInfo(path: .constant([]), selectedTab: .constant(.profile),user: UserMock.instance.user3)
     }
 }

@@ -22,7 +22,7 @@ class AllUnitsViewModel: ObservableObject {
             case .success(let unitResponse):
                 DispatchQueue.main.async {
                     self?.units = unitResponse.message
-                    print(unitResponse.message)
+//                    print(unitResponse.message)
                 }
             case .failure(let error):
                 print("Failed to fetch events: \(error)")

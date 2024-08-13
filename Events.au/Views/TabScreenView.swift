@@ -14,6 +14,7 @@ struct TabScreenView: View {
     @State private var selectedTab: Tab = .home
     @State private var homeNavigationStack: [HomeNavigation] = []
     @State private var createEventNavigationStack: NavigationPath = .init()
+    @State private var profileNavigationStack: [ProfileNavigation] = []
     
     var body: some View {
 
@@ -33,7 +34,7 @@ struct TabScreenView: View {
                 .tag(Tab.createEvent)
          
             //Profile View
-            ProfileView()
+            ProfileView(path: $profileNavigationStack, selectedTab: $selectedTab)
                 .tabItem {
                     profileTabLabel
                 }

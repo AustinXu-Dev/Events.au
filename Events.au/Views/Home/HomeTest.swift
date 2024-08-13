@@ -80,11 +80,11 @@ struct HomeTest: View {
             //MARK: - HOME NAVIGATION HANDLER HERE
             .navigationDestination(for: HomeNavigation.self) { screen in
                 switch screen {
-                case .eventDetail(let currentEvent, let approvedParticipants):
+                case .eventDetail(let currentEvent, _):
                     if let user = profileVM.userDetail {
                         EventDetail(user: user, event: currentEvent, path: $path, selectedTab: $selectedTab, approvedParticipants: participantsVM.approvedParticipants)
                     }
-                case .attendeesList(let approvedParticipants):
+                case .attendeesList(_):
                     AttendeesListView(approvedParticipants: participantsVM.approvedParticipants)
                 case .eventRegistration(let currentEvent):
                     EventRegistrationView(event: currentEvent, path: $path, selectedTab: $selectedTab)

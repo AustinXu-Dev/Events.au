@@ -22,7 +22,7 @@ class GetUnitsByEventViewModel : ObservableObject {
                 case .success(let returnedEventUnits):
                     self?.loader = false
                     self?.eventUnits = returnedEventUnits.message
-                    print("Event Units: \(returnedEventUnits)")
+//                    print("Event Units: \(returnedEventUnits)")
                 case .failure(let error):
                     self?.loader = false
                     self?.errorMessage = "Failed to get units of an event by eventId. \(error.localizedDescription)"

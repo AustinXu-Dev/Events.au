@@ -25,7 +25,10 @@ enum CreateEventNavigation: Hashable{
 }
 
 enum ProfileNavigation: Hashable{
-    case profile, setting
+    case profile
+    case profileViewInfo(UserModel2)
+    case profileEditView(UserModel2)
+    case profileEventDetail
 }
 
 
