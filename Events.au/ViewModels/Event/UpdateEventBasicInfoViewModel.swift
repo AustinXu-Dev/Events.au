@@ -16,13 +16,13 @@ class UpdateEventBasicInfoViewModel: ObservableObject {
     @Published var startTime: String
     @Published var endTime: String
     @Published var rules: String
-    @Published var imageUrl: String
+    @Published var coverImageUrl: String
     @Published var unitId: String
 
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
 
-    init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", imageUrl: String = "", unitId: String = "66704d5453650896c379d69a") {
+    init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", coverImageUrl: String = "", unitId: String = "66704d5453650896c379d69a") {
         self.name = name
         self.description = description
         self.location = location
@@ -31,7 +31,7 @@ class UpdateEventBasicInfoViewModel: ObservableObject {
         self.startTime = startTime
         self.endTime = endTime
         self.rules = rules
-        self.imageUrl = imageUrl
+        self.coverImageUrl = coverImageUrl
         self.unitId = unitId
     }
 
@@ -45,7 +45,7 @@ class UpdateEventBasicInfoViewModel: ObservableObject {
             startTime: startTime,
             endTime: endTime,
             rules: rules,
-            imageUrl: imageUrl,
+            coverImageUrl: coverImageUrl,
             unitId: unitId
         )
 

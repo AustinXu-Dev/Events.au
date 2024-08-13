@@ -319,52 +319,56 @@ extension CreateEventView{
     }
     
     private var nextButton: some View{
-//        Button(action: {
-//            //MARK: Create button action here
-//            withAnimation {
-//                isLoading = true
-//            }
-//            
-//            //MARK: -Integrating Create Event API Integration
-//            createEventViewModel.name = name
-//            createEventViewModel.description = description
-//            createEventViewModel.startDate = startDateValue
-//            createEventViewModel.endDate = endDateValue
-//            createEventViewModel.startTime = startTimeValue
-//            createEventViewModel.endTime = endTimeValue
-//            createEventViewModel.location = location
-//            createEventViewModel.rules = rules
-//            createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
-//            createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//                // Hide loading spinner and show success screen
-//                withAnimation {
-//                    print(name, description, location, startDateValue, endDateValue, startTimeValue, endTimeValue, rules, image, allUnitsViewModel.units[selectedOptionIndex].id)
-//                    //MARK: -API POST LOGIC HERE
-//                    //If post is success set the isloading to false to show registration success
-//                    isLoading = false
-//                    showAlert = true
-//                }
-//            }
-//        }, label: {
-//            RoundedRectangle(cornerRadius: 10)
-//                .frame(maxWidth: .infinity, idealHeight: Theme.buttonHeight)
-//                .overlay {
-//                    Text("Next")
-//                        .applyButtonFont()
-//                        .foregroundStyle(Theme.primaryTextColor)
-//                }
-//                .foregroundStyle(Theme.tintColor)
-//        })
-//        .alert("Your event is created successfully.", isPresented: $showAlert) {
-//            NavigationLink(value: CreateEventNavigation.createPoll) {
+        Button(action: {
+            //MARK: Create button action here
+            withAnimation {
+                isLoading = true
+            }
+            
+            //MARK: -Integrating Create Event API Integration
+            createEventViewModel.name = name
+            createEventViewModel.description = description
+            createEventViewModel.startDate = startDateValue
+            createEventViewModel.endDate = endDateValue
+            createEventViewModel.startTime = startTimeValue
+            createEventViewModel.endTime = endTimeValue
+            createEventViewModel.location = location
+            createEventViewModel.rules = rules
+            createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
+            createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                // Hide loading spinner and show success screen
+                withAnimation {
+                    print(name, description, location, startDateValue, endDateValue, startTimeValue, endTimeValue, rules, image, allUnitsViewModel.units[selectedOptionIndex].id)
+                    //MARK: -API POST LOGIC HERE
+                    //If post is success set the isloading to false to show registration success
+                    isLoading = false
+                    showAlert = true
+                }
+            }
+        }, label: {
+            RoundedRectangle(cornerRadius: 10)
+                .frame(maxWidth: .infinity, idealHeight: Theme.buttonHeight)
+                .overlay {
+                    Text("Next")
+                        .applyButtonFont()
+                        .foregroundStyle(Theme.primaryTextColor)
+                }
+                .foregroundStyle(Theme.tintColor)
+        })
+        .alert("Your event is created successfully.", isPresented: $showAlert) {
+            NavigationLink(value: "Congrats") {
+                Text("OK")
+            }
+            // This is for create poll purpose
+//            NavigationLink(value: "CreatePoll") {
 //                Text("OK")
 //            }
-//        }
-        NavigationLink(value: "CreatePoll") {
-            Text("OK")
         }
+//        NavigationLink(value: "CreatePoll") {
+//            Text("OK")
+//        }
     }
 }
 

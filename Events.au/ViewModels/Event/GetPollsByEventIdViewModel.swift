@@ -20,7 +20,7 @@ class GetPollsByEventIdViewModel: ObservableObject {
                 switch result{
                 case .success(let pollResult):
                     self.polls = pollResult.message
-                    print(pollResult.message)
+//                    print(pollResult.message)
                 case .failure(let error):
                     self.errorMessage = "Failed to get poll for the event"
                     print(error.localizedDescription)

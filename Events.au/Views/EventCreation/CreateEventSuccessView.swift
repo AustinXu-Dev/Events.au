@@ -36,23 +36,23 @@ struct CreateEventSuccessView: View {
                 ReusableButton(title: "Back to Home")
             }
             
-            Button(action: {
+//            Button(action: {
 //                for i in pollVM.polls{
 //                    print(i.pollTitle, i.options, i.allowMultipleAnswer)
 //                }
-            }, label: {
-                Text("Test Poll")
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(Theme.primaryTextColor)
-                    .applyButtonFont()
-                    .padding(.vertical, Theme.medium)
-                    .background(
-                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                            .frame(height:Theme.buttonHeight)
-                            .foregroundStyle(Theme.tintColor)
-                    )
-                    .padding(.horizontal, Theme.large)
-            })
+//            }, label: {
+//                Text("Test Poll")
+//                    .frame(maxWidth: .infinity)
+//                    .foregroundStyle(Theme.primaryTextColor)
+//                    .applyButtonFont()
+//                    .padding(.vertical, Theme.medium)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
+//                            .frame(height:Theme.buttonHeight)
+//                            .foregroundStyle(Theme.tintColor)
+//                    )
+//                    .padding(.horizontal, Theme.large)
+//            })
         }
     }
 }

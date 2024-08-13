@@ -49,7 +49,7 @@ struct TestView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
 
-                    TextField("Image URL", text: $viewModel.imageUrl)
+                    TextField("Image URL", text: $viewModel.coverImageUrl)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
 

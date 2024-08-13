@@ -39,7 +39,7 @@ struct EventRegistrationView: View {
                         
                         detailsField
                         
-                        pollField
+//                        pollField
                         registerButton
                         
                     }

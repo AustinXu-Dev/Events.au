@@ -52,7 +52,7 @@ extension TabScreenView {
     }
     
     private var remarkTabLabel: some View{
-        Label("Remarks", image: selectedTab==Tab.createEvent ? "create_icon_active" : "create_icon")
+        Label("Event", image: selectedTab==Tab.createEvent ? "create_icon_active" : "create_icon")
             .font(Theme.labelFontStyle)
     }
     

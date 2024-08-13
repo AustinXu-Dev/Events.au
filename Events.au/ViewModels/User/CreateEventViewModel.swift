@@ -16,13 +16,13 @@ class CreateEventViewModel: ObservableObject {
     @Published var startTime: String
     @Published var endTime: String
     @Published var rules: String
-    @Published var imageUrl: String
+    @Published var coverImageUrl: String
     @Published var unitId: String
 
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
 
-    init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", imageUrl: String = "https://lh3.googleusercontent.com/a/ACg8ocJWN9H5pN0ecH3xit1l8PFbf4oE7bVeMTepu3zjnvUKJwynsQ=s96-c", unitId: String = "669e90ed520a32a42e23888c") {
+    init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", coverImageUrl: String = "https://lh3.googleusercontent.com/a/ACg8ocJWN9H5pN0ecH3xit1l8PFbf4oE7bVeMTepu3zjnvUKJwynsQ=s96-c", unitId: String = "669e90ed520a32a42e23888c") {
         self.name = name
         self.description = description
         self.location = location
@@ -31,7 +31,7 @@ class CreateEventViewModel: ObservableObject {
         self.startTime = startTime
         self.endTime = endTime
         self.rules = rules
-        self.imageUrl = imageUrl
+        self.coverImageUrl = coverImageUrl
         self.unitId = unitId
     }
 
@@ -45,7 +45,7 @@ class CreateEventViewModel: ObservableObject {
             startTime: startTime,
             endTime: endTime,
             rules: rules,
-            imageUrl: imageUrl,
+            coverImageUrl: coverImageUrl,
             unitId: unitId
         )
 
