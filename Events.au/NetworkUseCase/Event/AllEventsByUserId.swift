@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//MARK: - this is a payload method url for fetching events that a user has hosted by userId (not organizerID)
 class AllEventsByUserId : APIManager {
     let id : String
     init(id: String) {

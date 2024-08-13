@@ -149,7 +149,7 @@ struct Theme {
     static let eventImage : String = "EventImagePreview"
     
     static let noEventVector : String = "no_event_vector"
-    
+    static let profileEditButton : String = "profile_edit_button"
 }
 
 struct ShadowModifier: ViewModifier {

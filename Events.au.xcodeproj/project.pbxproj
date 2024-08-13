@@ -92,6 +92,8 @@
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
 		B7B208D22C21274600DB1450 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B208D12C21274600DB1450 /* EventManager.swift */; };
+		B7B6C0402C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */; };
+		B7B6C0422C637061007FBFA8 /* ParticipantEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */; };
 		B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A632C14D3BA0055DDD9 /* UserModel.swift */; };
 		B7C69A682C14D78F0055DDD9 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A672C14D78F0055DDD9 /* SignInModel.swift */; };
 		B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A6B2C14D8B40055DDD9 /* EventModel.swift */; };
@@ -243,6 +245,8 @@
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
 		B7B208D12C21274600DB1450 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParticipantEventsByUserId.swift; sourceTree = "<group>"; };
+		B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantEventsViewModel.swift; sourceTree = "<group>"; };
 		B7C69A632C14D3BA0055DDD9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B7C69A672C14D78F0055DDD9 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		B7C69A6B2C14D8B40055DDD9 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				B704B6C72C22CB69006E3DDF /* AllEvents.swift */,
+				B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */,
 				B7E3AA9B2C41474D00E463C6 /* AllEventsByUserId.swift */,
 				B34CB3992C3D2DD30034A562 /* FindEventForUnit.swift */,
 				B391CD4A2C4D723A0045BB96 /* UpdateEventBasicInfo.swift */,
@@ -412,6 +417,7 @@
 				B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */,
 				B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */,
 				B7F979C22C451F2C00D993F3 /* OrganizerEventsViewModel.swift */,
+				B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */,
 				B34CB39B2C3D2FD70034A562 /* FindEventForUnitViewModel.swift */,
 				BCE68B832C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift */,
 			);
@@ -1145,6 +1151,7 @@
 				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
 				B70C04972C3FF0100032B5BB /* AllUnitsByUserId.swift in Sources */,
+				B7B6C0422C637061007FBFA8 /* ParticipantEventsViewModel.swift in Sources */,
 				B3A571AF2C29D807000B7AB6 /* GetAdminByIdViewModel.swift in Sources */,
 				BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */,
 				B7E3AA9C2C41474D00E463C6 /* AllEventsByUserId.swift in Sources */,
@@ -1165,6 +1172,7 @@
 				BCAD2B052C2875B100E6B87D /* CreateEventView.swift in Sources */,
 				B7F265072C1D8D5A00033E37 /* EventParticipantsMock.swift in Sources */,
 				B704B6C82C22CB69006E3DDF /* AllEvents.swift in Sources */,
+				B7B6C0402C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift in Sources */,
 				B34CB39C2C3D2FD70034A562 /* FindEventForUnitViewModel.swift in Sources */,
 				BCF4FAAE2C31B2DB00D5E009 /* PollView.swift in Sources */,
 				B3A571A92C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift in Sources */,
