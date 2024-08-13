@@ -20,6 +20,10 @@ struct EventStatus {
             return Color(Theme.pendingEventColor)
         case "rejected" :
             return Color(Theme.redFaint)
+        case "active" :
+            return Color(Theme.approvedEventColor)
+        case "completed":
+            return Color(Theme.pendingEventColor)
         default:
             return Color(Theme.pendingEventColor)
 

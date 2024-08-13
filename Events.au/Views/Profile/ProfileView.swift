@@ -9,17 +9,21 @@ import SwiftUI
 
 struct ProfileView: View {
     @AppStorage("userRole") private var userRole: String?
-    @StateObject var allEventsVM = AllEventsViewModel()
+    @StateObject var participantEventsVM = ParticipantEventsViewModel()
     @StateObject var organizerEventsVM = OrganizerEventsViewModel()
     @State private var showUpcoming : Bool = false
     @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
     @State  var selectedUserState : UserState?
     @State private var roleSwitched = false
+    //this is for switching off the animation for the first time onAppear
+    @State private var isInitialSetup: Bool = true
+
     
     @State var isLoading : Bool = false
     @State var textLoader : Bool = false
     
     var body: some View {
+        NavigationStack {
         VStack(spacing:Theme.defaultSpacing) {
             
             if roleSwitched {
@@ -30,32 +34,30 @@ struct ProfileView: View {
                     if let userName = profileVM.userDetail?.firstName {
                         HStack {
                             Text(userName)
-                                .font(.system(size:20))
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                                .frame(maxWidth: UIScreen.main.bounds.width / 2)
+                                .applyProfileNameFont()
+                                .padding(.horizontal,Theme.large)
+//                                .lineLimit(1)
+//                                .frame(maxWidth: UIScreen.main.bounds.width / 2)
                             Spacer()
                             if let user = profileVM.userDetail {
+                                // MARK: - dispaly this row if user isn't organizer
                                 if !user.isOrganizer {
                                     NavigationLink {
                                         if let userModel = profileVM.userDetail {
                                             ProfileViewInfo(user: userModel)
                                         }
                                     } label: {
-                                        RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                                            .foregroundStyle(Theme.tintColor)
-                                            .frame(width:30,height:30)
-                                            .overlay(
-                                                Image(Theme.darkModePencil))
+                                        Image(Theme.profileEditButton)
                                             .frame(width:8,height:8)
-                                        
                                     }
                                 }
                             }
+                            
                         }
                     }
                     HStack {
                         if let user = profileVM.userDetail {
+                            //MARK: -dispaly this if user is organizer
                             if user.isOrganizer {
                                 accountSelectionRow
                                 Spacer()
@@ -63,18 +65,21 @@ struct ProfileView: View {
                             }
                         }
                     }
+                    .padding(.horizontal,Theme.large)
                 }
                 
                 if userRole == UserState.audience.rawValue {
-                    EventManager(events: allEventsVM.events,showUpcoming: $showUpcoming ,allEventsVM : allEventsVM, organizerEventsVM : organizerEventsVM)
+                    EventManager(showUpcoming: $showUpcoming ,participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
                 } else if userRole == UserState.organizer.rawValue {
-                    EventManager(events: organizerEventsVM.events, showUpcoming:$showUpcoming, allEventsVM : allEventsVM, organizerEventsVM : organizerEventsVM)
+                    EventManager(showUpcoming:$showUpcoming, participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
                 }
             }
             
         }
         .padding(.horizontal,Theme.large)
-        .onChange(of: selectedUserState) { userState in
+    }
+        
+        .onChange(of: selectedUserState) { _,_ in
             updateUserRole()
         }
         .onAppear(perform: {
@@ -87,13 +92,8 @@ struct ProfileView: View {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 //get user
                 profileVM.getOneUserById(id: userId)
-                //get all events based on userRole
-                //            if userRole == UserState.audience.rawValue {
-                //                self.allEventsVM.fetchEvents()
-                //            } else {
-                //                self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
-                //            }
             }
+          
         })
         
     }
@@ -112,17 +112,16 @@ struct ProfileView_Previews: PreviewProvider {
 extension ProfileView {
     
     private var headerProfile : some View {
-        VStack {
+        ZStack(alignment:.bottomLeading){
             Image("wallpaper")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width:393,height: 186)
-                .overlay(
-                    Image("human_profile")
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: Theme.imageWidth, height: Theme.imageHeight)
-                )
+            Image("human_profile")
+                .resizable()
+                .clipShape(Circle())
+                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+                .padding(.horizontal,Theme.large)
             
         }
         
@@ -155,7 +154,10 @@ extension ProfileView {
     
     private func updateUserRole() {
         guard let userState = selectedUserState else { return }
-        roleSwitched = true
+        //for first time launching the app, the loader shouldn't show up in profile tab
+        if !isInitialSetup {
+            roleSwitched = true
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             roleSwitched = false
             if let userRoleSelection = selectedUserState {
@@ -167,6 +169,8 @@ extension ProfileView {
                 
             }
         }
+        // then, this will be toggled for later profile changing
+        isInitialSetup = false
     }
     
     private var profileDetailButton : some View {
@@ -183,8 +187,7 @@ extension ProfileView {
             
         }
         .padding(.vertical,Theme.medium)
-        .padding(.horizontal,Theme.large)
-        .frame(maxWidth: .infinity)
+        .frame(width:175)
         .background(Theme.tintColor)
         .cornerRadius(Theme.cornerRadius)
         
