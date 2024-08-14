@@ -14,10 +14,15 @@ struct EventCard: View {
     
     var body: some View {
         VStack(alignment:.leading) {
-            Image(EventImageMock.image)
-                .resizable()
+//            Image(EventImageMock.image)
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: Theme.eventImageWidth,height:Theme.eventImageHeight)
+            
+            RemoteImage(url: event.coverImageUrl ?? "")
                 .scaledToFill()
-                .frame(width: Theme.eventImageWidth,height:Theme.eventImageHeight)
+                .frame(width: Theme.eventImageWidth, height: Theme.eventImageHeight)
+            
             VStack(alignment:.leading,spacing:Theme.headingBodySpacing) {
                 Text(event.name ?? "")
                     .applyHeadingFont()

@@ -36,10 +36,15 @@ extension APIManager {
         if let data = data, getMethod == "POST" || getMethod == "PUT" {
             do{
                 let jsonData = try JSONEncoder().encode(data)
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    print("JSON String: \(jsonString)")
+                }
                 request.httpBody = jsonData
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             } catch {
                 print("Error encoding header: \(error)")
+                completion(.failure(error))
+                return
             }
         }
         
@@ -58,7 +63,11 @@ extension APIManager {
                 completion(.failure(URLError(.badServerResponse)))
                 return
             }
-            print(httpResponse.statusCode)
+            
+            if !(200...299).contains(httpResponse.statusCode) {
+                completion(.failure(URLError(.badServerResponse)))
+                return
+            }
             
             if getMethod == "POST" || getMethod == "PUT" {
                 return

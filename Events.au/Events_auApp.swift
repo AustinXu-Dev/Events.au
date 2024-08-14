@@ -22,6 +22,7 @@ struct Events_auApp: App {
                         TabScreenView()
 //                    }
 //                    ProfileView()
+//                    TestView()
                 } else {
                     SignInView()
                 }

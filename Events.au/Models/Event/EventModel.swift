@@ -72,7 +72,7 @@ struct AllEventsResponse : Codable {
 
 struct EventModel : Codable, Hashable{
     let _id,name,description,startDate,endDate,startTime,endTime,
-        location,rules,coverImageUrL,adminId,status : String?
+        location,rules,coverImageUrl,adminId,status : String?
 }
 
 struct EventModel1 : Codable, Hashable{

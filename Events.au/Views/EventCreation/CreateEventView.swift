@@ -336,7 +336,7 @@ extension CreateEventView{
             createEventViewModel.rules = rules
             createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
             createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // Hide loading spinner and show success screen
                 withAnimation {
