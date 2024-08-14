@@ -77,9 +77,9 @@ struct ProfileView: View {
                     }
                     
                     if userRole == UserState.audience.rawValue {
-                        EventManager(showUpcoming: $showUpcoming ,participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
+                        EventManager(path: $path, selectedTab: $selectedTab,showUpcoming: $showUpcoming ,participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
                     } else if userRole == UserState.organizer.rawValue {
-                        EventManager(showUpcoming:$showUpcoming, participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
+                        EventManager(path: $path, selectedTab: $selectedTab,showUpcoming:$showUpcoming, participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
                     }
                 }
                 

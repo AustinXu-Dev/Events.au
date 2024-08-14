@@ -9,6 +9,9 @@ import SwiftUI
 
 struct EventManager: View {
     
+    @Binding var path: [ProfileNavigation]
+    @Binding var selectedTab: Tab
+    
     @AppStorage("userRole") private var userRole: String?
     @Binding var showUpcoming : Bool
     @ObservedObject var participantEventsVM : ParticipantEventsViewModel
@@ -163,13 +166,24 @@ extension EventManager {
             Text("No Event Upcoming")
                 .applyLabelFont()
             HStack {
-                NavigationLink {
-                    HomeTest(path: .init(projectedValue: .constant([])) , selectedTab: .constant(.home))
+//                NavigationLink {
+//                    HomeTest(path: .init(projectedValue: .constant([])) , selectedTab: .constant(.home))
+//                } label: {
+//                    Text("Join Event")
+//                        .underline()
+//                        .foregroundStyle(Theme.tintColor)
+//                }
+                
+                Button {
+                    path = []
+                    selectedTab = .home
                 } label: {
                     Text("Join Event")
                         .underline()
                         .foregroundStyle(Theme.tintColor)
                 }
+
+                
                 
                 Text("for more exciting experiences")
 
@@ -187,8 +201,18 @@ extension EventManager {
             Text("No Event Upcoming")
                 .applyLabelFont()
             HStack {
-                NavigationLink {
-                    CreateEventPreScreen(path: .constant(.init()), selectedTab: .constant(.createEvent))
+//                NavigationLink {
+//                    CreateEventPreScreen(path: .constant(.init()), selectedTab: .constant(.createEvent))
+//                } label: {
+//                    Text("Host Event")
+//                        .underline()
+//                        .foregroundStyle(Theme.tintColor)
+//                }
+                
+                
+                Button {
+                    path = []
+                    selectedTab = .createEvent
                 } label: {
                     Text("Host Event")
                         .underline()
@@ -208,13 +232,13 @@ struct EventManager_Previews : PreviewProvider {
     static var previews: some View {
         Group {
             NavigationStack {
-                EventManager(showUpcoming: .constant(true),participantEventsVM : ParticipantEventsViewModel(), organizerEventsVM: OrganizerEventsViewModel())
+                EventManager(path: .constant([]), selectedTab: .constant(.profile),showUpcoming: .constant(true),participantEventsVM : ParticipantEventsViewModel(), organizerEventsVM: OrganizerEventsViewModel())
                     .previewLayout(.sizeThatFits)
                     .preferredColorScheme(.light)
                     .padding()
             }
             NavigationStack {
-                EventManager(showUpcoming: .constant(true),participantEventsVM : ParticipantEventsViewModel(), organizerEventsVM: OrganizerEventsViewModel())
+                EventManager(path: .constant([]), selectedTab: .constant(.profile), showUpcoming: .constant(true),participantEventsVM : ParticipantEventsViewModel(), organizerEventsVM: OrganizerEventsViewModel())
                     .previewLayout(.sizeThatFits)
                     .preferredColorScheme(.dark)
                     .padding()

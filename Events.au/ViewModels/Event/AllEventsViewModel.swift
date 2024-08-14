@@ -22,7 +22,7 @@ class AllEventsViewModel: ObservableObject {
             case .success(let eventResponse):
                 DispatchQueue.main.async {
                     self?.loader = false
-                    self?.events = eventResponse.message
+                    self?.events = eventResponse.message.filter{ $0.status == "approved"}
                     print("FETCHED EVENTS IN HOME VIEW")
                 }
             case .failure(let error):
