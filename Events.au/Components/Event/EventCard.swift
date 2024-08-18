@@ -79,4 +79,3 @@ struct EventCard_Previews : PreviewProvider {
     }
     
 }
-

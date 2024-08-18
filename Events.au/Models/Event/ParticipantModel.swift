@@ -35,12 +35,24 @@ struct AllParticipantsResponse : Codable {
     let message : [ParticipantModel]
 }
 
-struct ParticipantModel : Codable, Hashable {
+struct ParticipantModel : Identifiable, Codable, Hashable {
+    
     let _id : String?
-    let userId : UserModel?
+    var id: String { _id ?? "" }
+    let userId : UserModel2?
     let eventId : EventModel?
     let organzierId : OrganizerModel?
     let status, email : String?
     let phone : Int?
+    
+    enum CodingKeys : String,CodingKey {
+        case _id = "id"
+        case userId = "userId"
+        case eventId = "eventId"
+        case organzierId = "organzierId"
+        case status = "status"
+        case email = "email"
+        case phone = "phone"
+    }
 }
 

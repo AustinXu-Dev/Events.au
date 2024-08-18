@@ -95,6 +95,8 @@
 		B75A0F402C3BCBE8007D150F /* ReusableLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
+		B7B0B9562C72533500A468DB /* ParticipantByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */; };
+		B7B0B9582C72538800A468DB /* GetParticipantsByUserIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */; };
 		B7B208D22C21274600DB1450 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B208D12C21274600DB1450 /* EventManager.swift */; };
 		B7B6C0402C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */; };
 		B7B6C0422C637061007FBFA8 /* ParticipantEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */; };
@@ -251,6 +253,8 @@
 		B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableLoader.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
+		B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantByUserId.swift; sourceTree = "<group>"; };
+		B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetParticipantsByUserIdViewModel.swift; sourceTree = "<group>"; };
 		B7B208D12C21274600DB1450 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParticipantEventsByUserId.swift; sourceTree = "<group>"; };
 		B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantEventsViewModel.swift; sourceTree = "<group>"; };
@@ -578,9 +582,9 @@
 			children = (
 				39A7320F2C20B2570042734E /* ProfileView.swift */,
 				396685D42C1F6D6700AAD5D4 /* EventPreEditView.swift */,
+				396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */,
 				396685CD2C1F4AFF00AAD5D4 /* ProfileViewInfo.swift */,
 				396685D12C1F645100AAD5D4 /* ProfileEditView.swift */,
-				396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */,
 				396685DA2C1FD50900AAD5D4 /* EventParticipantManagementView.swift */,
 				396685DC2C1FEBA400AAD5D4 /* GribView.swift */,
 			);
@@ -611,6 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				B75A0F322C3B256F007D150F /* ParticipantByEventId.swift */,
+				B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */,
 			);
 			path = Participant;
 			sourceTree = "<group>";
@@ -619,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				B75A0F352C3B265A007D150F /* GetParticipantsByEventIdViewModel.swift */,
+				B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */,
 			);
 			path = Participant;
 			sourceTree = "<group>";
@@ -1118,6 +1124,7 @@
 				BC1CC9732C289CD10020DD06 /* TextFieldWithIcon.swift in Sources */,
 				B7C69A822C14E4280055DDD9 /* UpdateParticipantStatusDTO.swift in Sources */,
 				B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */,
+				B7B0B9582C72538800A468DB /* GetParticipantsByUserIdViewModel.swift in Sources */,
 				B743C99A2C3B1D0A0001B311 /* String+Extension.swift in Sources */,
 				B70C04992C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift in Sources */,
 				BCF4F9FD2C2FA83A00D5E009 /* CreateEventSuccessView.swift in Sources */,
@@ -1153,6 +1160,7 @@
 				B34CB3A02C3D339D0034A562 /* FindUnitsForAUser.swift in Sources */,
 				B7C69A722C14DE900055DDD9 /* UpdateEventStatusDTO.swift in Sources */,
 				B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */,
+				B7B0B9562C72533500A468DB /* ParticipantByUserId.swift in Sources */,
 				B34CB3902C3D24E90034A562 /* UpdateParticipantStatus.swift in Sources */,
 				B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */,
 				BCAD2B072C2881E300E6B87D /* DropDownMenu.swift in Sources */,

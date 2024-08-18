@@ -70,9 +70,11 @@ struct AllEventsResponse : Codable {
 }
 
 
-struct EventModel : Codable, Hashable{
+struct EventModel : Identifiable,Codable, Hashable {
     let _id,name,description,startDate,endDate,startTime,endTime,
         location,rules,coverImageUrl,adminId,status : String?
+    var id: String { _id ?? "" }
+
 }
 
 struct EventModel1 : Codable, Hashable{

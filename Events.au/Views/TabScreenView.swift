@@ -20,7 +20,7 @@ struct TabScreenView: View {
 
         TabView(selection: $selectedTab) {
             //Home View
-            HomeTest(path: $homeNavigationStack, selectedTab: $selectedTab)
+            HomeTest(path: $homeNavigationStack, profilePath: $profileNavigationStack, selectedTab: $selectedTab)
                 .tabItem {
                     homeTabLabel
                 }
@@ -34,7 +34,7 @@ struct TabScreenView: View {
                 .tag(Tab.createEvent)
          
             //Profile View
-            ProfileView(path: $profileNavigationStack, selectedTab: $selectedTab)
+            ProfileView(path: $homeNavigationStack, profilePath: $profileNavigationStack, selectedTab: $selectedTab)
                 .tabItem {
                     profileTabLabel
                 }

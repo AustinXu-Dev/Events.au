@@ -10,6 +10,10 @@ import SwiftUI
 struct EventRow: View {
     //MARK: This can either be pending or approved events
     let event : EventModel
+    //MARK: reteriving userRole to check where to display event status or event joining status
+    @AppStorage("userRole") private var userRole: String?
+    let participant : ParticipantModel
+
     var body: some View {
         ZStack {
         RoundedRectangle(cornerRadius: Theme.cornerRadius)
@@ -32,12 +36,16 @@ struct EventRow: View {
             }
                 Spacer()
                 VStack {
-                    Text(event.status ?? "")
+                    Text(userRole == UserState.audience.rawValue ?
+                         participant.status ?? "" :
+                         event.status ?? "")
                         .applyOverlayFont()
                         .padding(.horizontal,8)
                         .padding(.vertical,2)
                         .background(
-                            EventStatus.instance.colorHandler(status: event.status ?? "")
+                            EventStatus.instance.colorHandler(status: userRole == UserState.audience.rawValue ?
+                                                              participant.status ?? "" :
+                                                              event.status ?? "")
                         )
                         .cornerRadius(Theme.xs)
                         .offset(y:-20)
@@ -45,17 +53,18 @@ struct EventRow: View {
         }
         .padding(Theme.xs)
         }
+        
     }
 }
 
 struct EventRow_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventRow(event: EventMock.instacne.eventA)
+            EventRow(event: EventMock.instacne.eventA, participant: ParticipantMock.instacne.participantA)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
-            EventRow(event: EventMock.instacne.eventA)
+            EventRow(event: EventMock.instacne.eventA,participant: ParticipantMock.instacne.participantB)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()
