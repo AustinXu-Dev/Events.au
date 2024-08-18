@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import FirebaseAuth
 
 struct CreateEventView: View {
     
@@ -37,6 +39,8 @@ struct CreateEventView: View {
     @State var image: String = ""
     @State var eventType: String = ""
 //    @State var units: [UnitModel] = []
+    @State private var showImagePicker = false
+    @State private var avatarImage: UIImage?
 
     @State var selectedOptionIndex: Int = 0
 
@@ -50,6 +54,7 @@ struct CreateEventView: View {
     @State var showTimeSheet: Bool = false
     @State var isLoading: Bool = false
     @State var showAlert: Bool = false
+    @State var showNotValidAlert: Bool = false
     
     @StateObject var allUnitsViewModel = AllUnitsViewModel()
     @StateObject var createEventViewModel: CreateEventViewModel
@@ -71,6 +76,16 @@ struct CreateEventView: View {
                         
                         nameTextField
                         imageField
+                        
+                        Image(uiImage: avatarImage ?? UIImage(named: "select_an_image")!)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 360, height: 160)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .padding()
+                            .onTapGesture {
+                                showImagePicker = true
+                            }
                         detailsField(geometry.size.width)
                         
                         descriptionField
@@ -105,6 +120,9 @@ struct CreateEventView: View {
                         })
                     }
                 }
+                .fullScreenCover(isPresented: $showImagePicker) {
+                    PhotoPicker(avatarImage: $avatarImage)
+                }
                 
                 if isLoading{
                     LoadingView()
@@ -122,7 +140,7 @@ extension CreateEventView{
         VStack(alignment: .leading){
             Text("Name")
                 .applyHeadingFont()
-//                .font(Theme.headingFontStyle)
+            //                .font(Theme.headingFontStyle)
             TextField(eventNamePlaceholder, text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(height: Theme.textFieldHeight)
@@ -131,12 +149,25 @@ extension CreateEventView{
     
     private var imageField: some View{
         VStack(alignment: .leading){
-            Text("Image")
-                .font(Theme.headingFontStyle)
-                .fontWeight(.semibold)
-            TextField(imagePlaceholder, text: $image, axis: .vertical)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            HStack{
+                Text("Image")
+                    .font(Theme.headingFontStyle)
+                    .fontWeight(.semibold)
+                Spacer()
+                Button {
+                    avatarImage = nil
+                } label: {
+                    Text("Remove Image")
+                        .font(Theme.headingFontStyle)
+                        .fontWeight(.semibold)
+                }
+                
+            }
+            .padding(.horizontal, 15)
+            
+            
         }
+        
     }
     
     private var descriptionField: some View{
@@ -179,27 +210,27 @@ extension CreateEventView{
             .onAppear{
                 allUnitsViewModel.fetchUnits()
             }
-//            .onSubmit {
-//                createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
-//            }
+            //            .onSubmit {
+            //                createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
+            //            }
             
             
             Spacer().frame(height: Theme.large)
             
             TextFieldWithIcon(
-                placeHolder: locationPlaceholder, 
+                placeHolder: locationPlaceholder,
                 selectedPlaceholder: $location,
                 image: "location_icon")
-
+            
             Spacer().frame(height: Theme.large)
-
+            
             TextWithIcon(placeHolder: datePlaceholder, image: "calendar_icon")
                 .onTapGesture {
                     showDateSheet.toggle()
                 }
-                
+            
             Spacer().frame(height: Theme.large)
-
+            
             TextWithIcon(placeHolder: timePlaceholder, image: "clock_icon_20")
                 .onTapGesture {
                     showTimeSheet.toggle()
@@ -231,8 +262,8 @@ extension CreateEventView{
                 } else{
                     startDateValue = dateToString(date: startDate)
                     endDateValue = dateToString(date: endDate)
-//                    createEventViewModel.startDate = dateToString(date: startDate)
-//                    createEventViewModel.endDate = dateToString(date: endDate)
+                    //                    createEventViewModel.startDate = dateToString(date: startDate)
+                    //                    createEventViewModel.endDate = dateToString(date: endDate)
                     datePlaceholder = "\(startDateValue) - \(endDateValue)"
                     showDateSheet.toggle()
                 }
@@ -273,13 +304,13 @@ extension CreateEventView{
                 else {
                     startTimeValue = timeToString(date: startTime)
                     endTimeValue = timeToString(date: endTime)
-//                    createEventViewModel.startTime = timeToString(date: startTime)
-//                    createEventViewModel.endTime = timeToString(date: endTime)
+                    //                    createEventViewModel.startTime = timeToString(date: startTime)
+                    //                    createEventViewModel.endTime = timeToString(date: endTime)
                     timePlaceholder = "\(startTimeValue) - \(endTimeValue)"
                     showTimeSheet.toggle()
                 }
             }, placeholder: "Add time", isSheetPresented: $showTimeSheet)
-                
+            
             VStack{
                 DatePicker("Start time", selection: $startTime, displayedComponents: [.hourAndMinute])
                     .datePickerStyle(CompactDatePickerStyle())
@@ -305,7 +336,7 @@ extension CreateEventView{
     private func dateToString(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
-
+        
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
     }
@@ -313,19 +344,31 @@ extension CreateEventView{
     private func timeToString(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-
+        
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
     }
     
-    private var nextButton: some View{
-        Button(action: {
-            //MARK: Create button action here
+    private var nextButton: some View {
+//        Button {
+//            <#code#>
+//        } label: {
+//            <#code#>
+//        }
+
+        Button {
+            // One-line validation check for all required fields
+            guard !name.isEmpty && !description.isEmpty && !startDateValue.isEmpty && !endDateValue.isEmpty && !startTimeValue.isEmpty && !endTimeValue.isEmpty && !location.isEmpty && !rules.isEmpty else {
+                showNotValidAlert = true
+                return
+            }
+
+            // Proceed with the API call if all required fields are valid
             withAnimation {
                 isLoading = true
             }
-            
-            //MARK: -Integrating Create Event API Integration
+
+            //MARK: - Integrating Create Event API Integration
             createEventViewModel.name = name
             createEventViewModel.description = description
             createEventViewModel.startDate = startDateValue
@@ -335,41 +378,90 @@ extension CreateEventView{
             createEventViewModel.location = location
             createEventViewModel.rules = rules
             createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
-            createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                // Hide loading spinner and show success screen
-                withAnimation {
-                    print(name, description, location, startDateValue, endDateValue, startTimeValue, endTimeValue, rules, image, allUnitsViewModel.units[selectedOptionIndex].id)
-                    //MARK: -API POST LOGIC HERE
-                    //If post is success set the isloading to false to show registration success
-                    isLoading = false
-                    showAlert = true
+            let uid = Auth.auth().currentUser?.uid ?? ""
+            let email = Auth.auth().currentUser?.email ?? ""
+            print("Image issssss::", avatarImage)
+            createEventViewModel.uploadImage(avatarImage ?? UIImage(named: "no_image")!) { result in
+                switch result {
+                case .success(let imageUrl):
+                    createEventViewModel.storeImageUrl(imageUrl: imageUrl, uid: uid, email: email) { result in
+                        switch result {
+                        case .success:
+                            // Retrieve the imageUrl from Firestore
+                            createEventViewModel.retrieveImageUrl(uid: uid) { result in
+                                switch result {
+                                case .success(let storedImageUrl):
+                                    // Update the viewModel's imageUrl with the stored value
+                                    createEventViewModel.coverImageUrl = storedImageUrl
+                                    // Create the event
+                                    print(createEventViewModel.name, createEventViewModel.description, createEventViewModel.startDate, createEventViewModel.endDate, createEventViewModel.startTime, createEventViewModel.endTime, createEventViewModel.rules, createEventViewModel.coverImageUrl, createEventViewModel.unitId)
+
+                                    
+                                    if !createEventViewModel.coverImageUrl.isEmpty{
+                                        createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
+                                    }
+                                    DispatchQueue.main.async {
+                                        withAnimation {
+                                            isLoading = false
+                                        }
+                                        switch result {
+                                        case .success:
+                                            showAlert = true
+                                        case .failure:
+                                            showNotValidAlert = true
+                                        }
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async {
+                                        withAnimation {
+                                            isLoading = false
+                                            showNotValidAlert = true
+                                        }
+                                    }
+                                    print("Failed to retrieve image URL: \(error.localizedDescription)")
+                                }
+                            }
+                        case .failure(let error):
+                            DispatchQueue.main.async {
+                                withAnimation {
+                                    isLoading = false
+                                    showNotValidAlert = true
+                                }
+                            }
+                            print("Failed to store image URL: \(error.localizedDescription)")
+                        }
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            isLoading = false
+                            showNotValidAlert = true
+                        }
+                    }
+                    print("Failed to upload image: \(error.localizedDescription)")
                 }
             }
-        }, label: {
+        } label: {
             RoundedRectangle(cornerRadius: 10)
                 .frame(maxWidth: .infinity, idealHeight: Theme.buttonHeight)
                 .overlay {
-                    Text("Next")
+                    Text("Create Event")
                         .applyButtonFont()
                         .foregroundStyle(Theme.primaryTextColor)
                 }
                 .foregroundStyle(Theme.tintColor)
-        })
+        }
         .alert("Your event is created successfully.", isPresented: $showAlert) {
             NavigationLink(value: "Congrats") {
                 Text("OK")
             }
-            // This is for create poll purpose
-//            NavigationLink(value: "CreatePoll") {
-//                Text("OK")
-//            }
         }
-//        NavigationLink(value: "CreatePoll") {
-//            Text("OK")
-//        }
+        .alert("Your event creation failed. Please fill in all required fields.", isPresented: $showNotValidAlert) {
+            Text("OK")
+        }
     }
+
 }
 
 

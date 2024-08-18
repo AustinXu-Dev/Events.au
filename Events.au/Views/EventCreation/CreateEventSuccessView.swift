@@ -54,6 +54,7 @@ struct CreateEventSuccessView: View {
 //                    .padding(.horizontal, Theme.large)
 //            })
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

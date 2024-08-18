@@ -147,6 +147,7 @@
 		BC2711752C19909D00A99157 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711742C19909D00A99157 /* HomeTest.swift */; };
 		BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711762C1990FF00A99157 /* TabViewEnum.swift */; };
 		BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6157C42C1E0CF400F78A9E /* SearchBar.swift */; };
+		BC70A24D2C722F500002651E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70A24C2C722F500002651E /* PhotoPicker.swift */; };
 		BCAD2B052C2875B100E6B87D /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAD2B042C2875B100E6B87D /* CreateEventView.swift */; };
 		BCAD2B072C2881E300E6B87D /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */; };
 		BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02432C116C1000A9EE3E /* Events_auApp.swift */; };
@@ -306,6 +307,7 @@
 		BC2711742C19909D00A99157 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
 		BC2711762C1990FF00A99157 /* TabViewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewEnum.swift; sourceTree = "<group>"; };
 		BC6157C42C1E0CF400F78A9E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		BC70A24C2C722F500002651E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		BCAD2B042C2875B100E6B87D /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		BCBE02402C116C1000A9EE3E /* Events.au.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.au.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -783,6 +785,7 @@
 				BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */,
 				BCF4FAAD2C31B2DB00D5E009 /* PollView.swift */,
 				BCF4FAAF2C31B30300D5E009 /* PollViewModel.swift */,
+				BC70A24C2C722F500002651E /* PhotoPicker.swift */,
 			);
 			path = EventCreation;
 			sourceTree = "<group>";
@@ -1106,6 +1109,7 @@
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
 				B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */,
 				B7C69A7C2C14E1160055DDD9 /* SignOutModel.swift in Sources */,
+				BC70A24D2C722F500002651E /* PhotoPicker.swift in Sources */,
 				B363030B2C28A20500537586 /* CreateEventViewModel.swift in Sources */,
 				B7B208D22C21274600DB1450 /* EventManager.swift in Sources */,
 				BC2711752C19909D00A99157 /* HomeTest.swift in Sources */,

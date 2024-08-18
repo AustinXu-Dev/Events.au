@@ -73,17 +73,22 @@ struct RemoteImage: View {
     
     var body: some View {
         Group {
-            
             if let image = imageLoader.image {
                 Image(uiImage: image)
                     .resizable()
+                    .frame(width: 361, height: 180)  // Resize the image
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
             } else if imageLoader.image == nil && !imageLoader.url.isEmpty {
                 // Handle the case where the image is not found
                 Text("Image not found")
                     .foregroundColor(.red)
+                    .frame(width: 361, height: 160)  // Match the size of the image
             } else {
                 // Show ProgressView only when loading
                 ProgressView()
+                    .frame(width: 361, height: 160)  // Match the size of the image
             }
         }
     }

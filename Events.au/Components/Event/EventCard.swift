@@ -19,9 +19,9 @@ struct EventCard: View {
 //                .scaledToFill()
 //                .frame(width: Theme.eventImageWidth,height:Theme.eventImageHeight)
             
-            RemoteImage(url: event.coverImageUrl ?? "")
-                .scaledToFill()
-                .frame(width: Theme.eventImageWidth, height: Theme.eventImageHeight)
+            RemoteImage(url: event.coverImageUrl ?? "no_image")
+//                .scaledToFill()
+//                .frame(width: Theme.eventImageWidth, height: Theme.eventImageHeight)
             
             VStack(alignment:.leading,spacing:Theme.headingBodySpacing) {
                 Text(event.name ?? "")

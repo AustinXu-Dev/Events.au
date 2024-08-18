@@ -3,7 +3,7 @@
 //  Events.au
 //
 //  Created by Akito Daiki on 22/06/2024.
-//
+
 
 import SwiftUI
 import Firebase
@@ -139,10 +139,10 @@ struct TestView: View {
                     .disabled(viewModel.isLoading)
                 }
             }
-            .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-                ImagePicker(image: $image)
-                    .ignoresSafeArea()
-            }
+//            .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
+//                ImagePicker(image: $image)
+//                    .ignoresSafeArea()
+//            }
             .padding()
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
