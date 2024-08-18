@@ -21,7 +21,6 @@ class ParticipantEventsViewModel : ObservableObject {
                 DispatchQueue.main.async {
                     self?.loader = false
                     self?.participantEvents = eventResponse.message
-                    print("FETCHED EVENTS IN HOME VIEW")
                 }
             case .failure(let error):
                 self?.loader = false
@@ -32,12 +31,9 @@ class ParticipantEventsViewModel : ObservableObject {
             
             
         }
-        
-        
-        
-        
-        
     }
+    
+   
 }
 
 

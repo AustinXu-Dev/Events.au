@@ -31,18 +31,18 @@ struct EventDetailsEditView: View {
     @StateObject  var updateEventViewModel = UpdateEventBasicInfoViewModel()
     @StateObject var getAllUnitsViewModel = AllUnitsViewModel()
     
-//    init() {
-//        //MARK: after we get the view model the event and unit has to be changed
-//        let event = EventMock.instacne.eventA
-//        let unit = UnitMock.instacne.unitA
-//        _name = State(initialValue: event.name ?? "")
-//        _faculty = State(initialValue: unit.name ?? "No Faculty")
-//        _startDate = State(initialValue: event.startDate ?? "")
-//        _endDate = State(initialValue: event.endDate ?? "")
-//        _from = State(initialValue: event.startTime ?? "")
-//        _to = State(initialValue: event.endTime ?? "")
-//        _description = State(initialValue: event.description ?? "No description")
-//    }
+    init(event : EventModel, unit: UnitModel) {
+        //MARK: after we get the view model the event and unit has to be changed
+        self.event = event
+        self.unit  = unit
+        _name = State(initialValue: event.name ?? "")
+        _faculty = State(initialValue: unit.name ?? "No Faculty")
+        _startDate = State(initialValue: event.startDate ?? "")
+        _endDate = State(initialValue: event.endDate ?? "")
+        _from = State(initialValue: event.startTime ?? "")
+        _to = State(initialValue: event.endTime ?? "")
+        _description = State(initialValue: event.description ?? "No description")
+    }
     
     var body: some View {
         
@@ -62,7 +62,7 @@ struct EventDetailsEditView: View {
                     updateEventViewModel.description = description
                     
                     if let eventId = event._id {
-                        updateEventViewModel.updateEventBasicInfo(eventId: eventId, token: TokenManager.share.getToken() ?? "")
+                            updateEventViewModel.updateEventBasicInfo(eventId: eventId, token: TokenManager.share.getToken() ?? "")
                     }
                 }) {
                     Text("Save")
@@ -105,26 +105,22 @@ extension EventDetailsEditView {
                 Text("Name")
                     .applyHeadingFont()
                 Spacer()
-                TextField("", text: $name)
+                TextField(event.name ?? "", text: $name)
                     .frame(maxWidth: Theme.textFieldWidth)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            
-            //            HStack {
-            //                Text("Faculty")
-            //                    .applyHeadingFont()
-            //                Spacer()
-            //                TextField("", text: $faculty)
-            //                    .applyBodyFont()
-            //                    .frame(maxWidth: Theme.textFieldWidth)
-            //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            //            }
-            DropDownMenu(
-                options: getAllUnitsViewModel.units,
-                menuWidth: .constant(200),
-                selectedOptionIndex: $selectedOptionIndex,
-                showDropdown: $showDropDown
-            )
+            HStack {
+                Text("Faculty")
+                    .applyHeadingFont()
+                Spacer()
+                DropDownMenu(
+                    options: getAllUnitsViewModel.units,
+                    menuWidth: .constant(200),
+                    selectedOptionIndex: $selectedOptionIndex,
+                    showDropdown: $showDropDown
+                )
+                .frame(maxWidth: Theme.textFieldWidth)
+            }
             .onAppear{
                 getAllUnitsViewModel.fetchUnits()
             }
@@ -133,7 +129,7 @@ extension EventDetailsEditView {
                 Text("Start Date")
                     .applyHeadingFont()
                 Spacer()
-                TextField("", text: $startDate)
+                TextField(event.startDate ?? "", text: $startDate)
                     .applyBodyFont()
                     .frame(maxWidth: Theme.textFieldWidth)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -143,7 +139,7 @@ extension EventDetailsEditView {
                 Text("End Date")
                     .applyHeadingFont()
                 Spacer()
-                TextField("", text: $endDate)
+                TextField(event.endDate ?? "", text: $endDate)
                     .applyBodyFont()
                     .frame(maxWidth: Theme.textFieldWidth)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -153,7 +149,7 @@ extension EventDetailsEditView {
                 Text("From")
                     .applyHeadingFont()
                 Spacer()
-                TextField("", text: $from)
+                TextField(event.startTime ?? "", text: $from)
                     .applyBodyFont()
                     .frame(maxWidth: Theme.textFieldWidth)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -163,7 +159,7 @@ extension EventDetailsEditView {
                 Text("To")
                     .applyHeadingFont()
                 Spacer()
-                TextField("", text: $to)
+                TextField(event.endTime ?? "", text: $to)
                     .applyBodyFont()
                     .frame(maxWidth: Theme.textFieldWidth)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -173,7 +169,7 @@ extension EventDetailsEditView {
                 Text("Description")
                     .applyHeadingFont()
                 Spacer()
-                TextField("", text: $description,axis: .vertical)
+                TextField(event.description ?? "", text: $description,axis: .vertical)
                     .applyBodyFont()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(maxWidth: Theme.textFieldWidth)

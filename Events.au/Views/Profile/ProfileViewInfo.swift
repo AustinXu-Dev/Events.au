@@ -11,8 +11,14 @@ struct ProfileViewInfo: View {
     
     @Binding var path: [ProfileNavigation]
     @Binding var selectedTab: Tab
-    
+    @AppStorage("userRole") private var userRole: String?
     let user : UserModel2
+    @ObservedObject var participantEventsVM : ParticipantEventsViewModel
+    @ObservedObject var organizerEventsVM : OrganizerEventsViewModel
+    
+    @StateObject var participantVM : GetParticipantsByUserIdViewModel = GetParticipantsByUserIdViewModel()
+
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -25,7 +31,6 @@ struct ProfileViewInfo: View {
                     Spacer()
                 }
                 .padding(.top, 20)
-                
                 VStack(alignment: .leading, spacing: 10) {
                         ProfileDetailRow(label: "First Name", value: user.firstName)
                         //MARK: add last name after dropping user database
@@ -34,28 +39,57 @@ struct ProfileViewInfo: View {
                         ProfileDetailRow(label: "Phone", value: "\(user.phone)")
                         ProfileDetailRow(label: "Gender", value: "Gender")
                         ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
-                    
                 }
                 .padding()
                 .padding(.horizontal, 16)
                 
                 Divider()
                 
+                
                 Text("Event History")
                     .font(.system(size: 20))
                     .padding(.top, 20)
                     .padding(.horizontal, 34)
                     .bold()
-                
                 VStack(spacing: 10) {
-                    EventRow(event: EventMock.instacne.eventA)
-                    EventRow(event: EventMock.instacne.eventB)
+                    if userRole == UserState.audience.rawValue {
+                        ForEach(participantEventsVM.participantEvents,id: \._id){ participant in
+                            if let event = participant.eventId {
+                                if event.status == "completed" {
+                                    ForEach(participantVM.participant) { fetchedParticipant in
+                                        EventRow(event: event, participant: fetchedParticipant)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        ForEach(organizerEventsVM.organizerEvents,id: \._id){ organizer in
+                            if let event = organizer.eventId {
+                                if event.status == "completed" {
+                                    ForEach(participantVM.participant) { fetchedParticipant in
+                                        EventRow(event: event, participant: fetchedParticipant)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal)
                 
                 Spacer()
             }
         }
+        .onAppear(perform: {
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+            //get all events based on userRole
+            if userRole == UserState.audience.rawValue {
+                self.participantEventsVM.fetchEvents(userId: userId)
+            } else {
+                self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+            }
+        }
+            
+            })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(value: ProfileNavigation.profileEditView(user)) {
@@ -139,6 +173,6 @@ struct ProfileDetailRow: View {
 
 struct ProfileViewInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileViewInfo(path: .constant([]), selectedTab: .constant(.profile),user: UserMock.instance.user3)
+        ProfileViewInfo(path: .constant([]), selectedTab: .constant(.profile),user: UserMock.instance.user3,participantEventsVM: ParticipantEventsViewModel(),organizerEventsVM: OrganizerEventsViewModel())
     }
 }

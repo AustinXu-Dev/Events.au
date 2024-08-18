@@ -6,18 +6,19 @@
 //
 
 import Foundation
-//MARK: - this is a payload method url for fetching events that a user has hosted by userId (not organizerID)
+//MARK: - this is a method url for fetching events that a user has hosted by userId (not organizerID)
 class AllEventsByUserId : APIManager {
     let id : String
     init(id: String) {
         self.id = id
     }
     
-    typealias ModelType = AllEventsResponse
+    typealias ModelType = AllOrganizersResponse
     
     
     var methodPath: String {
-        return "/events?userId=\(id)"
+        return "/events/organizer/\(id)"
     }
     
 }
+

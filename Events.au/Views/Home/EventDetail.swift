@@ -11,6 +11,7 @@ struct EventDetail: View {
     let user : UserModel2
     let event : EventModel
     @Binding var path: [HomeNavigation]
+    @Binding var profilePath : [ProfileNavigation]
     @Binding var selectedTab: Tab
     @StateObject private var eventUnitsVM : GetUnitsByEventViewModel = GetUnitsByEventViewModel()
     @StateObject private var participantVM = GetParticipantsByEventIdViewModel()
@@ -218,7 +219,7 @@ extension EventDetail {
 
 #Preview {
     NavigationStack {
-        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
+        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
     }
     .padding(.horizontal,Theme.large)
     

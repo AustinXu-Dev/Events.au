@@ -63,10 +63,11 @@ struct UserModel: Codable, Hashable {
     let isAdmin : Bool?
 }
 
-struct UserModel2: Codable, Hashable {
+struct UserModel2: Identifiable, Codable, Hashable {
+    var id: String { _id }
     let _id,fId, firstName,email: String
     let phone : Int
-    let isOrganizer : Bool
+    let isOrganizer : Bool?
 }
 
 struct UserModel3: Codable, Hashable {

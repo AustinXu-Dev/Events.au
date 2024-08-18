@@ -8,7 +8,7 @@
 import Foundation
 
 class OrganizerEventsViewModel : ObservableObject {
-    @Published var events: [EventModel] = []
+    @Published var organizerEvents: [OrganizerModel] = []
     @Published var loader : Bool = false
     @Published var errorMessage : String? = nil
     
@@ -21,13 +21,19 @@ class OrganizerEventsViewModel : ObservableObject {
                 switch result {
                 case .success(let eventsOfOrganizer):
                     self?.loader = false
-                    self?.events = eventsOfOrganizer.message
-                    print("FETCHED EVENTS OF ORGANIZERS IN HOME VIEW")
+                    self?.organizerEvents = eventsOfOrganizer.message
+                    self?.readEventStatus(organizer: self?.organizerEvents ?? OrganizerMock.instance.organizer3)
                 case .failure(let error):
                     self?.loader = false
                     self?.errorMessage = "Failed to get events by organizer id.\(error.localizedDescription)"
                 }
             }
+        }
+    }
+    
+    func readEventStatus(organizer : [OrganizerModel]) {
+        organizer.forEach { organizer in
+            print(organizer.status ?? "")
         }
     }
 }

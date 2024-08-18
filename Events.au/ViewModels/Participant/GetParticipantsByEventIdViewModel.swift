@@ -30,7 +30,6 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedParticipants):
-//                    print("All Participants Total: \(fetchedParticipants.message) of the eventId : \(id)")
                     self?.allParticipants = fetchedParticipants.message
                 case .failure(let error):
                     self?.errorMessage = "Error fetching the participants of an event. \(error.localizedDescription)"

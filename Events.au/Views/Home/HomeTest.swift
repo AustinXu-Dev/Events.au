@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeTest: View {
     
     @Binding var path: [HomeNavigation]
+    @Binding var profilePath : [ProfileNavigation]
     @Binding var selectedTab: Tab
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     @StateObject private var eventVM : AllEventsViewModel = AllEventsViewModel()
@@ -24,9 +25,9 @@ struct HomeTest: View {
     var filteredEvents: [EventModel]{
         withAnimation {
             if searchText.isEmpty{
-                return eventVM.events
+                return eventVM.approvedEvents
             } else{
-                return eventVM.events.filter { $0.name?.localizedStandardContains(searchText) ?? false}
+                return eventVM.approvedEvents.filter { $0.name?.localizedStandardContains(searchText) ?? false}
             }
         }
     }
@@ -82,7 +83,7 @@ struct HomeTest: View {
                 switch screen {
                 case .eventDetail(let currentEvent, _):
                     if let user = profileVM.userDetail {
-                        EventDetail(user: user, event: currentEvent, path: $path, selectedTab: $selectedTab, approvedParticipants: participantsVM.approvedParticipants)
+                        EventDetail(user: user, event: currentEvent, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, approvedParticipants: participantsVM.approvedParticipants)
                     }
                 case .attendeesList(_):
                     AttendeesListView(approvedParticipants: participantsVM.approvedParticipants)
@@ -176,5 +177,5 @@ extension HomeTest {
 }
 
 #Preview {
-    HomeTest(path: .constant([]), selectedTab: .constant(.home))
+    HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
 }

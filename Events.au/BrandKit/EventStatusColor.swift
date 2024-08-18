@@ -14,6 +14,7 @@ struct EventStatus {
     
     func colorHandler(status:String) -> Color {
         switch status {
+            //so far, we only need to think about pending, approved, and rejected
         case "approved" :
             return Color(Theme.approvedEventColor)
         case "pending" :
@@ -24,11 +25,14 @@ struct EventStatus {
             return Color(Theme.approvedEventColor)
         case "completed":
             return Color(Theme.pendingEventColor)
+        case "participating":
+            return Color(Theme.approvedEventColor)
         default:
             return Color(Theme.pendingEventColor)
 
         }
     }
+    
     
 }
 

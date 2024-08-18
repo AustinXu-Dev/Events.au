@@ -33,6 +33,11 @@ class AllEventsViewModel: ObservableObject {
         }
     }
     
+    var approvedEvents : [EventModel] {
+        return events.filter { $0.status == "approved" }
+     }
     
+    
+     
     
 }

@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
-    @Binding var path: [ProfileNavigation]
+    @Binding var path : [HomeNavigation]
+    @Binding var profilePath: [ProfileNavigation]
     @Binding var selectedTab: Tab
     
     @AppStorage("userRole") private var userRole: String?
     @StateObject var participantEventsVM = ParticipantEventsViewModel()
     @StateObject var organizerEventsVM = OrganizerEventsViewModel()
+    @StateObject var approvedParticipantsVM : GetParticipantsByEventIdViewModel = GetParticipantsByEventIdViewModel()
     @State private var showUpcoming : Bool = false
     @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
     @State  var selectedUserState : UserState?
@@ -43,15 +44,8 @@ struct ProfileView: View {
                                 Spacer()
                                 if let user = profileVM.userDetail {
                                     // MARK: - dispaly this row if user isn't organizer
-                                    if !user.isOrganizer {
-    //                                    NavigationLink {
-    //                                        if let userModel = profileVM.userDetail {
-    //                                            ProfileViewInfo(user: userModel)
-    //                                        }
-    //                                    } label: {
-    //                                        Image(Theme.profileEditButton)
-    //                                            .frame(width:8,height:8)
-    //                                    }
+                                    if let userIsOrganizer = user.isOrganizer {
+                                        if !userIsOrganizer {
                                         if let userModel = profileVM.userDetail{
                                             NavigationLink(value: ProfileNavigation.profileViewInfo(userModel)) {
                                                 Image(Theme.profileEditButton)
@@ -60,13 +54,14 @@ struct ProfileView: View {
                                         }
                                     }
                                 }
+                                }
                                 
                             }
                         }
                         HStack {
-                            if let user = profileVM.userDetail {
+                            if let user = profileVM.userDetail, let userIsOrganizer = user.isOrganizer {
                                 //MARK: -dispaly this if user is organizer
-                                if user.isOrganizer {
+                                if userIsOrganizer {
                                     accountSelectionRow
                                     Spacer()
                                     profileDetailButton
@@ -77,36 +72,43 @@ struct ProfileView: View {
                     }
                     
                     if userRole == UserState.audience.rawValue {
-                        EventManager(path: $path, selectedTab: $selectedTab,showUpcoming: $showUpcoming ,participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
+
+                        EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
                     } else if userRole == UserState.organizer.rawValue {
-                        EventManager(path: $path, selectedTab: $selectedTab,showUpcoming:$showUpcoming, participantEventsVM : participantEventsVM, organizerEventsVM : organizerEventsVM)
+                        EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
                     }
                 }
                 
             }
+            .padding(.horizontal,Theme.large)
+//                Spacer(minLength: 0)
             .navigationDestination(for: ProfileNavigation.self) { value in
-                switch value{
+                switch value {
                 case .profileViewInfo(let userModel):
-                    ProfileViewInfo(path: $path, selectedTab: $selectedTab, user: userModel)
+                    ProfileViewInfo(path: $profilePath, selectedTab: $selectedTab, user: userModel,participantEventsVM: participantEventsVM,organizerEventsVM: organizerEventsVM)
                 case .profileEditView(let userModel):
-                    ProfileEditView(path: $path, selectedTab: $selectedTab, user: userModel)
+                    ProfileEditView(path: $profilePath, selectedTab: $selectedTab, user: userModel)
                 case .profileEventDetail:
                     Text("Event Detail")
+                case .eventDetail(let event, let participants):
+                    if let user = profileVM.userDetail {
+                        EventDetail(user: user, event: event, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, approvedParticipants: approvedParticipantsVM.approvedParticipants)
+                    }
                 default:
                     Text("Navigation Crashed")
                 }
             }
-            .padding(.horizontal,Theme.large)
-                Spacer(minLength: 0)
+            
             }
         .onChange(of: selectedUserState) { _,_ in
             updateUserRole()
         }
         .onAppear(perform: {
-            //get user role from previous state user defaults
-            if userRole == nil{
+            //for 1st time users, we'll set their user state as audience
+            if userRole == nil {
                 userRole = UserState.audience.rawValue
             }
+            //get user role from previous state user defaults
             if let role = userRole, let userState = UserState(rawValue: role) {
                 userRole = userState.rawValue
                 // set the current view user state
@@ -127,7 +129,7 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ProfileView(path: .constant([]), selectedTab: .constant(.profile))
+            ProfileView(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.profile))
         }
     }
 }

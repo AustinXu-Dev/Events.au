@@ -80,5 +80,19 @@ extension Date {
         
         return "\(dayWithOrdinal) \(monthName)"
     }
+    
+    //Converts Date String to Date Object
+     func fromString(_ dateString: String, format: String = "dd-MM-yyyy") -> Date? {
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = format
+           return dateFormatter.date(from: dateString)
+       }
+   
+    
+    // Function to get just the date component (year, month, day)
+       func strippedTime() -> Date? {
+           let calendar = Calendar.current
+           return calendar.startOfDay(for: self)
+       }
 }
 
