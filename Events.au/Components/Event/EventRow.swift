@@ -12,6 +12,7 @@ struct EventRow: View {
     let event : EventModel
     //MARK: reteriving userRole to check where to display event status or event joining status
     @AppStorage("userRole") private var userRole: String?
+    @ObservedObject var eventParticipants : GetParticipantsByEventIdViewModel
     let participant : ParticipantModel
 
     var body: some View {
@@ -29,6 +30,8 @@ struct EventRow: View {
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     Text(event.name ?? "")
                     .applyHeadingFont()
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
                     if let startDate = event.startDate, let startTime = event.startTime, let endTime = event.endTime {
                         Text("\(startDate), \(startTime)-\(endTime)")
                             .applyOverlayFont()
@@ -52,6 +55,10 @@ struct EventRow: View {
                 }
         }
         .padding(Theme.xs)
+    }
+        .onAppear {
+            //pass event id
+            eventParticipants.fetchParticipants(id: event.id)
         }
         
     }
@@ -60,12 +67,11 @@ struct EventRow: View {
 struct EventRow_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventRow(event: EventMock.instacne.eventA, participant: ParticipantMock.instacne.participantA)
+            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), participant: ParticipantMock.instacne.participantA)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
-            EventRow(event: EventMock.instacne.eventA,participant: ParticipantMock.instacne.participantB)
-                .previewLayout(.sizeThatFits)
+            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), participant: ParticipantMock.instacne.participantA)                .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()
         }

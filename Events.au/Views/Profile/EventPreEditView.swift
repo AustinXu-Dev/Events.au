@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct EventPreEditView: View {
+    
     let event : EventModel
     let approvedParticipants : [ParticipantModel]
     let pendingParticipants : [ParticipantModel]
     let unit : UnitModel
     //for accessing the users device light/dark mode
     @Environment(\.colorScheme) var colorScheme
+    @Binding var path : [HomeNavigation]
+    @Binding var profilePath: [ProfileNavigation]
+
+    @Binding var selectedTab: Tab
+    
     var body: some View {
         ScrollView(.vertical,showsIndicators: false) {
             VStack(alignment: .leading,spacing:Theme.defaultSpacing) {
                 eventImage
                 eventDetails
                 NavigationLink {
-                    EventParticipantManagementView(event: event, unit: unit)
+                    EventParticipantManagementView(event: event, pendingParticipants: pendingParticipants, approvedParticipants: approvedParticipants, unit: unit)
                 } label: {
                     participantsOverview
                 }
@@ -57,7 +63,7 @@ extension EventPreEditView {
     }
     
     private var toolBarPencil : some View {
-        NavigationLink(destination: EventDetailsEditView(event: event, unit: UnitMock.instacne.unitA)) {
+        NavigationLink(destination: EventDetailsEditView(event: event, unit: UnitMock.instacne.unitA,path: $path,profilePath: $profilePath,selectedTab: $selectedTab)) {
             Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
                 .frame(width:Theme.iconWidth,height:Theme.iconHeight)
         }
@@ -89,6 +95,6 @@ extension EventPreEditView {
 
 #Preview {
     NavigationStack {
-        EventPreEditView(event: EventMock.instacne.eventA, approvedParticipants: ParticipantMock.instacne.participants, pendingParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
+        EventPreEditView(event: EventMock.instacne.eventA, approvedParticipants: ParticipantMock.instacne.participants, pendingParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA,path: .constant([]),profilePath: .constant([]),selectedTab: .constant(.profile))
     }
 }

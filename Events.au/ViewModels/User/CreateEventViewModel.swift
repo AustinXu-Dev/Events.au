@@ -29,7 +29,7 @@ class CreateEventViewModel: ObservableObject {
     
     //https://lh3.googleusercontent.com/a/ACg8ocJWN9H5pN0ecH3xit1l8PFbf4oE7bVeMTepu3zjnvUKJwynsQ=s96-c
     init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", coverImageUrl: String =
-         "", unitId: String = "669e90ed520a32a42e23888c") {
+         "", unitId: String = "") {
         self.name = name
         self.description = description
         self.location = location

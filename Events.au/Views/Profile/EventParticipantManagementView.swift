@@ -12,8 +12,8 @@ struct EventParticipantManagementView: View {
     @State private var index = 1
     @State var showPending : Bool = false
     //MARK: have to remove these state var and replace with view model publishers
-    @State var pendingParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
-    @State var approvedParticipants : [ParticipantModel] = ParticipantMock.instacne.participants
+    @State var pendingParticipants : [ParticipantModel]
+    @State var approvedParticipants : [ParticipantModel]
     let unit : UnitModel
     @StateObject var participantVM = GetParticipantsByEventIdViewModel()
     @StateObject var approvalVM = UpdateParticipantStatusViewModel()

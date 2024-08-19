@@ -56,3 +56,17 @@ struct ParticipantModel : Identifiable, Codable, Hashable {
     }
 }
 
+
+struct ResultResponse : Codable, Hashable {
+    let result : [ResultModel]?
+}
+
+
+struct ResultModel : Codable, Hashable {
+    let optionId : String?
+    let answer : Bool?
+    let _id : String?
+}
+
+
+

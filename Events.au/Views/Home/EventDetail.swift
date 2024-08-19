@@ -28,7 +28,9 @@ struct EventDetail: View {
                 ProgressView()
             } else {
                 VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
-                    eventImage
+                    if let eventImage = event.coverImageUrl {
+                        RemoteImage(url:eventImage)
+                    }
                     details
                     Divider()
                         .foregroundStyle(Theme.tintColor)
@@ -84,12 +86,7 @@ struct EventDetail: View {
 
 
 extension EventDetail {
-    private var eventImage : some View {
-        Image(Theme.eventImage)
-            .resizable()
-            .frame(width: Theme.eventImageWidth,height: Theme.eventImageHeight)
-            .scaledToFill()
-    }
+ 
     private var details : some View {
         VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
             Text(event.name ?? "")

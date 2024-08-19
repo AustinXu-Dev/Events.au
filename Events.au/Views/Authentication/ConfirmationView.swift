@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ConfirmationView: View {
     
-    @Binding var path: NavigationPath
     
     var body: some View {
         VStack(alignment:.center,spacing:Theme.defaultSpacing){
@@ -24,13 +23,16 @@ struct ConfirmationView: View {
             Text("Signup successful.\nPlease signin again.")
                 .multilineTextAlignment(.center)
                 .applyLabelFont()
-            Button(action: {
-//                path.removeLast()
-            }) {
+            NavigationLink {
+                SignInView()
+            } label: {
                 ReusableButton(title: "Sign In")
+
             }
+
+            
         }
-        
+        .navigationBarBackButtonHidden()
         
         
         
@@ -41,7 +43,7 @@ struct ConfirmationView: View {
 
 #Preview {
     NavigationStack {
-        ConfirmationView(path: .constant(NavigationPath()) )
+        ConfirmationView()
     }
 }
 
