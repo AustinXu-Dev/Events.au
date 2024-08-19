@@ -19,6 +19,10 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
         return allParticipants.filter { $0.status == "participating" }
      }
      
+    var pendingParticipants : [ParticipantModel] {
+        return allParticipants.filter { $0.status == "pending" }
+     }
+    
     //checking if the event has participant or not
     func participantExists(userId: String) -> Bool {
          return allParticipants.contains { $0._id == userId }
@@ -31,6 +35,7 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
                 switch result {
                 case .success(let fetchedParticipants):
                     self?.allParticipants = fetchedParticipants.message
+                    print("PARTICIAPNT FETCHED SUCCESSFULLY: \(fetchedParticipants.message)")
                 case .failure(let error):
                     self?.errorMessage = "Error fetching the participants of an event. \(error.localizedDescription)"
                 }

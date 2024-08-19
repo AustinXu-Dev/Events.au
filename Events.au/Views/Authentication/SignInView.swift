@@ -169,6 +169,8 @@ struct SignInView: View {
                     Text("1")
                 }
             }
+            .navigationBarBackButtonHidden()
+
         }
     }
 

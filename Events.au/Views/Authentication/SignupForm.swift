@@ -33,8 +33,10 @@ struct SignupForm: View {
     @ObservedObject var allUnitsViewModel = AllUnitsViewModel()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
     @ObservedObject var userSignUpViewModel = UserSignUpViewModel()
-    
+  
     @State var errorMessage: String? = ""
+    
+    @State private var navigateToConfirmation = false
     
     @State private var faculties: [Faculty] = [
         Faculty(id: 1, name: "VMS"),
@@ -192,7 +194,6 @@ struct SignupForm: View {
             
             HStack {
                 Spacer()
-                
                 Button(action: {
                     //sign up with google
                     signUpWithGoogle()
@@ -208,11 +209,17 @@ struct SignupForm: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
             }
+            NavigationLink(destination: ConfirmationView(), isActive: $navigateToConfirmation) {
+                                EmptyView()
+                            }
             
             Spacer()
         }
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                navigateToConfirmation = true
+            }
+                  )
         }
         .onAppear{
             allUnitsViewModel.fetchUnits()
@@ -237,6 +244,7 @@ struct SignupForm: View {
                         switch result {
                         case .success:
                             self.alertMessage = "User registration successful"
+                            navigateToConfirmation = true
                             authViewModel.signOutWithGoogle()
                         case .failure(let error):
                             self.alertMessage = "Registration failed \(error)"

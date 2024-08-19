@@ -15,7 +15,7 @@ struct ProfileViewInfo: View {
     let user : UserModel2
     @ObservedObject var participantEventsVM : ParticipantEventsViewModel
     @ObservedObject var organizerEventsVM : OrganizerEventsViewModel
-    
+    @StateObject var eventParticipants = GetParticipantsByEventIdViewModel()
     @StateObject var participantVM : GetParticipantsByUserIdViewModel = GetParticipantsByUserIdViewModel()
 
     
@@ -57,7 +57,7 @@ struct ProfileViewInfo: View {
                             if let event = participant.eventId {
                                 if event.status == "completed" {
                                     ForEach(participantVM.participant) { fetchedParticipant in
-                                        EventRow(event: event, participant: fetchedParticipant)
+                                        EventRow(event: event, eventParticipants: eventParticipants, participant: fetchedParticipant)
                                     }
                                 }
                             }
@@ -67,7 +67,7 @@ struct ProfileViewInfo: View {
                             if let event = organizer.eventId {
                                 if event.status == "completed" {
                                     ForEach(participantVM.participant) { fetchedParticipant in
-                                        EventRow(event: event, participant: fetchedParticipant)
+                                        EventRow(event: event, eventParticipants: eventParticipants, participant: fetchedParticipant)
                                     }
                                 }
                             }

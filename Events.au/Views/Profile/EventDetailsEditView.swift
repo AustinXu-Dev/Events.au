@@ -31,12 +31,23 @@ struct EventDetailsEditView: View {
     @StateObject  var updateEventViewModel = UpdateEventBasicInfoViewModel()
     @StateObject var getAllUnitsViewModel = AllUnitsViewModel()
     
-    init(event : EventModel, unit: UnitModel) {
+    
+    
+    @Binding var path : [HomeNavigation]
+    @Binding var profilePath: [ProfileNavigation]
+
+    @Binding var selectedTab: Tab
+    
+    
+    init(event : EventModel, unit: UnitModel, path: Binding<[HomeNavigation]>, profilePath: Binding<[ProfileNavigation]>, selectedTab: Binding<Tab>) {
         //MARK: after we get the view model the event and unit has to be changed
         self.event = event
         self.unit  = unit
+        _path = path
+        _profilePath = profilePath
+        _selectedTab = selectedTab
         _name = State(initialValue: event.name ?? "")
-        _faculty = State(initialValue: unit.name ?? "No Faculty")
+        _faculty = State(initialValue: unit.name ?? "")
         _startDate = State(initialValue: event.startDate ?? "")
         _endDate = State(initialValue: event.endDate ?? "")
         _from = State(initialValue: event.startTime ?? "")
@@ -53,8 +64,9 @@ struct EventDetailsEditView: View {
                 Button(action: {
                     // HAS: I have to pass the selected event id from Profile View here!!!
                     
+    
                     updateEventViewModel.name = name
-                    updateEventViewModel.unitId = getAllUnitsViewModel.units[selectedOptionIndex].id
+                    updateEventViewModel.unitId = ""
                     updateEventViewModel.startDate = startDate
                     updateEventViewModel.endDate = endDate
                     updateEventViewModel.startTime = from
@@ -74,7 +86,20 @@ struct EventDetailsEditView: View {
                         .cornerRadius(Theme.cornerRadius)
                         .padding(.horizontal)
                 }
+                .alert("Your event is updated successfully.", isPresented: $updateEventViewModel.showAlert) {
+//                    NavigationLink(value: ProfileNavigation.profile) {
+//                        ProfileView(path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
+//                    }
+                    Button("Confirm") {
+                        profilePath = []
+                        selectedTab = .profile
+                       }
+                    
+                }
+               
+             
             }
+          
             .navigationBarTitle("Event Details", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

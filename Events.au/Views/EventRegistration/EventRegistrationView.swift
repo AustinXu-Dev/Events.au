@@ -35,7 +35,9 @@ struct EventRegistrationView: View {
             ZStack{
                 ScrollView {
                     VStack(alignment: .center, spacing:Theme.defaultSpacing) {
-                        imageField
+                        if let eventImage = event.coverImageUrl {
+                            RemoteImage(url:eventImage)
+                        }
                         
                         detailsField
                         
@@ -62,12 +64,7 @@ struct EventRegistrationView: View {
 }
 
 extension EventRegistrationView{
-    private var imageField: some View{
-        Image("EventImagePreview")
-            .resizable()
-            .scaledToFill()
-            .frame(width: Theme.eventImageWidth, height: Theme.eventImageHeight)
-    }
+   
     
     private var detailsField: some View{
         VStack(alignment: .leading, spacing: Theme.headingBodySpacing){
