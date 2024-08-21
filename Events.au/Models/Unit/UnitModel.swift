@@ -38,7 +38,7 @@ struct UnitModel: Codable, Hashable{
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case name
-        case description
+        case name = "name"
+        case description = "description"
     }
 }

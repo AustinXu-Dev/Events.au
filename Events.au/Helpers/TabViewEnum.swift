@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Tab {
     case home, createEvent, profile
@@ -34,8 +35,14 @@ enum ProfileNavigation: Hashable{
     case orgEventDetailEditView(EventModel, UnitModel)
 }
 
+enum AuthNavigation : Hashable {
+    case signUpView
+    case signInView
+    case signUpForm
+}
 
 struct Person: Hashable{
     let name: String
     let lastName: String
 }
+

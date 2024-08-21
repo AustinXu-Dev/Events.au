@@ -23,9 +23,11 @@ struct EventParticipants: View {
                         ZStack {
                             //MARK: have to change to image downloading logic from server
                             //MARK: only get the approved participant here
-                            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-                                RemoteSmallParticipantImage(url: "\(imageUrl)")
-                            }
+//                            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+//                                RemoteSmallParticipantImage(url: "\(imageUrl)")
+//                            }
+                            UserAvatar(user: participant.userId ?? UserMock.instance.user3)
+
                             // Image("PersonB")
 //                                .resizable()
 //                                .clipShape(Circle())

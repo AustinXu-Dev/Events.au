@@ -15,6 +15,7 @@ struct TabScreenView: View {
     @State private var homeNavigationStack: [HomeNavigation] = []
     @State private var createEventNavigationStack: NavigationPath = .init()
     @State private var profileNavigationStack: [ProfileNavigation] = []
+    @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     
     var body: some View {
 
@@ -42,6 +43,7 @@ struct TabScreenView: View {
         }
         .background(Color.white)
         .tint(Theme.tintColor)
+        
     }
 }
 
@@ -86,6 +88,6 @@ extension TabScreenView {
     }
 }
 
-#Preview {
-    TabScreenView()
-}
+//#Preview {
+//    TabScreenView()
+//}

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct EventAppNavigationPathValue {
-    static let signUpView = "SignUpView"
-    static let signInView = "SignInView"
-    static let signUpForm = "SignUpForm"
-}
+//struct EventAppNavigationPathValue {
+//    static let signUpView = "SignUpView"
+//    static let signInView = "SignInView"
+//    static let signUpForm = "SignUpForm"
+//}

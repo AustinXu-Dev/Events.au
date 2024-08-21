@@ -36,19 +36,19 @@ struct AttendeesListView: View {
                     Spacer()
                 }
                 .padding()
-
                 SearchBarAttendee(text: $searchText)
                 ForEach(filteredAttendees,id: \._id) { attendee in
                     HStack {
-                        if let userId = attendee.userId?._id {
-                            RemoteEventAttendeesImage(url: userId)
-                        }
+//                        if let userFId = attendee.userId?.fId {
+//                            RemoteEventAttendeesImage(url: userFId)
+//                        }
+                        UserAvatarSquare(user: attendee.userId ?? UserMock.instance.user3)
                         VStack(alignment: .leading) {
                             Text("\(attendee.userId?.firstName ?? "")")// \(attendee.userId?.lastName ?? "" )")
                                 .font(.headline)
                                 HStack {
                                     ForEach(userUnitsVM.userUnits,id: \.id) { unit in
-                                        Text(unit.name ?? "No Faculty")
+                                        Text(unit.name ?? "")
                                             .font(.subheadline)
                                             .foregroundColor(.gray)
                                     }
@@ -58,6 +58,7 @@ struct AttendeesListView: View {
                         }
                         .padding(.leading, 12)
                     }
+                    .padding(.horizontal,8)
                     .onAppear {
                         userUnitsVM.getUnitsByUserId(id: attendee.userId?._id ?? "")
                         //fetch unit of each approved participant (User)
