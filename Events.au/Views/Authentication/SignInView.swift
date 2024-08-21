@@ -18,6 +18,8 @@ struct SignInView: View {
     @State private var path = NavigationPath()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
 
+    
+    
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
@@ -136,7 +138,7 @@ struct SignInView: View {
                         .font(.system(size: 12))
                         .foregroundColor(.gray)
                     
-                    NavigationLink(value: EventAppNavigationPathValue.signUpView) {
+                    NavigationLink(value: AuthNavigation.signUpView) {
                         Text("Sign Up")
                             .font(.system(size: 12))
                             .foregroundColor(Color.eventBackground)
@@ -151,18 +153,21 @@ struct SignInView: View {
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Sign In"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
-            .navigationDestination(for: String.self) { value in
-                switch value{
-                case EventAppNavigationPathValue.signInView:
+            .navigationDestination(for: AuthNavigation.self, destination: { value in
+                switch value {
+                case .signInView:
                     SignInView()
-                case EventAppNavigationPathValue.signUpView:
+                case .signUpView:
                     SignupView()
-                case EventAppNavigationPathValue.signUpForm:
+                case .signUpForm:
                     SignupForm()
                 default:
                     Text("Default")
                 }
-            }
+                
+                
+            })
+            
             
             .navigationDestination(for: Int.self) { value in
                 if value == 1{
@@ -220,11 +225,11 @@ struct SignInView: View {
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInView()
-    }
-}
+//struct SignInView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignInView()
+//    }
+//}
 
 
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct Events_auApp: App {
+   
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var homeNavigationStack: [HomeNavigation] = []
@@ -19,7 +20,7 @@ struct Events_auApp: App {
             Group{
                 if isSingIn {
 //                    NavigationStack {
-                        TabScreenView()
+                    TabScreenView()
 //                    }
 //                    ProfileView()
 //                    TestView()

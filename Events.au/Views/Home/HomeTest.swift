@@ -20,6 +20,8 @@ struct HomeTest: View {
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
+//    @State var tokenIsExpired : Bool = false
+
     
     // Filtered Events for search text
     var filteredEvents: [EventModel]{
@@ -96,6 +98,18 @@ struct HomeTest: View {
             }
             
         }
+//        .onReceive(authVM.timer.publisher) { timer in
+//            self.tokenIsExpired = true
+//        }
+        .alert(isPresented: $authVM.tokenIsExpired) {
+                    Alert(
+                        title: Text("Session Expired"),
+                        message: Text("Your session has expired. Please sign in again."),
+                        dismissButton: .default(Text("Sign In Again")) {
+                            authVM.signOutWithGoogle()
+                        }
+                    )
+                }
         .onAppear(perform: {
             //fetch events
             eventVM.fetchEvents()

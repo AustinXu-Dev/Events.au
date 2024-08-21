@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseAuth
+
 
 class UserSignUpViewModel: ObservableObject {
     
@@ -85,6 +88,10 @@ class UserSignUpViewModel: ObservableObject {
                                 UserDefaults.standard.set(userId, forKey: "userId")
                                 print("User ID saved successfully!")
                                 self.printStoredUserId()
+                                //store photo URL here
+                             
+
+                                
                                 completion(.success(()))
                             } else {
                                 completion(.failure(SignUpError.invalidResponse))

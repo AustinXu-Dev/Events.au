@@ -92,7 +92,7 @@ struct SignupView: View {
             HStack {
                 Spacer()
                 
-                NavigationLink(value: EventAppNavigationPathValue.signUpForm) {
+                NavigationLink(value: AuthNavigation.signUpForm) {
                     Text("Next")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -148,7 +148,7 @@ struct SignupView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
                 
-                NavigationLink(value: EventAppNavigationPathValue.signInView) {
+                NavigationLink(value: AuthNavigation.signInView) {
                     Text("Sign In")
                         .font(.system(size: 12))
                         .foregroundColor(Color.eventBackground)

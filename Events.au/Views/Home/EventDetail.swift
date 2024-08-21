@@ -217,12 +217,12 @@ extension EventDetail {
 }
 
 
-//#Preview {
-//    NavigationStack {
-//        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
-//    }
-//    .padding(.horizontal,Theme.large)
-//    
-//}
+#Preview {
+    NavigationStack {
+        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), participantsVM: GetParticipantsByEventIdViewModel(), approvedParticipants: ParticipantMock.instance.participants)
+    }
+    .padding(.horizontal,Theme.large)
+    
+}
 
 

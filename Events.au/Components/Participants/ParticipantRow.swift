@@ -27,9 +27,10 @@ struct ParticipantRow: View {
 //                .scaledToFill()
 //                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
 //                .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
-                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-                    RemoteParticipantImage(url: "\(imageUrl)")
-                }
+//                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+//                    RemoteParticipantImage(url: "\(imageUrl)")
+//                }
+                ParticipantAvatar(user: participant.userId ?? UserMock.instance.user3)
             
             
                 VStack(alignment:.leading,spacing:Theme.medium) {
