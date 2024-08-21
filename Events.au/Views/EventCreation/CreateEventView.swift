@@ -76,16 +76,6 @@ struct CreateEventView: View {
                         
                         nameTextField
                         imageField
-                        
-                        Image(uiImage: avatarImage ?? UIImage(named: "select_an_image")!)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 360, height: 160)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .padding()
-                            .onTapGesture {
-                                showImagePicker = true
-                            }
                         detailsField(geometry.size.width)
                         
                         descriptionField
@@ -157,15 +147,20 @@ extension CreateEventView{
                 Button {
                     avatarImage = nil
                 } label: {
-                    Text("Remove Image")
+                    Text(avatarImage==nil ? "" : "Remove Image")
                         .font(Theme.headingFontStyle)
                         .fontWeight(.semibold)
                 }
                 
             }
-            .padding(.horizontal, 15)
-            
-            
+            Image(uiImage: avatarImage ?? UIImage(named: "select_an_image")!)
+                .resizable()
+                .frame(width: 360, height: 160)
+                .scaledToFill()
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .onTapGesture {
+                    showImagePicker = true
+                }
         }
         
     }
