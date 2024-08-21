@@ -9,7 +9,7 @@ import Foundation
 
 struct ParticipantMock  {
     
-    static let instacne = ParticipantMock()
+    static let instance = ParticipantMock()
     
     private init(){}
     

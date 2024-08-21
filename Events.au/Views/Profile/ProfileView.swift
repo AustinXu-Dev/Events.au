@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import FirebaseAuth
 
 struct ProfileView: View {
     @Binding var path : [HomeNavigation]
@@ -15,7 +17,7 @@ struct ProfileView: View {
     @AppStorage("userRole") private var userRole: String?
     @StateObject var participantEventsVM = ParticipantEventsViewModel()
     @StateObject var organizerEventsVM = OrganizerEventsViewModel()
-    @StateObject var approvedParticipantsVM : GetParticipantsByEventIdViewModel = GetParticipantsByEventIdViewModel()
+    @StateObject var participantVM : GetParticipantsByEventIdViewModel = GetParticipantsByEventIdViewModel()
     @State private var showUpcoming : Bool = false
     @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
     @State  var selectedUserState : UserState?
@@ -73,9 +75,9 @@ struct ProfileView: View {
                     
                     if userRole == UserState.audience.rawValue {
 
-                        EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
+                        EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, profileVM: profileVM, approvedParticipantsVM: participantVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
                     } else if userRole == UserState.organizer.rawValue {
-                        EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
+                        EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, profileVM: profileVM, approvedParticipantsVM: participantVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
                     }
                 }
                 
@@ -90,10 +92,14 @@ struct ProfileView: View {
                     ProfileEditView(path: $profilePath, selectedTab: $selectedTab, user: userModel)
                 case .profileEventDetail:
                     Text("Event Detail")
-                case .eventDetail(let event, let participants):
+                case .eventDetail(let event, _):
                     if let user = profileVM.userDetail {
-                        EventDetail(user: user, event: event, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, approvedParticipants: approvedParticipantsVM.approvedParticipants)
+                        EventDetail(user: user, event: event, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participantsVM: participantVM, approvedParticipants: participantVM.approvedParticipants)
                     }
+                case .orgEventDetailPreEdit(let event, let unit):
+                    EventPreEditView(event: event, unit: unit, path: $path, profilePath: $profilePath, participantVM: participantVM, selectedTab: $selectedTab)
+                case .orgEventDetailEditView(let event, let unit):
+                    EventDetailsEditView(event: event, unit: unit, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
                 default:
                     Text("Navigation Crashed")
                 }
@@ -120,6 +126,11 @@ struct ProfileView: View {
             }
           
         })
+        .refreshable {
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
+        }
         
     }
     
@@ -142,12 +153,14 @@ extension ProfileView {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width:393,height: 186)
-            Image("human_profile")
-                .resizable()
-                .clipShape(Circle())
-                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
-                .padding(.horizontal,Theme.large)
-            
+//            Image("human_profile")
+//                .resizable()
+//                .clipShape(Circle())
+//                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+//                .padding(.horizontal,Theme.large)
+            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+                RemoteProfileView(url: "\(imageUrl)")
+            }
         }
         
         

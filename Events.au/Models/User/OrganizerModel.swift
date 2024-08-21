@@ -33,5 +33,4 @@ struct OrganizerModel  : Codable, Hashable {
     let _id : String?
     let userId : UserModel?
     let eventId : EventModel?
-    let status : String?
 }

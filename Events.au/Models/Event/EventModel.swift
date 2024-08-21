@@ -72,8 +72,8 @@ struct AllEventsResponse : Codable {
 
 struct EventModel : Identifiable,Codable, Hashable {
     let _id,name,description,startDate,endDate,startTime,endTime,
-        location,rules,coverImageUrl,adminId,status : String?
-    var id: String { _id ?? "" }
+        location,rules,coverImageUrl,status,adminId : String?
+    var id: String? { _id ?? "" }
 
 }
 

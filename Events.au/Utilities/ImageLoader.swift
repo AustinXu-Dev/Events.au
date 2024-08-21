@@ -80,16 +80,246 @@ struct RemoteImage: View {
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 15))
 //                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
-            } else if imageLoader.image == nil && !imageLoader.url.isEmpty {
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
                 // Handle the case where the image is not found
-                Text("Image not found")
-                    .foregroundColor(.red)
-                    .frame(width: 361, height: 160)  // Match the size of the image
-            } else {
-                // Show ProgressView only when loading
-                ProgressView()
-                    .frame(width: 361, height: 160)  // Match the size of the image
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .frame(width: 361, height: 180)  // Resize the image
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
             }
         }
     }
 }
+
+
+
+struct SmallRemoteImage: View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                    .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+                    .scaledToFit()
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                    .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+                    .scaledToFit()
+            }
+        }
+    }
+}
+
+
+struct RemoteProfileView: View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+                    .padding(.horizontal,Theme.large)
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+                    .padding(.horizontal,Theme.large)
+            }
+        }
+    }
+}
+
+
+struct RemoteProfileToolBarView : View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipShape(Circle())
+                    .scaledToFit()
+                    .frame(width: 35, height: 35)
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+                    .padding(.horizontal,Theme.large)
+            }
+        }
+                               
+    }
+}
+
+
+
+struct RemoteProfleEdit : View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipShape(Circle())
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)  // Resize the image
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .frame(width: 361, height: 180)  // Resize the image
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+        }
+    }
+}
+
+
+struct RemoteParticipantImage : View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                    .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .frame(width: 361, height: 180)  // Resize the image
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+        }
+    }
+}
+
+  
+
+struct RemoteSmallParticipantImage : View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: Theme.circleWidth,height:Theme.circleHeight)
+                    .aspectRatio(contentMode:.fit)
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .frame(width: 361, height: 180)  // Resize the image
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+        }
+    }
+}
+
+ 
+
+struct RemoteEventAttendeesImage : View {
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(url: String) {
+        imageLoader = ImageLoader(url: url)
+    }
+    
+    var body: some View {
+        Group {
+            if let image = imageLoader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 64, height: 64)
+                    .cornerRadius(5)
+//                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
+            } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
+                // Handle the case where the image is not found
+//                Text("Image not found")
+//                    .foregroundColor(.red)
+//                    .frame(width: 361, height: 160)  // Match the size of the image
+                Image("no_image")
+                    .resizable()
+                    .frame(width: 64, height: 64)
+                    .cornerRadius(5)
+            }
+        }
+    }
+}
+
+   

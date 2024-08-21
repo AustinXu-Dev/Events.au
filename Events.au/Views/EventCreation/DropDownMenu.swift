@@ -61,7 +61,7 @@ struct DropDownMenu: View {
 
                                 }, label: {
                                     HStack {
-                                        Text(options[index].name ?? "VMS")
+                                        Text(options[index].name ?? "")
                                             .font(Theme.bodyFontStyle)
                                         Spacer()
                                         if (index == selectedOptionIndex) {

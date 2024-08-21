@@ -14,35 +14,34 @@
 import SwiftUI
 
 struct EventDetailsEditView: View {
-    
-    let event : EventModel
+    let event: EventModel
     let unit: UnitModel
-    @State  var name: String = ""
-    @State  var faculty: String = ""
-    @State  var startDate: String = ""
-    @State  var endDate: String = ""
-    @State  var from: String = ""
-    @State  var to: String = ""
-    @State  var description: String = ""
+    @State var name: String = ""
+    @State var faculty: String = ""
+    @State var startDate: String = ""
+    @State var endDate: String = ""
+    @State var from: String = ""
+    @State var to: String = ""
+    @State var description: String = ""
     
     @State var selectedOptionIndex: Int = 0
     @State var showDropDown: Bool = false
     
-    @StateObject  var updateEventViewModel = UpdateEventBasicInfoViewModel()
+    @StateObject var updateEventViewModel = UpdateEventBasicInfoViewModel()
     @StateObject var getAllUnitsViewModel = AllUnitsViewModel()
     
-    
-    
-    @Binding var path : [HomeNavigation]
+    @Binding var path: [HomeNavigation]
     @Binding var profilePath: [ProfileNavigation]
-
     @Binding var selectedTab: Tab
     
-    
-    init(event : EventModel, unit: UnitModel, path: Binding<[HomeNavigation]>, profilePath: Binding<[ProfileNavigation]>, selectedTab: Binding<Tab>) {
-        //MARK: after we get the view model the event and unit has to be changed
+    @State private var showAlert: Bool = false
+    @State private var showConfirmationAlert: Bool = false
+    @State private var alertMessage: String = ""
+    @Environment(\.dismiss) var dismiss
+
+    init(event: EventModel, unit: UnitModel, path: Binding<[HomeNavigation]>, profilePath: Binding<[ProfileNavigation]>, selectedTab: Binding<Tab>) {
         self.event = event
-        self.unit  = unit
+        self.unit = unit
         _path = path
         _profilePath = profilePath
         _selectedTab = selectedTab
@@ -56,25 +55,31 @@ struct EventDetailsEditView: View {
     }
     
     var body: some View {
-        
-        ScrollView(.vertical,showsIndicators: false) {
-            VStack(spacing:Theme.defaultSpacing) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: Theme.defaultSpacing) {
                 eventImage
                 eventDetails
+                
                 Button(action: {
-                    // HAS: I have to pass the selected event id from Profile View here!!!
-                    
-    
-                    updateEventViewModel.name = name
-                    updateEventViewModel.unitId = ""
-                    updateEventViewModel.startDate = startDate
-                    updateEventViewModel.endDate = endDate
-                    updateEventViewModel.startTime = from
-                    updateEventViewModel.endTime = to
-                    updateEventViewModel.description = description
-                    
-                    if let eventId = event._id {
+                    // Perform validation
+                    if validateFields() {
+                        updateEventViewModel.name = name
+                        updateEventViewModel.unitId = ""
+                        updateEventViewModel.startDate = startDate
+                        updateEventViewModel.endDate = endDate
+                        updateEventViewModel.startTime = from
+                        updateEventViewModel.endTime = to
+                        updateEventViewModel.description = description
+                        
+                        if let eventId = event._id {
                             updateEventViewModel.updateEventBasicInfo(eventId: eventId, token: TokenManager.share.getToken() ?? "")
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                            alertMessage = "You successfully edited the event."
+                            showConfirmationAlert = true
+                        }
+                        
+                        
                     }
                 }) {
                     Text("Save")
@@ -86,45 +91,98 @@ struct EventDetailsEditView: View {
                         .cornerRadius(Theme.cornerRadius)
                         .padding(.horizontal)
                 }
-                .alert("Your event is updated successfully.", isPresented: $updateEventViewModel.showAlert) {
-//                    NavigationLink(value: ProfileNavigation.profile) {
-//                        ProfileView(path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
-//                    }
-                    Button("Confirm") {
-                        profilePath = []
-                        selectedTab = .profile
-                       }
-                    
+                .alert(alertMessage, isPresented: $showAlert) {
+                    Button("OK", role: .cancel) { }
                 }
-               
-             
+                .alert(alertMessage, isPresented: $showConfirmationAlert){
+                   
+                    Button {
+                        print("Swagger Kyaw G Works")
+                        print("Path is", path)
+                        print("Profiel path is", profilePath)
+                        path = []
+                        profilePath = []
+                        self.dismiss()
+                        selectedTab = .profile
+                    } label: {
+                        Text("Ok")
+                    }
+
+                }
+                
             }
-          
             .navigationBarTitle("Event Details", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(Theme.clickedPencil)
-                            .imageScale(.large)
+                    Image(Theme.clickedPencil)
+                        .imageScale(.large)
                 }
             }
+            .onAppear {
+                print("Profile navgation in: ", profilePath)
+            }
         }
+    }
+    
+    private func validateFields() -> Bool {
+        // Check for empty fields
+        if name.isEmpty || faculty.isEmpty || startDate.isEmpty || endDate.isEmpty || from.isEmpty || to.isEmpty || description.isEmpty {
+            alertMessage = "Please fill in all fields."
+            showAlert = true
+            return false
+        }
+        
+        // Validate date format (dd-MM-yyyy)
+        if !isValidDateFormat(startDate) || !isValidDateFormat(endDate) {
+            alertMessage = "Please enter a valid date in the format dd-MM-yyyy."
+            showAlert = true
+            return false
+        }
+        
+        // Validate time format (HH:mm)
+        if !isValidTimeFormat(from) || !isValidTimeFormat(to) {
+            alertMessage = "Please enter a valid time in the format HH:mm."
+            showAlert = true
+            return false
+        }
+        
+        return true
+    }
+
+    private func isValidDateFormat(_ date: String) -> Bool {
+        let dateRegex = "^\\d{2}-\\d{2}-\\d{4}$"
+        let datePredicate = NSPredicate(format: "SELF MATCHES %@", dateRegex)
+        return datePredicate.evaluate(with: date)
+    }
+
+    private func isValidTimeFormat(_ time: String) -> Bool {
+        let timeRegex = "^\\d{2}:\\d{2}$"
+        let timePredicate = NSPredicate(format: "SELF MATCHES %@", timeRegex)
+        return timePredicate.evaluate(with: time)
+    }
+
+    
+    private func isValidDate(_ date: String, format: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: date) != nil
+    }
+    
+    private func isValidTime(_ time: String, format: String) -> Bool {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = format
+        return timeFormatter.date(from: time) != nil
     }
 }
 
 extension EventDetailsEditView {
-    private var eventImage : some View {
+    private var eventImage: some View {
         HStack {
-            Image("event_details")
-                .resizable()
-                .frame(height:Theme.eventImageHeight)
-                .frame(maxWidth: .infinity)
-                .scaledToFill()
-                .padding(.horizontal,Theme.large)
-
+            RemoteImage(url: event.coverImageUrl ?? "")
         }
     }
     
-    private var eventDetails : some View {
+    private var eventDetails: some View {
         VStack(alignment: .leading, spacing: Theme.headingBodySpacing) {
             HStack {
                 Text("Name")
@@ -146,7 +204,7 @@ extension EventDetailsEditView {
                 )
                 .frame(maxWidth: Theme.textFieldWidth)
             }
-            .onAppear{
+            .onAppear {
                 getAllUnitsViewModel.fetchUnits()
             }
             
@@ -190,22 +248,20 @@ extension EventDetailsEditView {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             
-            HStack(alignment:.top) {
+            HStack(alignment: .top) {
                 Text("Description")
                     .applyHeadingFont()
                 Spacer()
-                TextField(event.description ?? "", text: $description,axis: .vertical)
+                TextField(event.description ?? "", text: $description, axis: .vertical)
                     .applyBodyFont()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(maxWidth: Theme.textFieldWidth)
-                    .lineLimit(10,reservesSpace: true)
+                    .lineLimit(10, reservesSpace: true)
             }
         }
-        .padding(.horizontal,Theme.large)
+        .padding(.horizontal, Theme.large)
     }
 }
-
-
 
 //#Preview {
 //    NavigationStack {

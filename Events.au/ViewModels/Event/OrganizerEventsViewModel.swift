@@ -22,7 +22,7 @@ class OrganizerEventsViewModel : ObservableObject {
                 case .success(let eventsOfOrganizer):
                     self?.loader = false
                     self?.organizerEvents = eventsOfOrganizer.message
-                    self?.readEventStatus(organizer: self?.organizerEvents ?? OrganizerMock.instance.organizer3)
+//                    self?.readEventStatus(organizer: self?.organizerEvents ?? OrganizerMock.instance.organizer3)
                 case .failure(let error):
                     self?.loader = false
                     self?.errorMessage = "Failed to get events by organizer id.\(error.localizedDescription)"
@@ -31,9 +31,9 @@ class OrganizerEventsViewModel : ObservableObject {
         }
     }
     
-    func readEventStatus(organizer : [OrganizerModel]) {
-        organizer.forEach { organizer in
-            print(organizer.status ?? "")
-        }
-    }
+//    func readEventStatus(organizer : [OrganizerModel]) {
+//        organizer.forEach { organizer in
+//            print(organizer.status ?? "")
+//        }
+//    }
 }

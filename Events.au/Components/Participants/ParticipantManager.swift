@@ -11,63 +11,68 @@ struct ParticipantManager: View {
     let event : EventModel
     @Binding var showPending : Bool
     let unit : UnitModel
-    @Binding var pendingParticipants : [ParticipantModel]
-    @Binding var approvedParticipants : [ParticipantModel]
     @ObservedObject var participantVM : GetParticipantsByEventIdViewModel
     @ObservedObject var approvalVM : UpdateParticipantStatusViewModel
+    @State private var respondedParticipants: Set<String> = []
+//    let pedningParticipants : [ParticipantMode]
+
     var body: some View {
         VStack(alignment:.center) {
                 participantManagerHeader
-            
-            
             if !showPending {
                 VStack(alignment:.center,spacing:Theme.medium) {
                     ForEach(participantVM.approvedParticipants,id: \._id){ partipant in
                         ParticipantRow(participant: partipant, unit: unit)
-                           
+                            .opacity(respondedParticipants.contains(partipant._id ?? "") ? 0 : 1)
+//                            .transition(.move(edge: .trailing).combined(with: .opacity))
+
+
                     }
-                }.transition(.move(edge: .leading))
+                    
+                }
+                .transition(.move(edge: .leading))
             }
             
             if showPending {
                 VStack(alignment:.center,spacing:Theme.medium) {
-                    ForEach(participantVM.allParticipants,id: \._id){ partipant in
+                    ForEach(participantVM.pendingParticipants,id: \._id){ partipant in
                         ZStack {
                             ParticipantRow(participant: partipant, unit: unit)
-                                
+                                .opacity(respondedParticipants.contains(partipant._id ?? "") ? 0 : 1)
+//                                .transition(.move(edge: .trailing).combined(with: .opacity))
+
+                            if !respondedParticipants.contains(partipant._id ?? "") {
                             HStack {
                                 approveButton
                                     .onTapGesture {
                                         withAnimation(.default) {
-                                            if let eventId = event._id, let token = KeychainManager.shared.keychain.get("appUserId") {
-                                                approvalVM.updateEventBasicInfo(eventId: eventId, token: token)
-                                                approvalHandler(isApproving: true, participant: partipant)
-                                            }
+                                            handleApproval(isApproving: true, participant: partipant)
                                         }
-//                                        print("Pending:\(pendingParticipants.count)")
-//                                        print("Approved:\(approvedParticipants.count)")
-
+                                      
                                     }
                                 rejectButton
                                     .onTapGesture {
                                         withAnimation(.default) {
-                                            approvalHandler(isApproving: false, participant: partipant)
+                                            handleApproval(isApproving: false, participant: partipant)
                                         }
-//                                        print("Pending:\(pendingParticipants.count)")
-//                                        print("Approved:\(approvedParticipants.count)")
-
+                                       
                                     }
                             }
                             .offset(x:95)
                         }
-                        
-                        
+                        }
+
                     }
                    
                 }
                 .transition(.move(edge: .trailing))
             }
             Spacer(minLength: 0)
+        }
+        .refreshable {
+            if let eventId = event._id {
+                participantVM.fetchParticipants(id: eventId)
+            }
         }
         .onAppear(perform: {
             if let eventId = event._id {
@@ -159,11 +164,21 @@ extension ParticipantManager {
 
 extension ParticipantManager {
     
-    private func approvalHandler(isApproving : Bool,participant : ParticipantModel){
-        if isApproving {
-            approvedParticipants.append(participant)
+    private func handleApproval(isApproving: Bool,participant:ParticipantModel) {
+            // Call the approval API or perform action here
+        if let eventId = event._id, let token = TokenManager.share.getToken() {
+                // Assume `approvalVM` is passed as an environment object
+                approvalVM.participantId = participant._id ?? ""
+                approvalVM.status = isApproving ? "accepted" : "rejected"
+                approvalVM.updateEventBasicInfo(eventId: eventId, token: token)
+            }
+            
+            // Hide the buttons for this row
+        withAnimation(.linear) {
+            if let participantId = participant._id {
+                respondedParticipants.insert(participantId)
+            }
         }
-        pendingParticipants.removeAll{ $0._id == participant._id }
     }
     
 }
@@ -172,19 +187,19 @@ extension ParticipantManager {
 
 
 
-struct ParticipantManager_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel(), approvalVM: UpdateParticipantStatusViewModel())
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.light)
-                .padding()
-            
-            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel(),approvalVM: UpdateParticipantStatusViewModel())
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-                .padding()
-        }
-
-    }
-}
+//struct ParticipantManager_Previews : PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel(), approvalVM: UpdateParticipantStatusViewModel())
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.light)
+//                .padding()
+//            
+//            ParticipantManager(event :EventMock.instacne.eventA ,showPending:.constant(false), unit: UnitMock.instacne.unitA, pendingParticipants: .constant(ParticipantMock.instacne.participants), approvedParticipants: .constant(ParticipantMock.instacne.participants), participantVM: GetParticipantsByEventIdViewModel(),approvalVM: UpdateParticipantStatusViewModel())
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.dark)
+//                .padding()
+//        }
+//
+//    }
+//}

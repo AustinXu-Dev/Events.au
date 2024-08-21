@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-
-
+import GoogleSignIn
+import Firebase
+import FirebaseAuth
 
 struct AttendeesListView: View {
     let approvedParticipants : [ParticipantModel]
@@ -39,10 +40,9 @@ struct AttendeesListView: View {
                 SearchBarAttendee(text: $searchText)
                 ForEach(filteredAttendees,id: \._id) { attendee in
                     HStack {
-                        Image("PersonB")
-                            .resizable()
-                            .frame(width: 64, height: 64)
-                            .cornerRadius(5)
+                        if let userId = attendee.userId?._id {
+                            RemoteEventAttendeesImage(url: userId)
+                        }
                         VStack(alignment: .leading) {
                             Text("\(attendee.userId?.firstName ?? "")")// \(attendee.userId?.lastName ?? "" )")
                                 .font(.headline)
@@ -106,6 +106,6 @@ struct SearchBarAttendee: UIViewRepresentable {
 
 struct AttendeesListView_Previews: PreviewProvider {
     static var previews: some View {
-        AttendeesListView(approvedParticipants: ParticipantMock.instacne.participants, userUnitsVM: GetUnitsByUserIdViewModel())
+        AttendeesListView(approvedParticipants: ParticipantMock.instance.participants, userUnitsVM: GetUnitsByUserIdViewModel())
     }
 }

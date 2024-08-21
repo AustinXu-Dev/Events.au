@@ -10,14 +10,12 @@ import SwiftUI
 struct EventPreEditView: View {
     
     let event : EventModel
-    let approvedParticipants : [ParticipantModel]
-    let pendingParticipants : [ParticipantModel]
     let unit : UnitModel
     //for accessing the users device light/dark mode
     @Environment(\.colorScheme) var colorScheme
     @Binding var path : [HomeNavigation]
     @Binding var profilePath: [ProfileNavigation]
-
+    @ObservedObject var participantVM : GetParticipantsByEventIdViewModel
     @Binding var selectedTab: Tab
     
     var body: some View {
@@ -26,7 +24,7 @@ struct EventPreEditView: View {
                 eventImage
                 eventDetails
                 NavigationLink {
-                    EventParticipantManagementView(event: event, pendingParticipants: pendingParticipants, approvedParticipants: approvedParticipants, unit: unit)
+                    EventParticipantManagementView(event: event, unit: unit)
                 } label: {
                     participantsOverview
                 }
@@ -39,21 +37,27 @@ struct EventPreEditView: View {
                 toolBarPencil
             }
         }
+        .onAppear {
+            if let eventId = event._id {
+                participantVM.fetchParticipants(id: eventId)
+            }
+        }
     }
 }
 
 extension EventPreEditView {
     
     private var eventImage : some View {
-        Image("event_details")
-            .resizable()
-            .frame(width: Theme.eventImageWidth,height: Theme.eventImageHeight)
+        RemoteImage(url: event.coverImageUrl ?? "no_image")
+//        Image("event_details")
+//            .resizable()
+//            .frame(width: Theme.eventImageWidth,height: Theme.eventImageHeight)
     }
     
     private var eventDetails : some View {
         VStack(alignment: .leading, spacing: Theme.headingBodySpacing) {
             ProfileDetailRow(label: "Name", value: event.name ?? "")
-            ProfileDetailRow(label: "Faculty", value: "VMES")
+            ProfileDetailRow(label: "Faculty", value: unit.name ?? "Unknown faculty")
             ProfileDetailRow(label: "Start Date", value: event.startDate ?? "")
             ProfileDetailRow(label: "End Date", value: event.endDate ?? "")
             ProfileDetailRow(label: "From", value: event.startTime ?? "")
@@ -63,7 +67,11 @@ extension EventPreEditView {
     }
     
     private var toolBarPencil : some View {
-        NavigationLink(destination: EventDetailsEditView(event: event, unit: UnitMock.instacne.unitA,path: $path,profilePath: $profilePath,selectedTab: $selectedTab)) {
+//        NavigationLink(destination: EventDetailsEditView(event: event, unit: UnitMock.instacne.unitA,path: $path,profilePath: $profilePath,selectedTab: $selectedTab)) {
+//            Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
+//                .frame(width:Theme.iconWidth,height:Theme.iconHeight)
+//        }
+        NavigationLink(value: ProfileNavigation.orgEventDetailEditView(event, unit)) {
             Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
                 .frame(width:Theme.iconWidth,height:Theme.iconHeight)
         }
@@ -81,9 +89,9 @@ extension EventPreEditView {
                         .foregroundStyle(Theme.secondaryTextColor)
                         .applyLabelFont()
                     HStack(spacing:Theme.medium) {
-                        EventParticipants(participants: approvedParticipants, participantStatus: "joining")
+                        EventParticipants(participants: participantVM.approvedParticipants, participantStatus: "joining")
                             .foregroundStyle(Theme.secondaryTextColor)
-                        EventParticipants(participants: pendingParticipants, participantStatus: "pending")
+                        EventParticipants(participants: participantVM.pendingParticipants, participantStatus: "pending")
                             .foregroundStyle(Theme.tintColor)
                     }
                 }
@@ -95,6 +103,6 @@ extension EventPreEditView {
 
 #Preview {
     NavigationStack {
-        EventPreEditView(event: EventMock.instacne.eventA, approvedParticipants: ParticipantMock.instacne.participants, pendingParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA,path: .constant([]),profilePath: .constant([]),selectedTab: .constant(.profile))
+        EventPreEditView(event: EventMock.instacne.eventA, unit: UnitMock.instacne.unitA,path: .constant([]), profilePath: .constant([]), participantVM: GetParticipantsByEventIdViewModel(),selectedTab: .constant(.profile))
     }
 }

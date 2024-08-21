@@ -17,6 +17,8 @@ struct ProfileViewInfo: View {
     @ObservedObject var organizerEventsVM : OrganizerEventsViewModel
     @StateObject var eventParticipants = GetParticipantsByEventIdViewModel()
     @StateObject var participantVM : GetParticipantsByUserIdViewModel = GetParticipantsByUserIdViewModel()
+    @StateObject var unitVM = GetUnitsByEventViewModel()
+    @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
 
     
     var body: some View {
@@ -24,19 +26,18 @@ struct ProfileViewInfo: View {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    Image("human_profile")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(Circle())
+                    if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+                        RemoteProfleEdit(url: "\(imageUrl)")
+                    }
                     Spacer()
                 }
                 .padding(.top, 20)
                 VStack(alignment: .leading, spacing: 10) {
-                        ProfileDetailRow(label: "First Name", value: user.firstName)
+                    ProfileDetailRow(label: "First Name", value: user.firstName ?? "")
                         //MARK: add last name after dropping user database
-                        ProfileDetailRow(label: "Last Name", value : "Last Name")
-                        ProfileDetailRow(label: "Email", value: user.email)
-                        ProfileDetailRow(label: "Phone", value: "\(user.phone)")
+//                        ProfileDetailRow(label: "Last Name", value : "Last Name")
+                    ProfileDetailRow(label: "Email", value: user.email ?? "")
+                        ProfileDetailRow(label: "Phone", value: "\(user.phone ?? 00)")
                         ProfileDetailRow(label: "Gender", value: "Gender")
                         ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
                 }
@@ -57,7 +58,7 @@ struct ProfileViewInfo: View {
                             if let event = participant.eventId {
                                 if event.status == "completed" {
                                     ForEach(participantVM.participant) { fetchedParticipant in
-                                        EventRow(event: event, eventParticipants: eventParticipants, participant: fetchedParticipant)
+                                        EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: fetchedParticipant)
                                     }
                                 }
                             }
@@ -67,7 +68,7 @@ struct ProfileViewInfo: View {
                             if let event = organizer.eventId {
                                 if event.status == "completed" {
                                     ForEach(participantVM.participant) { fetchedParticipant in
-                                        EventRow(event: event, eventParticipants: eventParticipants, participant: fetchedParticipant)
+                                        EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: fetchedParticipant)
                                     }
                                 }
                             }
@@ -79,6 +80,11 @@ struct ProfileViewInfo: View {
                 Spacer()
             }
         }
+        .refreshable {
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
+        }
         .onAppear(perform: {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
             //get all events based on userRole
@@ -87,6 +93,7 @@ struct ProfileViewInfo: View {
             } else {
                 self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
             }
+                
         }
             
             })

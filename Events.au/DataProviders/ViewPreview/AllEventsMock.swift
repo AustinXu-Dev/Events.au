@@ -9,14 +9,15 @@ import Foundation
 
 struct AllEventsMock {
     
-    static let oneEvent : EventModel =   EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, adminId: "", status: "Pending")
+    static let oneEvent : EventModel =   EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: "")
     
     static let events : [EventModel] = [
-        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, adminId: "", status: "Pending"),
-        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, adminId: "", status: "Pending"),
-        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, adminId: "", status: "Pending"),
-        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, adminId: "", status: "Pending"),
-        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, adminId: "", status: "Pending")
+        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: ""),
+        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: ""),
+        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: ""),
+        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: ""),
+        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: ""),
+        EventModel(_id: "1", name: "Dcode Event", description: "This event is the first ever event from dcode labs", startDate: "5th June", endDate: "7th June", startTime: "18:00", endTime: "20:00", location: "True Labs", rules: "No mushroom", coverImageUrl: EventImageMock.image, status: "Pending", adminId: "")
     
     ]
     

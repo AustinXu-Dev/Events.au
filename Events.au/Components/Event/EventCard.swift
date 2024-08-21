@@ -36,9 +36,10 @@ struct EventCard: View {
         )
         .applyThemeDoubleShadow()
         .onAppear(perform: {
-            if let eventId = event._id {
-                participantsVM.fetchParticipants(id: eventId)
-            }
+//            if let eventId = event._id {
+//                participantsVM.fetchParticipants(id: eventId)
+//            }
+            print("p fetched in event card",participantsVM.approvedParticipants.count)
                   
         })
         
@@ -50,7 +51,7 @@ extension EventCard {
         HStack(alignment:.center,spacing:Theme.defaultSpacing) {
            
             //MARK: - only pass the approved participant to child view
-            EventParticipants(participants: participantsVM.approvedParticipants, participantStatus: "joining")
+          //  EventParticipants(participants: participantsVM.approvedParticipants, participantStatus: "joining")
             
             
             Spacer()
@@ -65,12 +66,12 @@ extension EventCard {
 struct EventCard_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventCard(participantsVM: ParticipantMock.instacne.participantVM, event: AllEventsMock.oneEvent)
+            EventCard(participantsVM: ParticipantMock.instance.participantVM, event: AllEventsMock.oneEvent)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventCard(participantsVM : ParticipantMock.instacne.participantVM,event: AllEventsMock.oneEvent)
+            EventCard(participantsVM : ParticipantMock.instance.participantVM,event: AllEventsMock.oneEvent)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

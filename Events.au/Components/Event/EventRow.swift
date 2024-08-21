@@ -13,6 +13,8 @@ struct EventRow: View {
     //MARK: reteriving userRole to check where to display event status or event joining status
     @AppStorage("userRole") private var userRole: String?
     @ObservedObject var eventParticipants : GetParticipantsByEventIdViewModel
+    @ObservedObject var unitVM : GetUnitsByEventViewModel
+
     let participant : ParticipantModel
 
     var body: some View {
@@ -22,11 +24,12 @@ struct EventRow: View {
             .foregroundStyle(Theme.backgroundColor)
             .applyThemeDoubleShadow()
             HStack(alignment:.center,spacing:Theme.medium) {
-                Image(EventImageMock.image)
-                .resizable()
-                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
-                .scaledToFit()
+                SmallRemoteImage(url: event.coverImageUrl ?? "no_image")                
+//                Image(EventImageMock.image)
+//                .resizable()
+//                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+//                .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+//                .scaledToFit()
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     Text(event.name ?? "")
                     .applyHeadingFont()
@@ -58,7 +61,12 @@ struct EventRow: View {
     }
         .onAppear {
             //pass event id
-            eventParticipants.fetchParticipants(id: event.id)
+            if let eventId =
+                event._id {
+                eventParticipants.fetchParticipants(id: eventId)
+                unitVM.getUnitsByEvent(id: eventId)
+                
+            }
         }
         
     }
@@ -67,11 +75,10 @@ struct EventRow: View {
 struct EventRow_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), participant: ParticipantMock.instacne.participantA)
+            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), unitVM: GetUnitsByEventViewModel(), participant: ParticipantMock.instance.participantA)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
-                .padding()
-            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), participant: ParticipantMock.instacne.participantA)                .previewLayout(.sizeThatFits)
+            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), unitVM: GetUnitsByEventViewModel(), participant: ParticipantMock.instance.participantA)            .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()
         }
