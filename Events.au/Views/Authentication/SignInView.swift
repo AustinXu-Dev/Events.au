@@ -14,14 +14,15 @@ struct SignInView: View {
     @State private var password: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    
-    @State private var path = NavigationPath()
+    @State private var authNavigationStack: [AuthNavigation] = []
+
+//    @State private var path = NavigationPath()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
 
     
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $authNavigationStack) {
             VStack {
                 Spacer()
                 VStack {
@@ -158,12 +159,13 @@ struct SignInView: View {
                 case .signInView:
                     SignInView()
                 case .signUpView:
-                    SignupView()
+                    SignupView(path: $authNavigationStack)
                 case .signUpForm:
-                    SignupForm()
-                default:
-                    Text("Default")
+                    SignupForm(path: $authNavigationStack)
+                case .confirmation:
+                    ConfirmationView(path: $authNavigationStack)
                 }
+                
                 
                 
             })

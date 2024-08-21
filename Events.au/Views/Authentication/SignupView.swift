@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SignupView: View {
+    @Binding var path: [AuthNavigation]
     @State private var email: String = ""
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var navigateToSignupForm: Bool = false
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
@@ -121,9 +123,29 @@ struct SignupView: View {
             .frame(width: 361)
             .padding(.vertical, 20)
             
-            Button(action: {
-                navigateToSignupForm = true
-            }) {
+//            Button(action: {
+//                navigateToSignupForm = true
+//            }) {
+//                HStack {
+//                    Image("google_icon")
+//                        .resizable()
+//                        .frame(width: 27, height: 28)
+//                    
+//                    Text(EventAppAutheticationValue.signUpWithGoogle)
+//                        .font(.headline) // Adjust font as needed
+//                        .foregroundColor(.primary)
+//                }
+//                .padding()
+//                .frame(width: 361, height: 44)
+//                .background(Color.clear)
+//                .cornerRadius(8)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color.gray, lineWidth: 1)
+//                )
+//            }
+            
+            NavigationLink(value: AuthNavigation.signUpForm) {
                 HStack {
                     Image("google_icon")
                         .resizable()
@@ -147,13 +169,21 @@ struct SignupView: View {
                 Text("Already have an account?")
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
-                
-                NavigationLink(value: AuthNavigation.signInView) {
+                Button {
+                    self.dismiss()
+                } label: {
                     Text("Sign In")
                         .font(.system(size: 12))
                         .foregroundColor(Color.eventBackground)
                         .underline()
                 }
+
+//                NavigationLink(value: AuthNavigation.signInView) {
+//                    Text("Sign In")
+//                        .font(.system(size: 12))
+//                        .foregroundColor(Color.eventBackground)
+//                        .underline()
+//                }
             }
             .frame(height: 22)
             .padding(.top, 2)
@@ -163,9 +193,9 @@ struct SignupView: View {
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
-        .navigationDestination(isPresented: $navigateToSignupForm) {
-            SignupForm()
-        }
+//        .navigationDestination(isPresented: $navigateToSignupForm) {
+//            SignupForm()
+//        }
     }
 
     private func signup() {
@@ -192,8 +222,8 @@ struct SignupView: View {
     }
 }
 
-struct SignupView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignupView()
-    }
-}
+//struct SignupView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignupView()
+//    }
+//}

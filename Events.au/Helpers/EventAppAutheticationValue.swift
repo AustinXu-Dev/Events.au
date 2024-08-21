@@ -15,11 +15,11 @@ struct EventAppAutheticationValue {
     static let contact = "Your Contact Number";
     static let contactPlaceHolder = "enter contact number";
     
-    static let gender = "Select Faculty";
-    static let genderPlaceHolder = "Select Faculty";
+    static let gender = "Select Gender";
+    static let genderPlaceHolder = "Select Gender";
     
-    static let faculty = "Select Gender";
-    static let facultyPlaceHolder = "Select Gender";
+    static let faculty = "Select Faculty";
+    static let facultyPlaceHolder = "Select Faculty";
     
     static let emailAddress = "Email Address";
     static let emailPlaceHolder = "email address";

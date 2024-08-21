@@ -303,13 +303,19 @@ extension EventManager {
             Text("No Event Upcoming")
                 .applyLabelFont()
             HStack {
-                NavigationLink {
-                    HomeTest(path: $path, profilePath: $profilePath , selectedTab: .constant(.home))
-                } label: {
-                    Text("Join Event")
-                        .underline()
-                        .foregroundStyle(Theme.tintColor)
-                }
+//                NavigationLink {
+//                    HomeTest(path: $path, profilePath: $profilePath , selectedTab: .constant(.home))
+//                } label: {
+    
+                Text("Join Event")
+                    .underline()
+                    .foregroundStyle(Theme.tintColor)
+                    .onTapGesture {
+                        selectedTab = .home
+                    }
+//                }
+                
+//                NavigationLink(value:, label: <#T##() -> Label#>)
 
                 
                 

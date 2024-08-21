@@ -39,6 +39,7 @@ enum AuthNavigation : Hashable {
     case signUpView
     case signInView
     case signUpForm
+    case confirmation
 }
 
 struct Person: Hashable{

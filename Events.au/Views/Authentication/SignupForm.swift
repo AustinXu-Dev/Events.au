@@ -20,6 +20,8 @@ struct Gender: Identifiable {
 }
 
 struct SignupForm: View {
+    @Binding var path: [AuthNavigation]
+
     @State private var name: String = ""
     @State private var contact: String = ""
     @State private var showAlert: Bool = false
@@ -164,7 +166,7 @@ struct SignupForm: View {
                     .overlay(
                         Group {
                             HStack {
-                                TextField("Select Gender", text: $selectedGender)
+                                TextField("Select Gender", text: $selectedGenderType)
                                     .disabled(true)
                                 Spacer()
                                 Menu {
@@ -209,17 +211,32 @@ struct SignupForm: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
             }
-            NavigationLink(destination: ConfirmationView(), isActive: $navigateToConfirmation) {
-                                EmptyView()
-                            }
+//            if navigateToConfirmation = true{
+//                NavigationLink(value: AuthNavigation.confirmation) {
+//                    <#code#>
+//                }
+//            }
+//            NavigationLink(destination: ConfirmationView(), isActive: $navigateToConfirmation) {
+//                                EmptyView()
+//                            }
             
             Spacer()
         }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
-                navigateToConfirmation = true
+//        .alert(isPresented: $showAlert) {
+//            Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+//                navigateToConfirmation = true
+//            }
+//            )
+//            
+//            
+//        }
+        .alert("Singn Up", isPresented: $showAlert) {
+            NavigationLink(value: AuthNavigation.confirmation) {
+                Text("Ok")
             }
-                  )
+            
+        } message: {
+            Text(alertMessage)
         }
         .onAppear{
             allUnitsViewModel.fetchUnits()
@@ -259,9 +276,9 @@ struct SignupForm: View {
         }
     }
 }
-
-struct SignupForm_Previews: PreviewProvider {
-    static var previews: some View {
-        SignupForm()
-    }
-}
+//
+//struct SignupForm_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignupForm()
+//    }
+//}

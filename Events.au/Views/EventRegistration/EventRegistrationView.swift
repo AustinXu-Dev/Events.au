@@ -15,7 +15,7 @@ struct EventRegistrationView: View {
 
     var nickNamePlaceholder: String = "Nick Name"
     var lineIdPlaceholder: String = "Line ID"
-    var contactNumberPlaceholder: String = "+66"
+    var contactNumberPlaceholder: String = "Contact Number"
     var remarkPlaceholder: String = "For example: I'm allergic to peanuts"
     
     @State var nickName: String = ""
@@ -162,10 +162,11 @@ extension EventRegistrationView{
     }
     
     private func validatePhoneNumber(_ number: String) -> Bool {
-        let phoneNumberPattern = "^\\+?[1-9]\\d{1,14}$"
+        let phoneNumberPattern = "^[1-9]\\d{1,14}$"
         let result = number.range(of: phoneNumberPattern, options: .regularExpression)
-        return (result != nil)
+        return result != nil
     }
+
 }
 
 struct LoadingView: View {
