@@ -13,9 +13,9 @@ struct EventDetail: View {
     @Binding var path: [HomeNavigation]
     @Binding var profilePath : [ProfileNavigation]
     @Binding var selectedTab: Tab
-    @StateObject private var eventUnitsVM : GetUnitsByEventViewModel = GetUnitsByEventViewModel()
-    @StateObject private var participantVM = GetParticipantsByEventIdViewModel()
-    
+    @StateObject  var eventUnitsVM : GetUnitsByEventViewModel = GetUnitsByEventViewModel()
+    @ObservedObject var participantsVM : GetParticipantsByEventIdViewModel
+
     @Environment(\.colorScheme) var colorScheme
     @State private var isParagraph : Bool = false
     let approvedParticipants : [ParticipantModel]
@@ -59,7 +59,7 @@ struct EventDetail: View {
                                 )
                         }
                     } // end of condition
-                    if participantVM.participantExists(userId: user._id) {
+                    if participantsVM.participantExists(userId: user._id ?? "") {
                         alreadyRegisteredButton
                             .padding(.vertical, 8)
                     } else {
@@ -74,11 +74,12 @@ struct EventDetail: View {
             if let eventId = event._id {
                 //fetching units by eventID
                 eventUnitsVM.getUnitsByEvent(id: eventId)
-                //fetching participants of an event
-                participantVM.fetchParticipants(id: eventId)
+                participantsVM.fetchParticipants(id: eventId)
             }
-            
+            print("Audience navigation path: ", path)
+            print("p is fetched in event detail view",approvedParticipants.count)
         })
+        
         
         
     }
@@ -103,7 +104,8 @@ extension EventDetail {
                     .applyBodyFont()
                     .lineLimit(isParagraph ? .max : 6)
                 
-                if event.description != nil {
+                if let eventDescription = event.description {
+                    if eventDescription.count >= 40 {
                     Button {
                         withAnimation(.default) {
                             self.isParagraph.toggle()
@@ -114,6 +116,7 @@ extension EventDetail {
                             .applyOverlayFont()
                     }
                 } //end of condition
+            }
             }
         }
     }
@@ -214,12 +217,12 @@ extension EventDetail {
 }
 
 
-#Preview {
-    NavigationStack {
-        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
-    }
-    .padding(.horizontal,Theme.large)
-    
-}
+//#Preview {
+//    NavigationStack {
+//        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), approvedParticipants: ParticipantMock.instacne.participants)
+//    }
+//    .padding(.horizontal,Theme.large)
+//    
+//}
 
 

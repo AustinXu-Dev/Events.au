@@ -23,11 +23,14 @@ struct EventParticipants: View {
                         ZStack {
                             //MARK: have to change to image downloading logic from server
                             //MARK: only get the approved participant here
-                            Image("PersonB")
-                                .resizable()
-                                .clipShape(Circle())
-                                .frame(width: Theme.circleWidth,height:Theme.circleHeight)
-                                .aspectRatio(contentMode:.fit)
+                            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+                                RemoteSmallParticipantImage(url: "\(imageUrl)")
+                            }
+                            // Image("PersonB")
+//                                .resizable()
+//                                .clipShape(Circle())
+//                                .frame(width: Theme.circleWidth,height:Theme.circleHeight)
+//                                .aspectRatio(contentMode:.fit)
                             Circle()
                                 .stroke(.white,lineWidth: 1)
                                 .frame(width: Theme.circleWidth,height:Theme.circleHeight)
@@ -66,12 +69,12 @@ struct EventParticipants: View {
 struct EventParticipants_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            EventParticipants(participants: ParticipantMock.instacne.participants, participantStatus: "joining")
+            EventParticipants(participants: ParticipantMock.instance.participants, participantStatus: "joining")
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
             
-            EventParticipants(participants: ParticipantMock.instacne.participants,participantStatus: "joining")
+            EventParticipants(participants: ParticipantMock.instance.participants,participantStatus: "joining")
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

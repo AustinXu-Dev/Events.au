@@ -11,9 +11,6 @@ struct EventParticipantManagementView: View {
     let event : EventModel
     @State private var index = 1
     @State var showPending : Bool = false
-    //MARK: have to remove these state var and replace with view model publishers
-    @State var pendingParticipants : [ParticipantModel]
-    @State var approvedParticipants : [ParticipantModel]
     let unit : UnitModel
     @StateObject var participantVM = GetParticipantsByEventIdViewModel()
     @StateObject var approvalVM = UpdateParticipantStatusViewModel()
@@ -24,8 +21,6 @@ struct EventParticipantManagementView: View {
         NavigationView {
             ScrollView(.vertical,showsIndicators: false) {
                 VStack (alignment: .leading,spacing: Theme.defaultSpacing) {
-                  
-                  
                     HStack(spacing:Theme.small) {
                         Image(Theme.participantIcon)
                             .resizable()
@@ -34,12 +29,12 @@ struct EventParticipantManagementView: View {
                         Text("\(participantVM.approvedParticipants.count) Attending")
                             .applyHeadingFont()
                             .foregroundStyle(Theme.tintColor)
-                        Text("(\(participantVM.allParticipants.count) pending)")
+                        Text("(\(participantVM.pendingParticipants.count) pending)")
                             .applyOverlayFont()
                             .foregroundStyle(Theme.secondaryTextColor.opacity(0.5))
                     }
                     
-                    ParticipantManager(event: event ,showPending: $showPending, unit: unit, pendingParticipants: $pendingParticipants, approvedParticipants: $approvedParticipants,participantVM: participantVM, approvalVM: approvalVM)
+                    ParticipantManager(event: event ,showPending: $showPending, unit: unit, participantVM: participantVM, approvalVM: approvalVM)
                 }
                
             }
@@ -147,6 +142,6 @@ let pendingParticipants = [
 //                    }
 //                    Spacer()
 
-#Preview {
-    EventParticipantManagementView(event: EventMock.instacne.eventA, showPending: false, pendingParticipants: ParticipantMock.instacne.participants, approvedParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
-}
+//#Preview {
+//    EventParticipantManagementView(event: EventMock.instacne.eventA, showPending: false, pendingParticipants: ParticipantMock.instacne.participants, approvedParticipants: ParticipantMock.instacne.participants, unit: UnitMock.instacne.unitA)
+//}

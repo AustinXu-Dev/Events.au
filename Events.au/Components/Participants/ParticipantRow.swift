@@ -22,21 +22,26 @@ struct ParticipantRow: View {
         
         
             HStack(alignment:.center,spacing:Theme.medium) {
-                Image("PersonD")
-                .resizable()
-                .scaledToFill()
-                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+//                Image("PersonD")
+//                .resizable()
+//                .scaledToFill()
+//                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+//                .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+                    RemoteParticipantImage(url: "\(imageUrl)")
+                }
             
             
                 VStack(alignment:.leading,spacing:Theme.medium) {
-                    //MARK: - this should be participant name
-                Text(participant.email ?? "nigga@gmail.com")
+                    //MARK: - participant email is not included in schema right now
+                    
+                    Text(participant.userId?.firstName ?? "Unknown Name")
+                        .lineLimit(1)
                     .applyHeadingFont()
-//                    Text(unit.name)
-                    .applyOverlayFont()
-                
-                
+                    Text(unit.name ?? "Unknown Faculty")
+                            .applyOverlayFont()
+
+            
             }
             Spacer()
         }
@@ -52,11 +57,11 @@ struct ParticipantRow: View {
 struct ParticipantRow_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            ParticipantRow(participant: ParticipantMock.instacne.participantA, unit: UnitMock.instacne.unitA)
+            ParticipantRow(participant: ParticipantMock.instance.participantA, unit: UnitMock.instacne.unitA)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
                 .padding()
-            ParticipantRow(participant: ParticipantMock.instacne.participantB,unit: UnitMock.instacne.unitB)
+            ParticipantRow(participant: ParticipantMock.instance.participantB,unit: UnitMock.instacne.unitB)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
                 .padding()

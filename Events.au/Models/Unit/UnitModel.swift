@@ -31,7 +31,7 @@ struct AllUnitsResponse: Codable {
     let message: [UnitModel]
 }
 
-struct UnitModel: Codable {
+struct UnitModel: Codable, Hashable{
     let id : String
     let name: String?
     let description: String?

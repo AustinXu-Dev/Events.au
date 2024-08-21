@@ -53,11 +53,9 @@ struct HomeTest: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    Image("human_profile")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 35, height: 35)
-                        .clipShape(Circle())
+                    if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+                        RemoteProfileToolBarView(url: "\(imageUrl)")
+                    }
                     if let userName = profileVM.userDetail?.firstName {
                         Text(userName)
                             .applyHeadingFont()
@@ -83,7 +81,8 @@ struct HomeTest: View {
                 switch screen {
                 case .eventDetail(let currentEvent, _):
                     if let user = profileVM.userDetail {
-                        EventDetail(user: user, event: currentEvent, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, approvedParticipants: participantsVM.approvedParticipants)
+                        EventDetail(user: user, event: currentEvent, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participantsVM: participantsVM, approvedParticipants: participantsVM.approvedParticipants
+                        )
                     }
                 case .attendeesList(_):
                     AttendeesListView(approvedParticipants: participantsVM.approvedParticipants)
@@ -105,6 +104,7 @@ struct HomeTest: View {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 profileVM.getOneUserById(id: userId)
             }
+            print("p fetched in hometest",participantsVM.approvedParticipants.count)
         
         })
         .tint(.blue)
