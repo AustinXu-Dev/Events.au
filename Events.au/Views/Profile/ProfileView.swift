@@ -110,7 +110,7 @@ struct ProfileView: View {
             updateUserRole()
         }
         .onAppear(perform: {
-            //for 1st time users, we'll set their user state as audience
+//            for 1st time users, we'll set their user state as audience
             if userRole == nil {
                 userRole = UserState.audience.rawValue
             }

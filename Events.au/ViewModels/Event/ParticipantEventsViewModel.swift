@@ -21,11 +21,12 @@ class ParticipantEventsViewModel : ObservableObject {
                 DispatchQueue.main.async {
                     self?.loader = false
                     self?.participantEvents = eventResponse.message
+                    print("requested to join events fetched")
                 }
             case .failure(let error):
                 self?.loader = false
                 self?.errorMessage = error.localizedDescription
-                print("Failed to fetch events: \(error)")
+                print("Failed to fetch participants: \(error.localizedDescription)")
             }
             
             

@@ -145,7 +145,7 @@ struct EventManager: View {
                     }
                 }
 
-            } else {
+            }  else if userRole == UserState.organizer.rawValue {
                 //MARK: - for organizer, fetch events
                 if !showUpcoming {
                     ScrollView(.vertical,showsIndicators: false) {
@@ -227,9 +227,11 @@ struct EventManager: View {
                     }
                 }
             }
+            
         } // end of VStack
         
        
+        
         .refreshable {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 participantVM.fetchParticipant(id: userId)

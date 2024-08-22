@@ -276,9 +276,9 @@ struct SignupForm: View {
         }
     }
 }
-//
-//struct SignupForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SignupForm()
-//    }
-//}
+
+struct SignupForm_Previews: PreviewProvider {
+    static var previews: some View {
+        SignupForm(path: .constant([]))
+    }
+}

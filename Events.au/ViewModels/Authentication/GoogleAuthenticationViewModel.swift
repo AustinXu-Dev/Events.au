@@ -129,17 +129,13 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     self.token = token
                     self.userId = userId
                     TokenManager.share.saveTokens(token: token)
-                    
+                    print("Token is",token)
                     // Save the token and expiration date (3 days from now)
                   let tokenReceivedDate = Date()
                   self.expirationDate = Calendar.current.date(byAdding: .day, value: 3, to: tokenReceivedDate)
                   UserDefaults.standard.set(self.expirationDate, forKey: "TokenExpirationDate")
                   
                   self.checkTokenExpiry()
-
-                    
-                    
-                    
                     KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
                     if let token = TokenManager.share.getToken() {
                         UserDefaults.standard.set(true, forKey: "appState")
