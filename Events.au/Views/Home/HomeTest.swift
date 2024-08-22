@@ -174,21 +174,49 @@ extension HomeTest {
         VStack(alignment:.leading,spacing: Theme.defaultSpacing) {
             Text(searchText.isEmpty ? "Upcoming Events" : "Search results")
                 .applyLabelFont()
-                ScrollView(.vertical,showsIndicators: false){
-                    VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
-                        ForEach(filteredEvents,id: \._id){ event in
-                            // Change here
-                            NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
-                                EventCard(participantsVM: participantsVM, event: event)
-                            }.tint(Theme.secondaryTextColor)
-                                
+            ScrollView(.vertical,showsIndicators: false){
+                VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
+                    //                        ForEach(filteredEvents,id: \._id){ event in
+                    //
+                    //                            NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
+                    //
+                    //                                    EventCard(participantsVM: participantsVM, event: event)
+                    //                                }
+                    //
+                    //                            }.tint(Theme.secondaryTextColor)
+                    ForEach(filteredEvents.filter { event in
+                        if let endDateString = event.endDate,
+                           let endTimeString = event.endTime,
+                           let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString) {
+                            
+                            // Compare using the Calendar API
+                            return Calendar.current.compare(eventEndDateTime, to: Date(), toGranularity: .minute) == .orderedDescending
                         }
-                        
+                        return false
+                    }, id: \._id) { event in
+                        NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
+                            EventCard(participantsVM: participantsVM, event: event)
+                                .padding(.bottom,16)
+                        }
+                        .tint(Theme.secondaryTextColor)
                     }
+                    
+                    
+                    
                 }
+            }
         }
     }
+    func combineDateAndTime(dateString: String, timeString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.timeZone = TimeZone.current
+        
+        let combinedString = "\(dateString) \(timeString)"
+        return dateFormatter.date(from: combinedString)
+    }
 }
+
 
 #Preview {
     HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))

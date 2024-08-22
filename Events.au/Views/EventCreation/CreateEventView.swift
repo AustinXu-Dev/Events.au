@@ -59,6 +59,9 @@ struct CreateEventView: View {
     @StateObject var allUnitsViewModel = AllUnitsViewModel()
     @StateObject var createEventViewModel: CreateEventViewModel
     
+    @AppStorage("userRole") private var userRole: String?
+
+    
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
         let startDate = calendar.startOfDay(for: Date())
@@ -346,9 +349,9 @@ extension CreateEventView{
     
     private var nextButton: some View {
 //        Button {
-//            <#code#>
+//
 //        } label: {
-//            <#code#>
+//
 //        }
 
         Button {
@@ -403,6 +406,7 @@ extension CreateEventView{
                                         switch result {
                                         case .success:
                                             showAlert = true
+                                            userRole = UserState.organizer.rawValue
                                         case .failure:
                                             showNotValidAlert = true
                                         }

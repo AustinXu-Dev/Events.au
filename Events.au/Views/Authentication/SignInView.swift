@@ -23,13 +23,12 @@ struct SignInView: View {
     
     var body: some View {
         NavigationStack(path: $authNavigationStack) {
-            VStack {
+            VStack(spacing:30) {
                 Spacer()
-                VStack {
+                VStack{
                       Image("event_logo")
                           .resizable()
                           .frame(width: 100, height: 100)
-                          .padding(.bottom, 10)
                       
                       HStack(spacing: 2) {
                           Text("Events.")
@@ -38,9 +37,15 @@ struct SignInView: View {
                       }
                       .font(.system(size: 20))
                       .bold()
+                   
                   }
-                  .padding(.bottom, 20)
 
+                
+                // email sign in
+                
+                /*
+                 
+                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(EventAppAutheticationValue.emailAddress)
                         .font(.headline)
@@ -112,6 +117,18 @@ struct SignInView: View {
                     .frame(width: 361)
                     .padding(.vertical, 20)
                 
+                */
+                
+                Text("Start Your Unforgettable \nEvents & Memories Here")
+                    .font(.system(size:20))
+                    .bold()
+                    .foregroundStyle(Theme.tintColor)
+                    .multilineTextAlignment(.center)
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.eventDivider)
+                    .padding(.horizontal,18)
+                
                 Button(action: {
                     signInWithGoogle()
                 }) {
@@ -147,7 +164,6 @@ struct SignInView: View {
                     }
                 }
                 .frame(height: 22)
-                .padding(.top, 2)
 
                 Spacer()
             }
@@ -227,11 +243,11 @@ struct SignInView: View {
     }
 }
 
-//struct SignInView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SignInView()
-//    }
-//}
+struct SignInView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignInView()
+    }
+}
 
 
 

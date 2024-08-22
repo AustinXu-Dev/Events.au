@@ -36,6 +36,7 @@ struct SignupView: View {
             }
             .padding(.bottom, 20)
             
+            /*
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.emailAddress)
                     .font(.headline)
@@ -122,6 +123,11 @@ struct SignupView: View {
             }
             .frame(width: 361)
             .padding(.vertical, 20)
+            
+            
+            */
+            
+            
             
 //            Button(action: {
 //                navigateToSignupForm = true
@@ -222,8 +228,8 @@ struct SignupView: View {
     }
 }
 
-//struct SignupView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SignupView()
-//    }
-//}
+struct SignupView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignupView(path: .constant([]))
+    }
+}
