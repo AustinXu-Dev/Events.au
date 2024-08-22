@@ -68,15 +68,15 @@ struct ProfileEditView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(maxWidth: 200)
                 }
-                HStack {
-                    Text("Email")
-                        .font(.body)
-                        .bold()
-                    Spacer()
-                    TextField("", text: $email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(maxWidth: 200)
-                }
+//                HStack {
+//                    Text("Email")
+//                        .font(.body)
+//                        .bold()
+//                    Spacer()
+//                    TextField("", text: $email)
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .frame(maxWidth: 200)
+//                }
             }
             .padding()
             .cornerRadius(10)
@@ -127,11 +127,11 @@ struct ProfileEditView: View {
         }
         
         // Validate email
-        if !email.hasSuffix("@gmail.com") {
-            alertMessage = "Please enter a valid Gmail address (must end with @gmail.com)."
-            showAlert = true
-            return false
-        }
+//        if !email.hasSuffix("@gmail.com") {
+//            alertMessage = "Please enter a valid Gmail address (must end with @gmail.com)."
+//            showAlert = true
+//            return false
+//        }
         
         return true
     }

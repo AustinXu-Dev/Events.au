@@ -55,6 +55,9 @@ struct CreateEventView: View {
     @State var isLoading: Bool = false
     @State var showAlert: Bool = false
     @State var showNotValidAlert: Bool = false
+    @State var errorMessage: String = ""
+    @State var showErrorAlert: Bool = false
+
     
     @StateObject var allUnitsViewModel = AllUnitsViewModel()
     @StateObject var createEventViewModel: CreateEventViewModel
@@ -331,13 +334,23 @@ extension CreateEventView{
         }
     }
     
-    private func dateToString(date: Date) -> String{
+    private func dateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        // Set the Gregorian calendar explicitly
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        
+        // Set locale to ensure the format is always consistent
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        // Optionally set the time zone to UTC or a specific time zone
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
     }
+
     
     private func timeToString(date: Date) -> String{
         let dateFormatter = DateFormatter()
@@ -348,16 +361,12 @@ extension CreateEventView{
     }
     
     private var nextButton: some View {
-//        Button {
-//
-//        } label: {
-//
-//        }
-
         Button {
+            print(name, description, startDateValue, endDateValue, startTimeValue, endTimeValue, location, rules)
             // One-line validation check for all required fields
             guard !name.isEmpty && !description.isEmpty && !startDateValue.isEmpty && !endDateValue.isEmpty && !startTimeValue.isEmpty && !endTimeValue.isEmpty && !location.isEmpty && !rules.isEmpty else {
-                showNotValidAlert = true
+                errorMessage = "Please fill in all required fields."
+                showErrorAlert = true
                 return
             }
 
@@ -366,7 +375,7 @@ extension CreateEventView{
                 isLoading = true
             }
 
-            //MARK: - Integrating Create Event API Integration
+            // MARK: - Integrating Create Event API Integration
             createEventViewModel.name = name
             createEventViewModel.description = description
             createEventViewModel.startDate = startDateValue
@@ -379,66 +388,55 @@ extension CreateEventView{
 
             let uid = Auth.auth().currentUser?.uid ?? ""
             let email = Auth.auth().currentUser?.email ?? ""
-            print("Image issssss::", avatarImage)
+
             createEventViewModel.uploadImage(avatarImage ?? UIImage(named: "no_image")!) { result in
                 switch result {
                 case .success(let imageUrl):
                     createEventViewModel.storeImageUrl(imageUrl: imageUrl, uid: uid, email: email) { result in
                         switch result {
                         case .success:
-                            // Retrieve the imageUrl from Firestore
                             createEventViewModel.retrieveImageUrl(uid: uid) { result in
                                 switch result {
                                 case .success(let storedImageUrl):
-                                    // Update the viewModel's imageUrl with the stored value
                                     createEventViewModel.coverImageUrl = storedImageUrl
-                                    // Create the event
-                                    print(createEventViewModel.name, createEventViewModel.description, createEventViewModel.startDate, createEventViewModel.endDate, createEventViewModel.startTime, createEventViewModel.endTime, createEventViewModel.rules, createEventViewModel.coverImageUrl, createEventViewModel.unitId)
-
-                                    
-                                    if !createEventViewModel.coverImageUrl.isEmpty{
+                                    if !createEventViewModel.coverImageUrl.isEmpty {
                                         createEventViewModel.createEvent(token: TokenManager.share.getToken() ?? "")
                                     }
                                     DispatchQueue.main.async {
                                         withAnimation {
                                             isLoading = false
                                         }
-                                        switch result {
-                                        case .success:
-                                            showAlert = true
-                                            userRole = UserState.organizer.rawValue
-                                        case .failure:
-                                            showNotValidAlert = true
-                                        }
+                                        showAlert = true
+                                        userRole = UserState.organizer.rawValue
                                     }
-                                case .failure(let error):
+                                case .failure:
                                     DispatchQueue.main.async {
                                         withAnimation {
                                             isLoading = false
-                                            showNotValidAlert = true
+                                            errorMessage = "Failed to retrieve image URL."
+                                            showErrorAlert = true
                                         }
                                     }
-                                    print("Failed to retrieve image URL: \(error.localizedDescription)")
                                 }
                             }
-                        case .failure(let error):
+                        case .failure:
                             DispatchQueue.main.async {
                                 withAnimation {
                                     isLoading = false
-                                    showNotValidAlert = true
+                                    errorMessage = "Failed to store image URL."
+                                    showErrorAlert = true
                                 }
                             }
-                            print("Failed to store image URL: \(error.localizedDescription)")
                         }
                     }
-                case .failure(let error):
+                case .failure:
                     DispatchQueue.main.async {
                         withAnimation {
                             isLoading = false
-                            showNotValidAlert = true
+                            errorMessage = "Failed to upload image."
+                            showErrorAlert = true
                         }
                     }
-                    print("Failed to upload image: \(error.localizedDescription)")
                 }
             }
         } label: {
@@ -456,9 +454,10 @@ extension CreateEventView{
                 Text("OK")
             }
         }
-        .alert("Your event creation failed. Please fill in all required fields.", isPresented: $showNotValidAlert) {
-            Text("OK")
+        .alert(errorMessage, isPresented: $showErrorAlert) {
+            Button("OK", role: .cancel) {}
         }
+
     }
 
 }
