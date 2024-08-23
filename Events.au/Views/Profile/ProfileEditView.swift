@@ -86,7 +86,7 @@ struct ProfileEditView: View {
                 if validateFields() {
                     updateUserViewModel.firstName = firstName
                     updateUserViewModel.lastName = lastName
-                    updateUserViewModel.email = email
+//                    updateUserViewModel.email = email
                     if let userId = KeychainManager.shared.keychain.get("appUserId") {
                         updateUserViewModel.updateUser(id: userId, token: TokenManager.share.getToken() ?? "")
                     }
