@@ -379,7 +379,8 @@ extension EventManager {
     func combineDateAndTime(dateString: String, timeString: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         
         let combinedString = "\(dateString) \(timeString)"
         return dateFormatter.date(from: combinedString)

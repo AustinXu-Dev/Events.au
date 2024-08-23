@@ -221,7 +221,7 @@ extension HomeTest {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         dateFormatter.timeZone = TimeZone.current
-        
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
         let combinedString = "\(dateString) \(timeString)"
         return dateFormatter.date(from: combinedString)
     }

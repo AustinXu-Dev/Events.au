@@ -90,10 +90,11 @@ extension Date {
    
     
     // Function to get just the date component (year, month, day)
-       func strippedTime() -> Date? {
-           let calendar = Calendar.current
-           return calendar.startOfDay(for: self)
-       }
+    func strippedTime() -> Date? {
+        let gregorianCalendar = Calendar(identifier: .gregorian)
+        return gregorianCalendar.startOfDay(for: self)
+    }
+
     
     // Convert "hh:MM" string to Date
    
