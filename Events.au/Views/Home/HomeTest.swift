@@ -20,6 +20,7 @@ struct HomeTest: View {
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
+    @State var showSignOutAlert: Bool = false
 //    @State var tokenIsExpired : Bool = false
 
     
@@ -69,7 +70,7 @@ struct HomeTest: View {
 //                        .aspectRatio(contentMode: .fit)
                     //MARK: -This will be the sign out button during the development phase
                     Button {
-                        authVM.signOutWithGoogle()
+                        showSignOutAlert = true
                     } label: {
                         Text("Log Out")
                             .applyOverlayFont()
@@ -110,6 +111,15 @@ struct HomeTest: View {
                         }
                     )
                 }
+        .alert(isPresented: $showSignOutAlert) {
+            Alert(
+                title: Text("Are you sure you want to sign out?"),
+                primaryButton: .destructive(Text("OK")) {
+                    authVM.signOutWithGoogle()
+                },
+                secondaryButton: .cancel()
+            )
+        }
         .onAppear(perform: {
             //fetch events
             eventVM.fetchEvents()
