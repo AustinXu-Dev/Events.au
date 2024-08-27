@@ -29,7 +29,7 @@ class UserSignUpViewModel: ObservableObject {
         }
     }
     
-    func postUser(firstName: String, email: String, phone: Int, fId: String, unitId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func postUser(firstName: String, email: String, phone: Int, unitId: String, fId: String, completion: @escaping (Result<Void, Error>) -> Void) {
         
         // Construct URL and URLRequest
         guard let url = URL(string: "https://events-au-v2.vercel.app/auth/signup") else {
@@ -46,8 +46,8 @@ class UserSignUpViewModel: ObservableObject {
             "firstName": firstName,
             "email": email,
             "phone": phone,
-            "fId": fId,
-            "unitId": unitId
+            "unitId": unitId,
+            "password": fId
         ]
         
         do {

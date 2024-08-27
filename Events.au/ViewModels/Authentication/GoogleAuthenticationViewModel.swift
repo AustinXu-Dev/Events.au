@@ -25,16 +25,17 @@ class GoogleAuthenticationViewModel: ObservableObject {
     @Published var tokenIsExpired : Bool = false
     var timer : AnyCancellable?
     var expirationDate : Date?
-
+    
     
     init() {
-           loadTokenExpirationDate()
-           startTokenExpiryCheck() // Start the timer-based check
-       }
-
-       deinit {
-           timer?.cancel() // Cancel the timer when the view model is deallocated
-       }
+        loadTokenExpirationDate()
+        startTokenExpiryCheck() // Start the timer-based check
+    }
+    
+    deinit {
+        timer?.cancel() // Cancel the timer when the view model is deallocated
+    }
+    
     //MARK: - Goolge Sign In Function
     func signInWithGoogle(presenting: UIViewController, completion: @escaping (Error?, Bool) -> Void) {
         
@@ -105,10 +106,10 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     print("New User")
                 } else {
                     DispatchQueue.main.async {
-                        self.postSignInFirebaseId(firebaseId: authResult.user.uid)
-                      
+                        self.postSignInFirebaseId(firebaseId: authResult.user.uid, email: authResult.user.email ?? "")
+                        
                     }
-                     
+                    
                     print("This is the URL of Image: \(String(describing: authResult.user.photoURL))")
                     print("This user already exists.")
                 }
@@ -117,9 +118,9 @@ class GoogleAuthenticationViewModel: ObservableObject {
     }
     
     // MARK: - Posting to signin API with firebase id if the user already exists
-    private func postSignInFirebaseId(firebaseId: String) {
+    private func postSignInFirebaseId(firebaseId: String, email: String) {
         let webService = WebService()
-        webService.signin(firebaseId: firebaseId) { result in
+        webService.signin(firebaseId: firebaseId, email: email) { result in
             switch result {
             case .success(let (token, userId)):
                 print("Login successful with token: \(token)")
@@ -131,13 +132,13 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     TokenManager.share.saveTokens(token: token)
                     print("Token is",token)
                     // Save the token and expiration date (3 days from now)
-                  let tokenReceivedDate = Date()
-                  self.expirationDate = Calendar.current.date(byAdding: .day, value: 3, to: tokenReceivedDate)
-                  UserDefaults.standard.set(self.expirationDate, forKey: "TokenExpirationDate")
-                  
-                  self.checkTokenExpiry()
+                    let tokenReceivedDate = Date()
+                    self.expirationDate = Calendar.current.date(byAdding: .day, value: 3, to: tokenReceivedDate)
+                    UserDefaults.standard.set(self.expirationDate, forKey: "TokenExpirationDate")
+                    
+                    self.checkTokenExpiry()
                     KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
-                    if let token = TokenManager.share.getToken() {
+                    if TokenManager.share.getToken() != nil {
                         UserDefaults.standard.set(true, forKey: "appState")
                     }
                 }
@@ -152,26 +153,26 @@ class GoogleAuthenticationViewModel: ObservableObject {
     }
     
     func loadTokenExpirationDate() {
-           if let savedExpirationDate = UserDefaults.standard.object(forKey: "TokenExpirationDate") as? Date {
-               expirationDate = savedExpirationDate
-               checkTokenExpiry()
-           }
-       }
-
-       func checkTokenExpiry() {
-           if let expirationDate = expirationDate {
-               self.tokenIsExpired = Date() >= expirationDate
-           }
-       }
-
-       func startTokenExpiryCheck() {
-           // Set a timer to check every 3 hours
-           timer = Timer.publish(every: 10800, on: .main, in: .common)
-               .autoconnect()
-               .sink { _ in
-                   self.checkTokenExpiry()
-               }
-       }
+        if let savedExpirationDate = UserDefaults.standard.object(forKey: "TokenExpirationDate") as? Date {
+            expirationDate = savedExpirationDate
+            checkTokenExpiry()
+        }
+    }
+    
+    func checkTokenExpiry() {
+        if let expirationDate = expirationDate {
+            self.tokenIsExpired = Date() >= expirationDate
+        }
+    }
+    
+    func startTokenExpiryCheck() {
+        // Set a timer to check every 3 hours
+        timer = Timer.publish(every: 10800, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                self.checkTokenExpiry()
+            }
+    }
     
     
     //MARK: - Handling Sign In Error

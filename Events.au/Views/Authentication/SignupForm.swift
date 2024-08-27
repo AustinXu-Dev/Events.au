@@ -21,7 +21,8 @@ struct Gender: Identifiable {
 
 struct SignupForm: View {
     @Binding var path: [AuthNavigation]
-
+    var email: String
+    var pass: String
     @State private var name: String = ""
     @State private var contact: String = ""
     @State private var showAlert: Bool = false
@@ -61,9 +62,9 @@ struct SignupForm: View {
         VStack {
             Spacer()
             VStack {
-                Image("event_logo")
+                Image(Theme.logo)
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 150, height: 150)
                     .padding(.bottom, 10)
                 
                 HStack(spacing: 2) {
@@ -197,8 +198,11 @@ struct SignupForm: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    //sign up with google
-                    signUpWithGoogle()
+                    if email.isEmpty && pass.isEmpty {
+                        signUpWithGoogle()
+                    } else {
+                        signUpWithEmailPassword()
+                    }
                 }) {
                     Text("Sign Up")
                         .font(.headline)
@@ -240,6 +244,8 @@ struct SignupForm: View {
         }
         .onAppear{
             allUnitsViewModel.fetchUnits()
+            print("Email", email)
+            print("password", pass)
         }
     }
     
@@ -257,7 +263,7 @@ struct SignupForm: View {
                 }
                 if isNewUser{
                     //post here
-                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, fId: authViewModel.fId ?? "", unitId: self.selectedUnitId) { result in
+                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, unitId: self.selectedUnitId, fId: authViewModel.fId ?? "") { result in
                         switch result {
                         case .success:
                             self.alertMessage = "User registration successful"
@@ -275,10 +281,39 @@ struct SignupForm: View {
             }
         }
     }
-}
-
-struct SignupForm_Previews: PreviewProvider {
-    static var previews: some View {
-        SignupForm(path: .constant([]))
+    
+    private func signUpWithEmailPassword() {
+        guard let phoneInt = Int(contact) else {
+            showAlert = true
+            alertMessage = "Invalid phone number."
+            return
+        }
+        
+        let getAllUsersViewModel = GetAllUsersViewModel()
+        getAllUsersViewModel.getAllUsers()
+        
+        DispatchQueue.main.async {
+            if let users = getAllUsersViewModel.userData, users.contains(where: {$0.email == email}) {
+                self.alertMessage = "Email is already registered."
+                self.showAlert = true
+            } else {
+                userSignUpViewModel.postUser(firstName: self.name, email: email, phone: phoneInt, unitId: self.selectedUnitId, fId: pass) { result in
+                    switch result {
+                    case .success:
+                        self.alertMessage = "User registration successful"
+                        navigateToConfirmation = true
+                    case .failure(let error):
+                        self.alertMessage = "Registration failed \(error)"
+                    }
+                    self.showAlert = true
+                }
+            }
+        }
     }
 }
+
+//struct SignupForm_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignupForm(path: .constant([]))
+//    }
+//}

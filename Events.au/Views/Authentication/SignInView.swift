@@ -18,7 +18,7 @@ struct SignInView: View {
 
 //    @State private var path = NavigationPath()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
-
+    @ObservedObject var signInEmailPassword = SignInEmailPasswordViewModel()
     
     
     var body: some View {
@@ -26,9 +26,9 @@ struct SignInView: View {
             VStack(spacing:30) {
                 Spacer()
                 VStack{
-                      Image("event_logo")
+                    Image(Theme.logo)
                           .resizable()
-                          .frame(width: 100, height: 100)
+                          .frame(width: 150, height: 150)
                       
                       HStack(spacing: 2) {
                           Text("Events.")
@@ -43,7 +43,6 @@ struct SignInView: View {
                 
                 // email sign in
                 
-                /*
                  
                  
                 VStack(alignment: .leading, spacing: 4) {
@@ -87,7 +86,8 @@ struct SignInView: View {
                     Spacer()
 
                     Button(action: {
-                        signup()
+//                        signup()
+                        signInEmailPassword.postSignInFirebaseId(firebaseId: password, email: email)
                 }) {
                     Text("Sign In")
                         .font(.headline)
@@ -117,17 +117,17 @@ struct SignInView: View {
                     .frame(width: 361)
                     .padding(.vertical, 20)
                 
-                */
                 
-                Text("Start Your Unforgettable \nEvents & Memories Here")
-                    .font(.system(size:20))
-                    .bold()
-                    .foregroundStyle(Theme.tintColor)
-                    .multilineTextAlignment(.center)
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(Color.eventDivider)
-                    .padding(.horizontal,18)
+                
+//                Text("Start Your Unforgettable \nEvents & Memories Here")
+//                    .font(.system(size:20))
+//                    .bold()
+//                    .foregroundStyle(Theme.tintColor)
+//                    .multilineTextAlignment(.center)
+//                Rectangle()
+//                    .frame(height: 1)
+//                    .foregroundColor(Color.eventDivider)
+//                    .padding(.horizontal,18)
                 
                 Button(action: {
                     signInWithGoogle()
@@ -176,8 +176,8 @@ struct SignInView: View {
                     SignInView()
                 case .signUpView:
                     SignupView(path: $authNavigationStack)
-                case .signUpForm:
-                    SignupForm(path: $authNavigationStack)
+                case .signUpForm(let email, let pass):
+                    SignupForm(path: $authNavigationStack, email: email, pass: pass)
                 case .confirmation:
                     ConfirmationView(path: $authNavigationStack)
                 }
@@ -197,6 +197,10 @@ struct SignInView: View {
         }
     }
 
+    private func signInWithEmailPassword() {
+        
+    }
+    
     private func signup() {
         guard !email.isEmpty, !password.isEmpty else {
             alertMessage = "Please fill in all fields."

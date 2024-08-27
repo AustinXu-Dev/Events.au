@@ -61,6 +61,7 @@ struct CreateEventView: View {
     
     @StateObject var allUnitsViewModel = AllUnitsViewModel()
     @StateObject var createEventViewModel: CreateEventViewModel
+    @StateObject var profileVM = GetOneUserByIdViewModel()
     
     @AppStorage("userRole") private var userRole: String?
 
@@ -210,6 +211,10 @@ extension CreateEventView{
             )
             .onAppear{
                 allUnitsViewModel.fetchUnits()
+                if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                    //get user
+                    profileVM.getOneUserById(id: userId)
+                }
             }
             //            .onSubmit {
             //                createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
@@ -386,8 +391,8 @@ extension CreateEventView{
             createEventViewModel.rules = rules
             createEventViewModel.unitId = allUnitsViewModel.units[selectedOptionIndex].id
 
-            let uid = Auth.auth().currentUser?.uid ?? ""
-            let email = Auth.auth().currentUser?.email ?? ""
+            let uid = profileVM.userDetail?._id ?? ""
+            let email = profileVM.userDetail?.email ?? ""
 
             createEventViewModel.uploadImage(avatarImage ?? UIImage(named: "no_image")!) { result in
                 switch result {

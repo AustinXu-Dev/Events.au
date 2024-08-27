@@ -15,15 +15,16 @@ struct SignupView: View {
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var navigateToSignupForm: Bool = false
+    @ObservedObject var userSignUpViewModel = UserSignUpViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             Spacer()
             VStack {
-                Image("event_logo")
+                Image(Theme.logo)
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 150, height: 150)
                     .padding(.bottom, 10)
                 
                 HStack(spacing: 2) {
@@ -36,7 +37,7 @@ struct SignupView: View {
             }
             .padding(.bottom, 20)
             
-            /*
+
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.emailAddress)
                     .font(.headline)
@@ -53,6 +54,13 @@ struct SignupView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.gray, lineWidth: 1)
                     )
+                //here
+                if !email.isEmpty && !isValidEmail(email) {
+                    Text("Email format is incorrect")
+                        .foregroundStyle(Theme.tintColor)
+                }
+                
+                
             }
             .padding(.top, 10)
             
@@ -75,11 +83,11 @@ struct SignupView: View {
             .padding(.top, 4)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(EventAppAutheticationValue.password)
+                Text("Confirm Password")
                     .font(.headline)
                     .padding(.horizontal, 0)
                 
-                SecureField(EventAppAutheticationValue.passwordConfrim, text: $newPassword)
+                SecureField(EventAppAutheticationValue.passwordConfrim, text: $confirmPassword)
                     .autocapitalization(.none)
                     .padding()
                     .frame(width: 361, height: 41.49)
@@ -89,13 +97,17 @@ struct SignupView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.gray, lineWidth: 1)
                     )
+                if !confirmPassword.isEmpty && newPassword != confirmPassword {
+                    Text("Your password doesn't match.")
+                        .foregroundStyle(Theme.tintColor)
+                }
             }
             .padding(.top, 4)
             
             HStack {
                 Spacer()
                 
-                NavigationLink(value: AuthNavigation.signUpForm) {
+                NavigationLink(value: AuthNavigation.signUpForm(email: email, password: confirmPassword)) {
                     Text("Next")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -104,9 +116,14 @@ struct SignupView: View {
                         .background(Color.eventBackground)
                         .cornerRadius(8)
                 }
+                .disabled(email.isEmpty)
+                .disabled(newPassword.isEmpty)
+                .disabled(confirmPassword.isEmpty)
+                .disabled(newPassword != confirmPassword)
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
             }
+            
             
             HStack {
                 Rectangle()
@@ -124,8 +141,6 @@ struct SignupView: View {
             .frame(width: 361)
             .padding(.vertical, 20)
             
-            
-            */
             
             
             
@@ -151,7 +166,7 @@ struct SignupView: View {
 //                )
 //            }
             
-            NavigationLink(value: AuthNavigation.signUpForm) {
+            NavigationLink(value: AuthNavigation.signUpForm(email: "", password: "")) {
                 HStack {
                     Image("google_icon")
                         .resizable()

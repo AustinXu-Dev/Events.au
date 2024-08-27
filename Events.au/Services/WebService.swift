@@ -19,7 +19,7 @@ enum AuthenticationError: Error {
 // MARK: - Getting the token from the API with firebaseId
 class WebService {
     
-    func signin(firebaseId: String, completion: @escaping (Result<(String, String), AuthenticationError>) -> Void) {
+    func signin(firebaseId: String, email: String, completion: @escaping (Result<(String, String), AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://events-au-v2.vercel.app/auth/signin") else {
             completion(.failure(.custom(errorMessage: "Invalid URL")))
             return
@@ -29,7 +29,10 @@ class WebService {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let body: [String: Any] = ["fId": firebaseId]
+        let body: [String: Any] = [
+            "password": firebaseId,
+            "email": email
+        ]
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])

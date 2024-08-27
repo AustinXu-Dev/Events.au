@@ -191,7 +191,7 @@ extension ProfileView {
     }
     
     private func updateUserRole() {
-        guard let userState = selectedUserState else { return }
+//        guard let userState = selectedUserState else { return }
         //for first time launching the app, the loader shouldn't show up in profile tab
         if !isInitialSetup {
             roleSwitched = true

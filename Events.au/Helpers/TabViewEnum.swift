@@ -38,7 +38,7 @@ enum ProfileNavigation: Hashable{
 enum AuthNavigation : Hashable {
     case signUpView
     case signInView
-    case signUpForm
+    case signUpForm(email: String, password: String)
     case confirmation
 }
 

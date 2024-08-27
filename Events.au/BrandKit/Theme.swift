@@ -119,7 +119,7 @@ struct Theme {
     static let animationDuration: Double = 0.3
     
     // MARK: - Photos & System Images
-    static let logo : String = "EventLogo"
+    static let logo : String = "AventLogo"
     static let logoVector : String = "EventVector"
     static let welcomeText : String = "WelcomeText"
     static let confirmation : String = "Confirmation"
@@ -129,7 +129,7 @@ struct Theme {
     static let congratsText: String = "CongratsText"
     static let eventauText: String = "EventAUText"
     static let createEventImage: String = "CreateEventImage"
-    
+
     
     // MARK: - Icon Names
     static let gamingIcon : String = "gaming_icon"

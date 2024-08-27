@@ -59,6 +59,9 @@
 		B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */; };
 		B391CD472C4D71D70045BB96 /* UserCreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391CD462C4D71D70045BB96 /* UserCreateEvent.swift */; };
 		B391CD4B2C4D723A0045BB96 /* UpdateEventBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391CD4A2C4D723A0045BB96 /* UpdateEventBasicInfo.swift */; };
+		B39835312C7E25A600B5543A /* GetAllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39835302C7E25A600B5543A /* GetAllUsers.swift */; };
+		B39835332C7E25D900B5543A /* GetAllUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39835322C7E25D900B5543A /* GetAllUsersViewModel.swift */; };
+		B39835352C7E364600B5543A /* SignInEmailPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39835342C7E364600B5543A /* SignInEmailPasswordViewModel.swift */; };
 		B3A0FBC42C503BB400C20CC5 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A0FBC32C503BB400C20CC5 /* ImageLoader.swift */; };
 		B3A571A32C29C464000B7AB6 /* UpdateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */; };
 		B3A571A92C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */; };
@@ -221,6 +224,9 @@
 		B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		B391CD462C4D71D70045BB96 /* UserCreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateEvent.swift; sourceTree = "<group>"; };
 		B391CD4A2C4D723A0045BB96 /* UpdateEventBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventBasicInfo.swift; sourceTree = "<group>"; };
+		B39835302C7E25A600B5543A /* GetAllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllUsers.swift; sourceTree = "<group>"; };
+		B39835322C7E25D900B5543A /* GetAllUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllUsersViewModel.swift; sourceTree = "<group>"; };
+		B39835342C7E364600B5543A /* SignInEmailPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailPasswordViewModel.swift; sourceTree = "<group>"; };
 		B3A0FBC32C503BB400C20CC5 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		B3A571A22C29C464000B7AB6 /* UpdateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserViewModel.swift; sourceTree = "<group>"; };
 		B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventBasicInfoViewModel.swift; sourceTree = "<group>"; };
@@ -415,6 +421,7 @@
 				B391CD462C4D71D70045BB96 /* UserCreateEvent.swift */,
 				BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */,
 				BCE68B872C5135B3000C5102 /* UserSubmitPollResult.swift */,
+				B39835302C7E25A600B5543A /* GetAllUsers.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -424,6 +431,7 @@
 			children = (
 				B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */,
 				B36CA9602C1F8E1D00FE6D46 /* UserSignUpViewModel.swift */,
+				B39835342C7E364600B5543A /* SignInEmailPasswordViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -462,6 +470,7 @@
 				B34CB3962C3D29EF0034A562 /* UserJoinEventViewModel.swift */,
 				BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */,
 				BCE68B892C513651000C5102 /* SubmitPollResultViewModel.swift */,
+				B39835322C7E25D900B5543A /* GetAllUsersViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1074,6 +1083,7 @@
 				B34CB3A22C3D33F80034A562 /* FindUnitsForAUserViewModel.swift in Sources */,
 				B36303032C28A11600537586 /* AllUnits.swift in Sources */,
 				BCE68B782C4F8D45000C5102 /* PollDTO.swift in Sources */,
+				B39835352C7E364600B5543A /* SignInEmailPasswordViewModel.swift in Sources */,
 				BCE68B8A2C513651000C5102 /* SubmitPollResultViewModel.swift in Sources */,
 				B7C69A7E2C14E18B0055DDD9 /* AdminModel.swift in Sources */,
 				3920CD6E2C3289FA00632B3C /* CreatedSuccessView.swift in Sources */,
@@ -1119,6 +1129,7 @@
 				BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */,
 				BCE68B822C50EB7C000C5102 /* PollModel.swift in Sources */,
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
+				B39835312C7E25A600B5543A /* GetAllUsers.swift in Sources */,
 				B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */,
 				B7C69A7C2C14E1160055DDD9 /* SignOutModel.swift in Sources */,
 				BC70A24D2C722F500002651E /* PhotoPicker.swift in Sources */,
@@ -1193,6 +1204,7 @@
 				396685D72C1F707A00AAD5D4 /* EventDetailsEditView.swift in Sources */,
 				B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */,
 				B34CB39A2C3D2DD30034A562 /* FindEventForUnit.swift in Sources */,
+				B39835332C7E25D900B5543A /* GetAllUsersViewModel.swift in Sources */,
 				B3A0FBC42C503BB400C20CC5 /* ImageLoader.swift in Sources */,
 				B7C69A742C14DF380055DDD9 /* UnitModel.swift in Sources */,
 				B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */,
@@ -1349,6 +1361,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1363,9 +1376,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.decode.events-au";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1382,6 +1399,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1396,9 +1414,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.decode.events-au";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
