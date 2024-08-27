@@ -130,7 +130,7 @@ extension EventDetail {
                         .foregroundStyle(Theme.tintColor)
                     Text("\(eventMonth)")
                         .applyHeadingFont()
-                        .foregroundStyle(Theme.secondaryTextColor)
+                        .foregroundStyle(Theme.tintColor)
                 }
             }
             .padding(8)
@@ -145,7 +145,6 @@ extension EventDetail {
                             .resizable()
                             .frame(width: Theme.iconWidth,height: 18)
                             .scaledToFill()
-                        
                         Text("\(startTime)-\(endTime)")
                             .applyMediumFont()
                     }
@@ -220,6 +219,7 @@ extension EventDetail {
 #Preview {
     NavigationStack {
         EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), participantsVM: GetParticipantsByEventIdViewModel(), approvedParticipants: ParticipantMock.instance.participants)
+            .preferredColorScheme(.dark)
     }
     .padding(.horizontal,Theme.large)
     

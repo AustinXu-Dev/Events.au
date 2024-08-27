@@ -64,7 +64,69 @@ struct ParticipantAvatar : View {
 }
 
 #Preview {
-    UserAvatarSquare(user: UserMock.instance.user3)
+    UserProfileDetailAvatar(user: UserMock.instance.user3)
 }
 
+
+struct UserToolBarAvatar : View {
+    let user: UserModel2
+    var body: some View {
+            ZStack {
+                Circle()
+                    .fill(Color.gray)
+                    .scaledToFill()
+                .frame(width: 35, height: 35)
+                    .overlay (
+                        Text(user.firstName?.prefix(1) ?? "U")
+                            .font(.system(size: 16))
+                            .foregroundColor(.white)
+                    )
+            }
+        
+    }
+}
+
+
+struct UserProfileAvatar : View {
+    let user: UserModel2
+    var body: some View {
+        
+        ZStack {
+            Circle()
+                .fill(Color.gray)
+                .scaledToFill()
+                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+                .overlay (
+                    Text(user.firstName?.prefix(1) ?? "U")
+                        .font(.system(size: 32))
+                        .foregroundColor(.white)
+                )
+        }
+        
+
+        
+    }
+}
+
+
+struct UserProfileDetailAvatar : View {
+    let user: UserModel2
+    var body: some View {
+        
+        ZStack {
+            Circle()
+                .fill(Color.gray)
+                .scaledToFill()
+                .frame(width: 100, height: 100)
+                .overlay (
+                    Text(user.firstName?.prefix(1) ?? "U")
+                        .font(.system(size: 40))
+                        .foregroundColor(.white)
+                )
+        }
+        
+
+        
+    }
+}
 

@@ -41,7 +41,7 @@ struct TabScreenView: View {
                 }
                 .tag(Tab.profile)
         }
-        .background(Color.white)
+        .background(Theme.primaryTextColor)
         .tint(Theme.tintColor)
         
     }

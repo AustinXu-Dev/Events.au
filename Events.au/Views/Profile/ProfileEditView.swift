@@ -42,9 +42,10 @@ struct ProfileEditView: View {
 //                            .padding([.top, .trailing], 5)
 //                        , alignment: .bottomTrailing
 //                    )
-                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-                    RemoteProfleEdit(url: "\(imageUrl)")
-                }
+                UserProfileDetailAvatar(user: user)
+//                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+//                    RemoteProfleEdit(url: "\(imageUrl)")
+//                }
                 Spacer()
             }
             .padding(.top, 20)

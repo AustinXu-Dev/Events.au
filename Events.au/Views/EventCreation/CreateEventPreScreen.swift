@@ -12,16 +12,16 @@ struct CreateEventPreScreen: View {
     @Binding var path: NavigationPath
     @Binding var selectedTab: Tab
     @ObservedObject var pollVM = CreatePollViewModel()
-    
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationStack(path: $path) {
             VStack(alignment:.center,spacing:Theme.defaultSpacing){
-                Image(Theme.eventauText)
+                Image(colorScheme == .light ? Theme.eventauText : Theme.eventauTextDarkMode)
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: 300, maxHeight: 35)
-                Image(Theme.createEventImage)
+                Image(colorScheme == .light ? Theme.createEventImage : Theme.createEventImageDarkMode)
                     .resizable()
                     .frame(width: 361, height: 246)
                     .scaledToFill()

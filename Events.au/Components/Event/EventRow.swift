@@ -32,12 +32,14 @@ struct EventRow: View {
 //                .scaledToFit()
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     Text(event.name ?? "")
+                    .foregroundStyle(Theme.secondaryTextColor)
                     .applyHeadingFont()
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                     if let startDate = event.startDate, let startTime = event.startTime, let endTime = event.endTime {
                         Text("\(startDate), \(startTime)-\(endTime)")
                             .applyOverlayFont()
+                            .foregroundStyle(Theme.secondaryTextColor)
                     }
             }
                 Spacer()

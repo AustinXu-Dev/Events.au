@@ -153,14 +153,21 @@ extension ProfileView {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width:393,height: 186)
+            
+            if let user = profileVM.userDetail {
+                UserProfileAvatar(user: user)
+                    .padding(.horizontal,Theme.large)
+                    .padding(.bottom,Theme.large)
+            }
+            
 //            Image("human_profile")
 //                .resizable()
 //                .clipShape(Circle())
 //                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
 //                .padding(.horizontal,Theme.large)
-            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-                RemoteProfileView(url: "\(imageUrl)")
-            }
+//            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+//                RemoteProfileView(url: "\(imageUrl)")
+//            }
         }
         
         

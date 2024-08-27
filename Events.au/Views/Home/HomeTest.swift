@@ -40,6 +40,7 @@ struct HomeTest: View {
             VStack(alignment:.leading,spacing:Theme.defaultSpacing){
 
                 SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
+                    .padding(.horizontal,Theme.large)
                 if searchText.isEmpty {
                     categoryScrollView
                 }
@@ -49,15 +50,19 @@ struct HomeTest: View {
                         .tint(Theme.tintColor)
                 } else {
                     eventsScrollView
+                        .padding(.horizontal,Theme.large)
                 }
                                 
             }
-            .padding(.horizontal,Theme.large)
+//            .padding(.horizontal,Theme.large)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-                        RemoteProfileToolBarView(url: "\(imageUrl)")
+                    if let user = profileVM.userDetail {
+                    UserToolBarAvatar(user: user)
+//                    if let imageUrl =
+//                        FirebaseManager.shared.auth.currentUser?.photoURL {
+//                        RemoteProfileToolBarView(url: "\(imageUrl)")
                     }
                     if let userName = profileVM.userDetail?.firstName {
                         Text(userName)
@@ -131,7 +136,7 @@ struct HomeTest: View {
             print("p fetched in hometest",participantsVM.approvedParticipants.count)
         
         })
-        .tint(.blue)
+        .tint(Theme.tintColor)
         .clipped() // Solution for tabbar bug
     }
 }
@@ -140,9 +145,10 @@ struct HomeTest: View {
 
 extension HomeTest {
     private var categoryScrollView : some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading,spacing: 0) {
             Text("Categories")
                 .applyLabelFont()
+                .padding(.horizontal,Theme.large)
             ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing:Theme.defaultSpacing) {
                     ForEach(CategoryValue.categories,id:\.id) { category in
@@ -159,7 +165,6 @@ extension HomeTest {
                                         .scaledToFill()
                                         .frame(width:Theme.categoryImageFrame,height:Theme.categoryImageFrame)
                                 )
-                                .applyThemeDoubleShadow()
                             Text(category.name)
                                 .applyOverlayFont()
                                 .foregroundStyle(selectedCategory.contains(category.id) ? Theme.tintColor : Theme.secondaryTextColor)
@@ -176,6 +181,7 @@ extension HomeTest {
                     }
                 }
                 .padding(.horizontal,Theme.large)
+                .padding(.vertical,Theme.large)
             }
         }
     }
@@ -228,6 +234,16 @@ extension HomeTest {
 }
 
 
-#Preview {
-    HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
+struct HomeTest_Previews : PreviewProvider {
+    static var previews: some View {
+        Group {
+            HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
+                .preferredColorScheme(.light)
+            
+            HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
+                .preferredColorScheme(.dark)
+        }
+        
+    }
 }
+

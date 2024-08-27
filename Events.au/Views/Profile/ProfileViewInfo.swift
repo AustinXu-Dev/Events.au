@@ -26,9 +26,13 @@ struct ProfileViewInfo: View {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-                        RemoteProfleEdit(url: "\(imageUrl)")
+                    if let user = profileVM.userDetail {
+                        UserProfileDetailAvatar(user: user)
                     }
+
+//                    if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+//                        RemoteProfleEdit(url: "\(imageUrl)")
+//                    }
                     Spacer()
                 }
                 .padding(.top, 20)
@@ -86,6 +90,9 @@ struct ProfileViewInfo: View {
             }
         }
         .onAppear(perform: {
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
             //get all events based on userRole
             if userRole == UserState.audience.rawValue {

@@ -26,13 +26,14 @@ struct SignupForm: View {
     @State private var name: String = ""
     @State private var contact: String = ""
     @State private var showAlert: Bool = false
+    @State private var showErrorAlert : Bool = false
     @State private var alertMessage: String = ""
     @State private var selectedFaculty: String = "Select Faculty"
     @State private var selectedGender: String = "Select Gender"
     @State private var selectedUnitName: String = ""
     @State private var selectedUnitId: String = ""
     @State private var isMenuVisible = false
-    
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var allUnitsViewModel = AllUnitsViewModel()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
     @ObservedObject var userSignUpViewModel = UserSignUpViewModel()
@@ -234,7 +235,7 @@ struct SignupForm: View {
 //            
 //            
 //        }
-        .alert("Singn Up", isPresented: $showAlert) {
+        .alert("Sign Up", isPresented: $showAlert) {
             NavigationLink(value: AuthNavigation.confirmation) {
                 Text("Ok")
             }
@@ -242,10 +243,24 @@ struct SignupForm: View {
         } message: {
             Text(alertMessage)
         }
+        
+        .alert("Failed", isPresented: $showErrorAlert) {
+            Button {
+                dismiss()
+            } label: {
+                Text("Ok")
+            }
+        } message: {
+            Text(alertMessage)
+        }
+        
         .onAppear{
             allUnitsViewModel.fetchUnits()
             print("Email", email)
             print("password", pass)
+            print("Show alert status",showAlert)
+            print("Show error alert status",showErrorAlert)
+
         }
     }
     
@@ -261,7 +276,7 @@ struct SignupForm: View {
                 if let error = error {
                     self.errorMessage = error.localizedDescription
                 }
-                if isNewUser{
+                if isNewUser {
                     //post here
                     userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, unitId: self.selectedUnitId, fId: authViewModel.fId ?? "") { result in
                         switch result {
@@ -269,14 +284,17 @@ struct SignupForm: View {
                             self.alertMessage = "User registration successful"
                             navigateToConfirmation = true
                             authViewModel.signOutWithGoogle()
+                            self.showAlert = true
                         case .failure(let error):
-                            self.alertMessage = "Registration failed \(error)"
+                            self.alertMessage = "Registration failed \(error.localizedDescription)"
                             authViewModel.signOutWithGoogle()
+                            navigateToConfirmation = false
+                            showErrorAlert = true
                         }
-                        self.showAlert = true
                     }
                 } else {
                     //handle error
+                    navigateToConfirmation = false
                 }
             }
         }
@@ -295,17 +313,19 @@ struct SignupForm: View {
         DispatchQueue.main.async {
             if let users = getAllUsersViewModel.userData, users.contains(where: {$0.email == email}) {
                 self.alertMessage = "Email is already registered."
-                self.showAlert = true
+                self.showErrorAlert = true
             } else {
                 userSignUpViewModel.postUser(firstName: self.name, email: email, phone: phoneInt, unitId: self.selectedUnitId, fId: pass) { result in
                     switch result {
                     case .success:
                         self.alertMessage = "User registration successful"
                         navigateToConfirmation = true
+                        self.showAlert = true
                     case .failure(let error):
-                        self.alertMessage = "Registration failed \(error)"
+                        self.alertMessage = "Registration failed. Email already exists."
+                        navigateToConfirmation = false
+                        self.showErrorAlert = true
                     }
-                    self.showAlert = true
                 }
             }
         }

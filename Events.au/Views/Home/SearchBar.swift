@@ -54,10 +54,11 @@ struct SearchBar: View {
                }
            }
            .padding(.vertical, 10)
-           .background(Color.white) // Removed the shadow to eliminate grey lines
+          // .background(Color.white) // Removed the shadow to eliminate grey lines
        }
 }
 
 #Preview {
     SearchBar(searchText: .constant("keyword"), isFiltering: .constant(false))
+        .preferredColorScheme(.dark)
 }
