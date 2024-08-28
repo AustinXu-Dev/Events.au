@@ -90,7 +90,7 @@ extension Date {
    
     
     // Function to get just the date component (year, month, day)
-    func strippedTime() -> Date? {
+    func strippedTime() -> Date {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         return gregorianCalendar.startOfDay(for: self)
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeTest: View {
+struct HomeView: View {
     
     @Binding var path: [HomeNavigation]
     @Binding var profilePath : [ProfileNavigation]
@@ -21,6 +21,7 @@ struct HomeTest: View {
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
     @State var showSignOutAlert: Bool = false
+    @AppStorage("userRole") private var userRole: String?
 //    @State var tokenIsExpired : Bool = false
 
     
@@ -126,6 +127,11 @@ struct HomeTest: View {
             )
         }
         .onAppear(perform: {
+            if userRole == nil {
+                userRole = UserState.audience.rawValue
+                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
+            }
+            
             //fetch events
             eventVM.fetchEvents()
             
@@ -143,7 +149,7 @@ struct HomeTest: View {
 
 
 
-extension HomeTest {
+extension HomeView {
     private var categoryScrollView : some View {
         VStack(alignment: .leading,spacing: 0) {
             Text("Categories")
@@ -237,10 +243,10 @@ extension HomeTest {
 struct HomeTest_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
+            HomeView(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
                 .preferredColorScheme(.light)
             
-            HomeTest(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
+            HomeView(path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home))
                 .preferredColorScheme(.dark)
         }
         

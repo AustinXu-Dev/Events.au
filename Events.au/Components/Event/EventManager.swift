@@ -152,27 +152,21 @@ struct EventManager: View {
                         VStack(alignment:.center,spacing:Theme.medium) {
                              let organizerEvents = organizerEventsVM.organizerEvents
                                 if organizerEvents.count != 0 {
-                                    ForEach(organizerEvents,id: \._id){ organizer in
+                                    ForEach(organizerEvents,id: \._id){  organizer in
                                         if let event = organizer.eventId {
-                                            if ((event.startDate?.toDate()?.strippedTime() == Date().strippedTime())) {
-//                                                    NavigationLink {
-//                                                        //MARK: -api fetching should happen in this child view using observed object both for events and participants
-//                                                        EventPreEditView(event: event, approvedParticipants: eventParticipants.approvedParticipants, pendingParticipants: eventParticipants.pendingParticipants, unit: UnitMock.instacne.unitA,path: $path,profilePath: $profilePath,selectedTab: $selectedTab)
-//                                                    } label: {
-//                                                        //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
-//                                                        if let firstParticipant = participantVM.participant.first {
-//                                                            EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:firstParticipant)
-//                                                                .tint(Color.black)
-//                                                        }
-//                                                    }
+                                            if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                               let endDateString = event.endDate, // Assuming endDate is a string
+                                               let endTimeString = event.endTime, // Assuming endTime is a string
+                                               let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
+                                               //check if event starts today
+                                               startDate == Date().strippedTime() ||
+                                                // Check if today is within the recurring period (after event starts, before event ends)
+                                                (Date().strippedTime() > startDate && Date() < eventEndDateTime) {
                                                 NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
-                                                    if let firstParticipant = participantVM.participant.first {
-                                                        EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:firstParticipant)
+                                                    //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
+                                                        EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
                                                             .tint(Color.black)
                                                     }
-                                                }
-                                                
-                                                    
                                                 
                                             }
                                     }
@@ -192,30 +186,20 @@ struct EventManager: View {
                             if organizerEvents.count != 0 {
                                 ForEach(organizerEvents,id: \._id){ organizer in
                                     if let event = organizer.eventId {
-//                                        if ((event.startDate?.toDate()?.strippedTime() != Date().strippedTime())) {
-                                            if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                               let endDateString = event.endDate, // Assuming endDate is a string
-                                               let endTimeString = event.endTime, // Assuming endTime is a string
-                                               let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
-                                               startDate != Date().strippedTime(),
-                                               eventEndDateTime > Date() {
-                                            //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
-//                                                NavigationLink {
-//                                                    EventPreEditView(event: event, approvedParticipants: eventParticipants.approvedParticipants, pendingParticipants: eventParticipants.pendingParticipants, unit: UnitMock.instacne.unitA,path: $path,profilePath: $profilePath,selectedTab: $selectedTab)
-//                                                } label: {
-//                                                    if let firstParticipant = participantVM.participant.first {
-//                                                        EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:firstParticipant)
-//                                                            .tint(Color.black)
-//                                                    }
-//                                                }
+                                        if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                           let endDateString = event.endDate, // Assuming endDate is a string
+                                           let endTimeString = event.endTime, // Assuming endTime is a string
+                                           let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
+                                           //if start date is in the future
+                                           startDate > Date().strippedTime()
+                                        /* eventEndDateTime < Date() */{
                                             NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
-                                                if let firstParticipant = participantVM.participant.first {
-                                                    EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:firstParticipant)
-                                                        .tint(Color.black)
-                                                }
+                                                //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
+                                                EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
+                                                    .tint(Color.black)
                                             }
-                                            
                                         }
+                                        
                                     }
                                 }
                             } else {
@@ -238,14 +222,14 @@ struct EventManager: View {
             //get all events based on userRole
             if userRole == UserState.audience.rawValue {
                 self.participantEventsVM.fetchEvents(userId: userId)
-            } else {
+            } else if userRole == UserState.organizer.rawValue {
                 self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                print("Organizer events fetched",organizerEventsVM.organizerEvents)
             }
         }
         }
         Spacer(minLength: 0)
             .onAppear(perform: {
-                print("App storage userRole in child view is \(String(describing: userRole))")
                 if let userId = KeychainManager.shared.keychain.get("appUserId") {
                     participantVM.fetchParticipant(id: userId)
                 //get all events based on userRole

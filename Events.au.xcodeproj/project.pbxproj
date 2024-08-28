@@ -151,7 +151,7 @@
 		BC1CC97A2C2979F40020DD06 /* EventRegistrationSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC9792C2979F40020DD06 /* EventRegistrationSuccessView.swift */; };
 		BC2711702C195D8C00A99157 /* SignupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27116F2C195D8C00A99157 /* SignupForm.swift */; };
 		BC2711732C195F8C00A99157 /* TabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711722C195F8C00A99157 /* TabScreenView.swift */; };
-		BC2711752C19909D00A99157 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711742C19909D00A99157 /* HomeTest.swift */; };
+		BC2711752C19909D00A99157 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711742C19909D00A99157 /* HomeView.swift */; };
 		BC2711772C19910000A99157 /* TabViewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2711762C1990FF00A99157 /* TabViewEnum.swift */; };
 		BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6157C42C1E0CF400F78A9E /* SearchBar.swift */; };
 		BC70A24D2C722F500002651E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70A24C2C722F500002651E /* PhotoPicker.swift */; };
@@ -318,7 +318,7 @@
 		BC1CC9792C2979F40020DD06 /* EventRegistrationSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistrationSuccessView.swift; sourceTree = "<group>"; };
 		BC27116F2C195D8C00A99157 /* SignupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupForm.swift; sourceTree = "<group>"; };
 		BC2711722C195F8C00A99157 /* TabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabScreenView.swift; sourceTree = "<group>"; };
-		BC2711742C19909D00A99157 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
+		BC2711742C19909D00A99157 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BC2711762C1990FF00A99157 /* TabViewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewEnum.swift; sourceTree = "<group>"; };
 		BC6157C42C1E0CF400F78A9E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BC70A24C2C722F500002651E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
@@ -788,7 +788,7 @@
 		BC2711712C195F7700A99157 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				BC2711742C19909D00A99157 /* HomeTest.swift */,
+				BC2711742C19909D00A99157 /* HomeView.swift */,
 				BC6157C42C1E0CF400F78A9E /* SearchBar.swift */,
 				B74C428E2C272314009E3E63 /* EventDetail.swift */,
 				3920CD6B2C32846700632B3C /* AttendeesListView.swift */,
@@ -1135,7 +1135,7 @@
 				BC70A24D2C722F500002651E /* PhotoPicker.swift in Sources */,
 				B363030B2C28A20500537586 /* CreateEventViewModel.swift in Sources */,
 				B7B208D22C21274600DB1450 /* EventManager.swift in Sources */,
-				BC2711752C19909D00A99157 /* HomeTest.swift in Sources */,
+				BC2711752C19909D00A99157 /* HomeView.swift in Sources */,
 				BCF4FAB02C31B30300D5E009 /* PollViewModel.swift in Sources */,
 				B7F979C32C451F2C00D993F3 /* OrganizerEventsViewModel.swift in Sources */,
 				BC1CC9732C289CD10020DD06 /* TextFieldWithIcon.swift in Sources */,

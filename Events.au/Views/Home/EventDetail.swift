@@ -102,7 +102,7 @@ extension EventDetail {
             VStack(alignment:.leading,spacing:Theme.xs) {
                 Text(event.description ?? "This event has no description.")
                     .applyBodyFont()
-                    .lineLimit(isParagraph ? .max : 6)
+                    .lineLimit(isParagraph ? .max : 3)
                 
                 if let eventDescription = event.description {
                     if eventDescription.count >= 40 {

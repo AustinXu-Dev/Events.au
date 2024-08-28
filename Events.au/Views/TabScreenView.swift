@@ -21,7 +21,7 @@ struct TabScreenView: View {
 
         TabView(selection: $selectedTab) {
             //Home View
-            HomeTest(path: $homeNavigationStack, profilePath: $profileNavigationStack, selectedTab: $selectedTab)
+            HomeView(path: $homeNavigationStack, profilePath: $profileNavigationStack, selectedTab: $selectedTab)
                 .tabItem {
                     homeTabLabel
                 }
