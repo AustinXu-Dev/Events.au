@@ -96,12 +96,14 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 //MARK: - Condition with Token Valid and Login successful with google auth
                 if isNewUser {
                     //Delete the new user account
-                    authResult.user.delete { error in
+                    authResult.user.delete { _  in //error in
+                        /*
                         if let error = error {
-//                            print("Error deleting new user: \(error)")
+                            print("Error deleting new user: \(error)")
                         } else {
-//                            print("New user account deleted successfully.")
+                            print("New user account deleted successfully.")
                         }
+                         */
                     }
 //                    print("New User")
                 } else {

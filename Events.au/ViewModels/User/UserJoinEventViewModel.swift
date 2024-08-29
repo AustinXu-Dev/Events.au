@@ -22,7 +22,7 @@ class UserJoinEventViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {
-                case .success(let participantStatusResult):
+                case .success(_):
                     break;
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription

@@ -19,7 +19,7 @@ class SubmitPollResultViewModel: ObservableObject{
                     switch result{
                     case .success( _):
                         break;
-                    case .failure(let error):
+                    case .failure(_):
                         break;
                     }
                 }

@@ -36,10 +36,10 @@ class UpdateUserViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {
-                case .success(let user):
+                case .success(_):
                     break;
                 case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                    self?.errorMessage = "Failed to update user: \(error.localizedDescription)"
                 }
             }
         }

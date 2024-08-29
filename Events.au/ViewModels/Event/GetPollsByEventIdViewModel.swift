@@ -21,7 +21,7 @@ class GetPollsByEventIdViewModel: ObservableObject {
                 case .success(let pollResult):
                     self.polls = pollResult.message
                 case .failure(let error):
-                    self.errorMessage = "Failed to get poll for the event"
+                    self.errorMessage = "Failed to get poll for the event: \(error.localizedDescription)"
                 }
             }
         }

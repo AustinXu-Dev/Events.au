@@ -129,9 +129,6 @@ struct EventManager: View {
                             if !uniqueEvents.isEmpty {
                                 ForEach(Array(uniqueEvents.enumerated()), id: \.element._id) { index, event in
                                     if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                       let endDateString = event.endDate, // Assuming endDate is a string
-                                       let endTimeString = event.endTime, // Assuming endTime is a string
-                                       let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
                                        startDate > Date().strippedTime()
                                    /*    eventEndDateTime > Date()*/ {
                                         NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
@@ -193,9 +190,6 @@ struct EventManager: View {
                                 ForEach(organizerEvents,id: \._id){ organizer in
                                     if let event = organizer.eventId {
                                         if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                           let endDateString = event.endDate, // Assuming endDate is a string
-                                           let endTimeString = event.endTime, // Assuming endTime is a string
-                                           let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
                                            //if start date is in the future
                                            startDate > Date().strippedTime()
                                         /* eventEndDateTime < Date() */{

@@ -26,6 +26,7 @@ class AllEventsViewModel: ObservableObject {
                 }
             case .failure(let error):
                 self?.loader = false
+                self?.errorMessage = "Failed to get all the events: \(error.localizedDescription)"
             }
         }
     }

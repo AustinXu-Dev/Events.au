@@ -41,7 +41,7 @@ class CreatePollViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.isLoading = false
                     switch result {
-                    case .success(let event):
+                    case .success(_):
                         break;
                     case .failure(let error):
                         self?.errorMessage = error.localizedDescription

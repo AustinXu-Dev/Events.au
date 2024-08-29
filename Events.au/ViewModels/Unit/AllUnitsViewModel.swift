@@ -23,7 +23,7 @@ class AllUnitsViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.units = unitResponse.message
                 }
-            case .failure(let error):
+            case .failure(_):
                 break;
             }
         }

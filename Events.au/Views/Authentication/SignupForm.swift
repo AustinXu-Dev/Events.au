@@ -316,7 +316,7 @@ struct SignupForm: View {
                         self.alertMessage = "User registration successful"
                         navigateToConfirmation = true
                         self.showAlert = true
-                    case .failure(let error):
+                    case .failure(_):
                         self.alertMessage = "Registration failed. Email already exists."
                         navigateToConfirmation = false
                         self.showErrorAlert = true

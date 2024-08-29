@@ -28,8 +28,7 @@ class CreateEventViewModel: ObservableObject {
 
     
     //https://lh3.googleusercontent.com/a/ACg8ocJWN9H5pN0ecH3xit1l8PFbf4oE7bVeMTepu3zjnvUKJwynsQ=s96-c
-    init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", coverImageUrl: String =
-         "", unitId: String = "") {
+    init(name: String = "", description: String = "", location: String = "", startDate: String = "", endDate: String = "", startTime: String = "", endTime: String = "", rules: String = "", coverImageUrl: String = "", unitId: String = "") {
         self.name = name
         self.description = description
         self.location = location
@@ -64,10 +63,10 @@ class CreateEventViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {
-                case .success(let event):
+                case .success(_):
                     break;
                 case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                    self?.errorMessage = "Failed to create event: \(error.localizedDescription)"
                 }
             }
         }
