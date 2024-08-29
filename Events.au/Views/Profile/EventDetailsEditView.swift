@@ -97,9 +97,6 @@ struct EventDetailsEditView: View {
                 .alert(alertMessage, isPresented: $showConfirmationAlert){
                    
                     Button {
-                        print("Swagger Kyaw G Works")
-                        print("Path is", path)
-                        print("Profiel path is", profilePath)
                         path = []
                         profilePath = []
                         self.dismiss()
@@ -118,9 +115,7 @@ struct EventDetailsEditView: View {
                         .imageScale(.large)
                 }
             }
-            .onAppear {
-                print("Profile navgation in: ", profilePath)
-            }
+           
         }
     }
     

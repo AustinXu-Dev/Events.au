@@ -80,14 +80,12 @@ class UserSignUpViewModel: ObservableObject {
                 if let data = data {
                     do {
                         if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                            print("Response JSON: \(jsonResponse)")
                             
                             if let message = jsonResponse["message"] as? [String: Any],
                                let userId = message["_id"] as? String {
                                 // Save _id to UserDefaults
                                 UserDefaults.standard.set(userId, forKey: "userId")
-                                print("User ID saved successfully!")
-                                self.printStoredUserId()
+//                                self.printStoredUserId()
                                 //store photo URL here
                              
 
@@ -109,6 +107,7 @@ class UserSignUpViewModel: ObservableObject {
         }.resume()
     }
     
+    /*
     func printStoredUserId() {
         if let userId = UserDefaults.standard.string(forKey: "userId") {
             print("Stored User ID: \(userId)")
@@ -116,4 +115,5 @@ class UserSignUpViewModel: ObservableObject {
             print("No User ID found in UserDefaults.")
         }
     }
+     */
 }

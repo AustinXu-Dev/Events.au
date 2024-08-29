@@ -129,7 +129,7 @@ struct HomeView: View {
         .onAppear(perform: {
             if userRole == nil {
                 userRole = UserState.audience.rawValue
-                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
+//                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
             }
             
             //fetch events
@@ -139,7 +139,6 @@ struct HomeView: View {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 profileVM.getOneUserById(id: userId)
             }
-            print("p fetched in hometest",participantsVM.approvedParticipants.count)
         
         })
         .tint(Theme.tintColor)

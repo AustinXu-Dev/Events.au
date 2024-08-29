@@ -20,10 +20,8 @@ class FindEventForUnitViewModel: ObservableObject {
                 switch result {
                 case .success(let eventResult):
                     self.eventUnit = eventResult.message
-                    print("Event for a Unit: \(eventResult.message)")
                 case .failure(let error):
                     self.errorMessage = "Failed to get event for a unit."
-                    print(error.localizedDescription)
                 }
             }
         }

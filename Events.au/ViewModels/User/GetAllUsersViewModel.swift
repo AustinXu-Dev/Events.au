@@ -20,10 +20,8 @@ class GetAllUsersViewModel: ObservableObject {
                 switch result {
                 case .success(let userData):
                     self.userData = userData.message
-//                    print("UserDetail: \(userDetailData.message)")
                 case .failure(let error):
                     self.errorMessage = "Failed to get user detail by id."
-                    print(error.localizedDescription)
                 }
             }
         }

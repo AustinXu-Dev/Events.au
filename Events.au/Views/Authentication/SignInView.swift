@@ -23,12 +23,12 @@ struct SignInView: View {
     
     var body: some View {
         NavigationStack(path: $authNavigationStack) {
-            VStack(spacing:30) {
+            VStack(spacing:20) {
                 Spacer()
                 VStack{
                     Image(Theme.logo)
                           .resizable()
-                          .frame(width: 150, height: 150)
+                          .frame(width: 100, height: 100)
                       
                       HStack(spacing: 2) {
                           Text("Events.")

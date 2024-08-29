@@ -110,8 +110,8 @@ struct ProfileView: View {
 //            for 1st time users, we'll set their user state as audience
             if userRole == nil {
                 userRole = UserState.audience.rawValue
-                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
-                print("USER ROLE IN CHILD VIEW IS",userRole ?? "")
+//                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
+//                print("USER ROLE IN CHILD VIEW IS",userRole ?? "")
             }
             //get user role from previous state user defaults
             if let role = userRole, let userState = UserState(rawValue: role) {

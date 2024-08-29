@@ -41,7 +41,6 @@ struct CreatePollView: View {
                 Spacer().frame(height: 75)
                 
                 Button {
-                    print(pollVM.polls[0].title)
                 } label: {
                     Text("Get all poll")
                 }

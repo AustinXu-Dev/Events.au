@@ -11,14 +11,11 @@ class TokenManager: ObservableObject {
     
     static let share = TokenManager()
     
-    private init(){
-        
-    }
+    private init(){}
     
     // MARK: - Save Tokens in keychain
     func saveTokens(token: String) {
         KeychainManager.shared.keychain.set(token, forKey: "userToken")
-        print("Saved Tokens: \(String(describing: KeychainManager.shared.keychain.get("userToken")))")
     }
     
     // MARK: - Get Tokens for headers and API calls
@@ -29,6 +26,5 @@ class TokenManager: ObservableObject {
     // MARK: - Delete Tokens
     func deleteToken() {
         KeychainManager.shared.keychain.delete("userToken")
-        print("All token deleted")
     }
 }

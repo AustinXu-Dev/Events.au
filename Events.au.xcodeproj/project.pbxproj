@@ -16,7 +16,6 @@
 		396685D72C1F707A00AAD5D4 /* EventDetailsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */; };
 		396685DB2C1FD50900AAD5D4 /* EventParticipantManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685DA2C1FD50900AAD5D4 /* EventParticipantManagementView.swift */; };
 		396685DD2C1FEBA400AAD5D4 /* GribView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396685DC2C1FEBA400AAD5D4 /* GribView.swift */; };
-		3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */; };
 		39A732102C20B2570042734E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7320F2C20B2570042734E /* ProfileView.swift */; };
 		39FC541E2C1378F300240B93 /* EventAppColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */; };
 		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
@@ -139,7 +138,6 @@
 		B7F979C32C451F2C00D993F3 /* OrganizerEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F979C22C451F2C00D993F3 /* OrganizerEventsViewModel.swift */; };
 		B7FC26D72C19C0B800C1D7FD /* ReusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26D62C19C0B800C1D7FD /* ReusableButton.swift */; };
 		B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26D82C19C19F00C1D7FD /* EventCard.swift */; };
-		B7FC26DB2C19C37000C1D7FD /* GetAllEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */; };
 		B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC26DC2C19C48F00C1D7FD /* EventImageMock.swift */; };
 		B7FCBFF42C15964100C8C531 /* SignUpDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF32C15964100C8C531 /* SignUpDTO.swift */; };
 		B7FCBFF62C15966F00C8C531 /* SignInDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FCBFF52C15966F00C8C531 /* SignInDTO.swift */; };
@@ -160,9 +158,7 @@
 		BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02432C116C1000A9EE3E /* Events_auApp.swift */; };
 		BCBE02462C116C1000A9EE3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02452C116C1000A9EE3E /* ContentView.swift */; };
 		BCBE02482C116C1300A9EE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE02472C116C1300A9EE3E /* Assets.xcassets */; };
-		BCBE02522C116C4400A9EE3E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02512C116C4400A9EE3E /* Service.swift */; };
 		BCBE02542C116C8E00A9EE3E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02532C116C8E00A9EE3E /* Utility.swift */; };
-		BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE02572C116CCA00A9EE3E /* Helper.swift */; };
 		BCE68B782C4F8D45000C5102 /* PollDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B772C4F8D45000C5102 /* PollDTO.swift */; };
 		BCE68B7A2C4F8E00000C5102 /* UserCreatePoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */; };
 		BCE68B7C2C4F8E69000C5102 /* CreatePollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */; };
@@ -190,7 +186,6 @@
 		396685D62C1F707A00AAD5D4 /* EventDetailsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsEditView.swift; sourceTree = "<group>"; };
 		396685DA2C1FD50900AAD5D4 /* EventParticipantManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipantManagementView.swift; sourceTree = "<group>"; };
 		396685DC2C1FEBA400AAD5D4 /* GribView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GribView.swift; sourceTree = "<group>"; };
-		3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppNavigationPathValue.swift; sourceTree = "<group>"; };
 		39A7320F2C20B2570042734E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppColorTheme.swift; sourceTree = "<group>"; };
 		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -306,7 +301,6 @@
 		B7F979C22C451F2C00D993F3 /* OrganizerEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerEventsViewModel.swift; sourceTree = "<group>"; };
 		B7FC26D62C19C0B800C1D7FD /* ReusableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButton.swift; sourceTree = "<group>"; };
 		B7FC26D82C19C19F00C1D7FD /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
-		B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEventsViewModel.swift; sourceTree = "<group>"; };
 		B7FC26DC2C19C48F00C1D7FD /* EventImageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImageMock.swift; sourceTree = "<group>"; };
 		B7FCBFF32C15964100C8C531 /* SignUpDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDTO.swift; sourceTree = "<group>"; };
 		B7FCBFF52C15966F00C8C531 /* SignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDTO.swift; sourceTree = "<group>"; };
@@ -329,9 +323,7 @@
 		BCBE02452C116C1000A9EE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BCBE02472C116C1300A9EE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCBE024A2C116C1300A9EE3E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BCBE02512C116C4400A9EE3E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		BCBE02532C116C8E00A9EE3E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		BCBE02572C116CCA00A9EE3E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		BCE68B772C4F8D45000C5102 /* PollDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollDTO.swift; sourceTree = "<group>"; };
 		BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreatePoll.swift; sourceTree = "<group>"; };
 		BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollViewModel.swift; sourceTree = "<group>"; };
@@ -439,7 +431,6 @@
 		B36303092C28A1CA00537586 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				B7FC26DA2C19C37000C1D7FD /* GetAllEventsViewModel.swift */,
 				B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */,
 				B3A571A82C29D0B7000B7AB6 /* UpdateEventBasicInfoViewModel.swift */,
 				B7F979C22C451F2C00D993F3 /* OrganizerEventsViewModel.swift */,
@@ -866,7 +857,6 @@
 		BCBE02632C116D4F00A9EE3E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BCBE02512C116C4400A9EE3E /* Service.swift */,
 				B370C6E32C1525DC00C28E67 /* WebService.swift */,
 			);
 			path = Services;
@@ -895,10 +885,8 @@
 		BCBE02662C116D6400A9EE3E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				BCBE02572C116CCA00A9EE3E /* Helper.swift */,
 				39FC541D2C1378F300240B93 /* EventAppColorTheme.swift */,
 				39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */,
-				3966D89E2C16053E00910A16 /* EventAppNavigationPathValue.swift */,
 				396685CF2C1F5F0000AAD5D4 /* AdminProfileColorTheme.swift */,
 				BC2711762C1990FF00A99157 /* TabViewEnum.swift */,
 				B75A0F3D2C3BC03B007D150F /* UserState.swift */,
@@ -1170,7 +1158,6 @@
 				B36303112C28A36A00537586 /* GetOneUserByIdViewModel.swift in Sources */,
 				BCF4FAAA2C3191F600D5E009 /* CustomToggleStyle.swift in Sources */,
 				B7DFB3C12C16145800BB53E7 /* SignInDTOMock.swift in Sources */,
-				BCBE02522C116C4400A9EE3E /* Service.swift in Sources */,
 				39A732102C20B2570042734E /* ProfileView.swift in Sources */,
 				B3A571A32C29C464000B7AB6 /* UpdateUserViewModel.swift in Sources */,
 				396685D52C1F6D6700AAD5D4 /* EventPreEditView.swift in Sources */,
@@ -1188,10 +1175,7 @@
 				B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */,
 				B731AAE32C160B9B00A3E8C2 /* Date+Extension.swift in Sources */,
 				B36303132C28AA4F00537586 /* TestView.swift in Sources */,
-				B7FC26DB2C19C37000C1D7FD /* GetAllEventsViewModel.swift in Sources */,
 				B7C69A682C14D78F0055DDD9 /* SignInModel.swift in Sources */,
-				BCBE02582C116CCA00A9EE3E /* Helper.swift in Sources */,
-				3966D89F2C16053E00910A16 /* EventAppNavigationPathValue.swift in Sources */,
 				39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */,
 				B70C04972C3FF0100032B5BB /* AllUnitsByUserId.swift in Sources */,
 				B7B6C0422C637061007FBFA8 /* ParticipantEventsViewModel.swift in Sources */,
@@ -1357,7 +1341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
-				DEVELOPMENT_TEAM = A89P8LLWX2;
+				DEVELOPMENT_TEAM = GN86H89432;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
@@ -1395,7 +1379,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
-				DEVELOPMENT_TEAM = A89P8LLWX2;
+				DEVELOPMENT_TEAM = GN86H89432;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";

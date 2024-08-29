@@ -256,11 +256,6 @@ struct SignupForm: View {
         
         .onAppear{
             allUnitsViewModel.fetchUnits()
-            print("Email", email)
-            print("password", pass)
-            print("Show alert status",showAlert)
-            print("Show error alert status",showErrorAlert)
-
         }
     }
     

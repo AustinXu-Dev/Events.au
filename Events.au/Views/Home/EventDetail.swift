@@ -76,8 +76,6 @@ struct EventDetail: View {
                 eventUnitsVM.getUnitsByEvent(id: eventId)
                 participantsVM.fetchParticipants(id: eventId)
             }
-            print("Audience navigation path: ", path)
-            print("p is fetched in event detail view",approvedParticipants.count)
         })
         
         

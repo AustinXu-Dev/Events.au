@@ -39,7 +39,6 @@ struct EventCard: View {
 //            if let eventId = event._id {
 //                participantsVM.fetchParticipants(id: eventId)
 //            }
-            print("p fetched in event card",participantsVM.approvedParticipants.count)
                   
         })
         

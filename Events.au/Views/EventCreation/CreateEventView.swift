@@ -367,7 +367,6 @@ extension CreateEventView{
     
     private var nextButton: some View {
         Button {
-            print(name, description, startDateValue, endDateValue, startTimeValue, endTimeValue, location, rules)
             // One-line validation check for all required fields
             guard !name.isEmpty && !description.isEmpty && !startDateValue.isEmpty && !endDateValue.isEmpty && !startTimeValue.isEmpty && !endTimeValue.isEmpty && !location.isEmpty && !rules.isEmpty else {
                 errorMessage = "Please fill in all required fields."

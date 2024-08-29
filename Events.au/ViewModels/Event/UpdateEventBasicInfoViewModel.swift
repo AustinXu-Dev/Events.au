@@ -63,10 +63,9 @@ class UpdateEventBasicInfoViewModel: ObservableObject {
                 self?.isLoading = false
                 switch result {
                 case .success(_):
-                    print("Event basic info updated successfully")
+                    break;
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
-                    print("Failed to create event: \(error)")
                 }
             }
         }

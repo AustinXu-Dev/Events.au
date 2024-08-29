@@ -68,7 +68,14 @@ struct EventManager: View {
                             
                             if !uniqueEvents.isEmpty {
                                 ForEach(Array(uniqueEvents.enumerated()), id: \.element._id) { index, event in
-                                    if event.startDate?.toDate()?.strippedTime() == Date().strippedTime() {
+                                        if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                           let endDateString = event.endDate, // Assuming endDate is a string
+                                           let endTimeString = event.endTime, // Assuming endTime is a string
+                                           let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
+                                           //check if event starts today
+                                           startDate == Date().strippedTime() ||
+                                            // Check if today is within the recurring period (after event starts, before event ends)
+                                            (Date().strippedTime() > startDate && Date() <= eventEndDateTime) {
                                         NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
                                             // Ensure that the index is within bounds of the participants array
                                             if index < participantVM.participant.count {
@@ -125,9 +132,8 @@ struct EventManager: View {
                                        let endDateString = event.endDate, // Assuming endDate is a string
                                        let endTimeString = event.endTime, // Assuming endTime is a string
                                        let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
-                                       startDate != Date().strippedTime(),
-                                       eventEndDateTime > Date() {
-
+                                       startDate > Date().strippedTime()
+                                   /*    eventEndDateTime > Date()*/ {
                                         NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
                                             // Ensure that the index is within bounds of the participants array
                                             if index < participantVM.participant.count {
@@ -161,7 +167,7 @@ struct EventManager: View {
                                                //check if event starts today
                                                startDate == Date().strippedTime() ||
                                                 // Check if today is within the recurring period (after event starts, before event ends)
-                                                (Date().strippedTime() > startDate && Date() < eventEndDateTime) {
+                                                (Date().strippedTime() > startDate && Date() <= eventEndDateTime) {
                                                 NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
                                                     //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
                                                         EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
@@ -224,7 +230,7 @@ struct EventManager: View {
                 self.participantEventsVM.fetchEvents(userId: userId)
             } else if userRole == UserState.organizer.rawValue {
                 self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
-                print("Organizer events fetched",organizerEventsVM.organizerEvents)
+//                print("Organizer events fetched",organizerEventsVM.organizerEvents)
             }
         }
         }

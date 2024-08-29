@@ -20,7 +20,6 @@ class GetAdminByIdViewModel: ObservableObject {
                 switch result {
                 case .success(let adminData):
                     self.adminData = adminData.message
-                    print("Admin Data: \(adminData.message)")
                 case .failure(let error):
                     self.errorMessage = "Failed to get user detail by id: \(error.localizedDescription)"
                 }

@@ -25,7 +25,6 @@ struct EventRegistrationSuccessView: View {
                 .multilineTextAlignment(.center)
                 .applyLabelFont()
             Button(action: {
-                print("This is before action:",path)
                 path = []
                 selectedTab = .home
             }) {

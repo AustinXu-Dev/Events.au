@@ -57,7 +57,6 @@ struct EventRegistrationView: View {
             }
             .onAppear(perform: {
                 getPollsByEventIdVM.getPollsByEventId(id: event._id ?? "")
-                print(event.name ?? "")
             })
         }
     }
@@ -121,7 +120,6 @@ extension EventRegistrationView{
                 // Hide loading spinner and show success screen
                 withAnimation {
                     //MARK: -API POST LOGIC HERE
-                    print(nickName, lineId, contactNumber, remark)
                     //If post is success set the isloading to false to show registration success
                     isLoading = false
                     showAlert = true

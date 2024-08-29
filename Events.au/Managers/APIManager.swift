@@ -36,9 +36,6 @@ extension APIManager {
         if let data = data, getMethod == "POST" || getMethod == "PUT" {
             do{
                 let jsonData = try JSONEncoder().encode(data)
-                if let jsonString = String(data: jsonData, encoding: .utf8) {
-                    print("JSON String: \(jsonString)")
-                }
                 request.httpBody = jsonData
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             } catch {
@@ -78,7 +75,6 @@ extension APIManager {
                 do {
                     let decodeData = try JSONDecoder().decode(ModelType.self, from: responseData)
                     completion(.success(decodeData))
-                    print("Successsfully fetched data with valid token.")
                 } catch {
                     completion(.failure(error))
                 }
@@ -86,14 +82,10 @@ extension APIManager {
                 do {
                     let decodeData = try JSONDecoder().decode(ModelType.self, from: Data())
                     completion(.success(decodeData))
-                    print("Successfully deleted resource with valid token.")
                 } catch {
                     completion(.failure(error))
-                    print("Token expired or decoding error.")
                 }
-            } else {
-                print("Post and Put methods executed.")
-            }
+            } 
         }
         task.resume()
     }

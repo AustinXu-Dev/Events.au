@@ -35,7 +35,6 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
                 switch result {
                 case .success(let fetchedParticipants):
                     self?.allParticipants = fetchedParticipants.message
-//                    print("PARTICIAPNT FETCHED SUCCESSFULLY: \(fetchedParticipants.message)")
                 case .failure(let error):
                     self?.errorMessage = "Error fetching the participants of an event. \(error.localizedDescription)"
                 }

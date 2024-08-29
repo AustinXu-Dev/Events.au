@@ -31,7 +31,7 @@ struct CreatedSuccessView: View {
             
                         
             Button(action: {
-                print("Back to Home tapped")
+            
             }) {
                 Text("Back to Home")
                     .font(.headline)

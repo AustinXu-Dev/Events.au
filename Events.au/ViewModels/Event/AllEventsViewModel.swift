@@ -23,12 +23,9 @@ class AllEventsViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.loader = false
                     self?.events = eventResponse.message.filter{ $0.status == "approved"}
-                    print("FETCHED EVENTS IN HOME VIEW")
                 }
             case .failure(let error):
                 self?.loader = false
-                print("Failed to fetch events: \(error)")
-                // Handle error, e.g., show an alert
             }
         }
     }

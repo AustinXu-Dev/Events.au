@@ -18,9 +18,9 @@ class SubmitPollResultViewModel: ObservableObject{
                 DispatchQueue.main.async {
                     switch result{
                     case .success( _):
-                        print("Hi")
+                        break;
                     case .failure(let error):
-                        print(error.localizedDescription)
+                        break;
                     }
                 }
             }

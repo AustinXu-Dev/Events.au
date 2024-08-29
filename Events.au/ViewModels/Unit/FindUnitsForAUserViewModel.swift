@@ -20,10 +20,8 @@ class FindUnitsForAUserViewModel: ObservableObject {
                 switch result {
                 case .success(let unitsResult):
                     self.units = unitsResult.message
-//                    print("UserDetail: \(unitsResult.message)")
                 case .failure(let error):
                     self.errorMessage = "Failed to get user detail by id."
-                    print(error.localizedDescription)
                 }
             }
         }

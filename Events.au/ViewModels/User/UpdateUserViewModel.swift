@@ -37,10 +37,9 @@ class UpdateUserViewModel: ObservableObject {
                 self?.isLoading = false
                 switch result {
                 case .success(let user):
-                    print("User update created successfully: \(user)")
+                    break;
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
-                    print("Failed to create event: \(error.localizedDescription)")
                 }
             }
         }

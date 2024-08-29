@@ -149,7 +149,7 @@ extension PollView{
                 
                 Button {
                     //MARK: - SAVE BUTTON ACTION HERE
-                    print("Save")
+                   
                 } label: {
                     Text("Save")
                         .frame(width: 80, height: 40)

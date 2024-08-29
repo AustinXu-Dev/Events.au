@@ -20,10 +20,8 @@ class GetOneUserByIdViewModel: ObservableObject {
                 switch result {
                 case .success(let userDetailData):
                     self.userDetail = userDetailData.message
-//                    print("UserDetail: \(userDetailData.message)")
                 case .failure(let error):
                     self.errorMessage = "Failed to get user detail by id."
-                    print(error.localizedDescription)
                 }
             }
         }

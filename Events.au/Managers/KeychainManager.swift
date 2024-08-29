@@ -14,7 +14,5 @@ class KeychainManager {
     
     let keychain = KeychainSwift()
     
-    private init() {
-        
-    }
+    private init() {}
 }

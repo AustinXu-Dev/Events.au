@@ -98,20 +98,20 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     //Delete the new user account
                     authResult.user.delete { error in
                         if let error = error {
-                            print("Error deleting new user: \(error)")
+//                            print("Error deleting new user: \(error)")
                         } else {
-                            print("New user account deleted successfully.")
+//                            print("New user account deleted successfully.")
                         }
                     }
-                    print("New User")
+//                    print("New User")
                 } else {
                     DispatchQueue.main.async {
                         self.postSignInFirebaseId(firebaseId: authResult.user.uid, email: authResult.user.email ?? "")
                         
                     }
                     
-                    print("This is the URL of Image: \(String(describing: authResult.user.photoURL))")
-                    print("This user already exists.")
+//                    print("This is the URL of Image: \(String(describing: authResult.user.photoURL))")
+//                    print("This user already exists.")
                 }
             }
         }
@@ -123,14 +123,14 @@ class GoogleAuthenticationViewModel: ObservableObject {
         webService.signin(firebaseId: firebaseId, email: email) { result in
             switch result {
             case .success(let (token, userId)):
-                print("Login successful with token: \(token)")
-                print("Login successful with user _id: \(userId)")
+//                print("Login successful with token: \(token)")
+//                print("Login successful with user _id: \(userId)")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
                     self.token = token
                     self.userId = userId
                     TokenManager.share.saveTokens(token: token)
-                    print("Token is",token)
+//                    print("Token is",token)
                     // Save the token and expiration date (3 days from now)
                     let tokenReceivedDate = Date()
                     self.expirationDate = Calendar.current.date(byAdding: .day, value: 3, to: tokenReceivedDate)
@@ -143,7 +143,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     }
                 }
             case .failure(let error):
-                print("Login failed with error: \(error)")
+//                print("Login failed with error: \(error)")
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(false, forKey: "appState")
                     self.errorMessage = "Failed to login with WebService: \(error)"
@@ -248,12 +248,12 @@ class GoogleAuthenticationViewModel: ObservableObject {
                     completion(nil, isNewUser)
                 }
 
-                //MARK: - Condition with Token Valid and Login successful with google auth
-                if isNewUser{
-                    print("There's a new user!!!")
-                } else {
-                    print("User already exists.")
-                }
+//                //MARK: - Condition with Token Valid and Login successful with google auth
+//                if isNewUser{
+//                    print("There's a new user!!!")
+//                } else {
+//                    print("User already exists.")
+//                }
             }
         }
     }

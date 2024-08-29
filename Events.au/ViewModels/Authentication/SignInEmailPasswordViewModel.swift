@@ -32,13 +32,13 @@ class SignInEmailPasswordViewModel: ObservableObject {
         webService.signin(firebaseId: firebaseId, email: email) { result in
             switch result {
             case .success(let (token, userId)):
-                print("Login successful with token: \(token)")
-                print("Login successful with user _id: \(userId)")
+//                print("Login successful with token: \(token)")
+//                print("Login successful with user _id: \(userId)")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
                     self.token = token
                     TokenManager.share.saveTokens(token: token)
-                    print("Token is",token)
+//                    print("Token is",token)
                     // Save the token and expiration date (3 days from now)
                     let tokenReceivedDate = Date()
                     self.expirationDate = Calendar.current.date(byAdding: .day, value: 3, to: tokenReceivedDate)
@@ -51,7 +51,7 @@ class SignInEmailPasswordViewModel: ObservableObject {
                     }
                 }
             case .failure(let error):
-                print("Login failed with error: \(error)")
+//                print("Login failed with error: \(error)")
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(false, forKey: "appState")
                     self.errorMessage = "Failed to login with WebService: \(error)"

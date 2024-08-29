@@ -21,10 +21,8 @@ class GetParticipantsByUserIdViewModel : ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedParticipant):
-                    print("Participant by USer ID fetched")
                     self?.participant = fetchedParticipant.message
                 case .failure(let error):
-                    print(error.localizedDescription)
                     self?.errorMessage = "Error fetching the participants of an event. \(error.localizedDescription)"
                 }
             }
