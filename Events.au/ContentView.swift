@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var tokenManager: TokenManager
+    @State var homeNavigationStack: [HomeNavigation] = []
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing:Theme.defaultSpacing) {
+            
         }
-        .padding()
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
