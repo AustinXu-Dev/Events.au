@@ -30,12 +30,14 @@ struct SignInView: View {
                           .resizable()
                           .frame(width: 100, height: 100)
                       
-                      HStack(spacing: 2) {
-                          Text("Events.")
-                          Text("AU")
+                      HStack(spacing: 0) {
+                          Text("A")
                               .foregroundColor(Color.eventBackground)
+                          Text("vents")
+                              .foregroundColor(Theme.secondaryTextColor)
                       }
-                      .font(.system(size: 20))
+//                      .applyLabelFont()
+                      .font(.system(size: 30))
                       .bold()
                    
                   }

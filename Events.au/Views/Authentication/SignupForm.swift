@@ -64,16 +64,17 @@ struct SignupForm: View {
             Spacer()
             VStack {
                 Image(Theme.logo)
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .padding(.bottom, 10)
+                      .resizable()
+                      .frame(width: 100, height: 100)
                 
-                HStack(spacing: 2) {
-                    Text("Events.")
-                    Text("AU")
+                HStack(spacing: 0) {
+                    Text("A")
                         .foregroundColor(Color.eventBackground)
+                    Text("vents")
+                        .foregroundColor(Theme.secondaryTextColor)
                 }
-                .font(.system(size: 20))
+//                .applyLabelFont()
+                .font(.system(size: 30))
                 .bold()
             }
             .padding(.bottom, 20)
@@ -327,8 +328,8 @@ struct SignupForm: View {
     }
 }
 
-//struct SignupForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SignupForm(path: .constant([]))
-//    }
-//}
+struct SignupForm_Previews: PreviewProvider {
+    static var previews: some View {
+        SignupForm(path: .constant([.confirmation]), email: "", pass: "")
+    }
+}
