@@ -25,14 +25,15 @@ struct SignupView: View {
                 Image(Theme.logo)
                     .resizable()
                     .frame(width: 150, height: 150)
-                    .padding(.bottom, 10)
                 
-                HStack(spacing: 2) {
-                    Text("Events.")
-                    Text("AU")
+                HStack(spacing: 0) {
+                    Text("A")
                         .foregroundColor(Color.eventBackground)
+                    Text("vents")
+                        .foregroundColor(Theme.secondaryTextColor)
                 }
-                .font(.system(size: 20))
+//                .applyLabelFont()
+                .font(.system(size: 30))
                 .bold()
             }
             .padding(.bottom, 20)
