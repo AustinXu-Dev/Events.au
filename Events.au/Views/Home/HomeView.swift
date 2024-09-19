@@ -20,7 +20,6 @@ struct HomeView: View {
     @State var showingSidebar: Bool = false
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
-    @State var showSignOutAlert: Bool = false
     @AppStorage("userRole") private var userRole: String?
 //    @State var tokenIsExpired : Bool = false
 
@@ -42,9 +41,9 @@ struct HomeView: View {
 
                 SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
                     .padding(.horizontal,Theme.large)
-                if searchText.isEmpty {
-                    categoryScrollView
-                }
+//                if searchText.isEmpty {
+//                    categoryScrollView
+//                }
                 if eventVM.loader {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -74,14 +73,8 @@ struct HomeView: View {
 //                    Image("noti_icon_active")
 //                        .resizable()
 //                        .aspectRatio(contentMode: .fit)
-                    //MARK: -This will be the sign out button during the development phase
-                    Button {
-                        showSignOutAlert = true
-                    } label: {
-                        Text("Log Out")
-                            .applyOverlayFont()
-                            .foregroundStyle(Color.red)
-                    }
+                  
+                
 
                 }
             }
@@ -117,15 +110,7 @@ struct HomeView: View {
                         }
                     )
                 }
-        .alert(isPresented: $showSignOutAlert) {
-            Alert(
-                title: Text("Are you sure you want to sign out?"),
-                primaryButton: .destructive(Text("OK")) {
-                    authVM.signOutWithGoogle()
-                },
-                secondaryButton: .cancel()
-            )
-        }
+
         .onAppear(perform: {
             if userRole == nil {
                 userRole = UserState.audience.rawValue
@@ -197,15 +182,8 @@ extension HomeView {
                 .applyLabelFont()
             ScrollView(.vertical,showsIndicators: false){
                 VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
-                    //                        ForEach(filteredEvents,id: \._id){ event in
-                    //
-                    //                            NavigationLink(value: HomeNavigation.eventDetail(event, participantsVM.approvedParticipants)) {
-                    //
-                    //                                    EventCard(participantsVM: participantsVM, event: event)
-                    //                                }
-                    //
-                    //                            }.tint(Theme.secondaryTextColor)
                     ForEach(filteredEvents.filter { event in
+
                         if let endDateString = event.endDate,
                            let endTimeString = event.endTime,
                            let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString) {

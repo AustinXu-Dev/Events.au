@@ -104,6 +104,11 @@
 		B7B208D22C21274600DB1450 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B208D12C21274600DB1450 /* EventManager.swift */; };
 		B7B6C0402C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */; };
 		B7B6C0422C637061007FBFA8 /* ParticipantEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */; };
+		B7C089B22C9C825E0028BA8C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C089B12C9C825D0028BA8C /* SettingView.swift */; };
+		B7C089B42C9CA3780028BA8C /* SoftDeleteByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C089B32C9CA3780028BA8C /* SoftDeleteByUserId.swift */; };
+		B7C089B82C9CB3760028BA8C /* UserDeleteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C089B72C9CB3760028BA8C /* UserDeleteDTO.swift */; };
+		B7C089BA2C9CB4210028BA8C /* UserSoftDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C089B92C9CB4210028BA8C /* UserSoftDeleteViewModel.swift */; };
+		B7C089BC2C9CB52E0028BA8C /* DeleteAccountSheetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C089BB2C9CB52E0028BA8C /* DeleteAccountSheetsView.swift */; };
 		B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A632C14D3BA0055DDD9 /* UserModel.swift */; };
 		B7C69A682C14D78F0055DDD9 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A672C14D78F0055DDD9 /* SignInModel.swift */; };
 		B7C69A6C2C14D8B40055DDD9 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C69A6B2C14D8B40055DDD9 /* EventModel.swift */; };
@@ -263,6 +268,11 @@
 		B7B208D12C21274600DB1450 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		B7B6C03F2C636E2C007FBFA8 /* AllParticipantEventsByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllParticipantEventsByUserId.swift; sourceTree = "<group>"; };
 		B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantEventsViewModel.swift; sourceTree = "<group>"; };
+		B7C089B12C9C825D0028BA8C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		B7C089B32C9CA3780028BA8C /* SoftDeleteByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftDeleteByUserId.swift; sourceTree = "<group>"; };
+		B7C089B72C9CB3760028BA8C /* UserDeleteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDTO.swift; sourceTree = "<group>"; };
+		B7C089B92C9CB4210028BA8C /* UserSoftDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSoftDeleteViewModel.swift; sourceTree = "<group>"; };
+		B7C089BB2C9CB52E0028BA8C /* DeleteAccountSheetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountSheetsView.swift; sourceTree = "<group>"; };
 		B7C69A632C14D3BA0055DDD9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B7C69A672C14D78F0055DDD9 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		B7C69A6B2C14D8B40055DDD9 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
@@ -318,7 +328,7 @@
 		BC70A24C2C722F500002651E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		BCAD2B042C2875B100E6B87D /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		BCAD2B062C2881E200E6B87D /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
-		BCBE02402C116C1000A9EE3E /* Events.au.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.au.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCBE02402C116C1000A9EE3E /* Avents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE02432C116C1000A9EE3E /* Events_auApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_auApp.swift; sourceTree = "<group>"; };
 		BCBE02452C116C1000A9EE3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BCBE02472C116C1300A9EE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -414,6 +424,7 @@
 				BCE68B792C4F8E00000C5102 /* UserCreatePoll.swift */,
 				BCE68B872C5135B3000C5102 /* UserSubmitPollResult.swift */,
 				B39835302C7E25A600B5543A /* GetAllUsers.swift */,
+				B7C089B32C9CA3780028BA8C /* SoftDeleteByUserId.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -462,6 +473,7 @@
 				BCE68B7B2C4F8E69000C5102 /* CreatePollViewModel.swift */,
 				BCE68B892C513651000C5102 /* SubmitPollResultViewModel.swift */,
 				B39835322C7E25D900B5543A /* GetAllUsersViewModel.swift */,
+				B7C089B92C9CB4210028BA8C /* UserSoftDeleteViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -591,6 +603,8 @@
 				396685D12C1F645100AAD5D4 /* ProfileEditView.swift */,
 				396685DA2C1FD50900AAD5D4 /* EventParticipantManagementView.swift */,
 				396685DC2C1FEBA400AAD5D4 /* GribView.swift */,
+				B7C089B12C9C825D0028BA8C /* SettingView.swift */,
+				B7C089BB2C9CB52E0028BA8C /* DeleteAccountSheetsView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -750,6 +764,7 @@
 				B7C69A832C14E5C00055DDD9 /* UpdateEventUnitDTO.swift */,
 				BCE68B772C4F8D45000C5102 /* PollDTO.swift */,
 				BCE68B852C512F93000C5102 /* PollResultDTO.swift */,
+				B7C089B72C9CB3760028BA8C /* UserDeleteDTO.swift */,
 			);
 			path = RequestBodyDTO;
 			sourceTree = "<group>";
@@ -814,7 +829,7 @@
 		BCBE02412C116C1000A9EE3E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BCBE02402C116C1000A9EE3E /* Events.au.app */,
+				BCBE02402C116C1000A9EE3E /* Avents.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -995,7 +1010,7 @@
 				B3F3F14F2C4EA11B0033657F /* FirebaseStorage */,
 			);
 			productName = Events.au;
-			productReference = BCBE02402C116C1000A9EE3E /* Events.au.app */;
+			productReference = BCBE02402C116C1000A9EE3E /* Avents.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1062,6 +1077,7 @@
 				B7DFB3D72C16ED4300BB53E7 /* ConfirmationView.swift in Sources */,
 				396685D22C1F645100AAD5D4 /* ProfileEditView.swift in Sources */,
 				BCF4FAA72C3189A200D5E009 /* CreatePollView.swift in Sources */,
+				B7C089B42C9CA3780028BA8C /* SoftDeleteByUserId.swift in Sources */,
 				B36303052C28A12E00537586 /* UpdateUserById.swift in Sources */,
 				B370C6E22C1525C200C28E67 /* TokenManager.swift in Sources */,
 				B370C6DD2C15259700C28E67 /* FirebaseManager.swift in Sources */,
@@ -1114,11 +1130,13 @@
 				B7C69A782C14E0210055DDD9 /* EventUnitModel.swift in Sources */,
 				B7C69A702C14DDAC0055DDD9 /* UpdateEventInfoDTO.swift in Sources */,
 				B74C42862C26FA2C009E3E63 /* UpdateUserDTO.swift in Sources */,
+				B7C089B82C9CB3760028BA8C /* UserDeleteDTO.swift in Sources */,
 				BCBE02442C116C1000A9EE3E /* Events_auApp.swift in Sources */,
 				BCE68B822C50EB7C000C5102 /* PollModel.swift in Sources */,
 				B7C69A862C14E5D50055DDD9 /* ParticipantModel.swift in Sources */,
 				B39835312C7E25A600B5543A /* GetAllUsers.swift in Sources */,
 				B370C6EA2C15263200C28E67 /* AppDelegate.swift in Sources */,
+				B7C089BA2C9CB4210028BA8C /* UserSoftDeleteViewModel.swift in Sources */,
 				B7C69A7C2C14E1160055DDD9 /* SignOutModel.swift in Sources */,
 				BC70A24D2C722F500002651E /* PhotoPicker.swift in Sources */,
 				B363030B2C28A20500537586 /* CreateEventViewModel.swift in Sources */,
@@ -1166,6 +1184,7 @@
 				B7C69A722C14DE900055DDD9 /* UpdateEventStatusDTO.swift in Sources */,
 				B7F265022C1D81D900033E37 /* ParticipantManager.swift in Sources */,
 				B7B0B9562C72533500A468DB /* ParticipantByUserId.swift in Sources */,
+				B7C089B22C9C825E0028BA8C /* SettingView.swift in Sources */,
 				B34CB3902C3D24E90034A562 /* UpdateParticipantStatus.swift in Sources */,
 				B7DFB3C32C16145D00BB53E7 /* SignOutDTOMock.swift in Sources */,
 				BCAD2B072C2881E300E6B87D /* DropDownMenu.swift in Sources */,
@@ -1196,6 +1215,7 @@
 				BC1CC9752C289FBA0020DD06 /* ToolbarView.swift in Sources */,
 				B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */,
 				B731AADA2C16066E00A3E8C2 /* AdminMock.swift in Sources */,
+				B7C089BC2C9CB52E0028BA8C /* DeleteAccountSheetsView.swift in Sources */,
 				B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */,
 				B72138F82C762DC40075DE7A /* UserAvatar.swift in Sources */,
 				B743C99C2C3B1D3C0001B311 /* GetUnitsByEventIdViewModel.swift in Sources */,
@@ -1339,12 +1359,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
 				DEVELOPMENT_TEAM = A89P8LLWX2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Avents;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1358,7 +1379,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.austinxu.avents;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Avents;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1377,12 +1398,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
 				DEVELOPMENT_TEAM = A89P8LLWX2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Events-au-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Avents;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1396,7 +1418,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.austinxu.avents;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Avents;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

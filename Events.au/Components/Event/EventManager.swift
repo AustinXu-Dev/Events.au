@@ -157,6 +157,7 @@ struct EventManager: View {
                                 if organizerEvents.count != 0 {
                                     ForEach(organizerEvents,id: \._id){  organizer in
                                         if let event = organizer.eventId {
+                    
                                             if let startDate = event.startDate?.toDate()?.strippedTime(),
                                                let endDateString = event.endDate, // Assuming endDate is a string
                                                let endTimeString = event.endTime, // Assuming endTime is a string
@@ -164,7 +165,7 @@ struct EventManager: View {
                                                //check if event starts today
                                                startDate == Date().strippedTime() ||
                                                 // Check if today is within the recurring period (after event starts, before event ends)
-                                                (Date().strippedTime() > startDate && Date() <= eventEndDateTime) {
+                                                (Date().strippedTime() > startDate && Date() <= eventEndDateTime){
                                                 NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
                                                     //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
                                                         EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)

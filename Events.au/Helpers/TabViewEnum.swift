@@ -33,6 +33,7 @@ enum ProfileNavigation: Hashable{
     case profileEventDetail
     case orgEventDetailPreEdit(EventModel, UnitModel)
     case orgEventDetailEditView(EventModel, UnitModel)
+    case settingView
 }
 
 enum AuthNavigation : Hashable {
