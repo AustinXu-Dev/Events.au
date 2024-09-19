@@ -152,6 +152,9 @@ struct Theme {
     
     static let noEventVector : String = "no_event_vector"
     static let profileEditButton : String = "profile_edit_button"
+    
+    static let settingLightIcon = "settings_lightmode"
+    static let settingDarkIcon = "settings_darkmode"
 }
 
 struct ShadowModifier: ViewModifier {

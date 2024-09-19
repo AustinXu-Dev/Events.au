@@ -103,7 +103,7 @@ extension EventDetail {
                     .lineLimit(isParagraph ? .max : 3)
                 
                 if let eventDescription = event.description {
-                    if eventDescription.count >= 40 {
+                    if eventDescription.count >= 129 {
                     Button {
                         withAnimation(.default) {
                             self.isParagraph.toggle()

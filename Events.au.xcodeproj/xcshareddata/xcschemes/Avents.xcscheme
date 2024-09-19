@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BCBE023F2C116C1000A9EE3E"
-               BuildableName = "Events.au.app"
+               BuildableName = "Avents.app"
                BlueprintName = "Events.au"
                ReferencedContainer = "container:Events.au.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BCBE023F2C116C1000A9EE3E"
-            BuildableName = "Events.au.app"
+            BuildableName = "Avents.app"
             BlueprintName = "Events.au"
             ReferencedContainer = "container:Events.au.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BCBE023F2C116C1000A9EE3E"
-            BuildableName = "Events.au.app"
+            BuildableName = "Avents.app"
             BlueprintName = "Events.au"
             ReferencedContainer = "container:Events.au.xcodeproj">
          </BuildableReference>

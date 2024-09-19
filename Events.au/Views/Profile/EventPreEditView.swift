@@ -27,6 +27,7 @@ struct EventPreEditView: View {
                     EventParticipantManagementView(event: event, unit: unit)
                 } label: {
                     participantsOverview
+                        .padding(.bottom,8)
                 }
             }
         } //End of Scroll View

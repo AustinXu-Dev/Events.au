@@ -26,6 +26,7 @@ struct ProfileView: View {
     @State private var isInitialSetup: Bool = true
     @State var isLoading : Bool = false
     @State var textLoader : Bool = false
+    @Environment(\.colorScheme) var colorMode
     
     var body: some View {
         NavigationStack {
@@ -100,6 +101,8 @@ struct ProfileView: View {
                     EventPreEditView(event: event, unit: unit, path: $path, profilePath: $profilePath, participantVM: participantVM, selectedTab: $selectedTab)
                 case .orgEventDetailEditView(let event, let unit):
                     EventDetailsEditView(event: event, unit: unit, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
+                case .settingView:
+                    SettingView()
                 default:
                     Text("Navigation Crashed")
                 }
@@ -157,12 +160,29 @@ extension ProfileView {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width:393,height: 186)
+                .overlay(
+                    NavigationLink(value: ProfileNavigation.settingView) {
+                        ZStack {
+                            Circle()
+                                .frame(width:30,height:30)
+                                .foregroundColor(colorMode == .light ? .white : .gray)
+                                .applyThemeDoubleShadow()
+                                .padding()
+                            Image(colorMode == .light ? Theme.settingLightIcon : Theme.settingDarkIcon)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 15,height:15)
+                        }
+                    }
+                        ,alignment: .topTrailing)
+                    
             
             if let user = profileVM.userDetail {
                 UserProfileAvatar(user: user)
                     .padding(.horizontal,Theme.large)
                     .padding(.bottom,Theme.large)
             }
+          
             
 //            Image("human_profile")
 //                .resizable()
