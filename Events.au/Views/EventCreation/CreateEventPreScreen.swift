@@ -13,6 +13,9 @@ struct CreateEventPreScreen: View {
     @Binding var selectedTab: Tab
     @ObservedObject var pollVM = CreatePollViewModel()
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject private var profileVM : GetOneUserByIdViewModel
+    @State var isAllowedToHost: Bool = false
+    @State var showAlert: Bool = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -30,9 +33,22 @@ struct CreateEventPreScreen: View {
                     .lineLimit(3)
                     .applyBodyFont()
                     .padding(.horizontal)
-                NavigationLink(value: "FillEventData") {
+                Button {
+                    if let phNo = profileVM.userDetail?.phone{
+                        if phNo < 0 {
+                            isAllowedToHost = false
+                            showAlert = true
+                        } else{
+                            isAllowedToHost = true
+                            path.append("FillEventData")
+                        }
+                    }
+                } label: {
                     ReusableButton(title: "Host an Event")
                 }
+
+
+                
             }
             
             //MARK: - CONTROL NAVIGATION HERE
@@ -47,6 +63,16 @@ struct CreateEventPreScreen: View {
                 default:
                     Text("")
                 }
+            }
+         
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Complete your profile setup first."),
+                    primaryButton: .default(Text("OK").foregroundStyle(.blue)) {
+                        selectedTab = .profile
+                    },
+                    secondaryButton: .cancel()
+                )
             }
 //            .navigationDestination(for: CreateEventNavigation.self) { screen in
 //                switch screen{

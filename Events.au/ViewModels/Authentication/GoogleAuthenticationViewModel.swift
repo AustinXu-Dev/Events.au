@@ -25,7 +25,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
     @Published var tokenIsExpired : Bool = false
     var timer : AnyCancellable?
     var expirationDate : Date?
-    
+    @Published var readyToGoHome: Bool = false
     
     init() {
         loadTokenExpirationDate()
@@ -97,6 +97,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 if isNewUser {
                     //Delete the new user account
                     authResult.user.delete { _  in //error in
+                        self.readyToGoHome = true
                         /*
                         if let error = error {
                             print("Error deleting new user: \(error)")

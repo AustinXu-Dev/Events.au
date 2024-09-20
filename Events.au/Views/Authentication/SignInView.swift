@@ -74,6 +74,7 @@ struct SignInView: View {
                     SecureField(EventAppAutheticationValue.passwordPlaceHolder, text: $password)
                         .autocapitalization(.none)
                         .padding()
+                        .textContentType(.none)
                         .frame(width: 361, height: 41.49)
                         .background(Color.clear)
                         .cornerRadius(8)
@@ -130,28 +131,9 @@ struct SignInView: View {
 //                    .frame(height: 1)
 //                    .foregroundColor(Color.eventDivider)
 //                    .padding(.horizontal,18)
-                
-                Button(action: {
-                    signInWithGoogle()
-                }) {
-                    HStack {
-                        Image("google_icon")
-                            .resizable()
-                            .frame(width: 27, height: 28)
-                        
-                        Text(EventAppAutheticationValue.signInWithGoogle)
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                    }
-                    .padding()
-                    .frame(width: 361, height: 44)
-                    .background(Color.clear)
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-                }
+                // NAVIGATE TO HOME WITH THIS
+//                UserDefaults.standard.set(true, forKey: "appState")
+
                 
                 HStack {
                     Text("Don't have an account?")

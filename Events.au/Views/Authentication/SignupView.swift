@@ -73,6 +73,7 @@ struct SignupView: View {
                 SecureField(EventAppAutheticationValue.passwordPlaceHolder, text: $newPassword)
                     .autocapitalization(.none)
                     .padding()
+                    .textContentType(.none)
                     .frame(width: 361, height: 41.49)
                     .background(Color.clear)
                     .cornerRadius(8)
@@ -91,6 +92,7 @@ struct SignupView: View {
                 SecureField(EventAppAutheticationValue.passwordConfrim, text: $confirmPassword)
                     .autocapitalization(.none)
                     .padding()
+                    .textContentType(.none)
                     .frame(width: 361, height: 41.49)
                     .background(Color.clear)
                     .cornerRadius(8)
@@ -125,29 +127,24 @@ struct SignupView: View {
                 .padding(.top, 8)
             }
             
-            
-            HStack {
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(Color.eventDivider)
-                
-                Text("or")
-                    .foregroundColor(Color.eventDivider)
-                    .padding(.horizontal, 8)
-                
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(Color.eventDivider)
-            }
-            .frame(width: 361)
-            .padding(.vertical, 20)
-            
-            
-            
-            
-//            Button(action: {
-//                navigateToSignupForm = true
-//            }) {
+//            
+//            HStack {
+//                Rectangle()
+//                    .frame(height: 1)
+//                    .foregroundColor(Color.eventDivider)
+//                
+//                Text("or")
+//                    .foregroundColor(Color.eventDivider)
+//                    .padding(.horizontal, 8)
+//                
+//                Rectangle()
+//                    .frame(height: 1)
+//                    .foregroundColor(Color.eventDivider)
+//            }
+//            .frame(width: 361)
+//            .padding(.vertical, 20)
+
+//            NavigationLink(value: AuthNavigation.signUpForm(email: "", password: "")) {
 //                HStack {
 //                    Image("google_icon")
 //                        .resizable()
@@ -166,26 +163,6 @@ struct SignupView: View {
 //                        .stroke(Color.gray, lineWidth: 1)
 //                )
 //            }
-            
-            NavigationLink(value: AuthNavigation.signUpForm(email: "", password: "")) {
-                HStack {
-                    Image("google_icon")
-                        .resizable()
-                        .frame(width: 27, height: 28)
-                    
-                    Text(EventAppAutheticationValue.signUpWithGoogle)
-                        .font(.headline) // Adjust font as needed
-                        .foregroundColor(.primary)
-                }
-                .padding()
-                .frame(width: 361, height: 44)
-                .background(Color.clear)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
-            }
             
             HStack {
                 Text("Already have an account?")

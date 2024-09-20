@@ -33,6 +33,7 @@ struct TabScreenView: View {
                 
             //Create Event View
             CreateEventPreScreen(path: $createEventNavigationStack, selectedTab: $selectedTab)
+                .environmentObject(profileVM)
                 .tabItem {
                     remarkTabLabel
                 }

@@ -116,47 +116,47 @@ struct SignupForm: View {
             }
             .padding(.top, 4)
             
-            VStack(alignment: .leading, spacing: 4) {
-                Text(EventAppAutheticationValue.faculty)
-                    .font(.headline)
-                    .padding(.horizontal, 0)
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color("text_color_grey"))
-                    .fill(.white)
-                    .overlay(
-                        Group {
-                            HStack {
-                                TextField("Select Faculty", text: $selectedUnitName)
-                                    .disabled(true)
-                                Spacer()
-                                Menu {
-                                    ForEach(allUnitsViewModel.units, id: \.id){ unit in
-                                        Button(unit.name ?? "No Unit Found") {
-                                            selectedUnitId = unit.id
-                                            selectedUnitName = unit.name ?? ""
-                                        }
-                                    }
-                                } label: {
-                                    Image(systemName: "arrowtriangle.down.fill")
-                                        .resizable()
-                                        .frame(width: 10, height: 10)
-                                        .foregroundColor(.black)
-                                }
-                            }
-                            .padding()
-//                            .onTapGesture {
-//                                allUnitsViewModel.fetchUnits()
+//            VStack(alignment: .leading, spacing: 4) {
+//                Text(EventAppAutheticationValue.faculty)
+//                    .font(.headline)
+//                    .padding(.horizontal, 0)
+//                
+//                RoundedRectangle(cornerRadius: 10)
+//                    .stroke(Color("text_color_grey"))
+//                    .fill(.white)
+//                    .overlay(
+//                        Group {
+//                            HStack {
+//                                TextField("Select Faculty", text: $selectedUnitName)
+//                                    .disabled(true)
+//                                Spacer()
+//                                Menu {
+//                                    ForEach(allUnitsViewModel.units, id: \.id){ unit in
+//                                        Button(unit.name ?? "No Unit Found") {
+//                                            selectedUnitId = unit.id
+//                                            selectedUnitName = unit.name ?? ""
+//                                        }
+//                                    }
+//                                } label: {
+//                                    Image(systemName: "arrowtriangle.down.fill")
+//                                        .resizable()
+//                                        .frame(width: 10, height: 10)
+//                                        .foregroundColor(.black)
+//                                }
 //                            }
-                        }
-                            .tint(Color("text_color_grey"))
-                    )
-                    .frame(width: 361, height: 41.49)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            }
+//                            .padding()
+////                            .onTapGesture {
+////                                allUnitsViewModel.fetchUnits()
+////                            }
+//                        }
+//                            .tint(Color("text_color_grey"))
+//                    )
+//                    .frame(width: 361, height: 41.49)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 8)
+//                            .stroke(Color.gray, lineWidth: 1)
+//                    )
+//            }
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(EventAppAutheticationValue.gender)
@@ -217,25 +217,10 @@ struct SignupForm: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
             }
-//            if navigateToConfirmation = true{
-//                NavigationLink(value: AuthNavigation.confirmation) {
-//                    <#code#>
-//                }
-//            }
-//            NavigationLink(destination: ConfirmationView(), isActive: $navigateToConfirmation) {
-//                                EmptyView()
-//                            }
+
             
             Spacer()
         }
-//        .alert(isPresented: $showAlert) {
-//            Alert(title: Text("Sign Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
-//                navigateToConfirmation = true
-//            }
-//            )
-//            
-//            
-//        }
         .alert("Sign Up", isPresented: $showAlert) {
             NavigationLink(value: AuthNavigation.confirmation) {
                 Text("Ok")

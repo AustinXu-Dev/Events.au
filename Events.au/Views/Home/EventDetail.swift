@@ -19,6 +19,8 @@ struct EventDetail: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var isParagraph : Bool = false
     let approvedParticipants : [ParticipantModel]
+    @State var isAllowedToJoin: Bool = false
+    @State var showAlert: Bool = false
     
     var body: some View {
         
@@ -59,6 +61,7 @@ struct EventDetail: View {
                                 )
                         }
                     } // end of condition
+                    
                     if participantsVM.participantExists(userId: user._id ?? "") {
                         alreadyRegisteredButton
                             .padding(.vertical, 8)
@@ -76,8 +79,19 @@ struct EventDetail: View {
                 eventUnitsVM.getUnitsByEvent(id: eventId)
                 participantsVM.fetchParticipants(id: eventId)
             }
+
         })
-        
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Complete your profile setup first."),
+                primaryButton: .default(Text("OK").foregroundStyle(.blue)) {
+                    selectedTab = .profile
+                },
+                secondaryButton: .cancel(){
+                    path = []
+                }
+            )
+        }
         
         
     }
@@ -181,7 +195,22 @@ extension EventDetail {
     }
     
     private var registerButton : some View {
-        NavigationLink(value: HomeNavigation.eventRegistration(event)) {
+//        NavigationLink(value: HomeNavigation.eventRegistration(event)) {
+//            
+//        }
+        
+        Button {
+            if let phNo = user.phone{
+                if phNo < 0 {
+                    isAllowedToJoin = false
+                    showAlert = true
+                } else {
+                    isAllowedToJoin = true
+                    path.append(HomeNavigation.eventRegistration(event))
+                }
+            }
+
+        } label: {
             Text("Register Now")
                 .applyButtonFont()
                 .foregroundStyle(Theme.primaryTextColor)
@@ -191,6 +220,7 @@ extension EventDetail {
                 .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
                 .foregroundStyle(Theme.tintColor)
         }
+
         
     }
     
