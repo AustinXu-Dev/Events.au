@@ -98,6 +98,7 @@
 		B75A0F3E2C3BC03C007D150F /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3D2C3BC03B007D150F /* UserState.swift */; };
 		B75A0F402C3BCBE8007D150F /* ReusableLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
+		B78BB1202C9D63F4001FE545 /* CustomTabBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BB11F2C9D63F4001FE545 /* CustomTabBarAppearance.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
 		B7B0B9562C72533500A468DB /* ParticipantByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */; };
 		B7B0B9582C72538800A468DB /* GetParticipantsByUserIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */; };
@@ -262,6 +263,7 @@
 		B75A0F3D2C3BC03B007D150F /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableLoader.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B78BB11F2C9D63F4001FE545 /* CustomTabBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarAppearance.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
 		B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantByUserId.swift; sourceTree = "<group>"; };
 		B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetParticipantsByUserIdViewModel.swift; sourceTree = "<group>"; };
@@ -933,6 +935,7 @@
 				B7DFB3D32C16ED0200BB53E7 /* Authentication */,
 				BC2711722C195F8C00A99157 /* TabScreenView.swift */,
 				B36303122C28AA4F00537586 /* TestView.swift */,
+				B78BB11F2C9D63F4001FE545 /* CustomTabBarAppearance.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1208,6 +1211,7 @@
 				B7C69A982C14F9E40055DDD9 /* SignUpMock.swift in Sources */,
 				B34CB39A2C3D2DD30034A562 /* FindEventForUnit.swift in Sources */,
 				B39835332C7E25D900B5543A /* GetAllUsersViewModel.swift in Sources */,
+				B78BB1202C9D63F4001FE545 /* CustomTabBarAppearance.swift in Sources */,
 				B3A0FBC42C503BB400C20CC5 /* ImageLoader.swift in Sources */,
 				B7C69A742C14DF380055DDD9 /* UnitModel.swift in Sources */,
 				B7C69A9A2C14F9EC0055DDD9 /* SignInMock.swift in Sources */,

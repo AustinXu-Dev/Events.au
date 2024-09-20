@@ -19,7 +19,7 @@ struct ProfileView: View {
     @StateObject var organizerEventsVM = OrganizerEventsViewModel()
     @StateObject var participantVM : GetParticipantsByEventIdViewModel = GetParticipantsByEventIdViewModel()
     @State private var showUpcoming : Bool = false
-    @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
+    @EnvironmentObject private var profileVM : GetOneUserByIdViewModel 
     @State  var selectedUserState : UserState?
     @State private var roleSwitched = false
     //this is for switching off the animation for the first time onAppear
@@ -88,7 +88,7 @@ struct ProfileView: View {
             .navigationDestination(for: ProfileNavigation.self) { value in
                 switch value {
                 case .profileViewInfo(let userModel):
-                    ProfileViewInfo(path: $profilePath, selectedTab: $selectedTab, user: userModel,participantEventsVM: participantEventsVM,organizerEventsVM: organizerEventsVM)
+                    ProfileViewInfo(path: $profilePath, selectedTab: $selectedTab, user: userModel,participantEventsVM: participantEventsVM,organizerEventsVM: organizerEventsVM, profileVM: profileVM)
                 case .profileEditView(let userModel):
                     ProfileEditView(path: $profilePath, selectedTab: $selectedTab, user: userModel)
                 case .profileEventDetail:
@@ -122,16 +122,20 @@ struct ProfileView: View {
                 // set the current view user state
                 selectedUserState = userState
             }
-            if let userId = KeychainManager.shared.keychain.get("appUserId") {
-                //get user
-                profileVM.getOneUserById(id: userId)
-            }
+//            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+//                //get user
+//                profileVM.getOneUserById(id: userId)
+//            }
           
         })
 
         .onChange(of: selectedUserState) { _,_ in
             
             updateUserRole()
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
+                    
             }
         .refreshable {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {

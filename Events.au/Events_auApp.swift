@@ -12,6 +12,8 @@ struct Events_auApp: App {
    
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+
     @State var homeNavigationStack: [HomeNavigation] = []
     @AppStorage("appState") var isSingIn = false
     
@@ -31,7 +33,6 @@ struct Events_auApp: App {
             
             Group{
                 
-                
                 if isSingIn {
 //                    NavigationStack {
                     TabScreenView()
@@ -42,6 +43,7 @@ struct Events_auApp: App {
                     SignInView()
                 }
             }
+          
         }
     }
 }

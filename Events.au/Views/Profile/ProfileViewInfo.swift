@@ -18,7 +18,7 @@ struct ProfileViewInfo: View {
     @StateObject var eventParticipants = GetParticipantsByEventIdViewModel()
     @StateObject var participantVM : GetParticipantsByUserIdViewModel = GetParticipantsByUserIdViewModel()
     @StateObject var unitVM = GetUnitsByEventViewModel()
-    @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
+    @ObservedObject  var profileVM : GetOneUserByIdViewModel
 
     
     var body: some View {
@@ -91,9 +91,8 @@ struct ProfileViewInfo: View {
         }
         .onAppear(perform: {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
-                profileVM.getOneUserById(id: userId)
-            }
-            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+//                profileVM.getOneUserById(id: userId)
+            
             //get all events based on userRole
             if userRole == UserState.audience.rawValue {
                 self.participantEventsVM.fetchEvents(userId: userId)
@@ -187,6 +186,6 @@ struct ProfileDetailRow: View {
 
 struct ProfileViewInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileViewInfo(path: .constant([]), selectedTab: .constant(.profile),user: UserMock.instance.user3,participantEventsVM: ParticipantEventsViewModel(),organizerEventsVM: OrganizerEventsViewModel())
+        ProfileViewInfo(path: .constant([]), selectedTab: .constant(.profile),user: UserMock.instance.user3,participantEventsVM: ParticipantEventsViewModel(),organizerEventsVM: OrganizerEventsViewModel(), profileVM: GetOneUserByIdViewModel())
     }
 }

@@ -14,7 +14,7 @@ struct HomeView: View {
     @Binding var selectedTab: Tab
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
     @StateObject private var eventVM : AllEventsViewModel = AllEventsViewModel()
-    @StateObject private var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
+    @EnvironmentObject private var profileVM : GetOneUserByIdViewModel
     @StateObject var participantsVM : GetParticipantsByEventIdViewModel = GetParticipantsByEventIdViewModel()
     @State var isSearching: Bool = false
     @State var showingSidebar: Bool = false
@@ -120,10 +120,10 @@ struct HomeView: View {
             //fetch events
             eventVM.fetchEvents()
             
-            //fetch currentUser
-            if let userId = KeychainManager.shared.keychain.get("appUserId") {
-                profileVM.getOneUserById(id: userId)
-            }
+//            //fetch currentUser
+//            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+//                profileVM.getOneUserById(id: userId)
+//            }
         
         })
         .tint(Theme.tintColor)

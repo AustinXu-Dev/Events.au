@@ -16,12 +16,16 @@ struct TabScreenView: View {
     @State private var createEventNavigationStack: NavigationPath = .init()
     @State private var profileNavigationStack: [ProfileNavigation] = []
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
+    @StateObject var profileVM : GetOneUserByIdViewModel = GetOneUserByIdViewModel()
+    @Environment(\.colorScheme) var colorMode
+
     
     var body: some View {
 
         TabView(selection: $selectedTab) {
             //Home View
             HomeView(path: $homeNavigationStack, profilePath: $profileNavigationStack, selectedTab: $selectedTab)
+                .environmentObject(profileVM)
                 .tabItem {
                     homeTabLabel
                 }
@@ -36,13 +40,23 @@ struct TabScreenView: View {
          
             //Profile View
             ProfileView(path: $homeNavigationStack, profilePath: $profileNavigationStack, selectedTab: $selectedTab)
+                .environmentObject(profileVM)
                 .tabItem {
                     profileTabLabel
                 }
                 .tag(Tab.profile)
         }
-        .background(Theme.primaryTextColor)
         .tint(Theme.tintColor)
+        .onAppear {
+            customizeTabBarAppearance()
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                profileVM.getOneUserById(id: userId)
+            }
+        }
+        .onChange(of: colorMode) { _, _ in
+            customizeTabBarAppearance()
+
+        }
         
     }
 }
@@ -86,6 +100,16 @@ extension TabScreenView {
             self.selectedTab = tappedTab
         }
     }
+    
+    // Method to customize tab bar appearance based on light or dark mode
+      private func customizeTabBarAppearance() {
+          let appearance = UITabBarAppearance()
+          appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "TabBarColor")
+          UITabBar.appearance().standardAppearance = appearance
+          UITabBar.appearance().scrollEdgeAppearance = appearance
+      }
+    
 }
 
 //#Preview {

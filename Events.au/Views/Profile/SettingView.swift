@@ -11,6 +11,7 @@ struct SettingView: View {
     @State var showSignOutAlert: Bool = false
     @State var showDeleteAccountSheet : Bool = false
     @StateObject private var authVM : GoogleAuthenticationViewModel = GoogleAuthenticationViewModel()
+    @Environment(\.colorScheme) var colorMode
     var body: some View {
         VStack {
             List {
@@ -52,7 +53,7 @@ extension SettingView {
                 .applyBodyFont()
                 .foregroundStyle(Theme.tintColor)
         }
-        .background(Color.white)
+        .background(colorMode == .light ? Color.white : Color.black.opacity(0.00001))
         .onTapGesture {
             self.showDeleteAccountSheet = true
         }
@@ -66,7 +67,7 @@ extension SettingView {
             Image(systemName: "arrow.right")
                 .applyBodyFont()
         }
-        .background(Color.white)
+        .background(colorMode == .light ? Color.white : Color.black.opacity(0.00001))
         .onTapGesture {
             self.showSignOutAlert = true
         }
