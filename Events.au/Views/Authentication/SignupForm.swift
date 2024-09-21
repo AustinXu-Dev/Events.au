@@ -259,7 +259,7 @@ struct SignupForm: View {
                 }
                 if isNewUser {
                     //post here
-                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, unitId: self.selectedUnitId, fId: authViewModel.fId ?? "") { result in
+                    userSignUpViewModel.postUser(firstName: self.name, email: authViewModel.email ?? "", phone: phoneInt, fId: authViewModel.fId ?? "") { result in
                         switch result {
                         case .success:
                             self.alertMessage = "User registration successful"
@@ -296,7 +296,7 @@ struct SignupForm: View {
                 self.alertMessage = "Email is already registered."
                 self.showErrorAlert = true
             } else {
-                userSignUpViewModel.postUser(firstName: self.name, email: email, phone: phoneInt, unitId: self.selectedUnitId, fId: pass) { result in
+                userSignUpViewModel.postUser(firstName: self.name, email: email, phone: phoneInt, fId: pass) { result in
                     switch result {
                     case .success:
                         self.alertMessage = "User registration successful"

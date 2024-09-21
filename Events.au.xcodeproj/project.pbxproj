@@ -21,6 +21,7 @@
 		39FC54222C1388BF00240B93 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54212C1388BF00240B93 /* SignInView.swift */; };
 		39FC54242C1388D800240B93 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54232C1388D800240B93 /* SignupView.swift */; };
 		39FC54262C13F39A00240B93 /* EventAppAutheticationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */; };
+		B32B8ABB2C9DDEE000E74D92 /* SignInWithAppleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32B8ABA2C9DDEE000E74D92 /* SignInWithAppleViewModel.swift */; };
 		B34CB3902C3D24E90034A562 /* UpdateParticipantStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34CB38F2C3D24E90034A562 /* UpdateParticipantStatus.swift */; };
 		B34CB3932C3D25590034A562 /* UpdateParticipantStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34CB3922C3D25590034A562 /* UpdateParticipantStatusViewModel.swift */; };
 		B34CB3952C3D27560034A562 /* UserJoinEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34CB3942C3D27560034A562 /* UserJoinEvent.swift */; };
@@ -197,6 +198,8 @@
 		39FC54212C1388BF00240B93 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		39FC54232C1388D800240B93 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		39FC54252C13F39A00240B93 /* EventAppAutheticationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppAutheticationValue.swift; sourceTree = "<group>"; };
+		B32B8ABA2C9DDEE000E74D92 /* SignInWithAppleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewModel.swift; sourceTree = "<group>"; };
+		B32B8ABC2C9E014C00E74D92 /* Events.au.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Events.au.entitlements; sourceTree = "<group>"; };
 		B34CB38F2C3D24E90034A562 /* UpdateParticipantStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateParticipantStatus.swift; sourceTree = "<group>"; };
 		B34CB3922C3D25590034A562 /* UpdateParticipantStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateParticipantStatusViewModel.swift; sourceTree = "<group>"; };
 		B34CB3942C3D27560034A562 /* UserJoinEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJoinEvent.swift; sourceTree = "<group>"; };
@@ -437,6 +440,7 @@
 				B370C6EB2C15267200C28E67 /* GoogleAuthenticationViewModel.swift */,
 				B36CA9602C1F8E1D00FE6D46 /* UserSignUpViewModel.swift */,
 				B39835342C7E364600B5543A /* SignInEmailPasswordViewModel.swift */,
+				B32B8ABA2C9DDEE000E74D92 /* SignInWithAppleViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -839,6 +843,7 @@
 		BCBE02422C116C1000A9EE3E /* Events.au */ = {
 			isa = PBXGroup;
 			children = (
+				B32B8ABC2C9E014C00E74D92 /* Events.au.entitlements */,
 				B36CA9622C1F8E7E00FE6D46 /* GoogleService-Info.plist */,
 				B7DFB40C2C17E97E00BB53E7 /* Events-au-Info.plist */,
 				B704B6C62C22CB47006E3DDF /* NetworkUseCase */,
@@ -1105,6 +1110,7 @@
 				B75A0F3E2C3BC03C007D150F /* UserState.swift in Sources */,
 				B75A0F332C3B256F007D150F /* ParticipantByEventId.swift in Sources */,
 				B743C99E2C3B1D590001B311 /* AllUnitsByEventId.swift in Sources */,
+				B32B8ABB2C9DDEE000E74D92 /* SignInWithAppleViewModel.swift in Sources */,
 				B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */,
 				B7C69A6E2C14D9EF0055DDD9 /* OrganizerModel.swift in Sources */,
 				B36303072C28A14B00537586 /* GetUserById.swift in Sources */,
@@ -1361,6 +1367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Events.au/Events.au.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
@@ -1382,7 +1389,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.austinxu.avents;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.dcode.events-au";
 				PRODUCT_NAME = Avents;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1400,6 +1407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Events.au/Events.au.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
@@ -1421,7 +1429,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.austinxu.avents;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.dcode.events-au";
 				PRODUCT_NAME = Avents;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

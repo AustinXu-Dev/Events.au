@@ -8,17 +8,23 @@
 import SwiftUI
 import GoogleSignIn
 import FirebaseAuth
+import AuthenticationServices
+import CryptoKit
 
 struct SignInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State private var nonce: String?
     @State private var authNavigationStack: [AuthNavigation] = []
+    @Environment(\.colorScheme) var colorMode
 
 //    @State private var path = NavigationPath()
     @ObservedObject var authViewModel = GoogleAuthenticationViewModel()
     @ObservedObject var signInEmailPassword = SignInEmailPasswordViewModel()
+    @ObservedObject var userSignupViewModel = UserSignUpViewModel()
+    @ObservedObject var appleSignInViewModel = SignInWithAppleViewModel()
     
     
     var body: some View {
@@ -27,26 +33,26 @@ struct SignInView: View {
                 Spacer()
                 VStack{
                     Image(Theme.logo)
-                          .resizable()
-                          .frame(width: 100, height: 100)
-                      
-                      HStack(spacing: 0) {
-                          Text("A")
-                              .foregroundColor(Color.eventBackground)
-                          Text("vents")
-                              .foregroundColor(Theme.secondaryTextColor)
-                      }
-//                      .applyLabelFont()
-                      .font(.system(size: 30))
-                      .bold()
-                   
-                  }
-
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                    
+                    HStack(spacing: 0) {
+                        Text("A")
+                            .foregroundColor(Color.eventBackground)
+                        Text("vents")
+                            .foregroundColor(Theme.secondaryTextColor)
+                    }
+                    //                      .applyLabelFont()
+                    .font(.system(size: 30))
+                    .bold()
+                    
+                }
+                
                 
                 // email sign in
                 
-                 
-                 
+                
+                
                 VStack(alignment: .leading, spacing: 4) {
                     Text(EventAppAutheticationValue.emailAddress)
                         .font(.headline)
@@ -65,7 +71,7 @@ struct SignInView: View {
                         )
                 }
                 .padding(.top, 10)
-
+                
                 VStack(alignment: .leading, spacing: 4) {
                     Text(EventAppAutheticationValue.password)
                         .font(.headline)
@@ -84,57 +90,64 @@ struct SignInView: View {
                         )
                 }
                 .padding(.top, 4)
-
+                
                 HStack {
                     Spacer()
-
+                    
                     Button(action: {
-//                        signup()
+                        //                        signup()
                         signInEmailPassword.postSignInFirebaseId(firebaseId: password, email: email)
-                }) {
-                    Text("Sign In")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .frame(height: 36)
-                        .background(Color.eventBackground)
-                        .cornerRadius(8)
+                    }) {
+                        Text("Sign In")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .frame(height: 36)
+                            .background(Color.eventBackground)
+                            .cornerRadius(8)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 8)
                 }
-                .padding(.horizontal, 20)
-                .padding(.top, 8)
-            }
                 
                 HStack {
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(Color.eventDivider)
-                        
-                        Text("or")
-                            .foregroundColor(Color.eventDivider)
-                            .padding(.horizontal, 8)
-                        
-                        Rectangle()
-                            .frame(height: 1)
-                            .foregroundColor(Color.eventDivider)
-                    }
-                    .frame(width: 361)
-                    .padding(.vertical, 20)
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(Color.eventDivider)
+                    
+                    Text("or")
+                        .foregroundColor(Color.eventDivider)
+                        .padding(.horizontal, 8)
+                    
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(Color.eventDivider)
+                }
+                .frame(width: 361)
+                .padding(.vertical, 20)
                 
-                
-                
-//                Text("Start Your Unforgettable \nEvents & Memories Here")
-//                    .font(.system(size:20))
-//                    .bold()
-//                    .foregroundStyle(Theme.tintColor)
-//                    .multilineTextAlignment(.center)
-//                Rectangle()
-//                    .frame(height: 1)
-//                    .foregroundColor(Color.eventDivider)
-//                    .padding(.horizontal,18)
-                // NAVIGATE TO HOME WITH THIS
-//                UserDefaults.standard.set(true, forKey: "appState")
+                // sign in with google
+                Button {
+                    signInWithGoogle()
+                } label: {
+                    Image(colorMode == .light ? "continue_with_google_light" : "continue_with_google_dark")
+                        .resizable()
+                        .frame(width:265,height: 55)
+                        .scaledToFill()
+                }
+             
+                // sign in with apple
+                SignInWithAppleButton(.continue) { request in
+                    // Use the ViewModel to configure the request
+                    appleSignInViewModel.configureAppleSignInRequest(request: request)
+                } onCompletion: { result in
+                    // Handle result using the ViewModel
+                    appleSignInViewModel.handleAppleSignInCompletion(result: result)
+                }
+                .signInWithAppleButtonStyle(colorMode == .dark ? .white : .black)
+                .clipShape(.capsule)
+                .frame(width: 265, height: 55)
 
-                
                 HStack {
                     Text("Don't have an account?")
                         .font(.system(size: 12))
@@ -148,7 +161,7 @@ struct SignInView: View {
                     }
                 }
                 .frame(height: 22)
-
+                
                 Spacer()
             }
             .alert(isPresented: $showAlert) {
@@ -165,11 +178,7 @@ struct SignInView: View {
                 case .confirmation:
                     ConfirmationView(path: $authNavigationStack)
                 }
-                
-                
-                
             })
-            
             
             .navigationDestination(for: Int.self) { value in
                 if value == 1{
@@ -177,12 +186,8 @@ struct SignInView: View {
                 }
             }
             .navigationBarBackButtonHidden()
-
+            
         }
-    }
-
-    private func signInWithEmailPassword() {
-        
     }
     
     private func signup() {
@@ -218,17 +223,33 @@ struct SignInView: View {
                     self.alertMessage = "Error Signing In with credentials: \(error.localizedDescription)"
                     self.showAlert = true
                 }
-            } else if isNewUser {
-                // Handle the new user case
-                self.alertMessage = "Welcome! Please complete your profile."
-                self.showAlert = true
-            } else {
-                // Handle the existing user case
-                self.alertMessage = "Login Successful"
-                self.showAlert = true
             }
+            if isNewUser {
+                // Handle the new user case
+                // register a new user with default credentials
+                userSignupViewModel.postUser(firstName: authViewModel.firstName ?? "", email: authViewModel.email ?? "", phone: authViewModel.phone ?? 0, fId: authViewModel.fId ?? "") { result in
+                    switch result {
+                    case .success(let (token, userId)):
+                        self.alertMessage = "Welcome to Avents!"
+                        self.showAlert = true
+                        TokenManager.share.saveTokens(token: token)
+                        KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
+                        if TokenManager.share.getToken() != nil {
+                            UserDefaults.standard.set(true, forKey: "appState")
+                        }
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self.alertMessage = "\(error.localizedDescription)"
+                        self.showAlert = true
+                    }
+                }
+            }
+            self.alertMessage = authViewModel.alertMessage
+            self.showAlert = authViewModel.showAlert
         }
     }
+    
 }
 
 struct SignInView_Previews: PreviewProvider {
