@@ -9,13 +9,13 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
-
+ 
 enum AuthenticationError: Error {
     case custom(errorMessage: String)
     case invalidCredentials
     case serverError
 }
-
+ 
 // MARK: - Getting the token from the API with firebaseId
 class WebService {
     
@@ -65,10 +65,6 @@ class WebService {
                        let token = message["token"] as? String,
                        let user = message["user"] as? [String: Any],
                        let userId = user["_id"] as? String {
-//                        // Save Token in Keychain
-//                        TokenManager.share.saveTokens(token: token)
-//                        // Store user ID in Keychain
-//                        KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
                         // Return the token and user ID
                         completion(.success((token, userId)))
                     } else {

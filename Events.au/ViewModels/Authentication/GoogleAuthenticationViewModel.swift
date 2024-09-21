@@ -19,10 +19,14 @@ class GoogleAuthenticationViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var token: String? = nil
     @Published var isNewUser: Bool = false
+    @Published var firstName: String?
+    @Published var phone: Int?
     @Published var fId: String?
     @Published var email: String?
     @Published var userId: String?
     @Published var tokenIsExpired : Bool = false
+    @Published var alertMessage = ""
+    @Published var showAlert: Bool = false
     var timer : AnyCancellable?
     var expirationDate : Date?
     @Published var readyToGoHome: Bool = false
@@ -89,32 +93,21 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 
                 //MARK: - Handling new user state during sign in
                 let isNewUser = authResult.additionalUserInfo?.isNewUser ?? false
-                DispatchQueue.main.async {
-                    completion(nil, isNewUser)
-                }
                 
                 //MARK: - Condition with Token Valid and Login successful with google auth
                 if isNewUser {
-                    //Delete the new user account
-                    authResult.user.delete { _  in //error in
-                        self.readyToGoHome = true
-                        /*
-                        if let error = error {
-                            print("Error deleting new user: \(error)")
-                        } else {
-                            print("New user account deleted successfully.")
-                        }
-                         */
-                    }
-//                    print("New User")
+                    // if it's a new user, it will return true.
+                    self.firstName = authResult.user.displayName
+                    self.phone = -1
+                    self.email = authResult.user.email
+                    self.fId = authResult.user.uid
+                    completion(nil, isNewUser)
                 } else {
+                    // if it's not a new user, let the user access the app without registering a form.
+                    guard let email = authResult.user.email else { return }
                     DispatchQueue.main.async {
-                        self.postSignInFirebaseId(firebaseId: authResult.user.uid, email: authResult.user.email ?? "")
-                        
+                        self.postSignInFirebaseId(firebaseId: authResult.user.uid, email: email)
                     }
-                    
-//                    print("This is the URL of Image: \(String(describing: authResult.user.photoURL))")
-//                    print("This user already exists.")
                 }
             }
         }
@@ -126,27 +119,24 @@ class GoogleAuthenticationViewModel: ObservableObject {
         webService.signin(firebaseId: firebaseId, email: email) { result in
             switch result {
             case .success(let (token, userId)):
-//                print("Login successful with token: \(token)")
-//                print("Login successful with user _id: \(userId)")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
                     self.token = token
                     self.userId = userId
+                    self.alertMessage = "Welcome to Avents"
+                    self.showAlert = true
                     TokenManager.share.saveTokens(token: token)
-//                    print("Token is",token)
+                    KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
                     // Save the token and expiration date (3 days from now)
                     let tokenReceivedDate = Date()
                     self.expirationDate = Calendar.current.date(byAdding: .day, value: 3, to: tokenReceivedDate)
                     UserDefaults.standard.set(self.expirationDate, forKey: "TokenExpirationDate")
-                    
                     self.checkTokenExpiry()
-                    KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
                     if TokenManager.share.getToken() != nil {
                         UserDefaults.standard.set(true, forKey: "appState")
                     }
                 }
             case .failure(let error):
-//                print("Login failed with error: \(error)")
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(false, forKey: "appState")
                     self.errorMessage = "Failed to login with WebService: \(error)"
@@ -270,6 +260,7 @@ class GoogleAuthenticationViewModel: ObservableObject {
                 KeychainManager.shared.keychain.delete("appUserId")
                 self.token = nil
                 self.isAuthenticated = false
+                UserDefaults.standard.removeObject(forKey: "TokenExpirationDate")
                 UserDefaults.standard.set(false, forKey: "appState")
             }
         } catch let signOutError as NSError {

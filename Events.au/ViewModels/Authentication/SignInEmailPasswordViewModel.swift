@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-
+ 
 class SignInEmailPasswordViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var isAuthenticated: Bool = false
@@ -25,7 +25,7 @@ class SignInEmailPasswordViewModel: ObservableObject {
     deinit {
         timer?.cancel() // Cancel the timer when the view model is deallocated
     }
-
+ 
     // MARK: - Posting to signin API with firebase id if the user already exists
     func postSignInFirebaseId(firebaseId: String, email: String) {
         let webService = WebService()

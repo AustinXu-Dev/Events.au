@@ -8,32 +8,20 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
+ 
+enum SignUpError: Error {
+    case custom(errorMessage: String)
+    case invalidResponse
+    case serverError(String)
+}
 
-
+// MARK: - User Sign-Up View Model
 class UserSignUpViewModel: ObservableObject {
     
-    enum SignUpError: Error {
-        case networkError
-        case invalidResponse
-        case serverError(String)
+    func postUser(firstName: String, email: String, phone: Int, fId: String, completion: @escaping (Result<(String, String), SignUpError>) -> Void) {
         
-        var localizedDescription: String {
-            switch self {
-            case .networkError:
-                return "Network error occurred."
-            case .invalidResponse:
-                return "Invalid response from server."
-            case .serverError(let message):
-                return "Server error: \(message)"
-            }
-        }
-    }
-    
-    func postUser(firstName: String, email: String, phone: Int, unitId: String, fId: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        
-        // Construct URL and URLRequest
         guard let url = URL(string: "https://events-au-v2.vercel.app/auth/signup") else {
-            completion(.failure(SignUpError.invalidResponse))
+            completion(.failure(.custom(errorMessage: "Invalid URL")))
             return
         }
         
@@ -41,79 +29,152 @@ class UserSignUpViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // Create payload data
         let body: [String: Any] = [
             "firstName": firstName,
             "email": email,
             "phone": phone,
-            "unitId": unitId,
             "password": fId
         ]
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
         } catch {
-            completion(.failure(error))
+            completion(.failure(.custom(errorMessage: "Failed to encode request body")))
             return
         }
         
-        // Perform the URLRequest
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    completion(.failure(error))
+                    completion(.failure(.custom(errorMessage: "Network error: \(error.localizedDescription)")))
                     return
                 }
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    completion(.failure(SignUpError.invalidResponse))
+                    completion(.failure(.invalidResponse))
                     return
                 }
                 
-                if !(200...299).contains(httpResponse.statusCode) {
+                guard (200...299).contains(httpResponse.statusCode) else {
                     let errorMessage = String(data: data ?? Data(), encoding: .utf8) ?? "Unknown error"
-                    completion(.failure(SignUpError.serverError(errorMessage)))
+                    completion(.failure(.serverError(errorMessage)))
                     return
                 }
                 
-                // Successful registration, It's just for checking user _id available after sign up. Don't need that logic in App
                 if let data = data {
                     do {
-                        if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                            
-                            if let message = jsonResponse["message"] as? [String: Any],
-                               let userId = message["_id"] as? String {
-                                // Save _id to UserDefaults
-                                UserDefaults.standard.set(userId, forKey: "userId")
-//                                self.printStoredUserId()
-                                //store photo URL here
-                             
-
-                                
-                                completion(.success(()))
-                            } else {
-                                completion(.failure(SignUpError.invalidResponse))
-                            }
+                        if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                           let message = jsonResponse["message"] as? [String: Any],
+                           let token = message["token"] as? String,
+                           let user = message["user"] as? [String: Any],
+                           let userId = user["_id"] as? String {
+                            // Return the token and userId
+                            completion(.success((token, userId)))
                         } else {
-                            completion(.failure(SignUpError.invalidResponse))
+                            completion(.failure(.invalidResponse))
                         }
                     } catch {
-                        completion(.failure(error))
+                        completion(.failure(.custom(errorMessage: "Error decoding response: \(error.localizedDescription)")))
                     }
                 } else {
-                    completion(.failure(SignUpError.invalidResponse))
+                    completion(.failure(.invalidResponse))
                 }
             }
         }.resume()
     }
-    
-    /*
-    func printStoredUserId() {
-        if let userId = UserDefaults.standard.string(forKey: "userId") {
-            print("Stored User ID: \(userId)")
-        } else {
-            print("No User ID found in UserDefaults.")
-        }
-    }
-     */
 }
+
+ 
+//class UserSignUpViewModel: ObservableObject {
+//    
+//    enum SignUpError: Error {
+//        case networkError
+//        case invalidResponse
+//        case serverError(String)
+//        
+//        var localizedDescription: String {
+//            switch self {
+//            case .networkError:
+//                return "Network error occurred."
+//            case .invalidResponse:
+//                return "Invalid response from server."
+//            case .serverError(let message):
+//                return "Server error: \(message)"
+//            }
+//        }
+//    }
+//    
+//    func postUser(firstName: String, email: String, phone: Int, fId: String, completion: @escaping (Result<String, String>) -> Void) {
+//        
+//        // Construct URL and URLRequest
+//        guard let url = URL(string: "https://events-au-v2.vercel.app/auth/signup") else {
+//            completion(.failure(SignUpError.invalidResponse))
+//            return
+//        }
+//        
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        // Create payload data
+//        let body: [String: Any] = [
+//            "firstName": firstName,
+//            "email": email,
+//            "phone": phone,
+//            "password": fId
+//        ]
+//        
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+//        } catch {
+//            completion(.failure("Invalid URL"))
+//            return
+//        }
+//        
+//        // Perform the URLRequest
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            DispatchQueue.main.async {
+//                if let error = error {
+//                    completion(.failure(error))
+//                    return
+//                }
+//                
+//                guard let httpResponse = response as? HTTPURLResponse else {
+//                    completion(.failure(SignUpError.invalidResponse))
+//                    return
+//                }
+//                
+//                if !(200...299).contains(httpResponse.statusCode) {
+//                    let errorMessage = String(data: data ?? Data(), encoding: .utf8) ?? "Unknown error"
+//                    completion(.failure(SignUpError.serverError(errorMessage)))
+//                    return
+//                }
+//                
+//                // Successful registration, It's just for checking user _id available after sign up. Don't need that logic in App
+//                if let data = data {
+//                    do {
+//                        if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+//                            if let message = jsonResponse["message"] as? [String: Any],
+//                               let token = message["token"] as? String,
+//                               let user = message["user"] as? [String: Any],
+//                               let userId = user["_id"] as? String {
+//                                completion(.success(()))
+//                                TokenManager.share.saveTokens(token: token)
+//                                KeychainManager.shared.keychain.set(userId, forKey: "appUserId")
+//                                
+//                            } else {
+//                                completion(.failure(SignUpError.invalidResponse))
+//                            }
+//                        } else {
+//                            completion(.failure(SignUpError.invalidResponse))
+//                        }
+//                    } catch {
+//                        completion(.failure(error))
+//                    }
+//                } else {
+//                    completion(.failure(SignUpError.invalidResponse))
+//                }
+//            }
+//        }.resume()
+//    }
+//}
