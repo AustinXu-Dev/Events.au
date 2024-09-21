@@ -11,20 +11,23 @@ class UpdateUserViewModel: ObservableObject {
     @Published var firstName: String
     @Published var lastName: String
 //    @Published var email: String
+    @Published var phone : String
 
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
 
-    init(firstName: String = "", lastName: String = ""/*, email: String = ""*/) {
+    init(firstName: String = "", lastName: String = ""/*, email: String = ""*/,phone : String = "") {
         self.firstName = firstName
         self.lastName = lastName
+        self.phone = phone
 //        self.email = email
     }
 
     func updateUser(id: String, token: String) {
         let userNewInfo = UpdateUserDTO(
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            phone : phone
 //            email: email
         )
 
