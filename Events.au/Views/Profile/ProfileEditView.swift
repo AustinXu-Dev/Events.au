@@ -15,6 +15,7 @@ struct ProfileEditView: View {
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
+    @State private var phone : String = ""
     @Environment(\.dismiss) var dismiss
     
     @StateObject var updateUserViewModel = UpdateUserViewModel()
@@ -68,16 +69,17 @@ struct ProfileEditView: View {
                     TextField("Last Name", text: $lastName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(maxWidth: 200)
+                        
                 }
-//                HStack {
-//                    Text("Email")
-//                        .font(.body)
-//                        .bold()
-//                    Spacer()
-//                    TextField("", text: $email)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        .frame(maxWidth: 200)
-//                }
+                HStack {
+                    Text("Phone")
+                        .font(.body)
+                        .bold()
+                    Spacer()
+                    TextField("Phone", text: $phone)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .frame(maxWidth: 200)
+                }
             }
             .padding()
             .cornerRadius(10)
@@ -87,6 +89,7 @@ struct ProfileEditView: View {
                 if validateFields() {
                     updateUserViewModel.firstName = firstName
                     updateUserViewModel.lastName = lastName
+                    updateUserViewModel.phone = phone
 //                    updateUserViewModel.email = email
                     if let userId = KeychainManager.shared.keychain.get("appUserId") {
                         updateUserViewModel.updateUser(id: userId, token: TokenManager.share.getToken() ?? "")
@@ -126,6 +129,15 @@ struct ProfileEditView: View {
             showAlert = true
             return false
         }
+        
+        // Validate phone
+        if phone.isEmpty {
+            alertMessage = "Please enter your phone number."
+            showAlert = true
+            return false
+        }
+        
+        
         
         // Validate email
 //        if !email.hasSuffix("@gmail.com") {
