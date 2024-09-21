@@ -37,11 +37,11 @@ struct ProfileViewInfo: View {
                 }
                 .padding(.top, 20)
                 VStack(alignment: .leading, spacing: 10) {
-                    ProfileDetailRow(label: "First Name", value: user.firstName ?? "")
+                    ProfileDetailRow(label: "First Name", value: profileVM.userDetail?.firstName ?? "")
                         //MARK: add last name after dropping user database
 //                        ProfileDetailRow(label: "Last Name", value : "Last Name")
-                    ProfileDetailRow(label: "Email", value: user.email ?? "")
-                        ProfileDetailRow(label: "Phone", value: "\(user.phone ?? 00)")
+                    ProfileDetailRow(label: "Email", value: profileVM.userDetail?.email ?? "")
+                    ProfileDetailRow(label: "Phone", value: "\(profileVM.userDetail?.phone ?? 00)")
                         ProfileDetailRow(label: "Gender", value: "Gender")
                         ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
                 }
