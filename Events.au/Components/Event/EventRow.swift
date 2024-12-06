@@ -20,16 +20,13 @@ struct EventRow: View {
     var body: some View {
         ZStack {
         RoundedRectangle(cornerRadius: Theme.cornerRadius)
-            .frame(width: Theme.participantRectWidth,height: Theme.participantRectHeight)
+          // .frame(width: Theme.participantRectWidth,height: Theme.participantRectHeight)
+            .frame(height: Theme.participantRectHeight)
+            .frame(maxWidth: .infinity)
             .foregroundStyle(Theme.backgroundColor)
             .applyThemeDoubleShadow()
             HStack(alignment:.center,spacing:Theme.medium) {
-                SmallRemoteImage(url: event.coverImageUrl ?? "no_image")                
-//                Image(EventImageMock.image)
-//                .resizable()
-//                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-//                .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
-//                .scaledToFit()
+                SmallRemoteImage(url: event.coverImageUrl ?? "no_image")
                 VStack(alignment:.leading,spacing:Theme.medium) {
                     Text(event.name ?? "")
                     .foregroundStyle(Theme.secondaryTextColor)
@@ -59,7 +56,7 @@ struct EventRow: View {
                         .offset(y:-20)
                 }
         }
-        .padding(Theme.xs)
+            .padding(.horizontal,8)
     }
         .onAppear {
             //pass event id

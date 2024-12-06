@@ -10,13 +10,12 @@ import Foundation
 class UserJoinEventViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
+    @Published var errorMessage: String = ""
 
     func userJoinEvent(eventId: String, token: String) {
 
         let userJoinedEvent = UserJoinEvent(id: eventId)
         isLoading = true
-        errorMessage = nil
 
         userJoinedEvent.execute(getMethod: "POST", token: token) { [weak self] result in
             DispatchQueue.main.async {

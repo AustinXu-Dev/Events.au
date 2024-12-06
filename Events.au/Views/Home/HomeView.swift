@@ -36,24 +36,27 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path){
-            VStack(alignment:.leading,spacing:Theme.defaultSpacing){
-
-                SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
-                    .padding(.horizontal,Theme.large)
-//                if searchText.isEmpty {
-//                    categoryScrollView
-//                }
-                if eventVM.loader {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .tint(Theme.tintColor)
-                } else {
-                    eventsScrollView
-                        .padding(.horizontal,Theme.large)
-                }
-                                
-            }
+      NavigationStack(path: $path){
+        ZStack {
+        VStack(alignment:.leading,spacing:Theme.defaultSpacing){
+          SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
+            .padding(.horizontal,Theme.large)
+          if eventVM.loader {
+            ProgressView()
+              .frame(maxWidth: .infinity, maxHeight: .infinity)
+              .tint(Theme.tintColor)
+          } else if filteredEvents.count == 0 {
+          Text("No events \n in the meantime")
+              .multilineTextAlignment(.center)
+              .applyLabelFont()
+              .foregroundStyle(Theme.secondaryTextColor)
+          } else {
+            eventsScrollView
+              .padding(.horizontal,Theme.large)
+          }
+          
+        }
+      }
 //            .padding(.horizontal,Theme.large)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -101,6 +104,12 @@ struct HomeView: View {
 //        .onReceive(authVM.timer.publisher) { timer in
 //            self.tokenIsExpired = true
 //        }
+        .alert(isPresented: $eventVM.showErrorAlert) {
+            Alert(
+                title: Text("Failed to get the events"),
+                message: Text(eventVM.errorMessage ?? ""),
+                dismissButton: .cancel(Text("OK")))
+        }
         .alert(isPresented: $authVM.tokenIsExpired) {
                     Alert(
                         title: Text("Session Expired"),
