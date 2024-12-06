@@ -126,6 +126,9 @@ struct CreateEventView: View {
                 }
                 
             }
+            .alert(isPresented: $createEventViewModel.showErrorAlert) {
+              Alert(title: Text("Failed to create event"), message: Text(createEventViewModel.errorMessage ?? ""),dismissButton: .cancel(Text("OK")))
+            }
        }
         
     }
@@ -411,7 +414,6 @@ extension CreateEventView{
                                             isLoading = false
                                         }
                                         showAlert = true
-                                        userRole = UserState.organizer.rawValue
                                     }
                                 case .failure:
                                     DispatchQueue.main.async {

@@ -28,37 +28,11 @@ struct EventManager: View {
     @Binding var selectedTab: Tab
     
     var body: some View {
-        VStack(alignment:.center) {
+      VStack(alignment:.center,spacing: Theme.defaultSpacing) {
             eventManagerHeader
-            
             if userRole == UserState.audience.rawValue {
             //MARK: - for audience, fetch participants
-//            if !showUpcoming {
-//                ScrollView(.vertical,showsIndicators: false) {
-//                    VStack(alignment:.center,spacing:Theme.medium) {
-//                        if !participantEventsVM.participantEvents.isEmpty {
-//                            ForEach(participantEventsVM.participantEvents,id: \._id){ participant in
-//                                if let event = participant.eventId {
-//                                    if ((event.startDate?.toDate()?.strippedTime() == Date().strippedTime())) {
-//                                            NavigationLink(value: ProfileNavigation.eventDetail(event, ParticipantMock.instacne.participantA )) {
-//                                                if let firstParticipant = participantVM.participant.first {
-//                                                    EventRow(event: event,participant: firstParticipant)
-//                                                        .tint(Color.black)
-//                                                }
-//                                            }
-//                                        
-//                                    }
-//                                }
-//                            }
-//                        } else {
-//                            noEventsView
-//                                .offset(y:100)
-//                        }
-//                    }.transition(.move(edge: .leading))
-//                }
-//            }
                 if !showUpcoming {
-                    ScrollView(.vertical, showsIndicators: false) {
                         VStack(alignment: .center, spacing: Theme.medium) {
                             let uniqueEvents = participantEventsVM.participantEvents.reduce(into: [EventModel]()) { result, participant in
                                 if let event = participant.eventId, !result.contains(where: { $0._id == event._id }) {
@@ -81,6 +55,7 @@ struct EventManager: View {
                                             if index < participantVM.participant.count {
                                                 EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: participantVM.participant[index])
                                                     .tint(Color.black)
+                                                    .padding(.horizontal)
                                             }
                                         }
                                     }
@@ -89,35 +64,11 @@ struct EventManager: View {
                                 noEventsView
                                     .offset(y: 100)
                             }
-                        }.transition(.move(edge: .leading))
-                    }
+                        }
+                    
                 }
 
-//            if showUpcoming {
-//                ScrollView(.vertical,showsIndicators: false) {
-//                    VStack(alignment:.center,spacing:Theme.medium) {
-//                        if !participantEventsVM.participantEvents.isEmpty {
-//                            ForEach(participantEventsVM.participantEvents,id: \._id){ participant in
-//                                if let event = participant.eventId {
-//                                    if ((event.startDate?.toDate()?.strippedTime() != Date().strippedTime())) {
-//                                        NavigationLink(value: ProfileNavigation.eventDetail(event, ParticipantMock.instacne.participantA) ) {
-//                                            if let firstParticipant = participantVM.participant.first {
-//                                                EventRow(event: event,participant: firstParticipant)
-//                                                    .tint(Color.black)
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        } else {
-//                            noEventsView
-//                                .offset(y:100)
-//                        }
-//                    }.transition(.move(edge: .trailing))
-//                }
-//            }
                 if showUpcoming {
-                    ScrollView(.vertical, showsIndicators: false) {
                         VStack(alignment: .center, spacing: Theme.medium) {
                             //to filter out the duplicates
                             let uniqueEvents = participantEventsVM.participantEvents.reduce(into: [EventModel]()) { result, participant in
@@ -136,6 +87,7 @@ struct EventManager: View {
                                             if index < participantVM.participant.count {
                                                 EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: participantVM.participant[index])
                                                     .tint(Color.black)
+                                                    .padding(.horizontal)
                                             }
                                         }
                                     }
@@ -144,14 +96,13 @@ struct EventManager: View {
                                 noEventsView
                                     .offset(y: 100)
                             }
-                        }.transition(.move(edge: .trailing))
-                    }
+                        }
+                    
                 }
 
             }  else if userRole == UserState.organizer.rawValue {
                 //MARK: - for organizer, fetch events
                 if !showUpcoming {
-                    ScrollView(.vertical,showsIndicators: false) {
                         VStack(alignment:.center,spacing:Theme.medium) {
                              let organizerEvents = organizerEventsVM.organizerEvents
                                 if organizerEvents.count != 0 {
@@ -170,6 +121,8 @@ struct EventManager: View {
                                                     //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
                                                         EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
                                                             .tint(Color.black)
+                                                            .padding(.horizontal)
+
                                                     }
                                                 
                                             }
@@ -180,11 +133,10 @@ struct EventManager: View {
                                     .offset(y:100)
                             }
                         
-                        }.transition(.move(edge: .leading))
-                    }
+                        }
+                    
                 }
                 if showUpcoming {
-                    ScrollView(.vertical,showsIndicators: false) {
                         VStack(alignment:.center,spacing:Theme.medium) {
                             let organizerEvents = organizerEventsVM.organizerEvents
                             if organizerEvents.count != 0 {
@@ -198,6 +150,7 @@ struct EventManager: View {
                                                 //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
                                                 EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
                                                     .tint(Color.black)
+                                                    .padding(.horizontal)
                                             }
                                         }
                                         
@@ -208,8 +161,8 @@ struct EventManager: View {
                                     .offset(y:100)
                             }
                         
-                        }.transition(.move(edge: .trailing))
-                    }
+                        }
+                    
                 }
             }
             
@@ -254,7 +207,7 @@ extension EventManager {
                 Text("Ongoing")
                     .applyLabelFont()
                     .onTapGesture {
-                        withAnimation {
+                      withAnimation(.smooth.speed(1)) {
                             self.showUpcoming = false
                         }
                     }
@@ -268,7 +221,7 @@ extension EventManager {
                 Text("Upcoming")
                     .applyLabelFont()
                     .onTapGesture {
-                        withAnimation {
+                      withAnimation(.smooth.speed(1)) {
                             self.showUpcoming = true
                         }
                     }

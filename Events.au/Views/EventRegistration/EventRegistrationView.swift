@@ -26,7 +26,8 @@ struct EventRegistrationView: View {
     @State var showSuccess: Bool = false
     @State var isLoading: Bool = false
     @State var showAlert: Bool = false
-    
+  @State var errorAlertMessage: String = ""
+
     @StateObject var userJoineEventViewModel = UserJoinEventViewModel()
     @StateObject var getPollsByEventIdVM = GetPollsByEventIdViewModel()
     
@@ -55,6 +56,10 @@ struct EventRegistrationView: View {
                 
                     
             }
+            .onChange(of: userJoineEventViewModel.errorMessage, { _, errorMessage in
+              showAlert = true
+              errorAlertMessage = errorMessage
+            })
             .onAppear(perform: {
                 getPollsByEventIdVM.getPollsByEventId(id: event._id ?? "")
             })
@@ -160,7 +165,7 @@ extension EventRegistrationView{
     }
     
     private func validatePhoneNumber(_ number: String) -> Bool {
-        let phoneNumberPattern = "^[1-9]\\d{1,14}$"
+        let phoneNumberPattern = "^[0-9]\\d{1,14}$"
         let result = number.range(of: phoneNumberPattern, options: .regularExpression)
         return result != nil
     }

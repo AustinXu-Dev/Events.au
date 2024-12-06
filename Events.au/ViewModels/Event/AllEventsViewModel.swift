@@ -11,6 +11,8 @@ class AllEventsViewModel: ObservableObject {
     @Published var events: [EventModel] = []
     @Published var loader : Bool = false
     @Published var errorMessage : String? = nil
+  @Published var showErrorAlert: Bool = false
+
     
     private let getAllEvents = AllEvents()
     
@@ -26,7 +28,8 @@ class AllEventsViewModel: ObservableObject {
                 }
             case .failure(let error):
                 self?.loader = false
-                self?.errorMessage = "Failed to get all the events: \(error.localizedDescription)"
+                self?.errorMessage = error.localizedDescription
+              self?.showErrorAlert = true
             }
         }
     }

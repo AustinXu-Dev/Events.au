@@ -24,6 +24,7 @@ class CreateEventViewModel: ObservableObject {
     @Published var unitId: String
     
     @Published var isLoading: Bool = false
+  @Published var showErrorAlert: Bool = false
     @Published var errorMessage: String? = nil
 
     
@@ -66,7 +67,8 @@ class CreateEventViewModel: ObservableObject {
                 case .success(_):
                     break;
                 case .failure(let error):
-                    self?.errorMessage = "Failed to create event: \(error.localizedDescription)"
+                    self?.errorMessage = error.localizedDescription
+                  self?.showErrorAlert = true
                 }
             }
         }
