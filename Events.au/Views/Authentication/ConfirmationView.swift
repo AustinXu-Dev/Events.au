@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct ConfirmationView: View {
     
     @Binding var path: [AuthNavigation]

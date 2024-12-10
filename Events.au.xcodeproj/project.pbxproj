@@ -100,6 +100,8 @@
 		B75A0F402C3BCBE8007D150F /* ReusableLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */; };
 		B7720E1C2C11E5B100A053F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7720E1B2C11E5B100A053F6 /* Theme.swift */; };
 		B78BB1202C9D63F4001FE545 /* CustomTabBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BB11F2C9D63F4001FE545 /* CustomTabBarAppearance.swift */; };
+		B792670E2D088195006FF2A7 /* ReusableProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792670D2D088195006FF2A7 /* ReusableProfileInfoView.swift */; };
+		B79866342D086DB7007522B1 /* ReusableProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79866332D086DB7007522B1 /* ReusableProfileView.swift */; };
 		B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */; };
 		B7B0B9562C72533500A468DB /* ParticipantByUserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */; };
 		B7B0B9582C72538800A468DB /* GetParticipantsByUserIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */; };
@@ -267,6 +269,8 @@
 		B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableLoader.swift; sourceTree = "<group>"; };
 		B7720E1B2C11E5B100A053F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B78BB11F2C9D63F4001FE545 /* CustomTabBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarAppearance.swift; sourceTree = "<group>"; };
+		B792670D2D088195006FF2A7 /* ReusableProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileInfoView.swift; sourceTree = "<group>"; };
+		B79866332D086DB7007522B1 /* ReusableProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileView.swift; sourceTree = "<group>"; };
 		B79C361D2C1AC4A5001B4EB5 /* EventParticipants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipants.swift; sourceTree = "<group>"; };
 		B7B0B9552C72533500A468DB /* ParticipantByUserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantByUserId.swift; sourceTree = "<group>"; };
 		B7B0B9572C72538800A468DB /* GetParticipantsByUserIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetParticipantsByUserIdViewModel.swift; sourceTree = "<group>"; };
@@ -783,6 +787,8 @@
 				B75A0F3B2C3BB789007D150F /* ProfileDropDown.swift */,
 				B75A0F3F2C3BCBE8007D150F /* ReusableLoader.swift */,
 				B72138F72C762DC40075DE7A /* UserAvatar.swift */,
+				B79866332D086DB7007522B1 /* ReusableProfileView.swift */,
+				B792670D2D088195006FF2A7 /* ReusableProfileInfoView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1100,6 +1106,7 @@
 				B7C69A7E2C14E18B0055DDD9 /* AdminModel.swift in Sources */,
 				3920CD6E2C3289FA00632B3C /* CreatedSuccessView.swift in Sources */,
 				B7C69A642C14D3BA0055DDD9 /* UserModel.swift in Sources */,
+				B792670E2D088195006FF2A7 /* ReusableProfileInfoView.swift in Sources */,
 				BCF4F9FB2C2EF89600D5E009 /* CreateEventPreScreen.swift in Sources */,
 				B370C6EC2C15267200C28E67 /* GoogleAuthenticationViewModel.swift in Sources */,
 				B7C69A902C14F8D30055DDD9 /* UserMock.swift in Sources */,
@@ -1225,6 +1232,7 @@
 				BC1CC9752C289FBA0020DD06 /* ToolbarView.swift in Sources */,
 				B79C361E2C1AC4A5001B4EB5 /* EventParticipants.swift in Sources */,
 				B731AADA2C16066E00A3E8C2 /* AdminMock.swift in Sources */,
+				B79866342D086DB7007522B1 /* ReusableProfileView.swift in Sources */,
 				B7C089BC2C9CB52E0028BA8C /* DeleteAccountSheetsView.swift in Sources */,
 				B750573A2C160F9300D742E8 /* UnitAdminModel.swift in Sources */,
 				B72138F82C762DC40075DE7A /* UserAvatar.swift in Sources */,
