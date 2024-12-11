@@ -21,8 +21,9 @@ struct HomeView: View {
     @State var searchText: String = ""
     @State var selectedCategory : [String] = []
     @AppStorage("userRole") private var userRole: String?
-//    @State var tokenIsExpired : Bool = false
-
+    @State private var hasAppeared: Bool = false
+    //    @State var tokenIsExpired : Bool = false
+    
     
     // Filtered Events for search text
     var filteredEvents: [EventModel]{
@@ -36,36 +37,41 @@ struct HomeView: View {
     }
     
     var body: some View {
-      NavigationStack(path: $path){
-        ZStack {
-        VStack(alignment:.leading,spacing:Theme.defaultSpacing){
-          SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
-            .padding(.horizontal,Theme.large)
-          if eventVM.loader {
-            ProgressView()
-              .frame(maxWidth: .infinity, maxHeight: .infinity)
-              .tint(Theme.tintColor)
-          } else if filteredEvents.count == 0 {
-          Text("No events \n in the meantime")
-              .multilineTextAlignment(.center)
-              .applyLabelFont()
-              .foregroundStyle(Theme.secondaryTextColor)
-          } else {
-            eventsScrollView
-              .padding(.horizontal,Theme.large)
-          }
-          
-        }
-      }
-//            .padding(.horizontal,Theme.large)
+        NavigationStack(path: $path){
+            ZStack {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        UIApplication.shared.endEditing()
+                    }
+                VStack(alignment:.leading,spacing:Theme.defaultSpacing){
+                    SearchBar(searchText: $searchText, isFiltering: $showingSidebar)
+                        .padding(.horizontal,Theme.large)
+                    if eventVM.loader {
+                        ProgressView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .tint(Theme.tintColor)
+                    } else if filteredEvents.count == 0 {
+                        Text("No events \n in the meantime")
+                            .multilineTextAlignment(.center)
+                            .applyLabelFont()
+                            .foregroundStyle(Theme.secondaryTextColor)
+                    } else {
+                        eventsScrollView
+                            .padding(.horizontal,Theme.large)
+                    }
+                    
+                }
+            }
+            //            .padding(.horizontal,Theme.large)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
                     if let user = profileVM.userDetail {
-                    UserToolBarAvatar(user: user)
-//                    if let imageUrl =
-//                        FirebaseManager.shared.auth.currentUser?.photoURL {
-//                        RemoteProfileToolBarView(url: "\(imageUrl)")
+                        UserToolBarAvatar(user: user)
+                        //                    if let imageUrl =
+                        //                        FirebaseManager.shared.auth.currentUser?.photoURL {
+                        //                        RemoteProfileToolBarView(url: "\(imageUrl)")
                     }
                     if let userName = profileVM.userDetail?.firstName {
                         Text(userName)
@@ -73,12 +79,12 @@ struct HomeView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-//                    Image("noti_icon_active")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-                  
-                
-
+                    //                    Image("noti_icon_active")
+                    //                        .resizable()
+                    //                        .aspectRatio(contentMode: .fit)
+                    
+                    
+                    
                 }
             }
             //MARK: - HOME NAVIGATION HANDLER HERE
@@ -101,9 +107,9 @@ struct HomeView: View {
             }
             
         }
-//        .onReceive(authVM.timer.publisher) { timer in
-//            self.tokenIsExpired = true
-//        }
+        //        .onReceive(authVM.timer.publisher) { timer in
+        //            self.tokenIsExpired = true
+        //        }
         .alert(isPresented: $eventVM.showErrorAlert) {
             Alert(
                 title: Text("Failed to get the events"),
@@ -111,29 +117,35 @@ struct HomeView: View {
                 dismissButton: .cancel(Text("OK")))
         }
         .alert(isPresented: $authVM.tokenIsExpired) {
-                    Alert(
-                        title: Text("Session Expired"),
-                        message: Text("Your session has expired. Please sign in again."),
-                        dismissButton: .default(Text("Sign In Again")) {
-                            authVM.signOutWithGoogle()
-                        }
-                    )
+            Alert(
+                title: Text("Session Expired"),
+                message: Text("Your session has expired. Please sign in again."),
+                dismissButton: .default(Text("Sign In Again")) {
+                    authVM.signOutWithGoogle()
                 }
-
+            )
+        }
+        
         .onAppear(perform: {
-            if userRole == nil {
-                userRole = UserState.audience.rawValue
-//                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
-            }
+            //            if userRole == nil {
+            //                userRole = UserState.audience.rawValue
+            ////                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
+            //            }
             
             //fetch events
-            eventVM.fetchEvents()
+            if !hasAppeared {
+                hasAppeared = true
+                if userRole == nil {
+                    userRole = UserState.audience.rawValue
+                }
+                eventVM.fetchEvents()
+            }
             
-//            //fetch currentUser
-//            if let userId = KeychainManager.shared.keychain.get("appUserId") {
-//                profileVM.getOneUserById(id: userId)
-//            }
-        
+            //            //fetch currentUser
+            //            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+            //                profileVM.getOneUserById(id: userId)
+            //            }
+            
         })
         .tint(Theme.tintColor)
         .clipped() // Solution for tabbar bug
@@ -192,7 +204,7 @@ extension HomeView {
             ScrollView(.vertical,showsIndicators: false){
                 VStack(alignment:.leading,spacing:Theme.defaultSpacing) {
                     ForEach(filteredEvents.filter { event in
-
+                        
                         if let endDateString = event.endDate,
                            let endTimeString = event.endTime,
                            let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString) {
@@ -208,10 +220,10 @@ extension HomeView {
                         }
                         .tint(Theme.secondaryTextColor)
                     }
-                    
-                    
-                    
                 }
+            }
+            .refreshable {
+                eventVM.fetchEvents()
             }
         }
     }
@@ -239,3 +251,8 @@ struct HomeTest_Previews : PreviewProvider {
     }
 }
 
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

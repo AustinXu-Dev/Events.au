@@ -38,6 +38,8 @@
 		B363030E2C28A34400537586 /* AllUnitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B363030D2C28A34400537586 /* AllUnitsViewModel.swift */; };
 		B36303112C28A36A00537586 /* GetOneUserByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36303102C28A36A00537586 /* GetOneUserByIdViewModel.swift */; };
 		B36303132C28AA4F00537586 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36303122C28AA4F00537586 /* TestView.swift */; };
+		B3694BBC2D0885070060BE6B /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = B3694BBB2D0885070060BE6B /* CropViewController */; };
+		B3694BBE2D0885070060BE6B /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = B3694BBD2D0885070060BE6B /* TOCropViewController */; };
 		B36CA95F2C1F8D7100FE6D46 /* AllEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36CA95E2C1F8D7100FE6D46 /* AllEventsViewModel.swift */; };
 		B36CA9612C1F8E1D00FE6D46 /* UserSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36CA9602C1F8E1D00FE6D46 /* UserSignUpViewModel.swift */; };
 		B36CA9632C1F8E7E00FE6D46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B36CA9622C1F8E7E00FE6D46 /* GoogleService-Info.plist */; };
@@ -363,6 +365,8 @@
 			files = (
 				B370C6CB2C15254200C28E67 /* GoogleSignIn in Frameworks */,
 				B370C6D62C15257F00C28E67 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				B3694BBE2D0885070060BE6B /* TOCropViewController in Frameworks */,
+				B3694BBC2D0885070060BE6B /* CropViewController in Frameworks */,
 				B36302FC2C28A07800537586 /* KeychainSwift in Frameworks */,
 				B370C6CD2C15254200C28E67 /* GoogleSignInSwift in Frameworks */,
 				B370C6D02C15257F00C28E67 /* FirebaseAnalytics in Frameworks */,
@@ -1016,6 +1020,8 @@
 				B36302FB2C28A07800537586 /* KeychainSwift */,
 				B3F3F14D2C4E98F80033657F /* FirebaseFirestore */,
 				B3F3F14F2C4EA11B0033657F /* FirebaseStorage */,
+				B3694BBB2D0885070060BE6B /* CropViewController */,
+				B3694BBD2D0885070060BE6B /* TOCropViewController */,
 			);
 			productName = Events.au;
 			productReference = BCBE02402C116C1000A9EE3E /* Avents.app */;
@@ -1050,6 +1056,7 @@
 				B370C6CE2C15257F00C28E67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B74C42892C271B33009E3E63 /* XCRemoteSwiftPackageReference "RemoteImage" */,
 				B36302FA2C28A07800537586 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				B3694BBA2D0885070060BE6B /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = BCBE02412C116C1000A9EE3E /* Products */;
 			projectDirPath = "";
@@ -1378,6 +1385,7 @@
 				INFOPLIST_FILE = "Events-au-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Avents;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to upload and select images.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1418,6 +1426,7 @@
 				INFOPLIST_FILE = "Events-au-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Avents;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to upload and select images.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1474,6 +1483,14 @@
 				minimumVersion = 24.0.0;
 			};
 		};
+		B3694BBA2D0885070060BE6B /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.4;
+			};
+		};
 		B370C6C92C15254200C28E67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1505,6 +1522,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B36302FA2C28A07800537586 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		B3694BBB2D0885070060BE6B /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3694BBA2D0885070060BE6B /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		B3694BBD2D0885070060BE6B /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3694BBA2D0885070060BE6B /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
 		};
 		B370C6CA2C15254200C28E67 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

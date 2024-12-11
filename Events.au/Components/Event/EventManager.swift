@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventManager: View {
     
- 
+    
     @AppStorage("userRole") private var userRole: String?
     @Binding var showUpcoming : Bool
     @ObservedObject var participantEventsVM : ParticipantEventsViewModel
@@ -19,8 +19,8 @@ struct EventManager: View {
     @ObservedObject var unitVM = GetUnitsByEventViewModel()
     @ObservedObject var profileVM : GetOneUserByIdViewModel
     @ObservedObject var approvedParticipantsVM : GetParticipantsByEventIdViewModel
-
-
+    
+    
     
     
     @Binding var path : [HomeNavigation]
@@ -28,176 +28,174 @@ struct EventManager: View {
     @Binding var selectedTab: Tab
     
     var body: some View {
-      VStack(alignment:.center,spacing: Theme.defaultSpacing) {
+        VStack(alignment:.center,spacing: Theme.defaultSpacing) {
             eventManagerHeader
             if userRole == UserState.audience.rawValue {
-            //MARK: - for audience, fetch participants
+                //MARK: - for audience, fetch participants
                 if !showUpcoming {
-                        VStack(alignment: .center, spacing: Theme.medium) {
-                            let uniqueEvents = participantEventsVM.participantEvents.reduce(into: [EventModel]()) { result, participant in
-                                if let event = participant.eventId, !result.contains(where: { $0._id == event._id }) {
-                                    result.append(event)
-                                }
+                    VStack(alignment: .center, spacing: Theme.medium) {
+                        let uniqueEvents = participantEventsVM.participantEvents.reduce(into: [EventModel]()) { result, participant in
+                            if let event = participant.eventId, !result.contains(where: { $0._id == event._id }) {
+                                result.append(event)
                             }
-                            
-                            if !uniqueEvents.isEmpty {
-                                ForEach(Array(uniqueEvents.enumerated()), id: \.element._id) { index, event in
-                                        if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                           let endDateString = event.endDate, // Assuming endDate is a string
-                                           let endTimeString = event.endTime, // Assuming endTime is a string
-                                           let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
-                                           //check if event starts today
-                                           startDate == Date().strippedTime() ||
-                                            // Check if today is within the recurring period (after event starts, before event ends)
-                                            (Date().strippedTime() > startDate && Date() <= eventEndDateTime) {
-                                        NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
-                                            // Ensure that the index is within bounds of the participants array
-                                            if index < participantVM.participant.count {
-                                                EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: participantVM.participant[index])
-                                                    .tint(Color.black)
-                                                    .padding(.horizontal)
-                                            }
+                        }
+                        
+                        if !uniqueEvents.isEmpty {
+                            ForEach(Array(uniqueEvents.enumerated()), id: \.element._id) { index, event in
+                                if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                   let endDateString = event.endDate, // Assuming endDate is a string
+                                   let endTimeString = event.endTime, // Assuming endTime is a string
+                                   let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
+                                   //check if event starts today
+                                   startDate == Date().strippedTime() ||
+                                    // Check if today is within the recurring period (after event starts, before event ends)
+                                    (Date().strippedTime() > startDate && Date() <= eventEndDateTime) {
+                                    NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
+                                        // Ensure that the index is within bounds of the participants array
+                                        if index < participantVM.participant.count {
+                                            EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: participantVM.participant[index])
+                                                .tint(Color.black)
+                                                .padding(.horizontal)
                                         }
                                     }
                                 }
-                            } else {
-                                noEventsView
-                                    .offset(y: 100)
                             }
+                        } else {
+                            noEventsView
+                                .offset(y: 100)
                         }
+                    }
                     
                 }
-
+                
                 if showUpcoming {
-                        VStack(alignment: .center, spacing: Theme.medium) {
-                            //to filter out the duplicates
-                            let uniqueEvents = participantEventsVM.participantEvents.reduce(into: [EventModel]()) { result, participant in
-                                if let event = participant.eventId, !result.contains(where: { $0._id == event._id }) {
-                                    result.append(event)
-                                }
+                    VStack(alignment: .center, spacing: Theme.medium) {
+                        //to filter out the duplicates
+                        let uniqueEvents = participantEventsVM.participantEvents.reduce(into: [EventModel]()) { result, participant in
+                            if let event = participant.eventId, !result.contains(where: { $0._id == event._id }) {
+                                result.append(event)
                             }
-                            
-                            if !uniqueEvents.isEmpty {
-                                ForEach(Array(uniqueEvents.enumerated()), id: \.element._id) { index, event in
-                                    if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                       startDate > Date().strippedTime()
-                                   /*    eventEndDateTime > Date()*/ {
-                                        NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
-                                            // Ensure that the index is within bounds of the participants array
-                                            if index < participantVM.participant.count {
-                                                EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: participantVM.participant[index])
-                                                    .tint(Color.black)
-                                                    .padding(.horizontal)
-                                            }
+                        }
+                        
+                        if !uniqueEvents.isEmpty {
+                            ForEach(Array(uniqueEvents.enumerated()), id: \.element._id) { index, event in
+                                if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                   startDate > Date().strippedTime()
+                                /*    eventEndDateTime > Date()*/ {
+                                    NavigationLink(value: ProfileNavigation.eventDetail(event, eventParticipants.approvedParticipants)) {
+                                        // Ensure that the index is within bounds of the participants array
+                                        if index < participantVM.participant.count {
+                                            EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant: participantVM.participant[index])
+                                                .tint(Color.black)
+                                                .padding(.horizontal)
                                         }
                                     }
                                 }
-                            } else {
-                                noEventsView
-                                    .offset(y: 100)
                             }
+                        } else {
+                            noEventsView
+                                .offset(y: 100)
                         }
+                    }
                     
                 }
-
+                
             }  else if userRole == UserState.organizer.rawValue {
                 //MARK: - for organizer, fetch events
                 if !showUpcoming {
-                        VStack(alignment:.center,spacing:Theme.medium) {
-                             let organizerEvents = organizerEventsVM.organizerEvents
-                                if organizerEvents.count != 0 {
-                                    ForEach(organizerEvents,id: \._id){  organizer in
-                                        if let event = organizer.eventId {
-                    
-                                            if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                               let endDateString = event.endDate, // Assuming endDate is a string
-                                               let endTimeString = event.endTime, // Assuming endTime is a string
-                                               let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
-                                               //check if event starts today
-                                               startDate == Date().strippedTime() ||
-                                                // Check if today is within the recurring period (after event starts, before event ends)
-                                                (Date().strippedTime() > startDate && Date() <= eventEndDateTime){
-                                                NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
-                                                    //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
-                                                        EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
-                                                            .tint(Color.black)
-                                                            .padding(.horizontal)
-
-                                                    }
-                                                
-                                            }
-                                    }
-                                }
-                            } else {
-                                noOrganizedEventsView
-                                    .offset(y:100)
-                            }
-                        
-                        }
-                    
-                }
-                if showUpcoming {
-                        VStack(alignment:.center,spacing:Theme.medium) {
-                            let organizerEvents = organizerEventsVM.organizerEvents
-                            if organizerEvents.count != 0 {
-                                ForEach(organizerEvents,id: \._id){ organizer in
-                                    if let event = organizer.eventId {
-                                        if let startDate = event.startDate?.toDate()?.strippedTime(),
-                                           //if start date is in the future
-                                           startDate > Date().strippedTime()
-                                        /* eventEndDateTime < Date() */{
-                                            NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
-                                                //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
-                                                EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
-                                                    .tint(Color.black)
-                                                    .padding(.horizontal)
-                                            }
+                    VStack(alignment:.center,spacing:Theme.medium) {
+                        let organizerEvents = organizerEventsVM.organizerEvents
+                        if organizerEvents.count != 0 {
+                            ForEach(organizerEvents,id: \._id){  organizer in
+                                if let event = organizer.eventId {
+                                    
+                                    if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                       let endDateString = event.endDate, // Assuming endDate is a string
+                                       let endTimeString = event.endTime, // Assuming endTime is a string
+                                       let eventEndDateTime = combineDateAndTime(dateString: endDateString, timeString: endTimeString),
+                                       //check if event starts today
+                                       startDate == Date().strippedTime() ||
+                                        // Check if today is within the recurring period (after event starts, before event ends)
+                                        (Date().strippedTime() > startDate && Date() <= eventEndDateTime){
+                                        NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
+                                            //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
+                                            EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
+                                                .tint(Color.black)
+                                                .padding(.horizontal)
+                                            
                                         }
                                         
                                     }
                                 }
-                            } else {
-                                noOrganizedEventsView
-                                    .offset(y:100)
                             }
-                        
+                        } else {
+                            noOrganizedEventsView
+                                .offset(y:100)
                         }
+                        
+                    }
+                    
+                }
+                if showUpcoming {
+                    VStack(alignment:.center,spacing:Theme.medium) {
+                        let organizerEvents = organizerEventsVM.organizerEvents
+                        if organizerEvents.count != 0 {
+                            ForEach(organizerEvents,id: \._id){ organizer in
+                                if let event = organizer.eventId {
+                                    if let startDate = event.startDate?.toDate()?.strippedTime(),
+                                       //if start date is in the future
+                                       startDate > Date().strippedTime()
+                                    /* eventEndDateTime < Date() */{
+                                        NavigationLink(value: ProfileNavigation.orgEventDetailPreEdit(event, unitVM.eventUnits.first?.unitId ?? UnitMock.instacne.unitA)) {
+                                            //mock data is passed for participant arguement here, since there's nothing to do with participant for an organizer
+                                            EventRow(event: event, eventParticipants: eventParticipants, unitVM: unitVM, participant:ParticipantMock.instance.participantA)
+                                                .tint(Color.black)
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        } else {
+                            noOrganizedEventsView
+                                .offset(y:100)
+                        }
+                        
+                    }
                     
                 }
             }
             
         } // end of VStack
         
-       
+        
         
         .refreshable {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 participantVM.fetchParticipant(id: userId)
-            //get all events based on userRole
-            if userRole == UserState.audience.rawValue {
-                self.participantEventsVM.fetchEvents(userId: userId)
-            } else if userRole == UserState.organizer.rawValue {
-                self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
-//                print("Organizer events fetched",organizerEventsVM.organizerEvents)
+                //get all events based on userRole
+                if userRole == UserState.audience.rawValue {
+                    self.participantEventsVM.fetchEvents(userId: userId)
+                } else if userRole == UserState.organizer.rawValue {
+                    self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                    //                print("Organizer events fetched",organizerEventsVM.organizerEvents)
+                }
             }
-        }
         }
         Spacer(minLength: 0)
             .onAppear(perform: {
                 if let userId = KeychainManager.shared.keychain.get("appUserId") {
                     participantVM.fetchParticipant(id: userId)
-                //get all events based on userRole
-                if userRole == UserState.audience.rawValue {
-                    self.participantEventsVM.fetchEvents(userId: userId)
-                } else {
-                    self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                    //get all events based on userRole
+                    if userRole == UserState.audience.rawValue {
+                        self.participantEventsVM.fetchEvents(userId: userId)
+                    } else {
+                        self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                    }
                 }
-            }
                 
-                })
+            })
     }
-    
-    
 }
 
 extension EventManager {

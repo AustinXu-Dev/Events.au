@@ -1,5 +1,5 @@
 {
-  "originHash" : "30a76e6c56628bb115d6ca0ea7108ed03a94451775bd239887ffa93ebc037455",
+  "originHash" : "2e6581b0bcd8bc54fe8c0f20c0e5ebb95da131318584d13932aab8f90414584b",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -58,7 +58,7 @@
     {
       "identity" : "googlesignin-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleSignIn-iOS.git",
+      "location" : "https://github.com/google/GoogleSignIn-iOS",
       "state" : {
         "revision" : "a7965d134c5d3567026c523e0a8a583f73b62b0d",
         "version" : "7.1.0"
@@ -161,6 +161,15 @@
       "state" : {
         "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
         "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "tocropviewcontroller",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TimOliver/TOCropViewController",
+      "state" : {
+        "revision" : "a634cb7cdfd580006e79a6e74e64417fe9e9783b",
+        "version" : "2.7.4"
       }
     }
   ],

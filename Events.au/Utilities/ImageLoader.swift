@@ -108,10 +108,15 @@ struct SmallRemoteImage: View {
         Group {
             if let image = imageLoader.image {
                 Image(uiImage: image)
+                //                    .resizable()
+                //                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                //                    .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
+                //                    .scaledToFit()
                     .resizable()
+                    .scaledToFill() // Ensures image fills frame while maintaining aspect ratio
+                    .frame(width: Theme.participantSquareImage, height: Theme.participantSquareImage)
                     .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                    .frame(width:Theme.participantSquareImage,height:Theme.participantSquareImage)
-                    .scaledToFit()
+                    .clipped()
 //                    .aspectRatio(contentMode: .fit) // Optional: maintain aspect ratio
             } else /*if imageLoader.image == nil && !imageLoader.url.isEmpty*/ {
                 // Handle the case where the image is not found

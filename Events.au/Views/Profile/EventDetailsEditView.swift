@@ -23,6 +23,7 @@ struct EventDetailsEditView: View {
     @State var from: String = ""
     @State var to: String = ""
     @State var description: String = ""
+    @State var coverImageUrl: String = ""
     
     @State var selectedOptionIndex: Int = 0
     @State var showDropDown: Bool = false
@@ -38,7 +39,16 @@ struct EventDetailsEditView: View {
     @State private var showConfirmationAlert: Bool = false
     @State private var alertMessage: String = ""
     @Environment(\.dismiss) var dismiss
-
+    
+    @State private var showImagePicker: Bool = false
+    @State private var avatarImage: UIImage?
+    
+    @StateObject var profileVM = GetOneUserByIdViewModel()
+    @State var isLoading: Bool = false
+    @State var showNotValidAlert: Bool = false
+    @State var errorMessage: String = ""
+    @State var showErrorAlert: Bool = false
+    
     init(event: EventModel, unit: UnitModel, path: Binding<[HomeNavigation]>, profilePath: Binding<[ProfileNavigation]>, selectedTab: Binding<Tab>) {
         self.event = event
         self.unit = unit
@@ -52,6 +62,7 @@ struct EventDetailsEditView: View {
         _from = State(initialValue: event.startTime ?? "")
         _to = State(initialValue: event.endTime ?? "")
         _description = State(initialValue: event.description ?? "No description")
+        _coverImageUrl = State(initialValue: event.coverImageUrl ?? "")
     }
     
     var body: some View {
@@ -71,15 +82,78 @@ struct EventDetailsEditView: View {
                         updateEventViewModel.endTime = to
                         updateEventViewModel.description = description
                         
-                        if let eventId = event._id {
-                            updateEventViewModel.updateEventBasicInfo(eventId: eventId, token: TokenManager.share.getToken() ?? "")
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                            alertMessage = "You successfully edited the event."
-                            showConfirmationAlert = true
+                        guard let userDetail = profileVM.userDetail else {
+                            alertMessage = "User details not found."
+                            showAlert = true
+                            return
                         }
                         
+                        let uid = userDetail._id ?? ""
+                        let email = userDetail.email ?? ""
                         
+                        
+                        if let newImage = avatarImage {
+                            updateEventViewModel.uploadImage(newImage) { result in
+                                switch result {
+                                case .success(let imageUrl):
+                                    updateEventViewModel.storeImageUrl(imageUrl: imageUrl, uid: uid, email: email) { result in
+                                        switch result {
+                                        case .success:
+                                            updateEventViewModel.retrieveImageUrl(uid: uid) { result in
+                                                switch result {
+                                                case .success(let storedImageUrl):
+                                                    updateEventViewModel.coverImageUrl = storedImageUrl
+                                                    if let eventId = event._id, !updateEventViewModel.coverImageUrl.isEmpty {
+                                                        updateEventViewModel.updateEventBasicInfo(eventId: eventId, token: TokenManager.share.getToken() ?? "")
+                                                    }
+                                                    DispatchQueue.main.async {
+                                                        withAnimation {
+                                                            isLoading = false
+                                                        }
+                                                        //showAlert = true
+                                                        alertMessage = "You successfully edited the event"
+                                                        showConfirmationAlert = true
+                                                    }
+                                                case .failure:
+                                                    DispatchQueue.main.async {
+                                                        withAnimation {
+                                                            isLoading = false
+                                                            errorMessage = "Failed to retrieve image URL."
+                                                            showErrorAlert = true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        case .failure:
+                                            DispatchQueue.main.async {
+                                                withAnimation {
+                                                    isLoading = false
+                                                    errorMessage = "Failed to store image URL."
+                                                    showErrorAlert = true
+                                                }
+                                            }
+                                        }
+                                    }
+                                case .failure:
+                                    DispatchQueue.main.async {
+                                        withAnimation {
+                                            isLoading = false
+                                            errorMessage = "Failed to upload image."
+                                            showErrorAlert = true
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            updateEventViewModel.coverImageUrl = coverImageUrl
+                            if let eventId = event._id {
+                                updateEventViewModel.updateEventBasicInfo(eventId: eventId, token: TokenManager.share.getToken() ?? "")
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                                alertMessage = "You successfully edited the event."
+                                showConfirmationAlert = true
+                            }
+                        }
                     }
                 }) {
                     Text("Save")
@@ -95,7 +169,6 @@ struct EventDetailsEditView: View {
                     Button("OK", role: .cancel) { }
                 }
                 .alert(alertMessage, isPresented: $showConfirmationAlert){
-                   
                     Button {
                         path = []
                         profilePath = []
@@ -104,9 +177,7 @@ struct EventDetailsEditView: View {
                     } label: {
                         Text("Ok")
                     }
-
                 }
-                
             }
             .navigationBarTitle("Event Details", displayMode: .inline)
             .toolbar {
@@ -115,7 +186,18 @@ struct EventDetailsEditView: View {
                         .imageScale(.large)
                 }
             }
-           
+        }
+        .fullScreenCover(isPresented: $showImagePicker) {
+            PhotoPicker(avatarImage: $avatarImage)
+        }
+        .onTapGesture {
+            UIApplication.shared.endEditing()
+        }
+        .onAppear{
+            if let userId = KeychainManager.shared.keychain.get("appUserId") {
+                //get user
+                profileVM.getOneUserById(id: userId)
+            }
         }
     }
     
@@ -143,19 +225,19 @@ struct EventDetailsEditView: View {
         
         return true
     }
-
+    
     private func isValidDateFormat(_ date: String) -> Bool {
         let dateRegex = "^\\d{2}-\\d{2}-\\d{4}$"
         let datePredicate = NSPredicate(format: "SELF MATCHES %@", dateRegex)
         return datePredicate.evaluate(with: date)
     }
-
+    
     private func isValidTimeFormat(_ time: String) -> Bool {
         let timeRegex = "^\\d{2}:\\d{2}$"
         let timePredicate = NSPredicate(format: "SELF MATCHES %@", timeRegex)
         return timePredicate.evaluate(with: time)
     }
-
+    
     
     private func isValidDate(_ date: String, format: String) -> Bool {
         let dateFormatter = DateFormatter()
@@ -173,7 +255,18 @@ struct EventDetailsEditView: View {
 extension EventDetailsEditView {
     private var eventImage: some View {
         HStack {
-            RemoteImage(url: event.coverImageUrl ?? "")
+            if let selectedImage = avatarImage {
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .frame(width: 361, height: 180)
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            } else {
+                RemoteImage(url: event.coverImageUrl ?? "")
+            }
+        }
+        .onTapGesture {
+            showImagePicker = true
         }
     }
     
