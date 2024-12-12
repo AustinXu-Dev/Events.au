@@ -36,7 +36,7 @@ struct EventParticipantManagementView: View {
                     
                     ParticipantManager(event: event ,showPending: $showPending, unit: unit, participantVM: participantVM, approvalVM: approvalVM)
                 }
-               
+                
             }
             
             .padding(.horizontal,Theme.large)

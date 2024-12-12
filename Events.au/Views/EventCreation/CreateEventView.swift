@@ -78,6 +78,16 @@ struct CreateEventView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack{
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        UIApplication.shared.endEditing()
+                        withAnimation {
+                            showDropDown = false
+                            showDateSheet = false
+                            showTimeSheet = false
+                        }
+                    }
                 ScrollView {
                     VStack(alignment: .center,spacing:Theme.defaultSpacing) {
                         
@@ -100,9 +110,11 @@ struct CreateEventView: View {
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height) // Make ScrollView span the full screen
                 .onTapGesture {
+                    UIApplication.shared.endEditing()
                     withAnimation {
                         showDropDown = false
                         showDateSheet = false
+                        showTimeSheet = false
                     }
                 }
                 .navigationBarBackButtonHidden()
@@ -165,8 +177,8 @@ extension CreateEventView{
             }
             Image(uiImage: avatarImage ?? UIImage(named: "select_an_image")!)
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 360, height: 160)
-                .scaledToFill()
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .onTapGesture {
                     showImagePicker = true
@@ -467,6 +479,7 @@ extension CreateEventView{
     }
 
 }
+
 
 
 #Preview {
