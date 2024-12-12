@@ -19,6 +19,9 @@ enum HomeNavigation: Hashable {
     case eventRegistration(EventModel)
     case attendeesList([ParticipantModel])
     case registrationSuccess
+    case reusableProfile(ParticipantModel)
+  case profileInfo(UserModel2)
+
 }
 
 enum CreateEventNavigation: Hashable{
@@ -27,8 +30,11 @@ enum CreateEventNavigation: Hashable{
 
 enum ProfileNavigation: Hashable{
     case profile
+  case reusableProfile(ParticipantModel)
+  case participantProfileInfo(UserModel2)
     case profileViewInfo(UserModel2)
     case eventDetail(EventModel,[ParticipantModel])
+  case attendeesList([ParticipantModel])
     case profileEditView(UserModel2)
     case profileEventDetail
     case orgEventDetailPreEdit(EventModel, UnitModel)

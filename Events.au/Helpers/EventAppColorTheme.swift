@@ -13,6 +13,5 @@ struct EventAppColorTheme {
 }
 
 extension Color {
-    static let eventBackground = EventAppColorTheme.button;
     static let eventDivider = EventAppColorTheme.divider;
 }

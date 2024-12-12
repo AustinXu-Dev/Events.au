@@ -37,7 +37,7 @@ struct CreatedSuccessView: View {
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(width: 131, height: 40)
-                    .background(Color.eventBackground)
+                    .background(Theme.tintColor)
                     .cornerRadius(10)
                 
             }

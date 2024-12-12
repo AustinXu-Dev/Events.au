@@ -12,7 +12,7 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
     
     @Published var allParticipants : [ParticipantModel] = []
     @Published var errorMessage : String = ""
-    
+  @Published var isLoading: Bool = false
     
     
     var approvedParticipants: [ParticipantModel] {
@@ -29,14 +29,18 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
      }
     
     func fetchParticipants(id:String) {
+      isLoading = true
         let eventParticipantsURL = GetParticipantByEventId(id: id)
         eventParticipantsURL.execute(getMethod:"GET",token: nil) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedParticipants):
                     self?.allParticipants = fetchedParticipants.message
+                  self?.isLoading = false
                 case .failure(let error):
                     self?.errorMessage = "Error fetching the participants of an event. \(error.localizedDescription)"
+                  self?.isLoading = false
+
                 }
             }
         }

@@ -57,4 +57,10 @@ extension View {
         self.modifier(FontModifier(style: Theme.mediumFontStyle))
     }
     
+  
+  func hideKeyboard() {
+          UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+      }
+      
+  
 }

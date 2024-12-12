@@ -58,169 +58,206 @@ struct SignupForm: View {
     
     @State private var selectedGenderType: String = ""
     @State private var selectedGenderId : Int?
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            VStack {
-                Image(Theme.logo)
-                      .resizable()
-                      .frame(width: 100, height: 100)
-                
-                HStack(spacing: 0) {
-                    Text("A")
-                        .foregroundColor(Color.eventBackground)
-                    Text("vents")
-                        .foregroundColor(Theme.secondaryTextColor)
-                }
-//                .applyLabelFont()
-                .font(.system(size: 30))
-                .bold()
-            }
-            .padding(.bottom, 20)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(EventAppAutheticationValue.name)
-                    .font(.headline)
-                    .padding(.horizontal, 0)
-                
-                TextField(EventAppAutheticationValue.namePlaceHolder, text: $name)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .padding()
-                    .frame(width: 361, height: 41.49)
-                    .background(Color.clear)
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            }
-            .padding(.top, 10)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(EventAppAutheticationValue.contact)
-                    .font(.headline)
-                    .padding(.horizontal, 0)
-                
-                TextField(EventAppAutheticationValue.contactPlaceHolder, text: $contact)
-                    .autocapitalization(.none)
-                    .padding()
-                    .frame(width: 361, height: 41.49)
-                    .background(Color.clear)
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            }
-            .padding(.top, 4)
-            
-//            VStack(alignment: .leading, spacing: 4) {
-//                Text(EventAppAutheticationValue.faculty)
-//                    .font(.headline)
-//                    .padding(.horizontal, 0)
-//                
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(Color("text_color_grey"))
-//                    .fill(.white)
-//                    .overlay(
-//                        Group {
-//                            HStack {
-//                                TextField("Select Faculty", text: $selectedUnitName)
-//                                    .disabled(true)
-//                                Spacer()
-//                                Menu {
-//                                    ForEach(allUnitsViewModel.units, id: \.id){ unit in
-//                                        Button(unit.name ?? "No Unit Found") {
-//                                            selectedUnitId = unit.id
-//                                            selectedUnitName = unit.name ?? ""
-//                                        }
-//                                    }
-//                                } label: {
-//                                    Image(systemName: "arrowtriangle.down.fill")
-//                                        .resizable()
-//                                        .frame(width: 10, height: 10)
-//                                        .foregroundColor(.black)
-//                                }
-//                            }
-//                            .padding()
-////                            .onTapGesture {
-////                                allUnitsViewModel.fetchUnits()
-////                            }
-//                        }
-//                            .tint(Color("text_color_grey"))
-//                    )
-//                    .frame(width: 361, height: 41.49)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .stroke(Color.gray, lineWidth: 1)
-//                    )
-//            }
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(EventAppAutheticationValue.gender)
-                    .font(.headline)
-                    .padding(.horizontal, 0)
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color("text_color_grey"))
-                    .fill(.white)
-                    .overlay(
-                        Group {
-                            HStack {
-                                TextField("Select Gender", text: $selectedGenderType)
-                                    .disabled(true)
-                                Spacer()
-                                Menu {
-                                    ForEach(genders, id: \.id) { gender in
-                                        Button(gender.type) {
-                                            selectedGenderId = gender.id
-                                            selectedGenderType = gender.type
-                                        }
-                                    }
-                                } label: {
-                                    Image(systemName: "arrowtriangle.down.fill")
-                                        .resizable()
-                                        .frame(width: 10, height: 10)
-                                        .foregroundColor(.black)
-                                }
-                            }
-                            .padding()
-                        }
-                            .tint(Color("text_color_grey"))
-                    )
-                    .frame(width: 361, height: 41.49)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            }
-            
-            HStack {
-                Spacer()
-                Button(action: {
-                    if email.isEmpty && pass.isEmpty {
-                        signUpWithGoogle()
-                    } else {
-                        signUpWithEmailPassword()
-                    }
-                }) {
-                    Text("Sign Up")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .frame(height: 36)
-                        .background(Color.eventBackground)
-                        .cornerRadius(8)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 8)
-            }
+  @Environment(\.colorScheme) var colorMode
 
-            
-            Spacer()
+  var body: some View {
+    ZStack {
+      colorMode == .light ? Color.white : Color.black
+    VStack {
+      Spacer()
+      VStack {
+        Image(Theme.logo)
+          .resizable()
+          .frame(width: 100, height: 100)
+        
+        HStack(spacing: 0) {
+          Text("A")
+            .foregroundColor(Theme.tintColor)
+          Text("vents")
+            .foregroundColor(Theme.secondaryTextColor)
         }
+        //                .applyLabelFont()
+        .font(.system(size: 30))
+        .bold()
+      }
+      .padding(.bottom, 20)
+      
+      VStack(alignment: .leading, spacing: 4) {
+        Text(EventAppAutheticationValue.name)
+          .font(.headline)
+          .padding(.horizontal, 0)
+        
+        TextField(EventAppAutheticationValue.namePlaceHolder, text: $name)
+          .keyboardType(.emailAddress)
+          .autocapitalization(.none)
+          .padding()
+          .frame(width: 361, height: 41.49)
+          .background(Color.clear)
+          .cornerRadius(8)
+          .overlay(
+            RoundedRectangle(cornerRadius: 8)
+              .stroke(Color.gray, lineWidth: 1)
+          )
+      }
+      .padding(.top, 10)
+      
+      VStack(alignment: .leading, spacing: 4) {
+        Text(EventAppAutheticationValue.contact)
+          .font(.headline)
+          .padding(.horizontal, 0)
+        
+        TextField(EventAppAutheticationValue.contactPlaceHolder, text: $contact)
+          .autocapitalization(.none)
+          .padding()
+          .frame(width: 361, height: 41.49)
+          .background(Color.clear)
+          .cornerRadius(8)
+          .overlay(
+            RoundedRectangle(cornerRadius: 8)
+              .stroke(Color.gray, lineWidth: 1)
+          )
+      }
+      .padding(.top, 4)
+      
+      //            VStack(alignment: .leading, spacing: 4) {
+      //                Text(EventAppAutheticationValue.faculty)
+      //                    .font(.headline)
+      //                    .padding(.horizontal, 0)
+      //
+      //                RoundedRectangle(cornerRadius: 10)
+      //                    .stroke(Color("text_color_grey"))
+      //                    .fill(.white)
+      //                    .overlay(
+      //                        Group {
+      //                            HStack {
+      //                                TextField("Select Faculty", text: $selectedUnitName)
+      //                                    .disabled(true)
+      //                                Spacer()
+      //                                Menu {
+      //                                    ForEach(allUnitsViewModel.units, id: \.id){ unit in
+      //                                        Button(unit.name ?? "No Unit Found") {
+      //                                            selectedUnitId = unit.id
+      //                                            selectedUnitName = unit.name ?? ""
+      //                                        }
+      //                                    }
+      //                                } label: {
+      //                                    Image(systemName: "arrowtriangle.down.fill")
+      //                                        .resizable()
+      //                                        .frame(width: 10, height: 10)
+      //                                        .foregroundColor(.black)
+      //                                }
+      //                            }
+      //                            .padding()
+      ////                            .onTapGesture {
+      ////                                allUnitsViewModel.fetchUnits()
+      ////                            }
+      //                        }
+      //                            .tint(Color("text_color_grey"))
+      //                    )
+      //                    .frame(width: 361, height: 41.49)
+      //                    .overlay(
+      //                        RoundedRectangle(cornerRadius: 8)
+      //                            .stroke(Color.gray, lineWidth: 1)
+      //                    )
+      //            }
+      
+      VStack(alignment: .leading, spacing: 4) {
+        Text(EventAppAutheticationValue.gender)
+          .font(.headline)
+          .padding(.horizontal, 0)
+        
+        Menu {
+            ForEach(genders, id: \.id) { gender in
+                Button(gender.type) {
+                    selectedGenderId = gender.id
+                    selectedGenderType = gender.type
+                }
+            }
+        } label: {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white)
+                .overlay(
+                    HStack {
+                        Text(selectedGenderType.isEmpty ? "Select Gender" : selectedGenderType)
+                            .foregroundColor(selectedGenderType.isEmpty ? .gray : .black)
+                        Spacer()
+                        Image(systemName: "arrowtriangle.down.fill")
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                            .foregroundColor(.black)
+                    }
+                    .padding()
+                )
+                .frame(width: 361, height: 41.49)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+        }
+
+        
+//        RoundedRectangle(cornerRadius: 10)
+//          .stroke(Color("text_color_grey"))
+//          .fill(.white)
+//          .overlay(
+//            Group {
+//              HStack {
+//                TextField("Select Gender", text: $selectedGenderType)
+//                  .disabled(true)
+//                Spacer()
+//                Menu {
+//                  ForEach(genders, id: \.id) { gender in
+//                    Button(gender.type) {
+//                      selectedGenderId = gender.id
+//                      selectedGenderType = gender.type
+//                    }
+//                  }
+//                } label: {
+//                  Image(systemName: "arrowtriangle.down.fill")
+//                    .resizable()
+//                    .frame(width: 10, height: 10)
+//                    .foregroundColor(.black)
+//                }
+//              }
+//              .padding()
+//            }
+//              .tint(Color("text_color_grey"))
+//          )
+//          .frame(width: 361, height: 41.49)
+//          .overlay(
+//            RoundedRectangle(cornerRadius: 8)
+//              .stroke(Color.gray, lineWidth: 1)
+//          )
+      }
+      
+      HStack {
+        Spacer()
+        Button(action: {
+          if email.isEmpty && pass.isEmpty {
+            signUpWithGoogle()
+          } else {
+            signUpWithEmailPassword()
+          }
+        }) {
+          Text("Sign Up")
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding(.horizontal, 16)
+            .frame(height: 36)
+            .background(Theme.tintColor)
+            .cornerRadius(8)
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 8)
+      }
+      
+      
+      Spacer()
+    }
+  }
+    .onTapGesture(perform: {
+      self.hideKeyboard()
+    })
         .alert("Sign Up", isPresented: $showAlert) {
             NavigationLink(value: AuthNavigation.confirmation) {
                 Text("Ok")

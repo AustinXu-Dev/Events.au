@@ -21,58 +21,52 @@ struct EventDetail: View {
     let approvedParticipants : [ParticipantModel]
     @State var isAllowedToJoin: Bool = false
     @State var showAlert: Bool = false
+  var comingFromProfileTab: Bool
     
-    var body: some View {
-        
-        //MARK: - for consideration :
-        ScrollView(.vertical,showsIndicators: false) {
-            if eventUnitsVM.loader {
-                ProgressView()
-            } else {
-                VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
-                    if let eventImage = event.coverImageUrl {
-                        RemoteImage(url:eventImage)
-                    }
-                    details
-                    Divider()
-                        .foregroundStyle(Theme.tintColor)
-                }
-                VStack(alignment:.center) {
-                    dateAndLocation
-                }
-                VStack(alignment:.leading) {
-                    if approvedParticipants.count > 0 {
-                        NavigationLink {
-                            AttendeesListView(approvedParticipants: approvedParticipants)
-                        } label: {
-                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                                .foregroundStyle(Theme.backgroundColor)
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                                .frame(height: 80)
-                                .applyThemeDoubleShadow()
-                                .overlay (
-                                    HStack {
-                                        attendees
-                                            .tint(Theme.secondaryTextColor)
-                                        Spacer()
-                                    }
-                                        .padding()
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                )
-                        }
-                    } // end of condition
-                    
-                    if participantsVM.participantExists(userId: user._id ?? "") {
-                        alreadyRegisteredButton
-                            .padding(.vertical, 8)
-                    } else {
-                        registerButton
-                            .padding(.vertical, 8)
-                    }
-                }
-            }
+  var body: some View {
+    
+    ZStack {
+      Color.white
+    ScrollView(.vertical,showsIndicators: false) {
+      if eventUnitsVM.loader && participantsVM.isLoading {
+        ProgressView()
+      } else {
+        VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
+          if let eventImage = event.coverImageUrl {
+            RemoteImage(url:eventImage)
+          }
+          details
+          Divider()
+            .foregroundStyle(Theme.tintColor)
         }
-        .padding(.horizontal,Theme.large)
+        VStack(alignment:.center) {
+          dateAndLocation
+        }
+        VStack(alignment:.leading) {
+          if approvedParticipants.count > 0 {
+            if !comingFromProfileTab {
+              NavigationLink(value: HomeNavigation.attendeesList(approvedParticipants)) {
+                attendeesBox
+              }
+            } else {
+              NavigationLink(value: ProfileNavigation.attendeesList(approvedParticipants)) {
+                attendeesBox
+              }
+            }
+          } // end of condition
+          
+          if participantsVM.participantExists(userId: user._id ?? "") {
+            alreadyRegisteredButton
+              .padding(.vertical, 8)
+          } else {
+            registerButton
+              .padding(.vertical, 8)
+          }
+        }
+      }
+    }
+    .padding(.horizontal,Theme.large)
+  }
         .onAppear(perform: {
             if let eventId = event._id {
                 //fetching units by eventID
@@ -189,11 +183,27 @@ extension EventDetail {
             
         }
         
-        
-        
+    
         
     }
-    
+  
+  private var attendeesBox: some View {
+    RoundedRectangle(cornerRadius: Theme.cornerRadius)
+      .foregroundStyle(Theme.backgroundColor)
+      .frame(maxWidth: .infinity,alignment: .leading)
+      .frame(height: 80)
+      .applyThemeDoubleShadow()
+      .overlay (
+        HStack {
+          attendees
+            .tint(Theme.secondaryTextColor)
+          Spacer()
+        }
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
+      )
+  }
+  
     private var registerButton : some View {
 //        NavigationLink(value: HomeNavigation.eventRegistration(event)) {
 //            
@@ -244,13 +254,5 @@ extension EventDetail {
 }
 
 
-#Preview {
-    NavigationStack {
-        EventDetail(user: UserMock.instance.user3, event: EventMock.instacne.eventA, path: .constant([]), profilePath: .constant([]), selectedTab: .constant(.home), participantsVM: GetParticipantsByEventIdViewModel(), approvedParticipants: ParticipantMock.instance.participants)
-            .preferredColorScheme(.dark)
-    }
-    .padding(.horizontal,Theme.large)
-    
-}
 
 

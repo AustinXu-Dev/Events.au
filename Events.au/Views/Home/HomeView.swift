@@ -92,15 +92,19 @@ struct HomeView: View {
                 switch screen {
                 case .eventDetail(let currentEvent, _):
                     if let user = profileVM.userDetail {
-                        EventDetail(user: user, event: currentEvent, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participantsVM: participantsVM, approvedParticipants: participantsVM.approvedParticipants
+                      EventDetail(user: user, event: currentEvent, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participantsVM: participantsVM, approvedParticipants: participantsVM.approvedParticipants, comingFromProfileTab: false
                         )
                     }
                 case .attendeesList(_):
-                    AttendeesListView(approvedParticipants: participantsVM.approvedParticipants)
+                  AttendeesListView(path:$path, profilePath:$profilePath, selectedTab:$selectedTab, approvedParticipants: participantsVM.approvedParticipants, comingFromProfileTab: false)
                 case .eventRegistration(let currentEvent):
                     EventRegistrationView(event: currentEvent, path: $path, selectedTab: $selectedTab)
                 case .registrationSuccess:
                     EventRegistrationSuccessView(path: $path, selectedTab: $selectedTab)
+                case .reusableProfile(let participant):
+                  ReusableProfileView(path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participant: participant, isComingFromProfile: false)
+                case .profileInfo(let user):
+                  ReusableProfileInfoView(path: $path, selectedTab: $selectedTab, user: user)
                 default:
                     Text("Navigation Crashed")
                 }
@@ -117,15 +121,19 @@ struct HomeView: View {
                 dismissButton: .cancel(Text("OK")))
         }
         .alert(isPresented: $authVM.tokenIsExpired) {
-            Alert(
-                title: Text("Session Expired"),
-                message: Text("Your session has expired. Please sign in again."),
-                dismissButton: .default(Text("Sign In Again")) {
-                    authVM.signOutWithGoogle()
-                }
-            )
+          Alert(
+            title: Text("Session Expired"),
+            message: Text("Your session has expired. Please sign in again."),
+            dismissButton: .default(Text("Sign In Again")) {
+              authVM.signOutWithGoogle()
+            }
+          )
         }
-        
+        .refreshable {
+          eventVM.fetchEvents()
+        }
+       
+
         .onAppear(perform: {
             //            if userRole == nil {
             //                userRole = UserState.audience.rawValue
