@@ -135,6 +135,7 @@ struct CreateEventView: View {
                 
                 if isLoading{
                     LoadingView()
+                    .zIndex(3)
                 }
                 
             }
@@ -425,7 +426,8 @@ extension CreateEventView{
                                         withAnimation {
                                             isLoading = false
                                         }
-                                        showAlert = true
+                                      // showAlert = true
+                                      path.append("Congrats")
                                     }
                                 case .failure:
                                     DispatchQueue.main.async {
@@ -467,11 +469,11 @@ extension CreateEventView{
                 }
                 .foregroundStyle(Theme.tintColor)
         }
-        .alert("Your event is created successfully.", isPresented: $showAlert) {
-            NavigationLink(value: "Congrats") {
-                Text("OK")
-            }
-        }
+//        .alert("Your event is created successfully.", isPresented: $showAlert) {
+//            NavigationLink(value: "Congrats") {
+//                Text("OK")
+//            }
+//        }
         .alert(errorMessage, isPresented: $showErrorAlert) {
             Button("OK", role: .cancel) {}
         }

@@ -52,7 +52,7 @@ struct EventRegistrationView: View {
                     
                 }.frame(width: geometry.size.width, height: geometry.size.height)
                     .navigationTitle("Register Now")
-                if isLoading { LoadingView() }
+              if isLoading { LoadingView().zIndex(3) }
                 
                     
             }
@@ -127,7 +127,8 @@ extension EventRegistrationView{
                     //MARK: -API POST LOGIC HERE
                     //If post is success set the isloading to false to show registration success
                     isLoading = false
-                    showAlert = true
+                 //   showAlert = true
+                  path.append(HomeNavigation.registrationSuccess)
                 }
             }
         }, label: {
@@ -140,11 +141,11 @@ extension EventRegistrationView{
                 }
                 .foregroundStyle(Theme.tintColor)
         })
-        .alert("Your registration is successful.", isPresented: $showAlert) {
-            NavigationLink(value: HomeNavigation.registrationSuccess) {
-                Text("OK")
-            }
-        }
+//        .alert("Your registration is successful.", isPresented: $showAlert) {
+//            NavigationLink(value: HomeNavigation.registrationSuccess) {
+//                Text("OK")
+//            }
+//        }
     }
     
     private var pollField: some View{
