@@ -51,11 +51,6 @@ struct HomeView: View {
                         ProgressView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .tint(Theme.tintColor)
-                    } else if filteredEvents.count == 0 {
-                        Text("No events \n in the meantime")
-                            .multilineTextAlignment(.center)
-                            .applyLabelFont()
-                            .foregroundStyle(Theme.secondaryTextColor)
                     } else {
                         eventsScrollView
                             .padding(.horizontal,Theme.large)
