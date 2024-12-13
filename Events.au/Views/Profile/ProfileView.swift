@@ -100,7 +100,7 @@ struct ProfileView: View {
                     Text("Event Detail")
                 case .eventDetail(let event, _):
                     if let user = profileVM.userDetail {
-                        EventDetail(user: user, event: event, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participantsVM: participantVM, approvedParticipants: participantVM.approvedParticipants)
+                      EventDetail(user: user, event: event, path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participantsVM: participantVM, approvedParticipants: participantVM.approvedParticipants, comingFromProfileTab: true)
                     }
                 case .orgEventDetailPreEdit(let event, let unit):
                     EventPreEditView(event: event, unit: unit, path: $path, profilePath: $profilePath, participantVM: participantVM, selectedTab: $selectedTab)
@@ -108,6 +108,12 @@ struct ProfileView: View {
                     EventDetailsEditView(event: event, unit: unit, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
                 case .settingView:
                     SettingView()
+                case .reusableProfile(let participant):
+                  ReusableProfileView(path: $path, profilePath: $profilePath, selectedTab: $selectedTab, participant: participant, isComingFromProfile: true)
+                case .participantProfileInfo(let user):
+                  ReusableProfileInfoView(path: $path, selectedTab: $selectedTab, user: user)
+                case .attendeesList(let participants):
+                  AttendeesListView(path:$path, profilePath:$profilePath, selectedTab:$selectedTab, approvedParticipants: participants, comingFromProfileTab: true)
                 default:
                     Text("Navigation Crashed")
                 }

@@ -67,7 +67,7 @@ struct UserModel2: Identifiable, Codable, Hashable {
     var id: String? { _id }
     let _id,fId, firstName,email: String?
     let phone : Int?
-//    let gender: String?
+    let age: Int?
     let isOrganizer : Bool?
 }
 

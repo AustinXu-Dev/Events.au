@@ -33,6 +33,7 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
     }
 
     func fetchParticipants(id:String) {
+      isLoading = true
         let eventParticipantsURL = GetParticipantByEventId(id: id)
         self.isLoading = true
         eventParticipantsURL.execute(getMethod:"GET",token: nil) { [weak self] result in

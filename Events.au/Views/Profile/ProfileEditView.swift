@@ -21,7 +21,8 @@ struct ProfileEditView: View {
     @StateObject var updateUserViewModel = UpdateUserViewModel()
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    
+    @Environment(\.colorScheme) var colorMode
+
     let user: UserModel2
     
     var body: some View {
@@ -99,6 +100,44 @@ struct ProfileEditView: View {
             
             Spacer()
         }
+      }
+      .padding()
+      .cornerRadius(10)
+      .padding(.horizontal)
+      
+      Button(action: {
+        if validateFields() {
+          updateUserViewModel.firstName = firstName
+          updateUserViewModel.lastName = lastName
+          updateUserViewModel.phone = phone
+          //                    updateUserViewModel.email = email
+          if let userId = KeychainManager.shared.keychain.get("appUserId") {
+            updateUserViewModel.updateUser(id: userId, token: TokenManager.share.getToken() ?? "")
+          }
+          self.dismiss()
+        }
+      }) {
+        Text("Save")
+          .font(.headline)
+          .foregroundColor(.white)
+          .padding()
+          .frame(maxWidth: .infinity)
+          .frame(height: 40)
+          .background(Theme.tintColor)
+          .cornerRadius(10)
+          .padding(.horizontal)
+      }
+      .alert(isPresented: $showAlert) {
+        Alert(title: Text("Information Required"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+      }
+      
+      Spacer()
+    }
+  }
+    .onTapGesture {
+      self.hideKeyboard()
+    }
+    
     }
     
     private func validateFields() -> Bool {

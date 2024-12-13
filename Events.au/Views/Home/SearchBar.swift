@@ -37,7 +37,7 @@ struct SearchBar: View {
                        }
                    )
 //                   .padding(.horizontal, 10)
-
+              /*
                Button(action: {
                    isFiltering.toggle()
                }) {
@@ -52,6 +52,7 @@ struct SearchBar: View {
 //                       .padding(.trailing, 10)
                    
                }
+             */
            }
            .padding(.vertical, 10)
           // .background(Color.white) // Removed the shadow to eliminate grey lines

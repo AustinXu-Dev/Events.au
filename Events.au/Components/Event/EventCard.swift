@@ -51,7 +51,11 @@ extension EventCard {
            
             //MARK: - only pass the approved participant to child view
           //  EventParticipants(participants: participantsVM.approvedParticipants, participantStatus: "joining")
-            
+          Text(event.location ?? "")
+            .applyHeadingFont()
+            .lineLimit(1)
+            .truncationMode(.tail)
+          
             
             Spacer()
             if let startDate = event.startDate?.toDate()?.dayWithMonth(), let startTime = event.startTime, let endTime = event.endTime {

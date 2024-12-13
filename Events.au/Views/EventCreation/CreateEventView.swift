@@ -135,6 +135,7 @@ struct CreateEventView: View {
                 
                 if isLoading{
                     LoadingView()
+                    .zIndex(3)
                 }
                 
             }
@@ -383,7 +384,7 @@ extension CreateEventView{
     private var nextButton: some View {
         Button {
             // One-line validation check for all required fields
-            guard !name.isEmpty && !description.isEmpty && !startDateValue.isEmpty && !endDateValue.isEmpty && !startTimeValue.isEmpty && !endTimeValue.isEmpty && !location.isEmpty && !rules.isEmpty else {
+            guard !name.isEmpty && !description.isEmpty && !startDateValue.isEmpty && !endDateValue.isEmpty && !startTimeValue.isEmpty && !endTimeValue.isEmpty && !location.isEmpty else {
                 errorMessage = "Please fill in all required fields."
                 showErrorAlert = true
                 return
@@ -425,7 +426,8 @@ extension CreateEventView{
                                         withAnimation {
                                             isLoading = false
                                         }
-                                        showAlert = true
+                                      // showAlert = true
+                                      path.append("Congrats")
                                     }
                                 case .failure:
                                     DispatchQueue.main.async {
@@ -467,11 +469,11 @@ extension CreateEventView{
                 }
                 .foregroundStyle(Theme.tintColor)
         }
-        .alert("Your event is created successfully.", isPresented: $showAlert) {
-            NavigationLink(value: "Congrats") {
-                Text("OK")
-            }
-        }
+//        .alert("Your event is created successfully.", isPresented: $showAlert) {
+//            NavigationLink(value: "Congrats") {
+//                Text("OK")
+//            }
+//        }
         .alert(errorMessage, isPresented: $showErrorAlert) {
             Button("OK", role: .cancel) {}
         }

@@ -108,6 +108,26 @@ struct UserProfileAvatar : View {
     }
 }
 
+struct ParticipantProfileAvatar : View {
+  let participant : ParticipantModel
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color.gray)
+                .scaledToFill()
+                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
+                .overlay (
+                  Text(participant.userId?.firstName?.prefix(1) ?? "U")
+                        .font(.system(size: 32))
+                        .foregroundColor(.white)
+                )
+        }
+        
+
+        
+    }
+}
+
 
 struct UserProfileDetailAvatar : View {
     let user: UserModel2

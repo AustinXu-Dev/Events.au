@@ -24,13 +24,35 @@ struct EventDetail: View {
     @State private var currentUserId: String? = nil
     @State private var isUserParticipant: Bool = false
     @State private var isUserPending: Bool = false
+
+  var comingFromProfileTab: Bool
+
     
-    var body: some View {
-        
-        //MARK: - for consideration :
-        ScrollView(.vertical,showsIndicators: false) {
-            if eventUnitsVM.loader {
-                ProgressView()
+  var body: some View {
+    
+    ZStack {
+      Color.white
+    ScrollView(.vertical,showsIndicators: false) {
+      if eventUnitsVM.loader && participantsVM.isLoading {
+        ProgressView()
+      } else {
+        VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
+          if let eventImage = event.coverImageUrl {
+            RemoteImage(url:eventImage)
+          }
+          details
+          Divider()
+            .foregroundStyle(Theme.tintColor)
+        }
+        VStack(alignment:.center) {
+          dateAndLocation
+        }
+        VStack(alignment:.leading) {
+          if approvedParticipants.count > 0 {
+            if !comingFromProfileTab {
+              NavigationLink(value: HomeNavigation.attendeesList(approvedParticipants)) {
+                attendeesBox
+              }
             } else {
                 VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
                     if let eventImage = event.coverImageUrl {
@@ -79,9 +101,18 @@ struct EventDetail: View {
                             .padding(.vertical, 8)
                     }
                 }
+
+              NavigationLink(value: ProfileNavigation.attendeesList(approvedParticipants)) {
+                attendeesBox
+              }
+
             }
+          } 
         }
-        .padding(.horizontal,Theme.large)
+      }
+    }
+    .padding(.horizontal,Theme.large)
+  }
         .onAppear(perform: {
             if let eventId = event._id {
                 eventUnitsVM.getUnitsByEvent(id: eventId)
@@ -203,7 +234,24 @@ extension EventDetail {
             
         }
     }
-    
+  
+  private var attendeesBox: some View {
+    RoundedRectangle(cornerRadius: Theme.cornerRadius)
+      .foregroundStyle(Theme.backgroundColor)
+      .frame(maxWidth: .infinity,alignment: .leading)
+      .frame(height: 80)
+      .applyThemeDoubleShadow()
+      .overlay (
+        HStack {
+          attendees
+            .tint(Theme.secondaryTextColor)
+          Spacer()
+        }
+          .padding()
+          .frame(maxWidth: .infinity, alignment: .leading)
+      )
+  }
+  
     private var registerButton : some View {
         Button {
             if let phNo = user.phone{
@@ -258,7 +306,6 @@ extension EventDetail {
         }
         .disabled(true)
     }
-
     
     private var alreadyRegisteredButton : some View {
         Button(action: {
