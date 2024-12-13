@@ -64,19 +64,19 @@ struct EventDetail: View {
                                 )
                         }
                     }
-                    if participantsVM.isLoading {
-                        ProgressView()
+                }
+                if participantsVM.isLoading {
+                    ProgressView()
+                } else {
+                    if isUserPending {
+                        pendingButton
+                            .padding(.vertical, 8)
+                    } else if isUserParticipant {
+                        alreadyRegisteredButton
+                            .padding(.vertical, 8)
                     } else {
-                        if isUserPending {
-                            pendingButton
-                                .padding(.vertical, 8)
-                        } else if isUserParticipant {
-                            alreadyRegisteredButton
-                                .padding(.vertical, 8)
-                        } else {
-                            registerButton
-                                .padding(.vertical, 8)
-                        }
+                        registerButton
+                            .padding(.vertical, 8)
                     }
                 }
             }
@@ -228,33 +228,54 @@ extension EventDetail {
         }
     }
     
-    private var pendingButton : some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-            Text("Request Pending")
-                .applyButtonFont()
-                .foregroundStyle(Theme.primaryTextColor)
-                .padding(.horizontal,Theme.large)
-                .frame(maxWidth: .infinity)
-                .frame(height: 40)
-                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                .foregroundStyle(Theme.tintColor)
+    //    private var pendingButton : some View {
+    //        ZStack {
+    //            RoundedRectangle(cornerRadius: Theme.cornerRadius)
+    //            Text("Request Pending")
+    //                .applyButtonFont()
+    //                .foregroundStyle(Theme.primaryTextColor)
+    //                .padding(.horizontal,Theme.large)
+    //                .frame(maxWidth: .infinity)
+    //                .frame(height: 40)
+    //                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius).fill(Color.gray.opacity(0.3)))
+    //                .foregroundStyle(Color.white)
+    //        }
+    //    }
+    private var pendingButton: some View {
+        Button(action: {
+            
+        }) {
+            ZStack {
+                RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                    .fill(Theme.tintColor.opacity(0.5))
+                Text("Request Pending")
+                    .applyButtonFont()
+                    .foregroundStyle(Theme.primaryTextColor)
+                    .padding(.horizontal, Theme.large)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+            }
         }
+        .disabled(true)
     }
 
     
     private var alreadyRegisteredButton : some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-            Text("Already Registered")
-                .applyButtonFont()
-                .foregroundStyle(Theme.primaryTextColor)
-                .padding(.horizontal,Theme.large)
-                .frame(maxWidth: .infinity)
-                .frame(height: 40)
-                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                .foregroundStyle(Theme.tintColor)
+        Button(action: {
+            
+        }) {
+            ZStack {
+                RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                    .fill(Theme.tintColor.opacity(0.5))
+                Text("Already Registered")
+                    .applyButtonFont()
+                    .foregroundStyle(Theme.primaryTextColor)
+                    .padding(.horizontal, Theme.large)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+            }
         }
+        .disabled(true)
     }
 }
 
