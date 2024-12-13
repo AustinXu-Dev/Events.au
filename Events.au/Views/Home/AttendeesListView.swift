@@ -140,4 +140,3 @@ struct SearchBarAttendee: UIViewRepresentable {
     }
 }
 
-

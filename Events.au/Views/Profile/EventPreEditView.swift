@@ -50,9 +50,6 @@ extension EventPreEditView {
     
     private var eventImage : some View {
         RemoteImage(url: event.coverImageUrl ?? "no_image")
-//        Image("event_details")
-//            .resizable()
-//            .frame(width: Theme.eventImageWidth,height: Theme.eventImageHeight)
     }
     
     private var eventDetails : some View {
@@ -68,10 +65,6 @@ extension EventPreEditView {
     }
     
     private var toolBarPencil : some View {
-//        NavigationLink(destination: EventDetailsEditView(event: event, unit: UnitMock.instacne.unitA,path: $path,profilePath: $profilePath,selectedTab: $selectedTab)) {
-//            Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
-//                .frame(width:Theme.iconWidth,height:Theme.iconHeight)
-//        }
         NavigationLink(value: ProfileNavigation.orgEventDetailEditView(event, unit)) {
             Image(colorScheme == .light ? Theme.lightModePencil : Theme.darkModePencil)
                 .frame(width:Theme.iconWidth,height:Theme.iconHeight)

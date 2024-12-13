@@ -13,7 +13,6 @@ enum Tab {
 }
 
 enum HomeNavigation: Hashable {
-    // Dummy enum for testing
     case home
     case eventDetail(EventModel,[ParticipantModel])
     case eventRegistration(EventModel)

@@ -68,21 +68,21 @@ struct EventParticipants: View {
     }
 }
 
-struct EventParticipants_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            EventParticipants(participants: ParticipantMock.instance.participants, participantStatus: "joining")
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.light)
-                .padding()
-            
-            EventParticipants(participants: ParticipantMock.instance.participants,participantStatus: "joining")
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-                .padding()
-        }
-    }
-}
+//struct EventParticipants_Previews : PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            EventParticipants(participants: ParticipantMock.instance.participants, participantStatus: "joining")
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.light)
+//                .padding()
+//            
+//            EventParticipants(participants: ParticipantMock.instance.participants,participantStatus: "joining")
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.dark)
+//                .padding()
+//        }
+//    }
+//}
 
 
 //if let profileURL = photoURL {

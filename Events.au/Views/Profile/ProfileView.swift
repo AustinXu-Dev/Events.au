@@ -30,68 +30,66 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationStack {
-          VStack(spacing:Theme.defaultSpacing) {
-            
-            if roleSwitched {
-              ReusableLoader(loaderText: "Switching Roles", isLoading: $isLoading, textLoader:$textLoader)
-            } else {
-              ScrollView(.vertical,showsIndicators: false){
-                VStack(alignment:.leading,spacing: Theme.defaultSpacing) {
-                headerProfile
-                if let userName = profileVM.userDetail?.firstName {
-                  HStack {
-                    Text(userName)
-                      .applyProfileNameFont()
-                    Spacer()
-                    if let user = profileVM.userDetail {
-                      // MARK: - dispaly this row if user isn't organizer
-                      if let userIsOrganizer = user.isOrganizer {
-                        if !userIsOrganizer {
-                          if let userModel = profileVM.userDetail{
-                            NavigationLink(value: ProfileNavigation.profileViewInfo(userModel)) {
-                              Image(Theme.profileEditButton)
-                                .frame(width:8,height:8)
-                                .fixedSize(horizontal: true, vertical: false)
-                                .padding(.trailing,Theme.large)
-
+            VStack(spacing:Theme.defaultSpacing) {
+                
+                if roleSwitched {
+                    ReusableLoader(loaderText: "Switching Roles", isLoading: $isLoading, textLoader:$textLoader)
+                } else {
+                    ScrollView(.vertical,showsIndicators: false){
+                        VStack(alignment:.leading,spacing: Theme.defaultSpacing) {
+                            headerProfile
+                            if let userName = profileVM.userDetail?.firstName {
+                                HStack {
+                                    Text(userName)
+                                        .applyProfileNameFont()
+                                    Spacer()
+                                    if let user = profileVM.userDetail {
+                                        // MARK: - dispaly this row if user isn't organizer
+                                        if let userIsOrganizer = user.isOrganizer {
+                                            if !userIsOrganizer {
+                                                if let userModel = profileVM.userDetail{
+                                                    NavigationLink(value: ProfileNavigation.profileViewInfo(userModel)) {
+                                                        Image(Theme.profileEditButton)
+                                                            .frame(width:8,height:8)
+                                                            .fixedSize(horizontal: true, vertical: false)
+                                                            .padding(.trailing,Theme.large)
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal,Theme.large)
+                                
                             }
-                          }
+                            HStack {
+                                if let user = profileVM.userDetail, let userIsOrganizer = user.isOrganizer {
+                                    //MARK: -dispaly this if user is organizer
+                                    if userIsOrganizer {
+                                        accountSelectionRow
+                                        Spacer()
+                                        profileDetailButton
+                                    }
+                                }
+                            }
+                            .padding(.horizontal,Theme.large)
                         }
-                      }
+                        
+                        if userRole == UserState.audience.rawValue {
+                            
+                            EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, profileVM: profileVM, approvedParticipantsVM: participantVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
+                                .padding(.top,12)
+                        } else if userRole == UserState.organizer.rawValue {
+                            EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, profileVM: profileVM, approvedParticipantsVM: participantVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
+                                .padding(.top,12)
+                        }
                     }
-                    
-                  }
-                  .padding(.horizontal,Theme.large)
-
+                    .padding(.horizontal,Theme.large)
                 }
-                HStack {
-                  if let user = profileVM.userDetail, let userIsOrganizer = user.isOrganizer {
-                    //MARK: -dispaly this if user is organizer
-                    if userIsOrganizer {
-                      accountSelectionRow
-                      Spacer()
-                      profileDetailButton
-                    }
-                  }
-                }
-                .padding(.horizontal,Theme.large)
-              }
-              
-              if userRole == UserState.audience.rawValue {
-                
-                EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, profileVM: profileVM, approvedParticipantsVM: participantVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
-                  .padding(.top,12)
-              } else if userRole == UserState.organizer.rawValue {
-                EventManager(showUpcoming: $showUpcoming, participantEventsVM: participantEventsVM, organizerEventsVM: organizerEventsVM, profileVM: profileVM, approvedParticipantsVM: participantVM, path: $path, profilePath: $profilePath, selectedTab: $selectedTab)
-                  .padding(.top,12)
-              }
-            }
-              .padding(.horizontal,Theme.large)
-          }
-                
             }
             .padding(.horizontal,Theme.large)
-//                Spacer(minLength: 0)
+            //                Spacer(minLength: 0)
             .navigationDestination(for: ProfileNavigation.self) { value in
                 switch value {
                 case .profileViewInfo(let userModel):
@@ -120,14 +118,10 @@ struct ProfileView: View {
                     Text("Navigation Crashed")
                 }
             }
-            
-            }
+        }
         .onAppear(perform: {
-//            for 1st time users, we'll set their user state as audience
             if userRole == nil {
                 userRole = UserState.audience.rawValue
-//                print("FIRST TIME USERROLE IS",userRole ?? "Nothing")
-//                print("USER ROLE IN CHILD VIEW IS",userRole ?? "")
             }
             //get user role from previous state user defaults
             if let role = userRole, let userState = UserState(rawValue: role) {
@@ -135,13 +129,8 @@ struct ProfileView: View {
                 // set the current view user state
                 selectedUserState = userState
             }
-//            if let userId = KeychainManager.shared.keychain.get("appUserId") {
-//                //get user
-//                profileVM.getOneUserById(id: userId)
-//            }
-          
+            
         })
-
         .onChange(of: selectedUserState) { _,_ in
             
             updateUserRole()
@@ -191,27 +180,15 @@ extension ProfileView {
                                 .frame(width: 15,height:15)
                         }
                     }
-                        ,alignment: .topTrailing)
-                    
+                    ,alignment: .topTrailing)
+            
             
             if let user = profileVM.userDetail {
                 UserProfileAvatar(user: user)
                     .padding(.horizontal,Theme.large)
                     .padding(.bottom,Theme.large)
             }
-          
-            
-//            Image("human_profile")
-//                .resizable()
-//                .clipShape(Circle())
-//                .frame(width: Theme.imageWidth, height: Theme.imageHeight)
-//                .padding(.horizontal,Theme.large)
-//            if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-//                RemoteProfileView(url: "\(imageUrl)")
-//            }
         }
-        
-        
     }
     
     
@@ -239,7 +216,7 @@ extension ProfileView {
     }
     
     private func updateUserRole() {
-//        guard let userState = selectedUserState else { return }
+        //        guard let userState = selectedUserState else { return }
         //for first time launching the app, the loader shouldn't show up in profile tab
         if !isInitialSetup {
             roleSwitched = true
@@ -273,27 +250,6 @@ extension ProfileView {
         .frame(width:175)
         .background(Theme.tintColor)
         .cornerRadius(Theme.cornerRadius)
-        
-//        NavigationLink {
-//            ProfileViewInfo(user: profileVM.userDetail ?? UserMock.instance.user3)
-//        } label: {
-//            HStack {
-//                Image(systemName: "pencil")
-//                Text("Profile Detail")
-//                    .applyButtonFont()
-//            }
-//            .foregroundColor(.white)
-//            
-//        }
-//        .padding(.vertical,Theme.medium)
-//        .frame(width:175)
-//        .background(Theme.tintColor)
-//        .cornerRadius(Theme.cornerRadius)
-        
-        
-        
-        
-        
     }
     
 }

@@ -168,16 +168,16 @@ extension ParticipantManager {
             // Call the approval API or perform action here
         if let eventId = event._id, let token = TokenManager.share.getToken() {
                 // Assume `approvalVM` is passed as an environment object
-                approvalVM.participantId = participant._id ?? ""
+                approvalVM.participantId = participant._id
                 approvalVM.status = isApproving ? "accepted" : "rejected"
                 approvalVM.updateEventBasicInfo(eventId: eventId, token: token)
             }
             
             // Hide the buttons for this row
         withAnimation(.linear) {
-            if let participantId = participant._id {
-                respondedParticipants.insert(participantId)
-            }
+//            if let participantId = participant._id {
+                respondedParticipants.insert(participant._id)
+//            }
         }
     }
     

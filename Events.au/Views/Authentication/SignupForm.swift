@@ -58,6 +58,7 @@ struct SignupForm: View {
     
     @State private var selectedGenderType: String = ""
     @State private var selectedGenderId : Int?
+
   @Environment(\.colorScheme) var colorMode
 
   var body: some View {
@@ -261,24 +262,12 @@ struct SignupForm: View {
         .alert("Sign Up", isPresented: $showAlert) {
             NavigationLink(value: AuthNavigation.confirmation) {
                 Text("Ok")
+
             }
             
-        } message: {
-            Text(alertMessage)
-        }
-        
-        .alert("Failed", isPresented: $showErrorAlert) {
-            Button {
-                dismiss()
-            } label: {
-                Text("Ok")
+            .onAppear{
+                allUnitsViewModel.fetchUnits()
             }
-        } message: {
-            Text(alertMessage)
-        }
-        
-        .onAppear{
-            allUnitsViewModel.fetchUnits()
         }
     }
     

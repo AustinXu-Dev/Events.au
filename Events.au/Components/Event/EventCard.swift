@@ -66,20 +66,20 @@ extension EventCard {
     }
 }
 
-struct EventCard_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            EventCard(participantsVM: ParticipantMock.instance.participantVM, event: AllEventsMock.oneEvent)
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.light)
-                .padding()
-            
-            EventCard(participantsVM : ParticipantMock.instance.participantVM,event: AllEventsMock.oneEvent)
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-                .padding()
-            
-        }
-    }
-    
-}
+//struct EventCard_Previews : PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            EventCard(participantsVM: ParticipantMock.instance.participantVM, event: AllEventsMock.oneEvent)
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.light)
+//                .padding()
+//            
+//            EventCard(participantsVM : ParticipantMock.instance.participantVM,event: AllEventsMock.oneEvent)
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.dark)
+//                .padding()
+//            
+//        }
+//    }
+//    
+//}

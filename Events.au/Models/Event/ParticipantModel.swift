@@ -43,24 +43,30 @@ struct BackendSchema : Codable {
 
 struct ParticipantModel :  Identifiable, Codable, Hashable {
     
-    let _id : String?
-    var id: String? { _id ?? "" }
-    let userId : UserModel2?
-    let eventId : EventModel?
-    let organzierId : OrganizerModel?
-    let status : String?
-    let email : String?
-    let phone : Int?
+//    let _id : String?
+//    var id: String? { _id ?? "" }
+//    let userId : UserModel2?
+//    let eventId : EventModel?
+//    let organzierId : OrganizerModel?
+//    let status : String?
+//    let email : String?
+//    let phone : Int?
+//    
+//    enum CodingKeys : String,CodingKey {
+//        case _id = "_id"
+//        case userId = "userId"
+//        case eventId = "eventId"
+//        case organzierId = "organzierId"
+//        case status = "status"
+//        case email = "email"
+//        case phone = "phone"
+//    }
     
-    enum CodingKeys : String,CodingKey {
-        case _id = "_id"
-        case userId = "userId"
-        case eventId = "eventId"
-        case organzierId = "organzierId"
-        case status = "status"
-        case email = "email"
-        case phone = "phone"
-    }
+    let _id: String
+    var id: String? { _id }
+    let userId: UserModel2?
+    let eventId: EventModel?
+    let status: String
     
 }
 /*

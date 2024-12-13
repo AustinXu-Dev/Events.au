@@ -184,14 +184,29 @@ struct SignInView: View {
                 case .confirmation:
                     ConfirmationView(path: $authNavigationStack)
                 }
-            })
-            
-            .navigationDestination(for: Int.self) { value in
-                if value == 1{
-                    Text("1")
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Sign In"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
+                .navigationDestination(for: AuthNavigation.self, destination: { value in
+                    switch value {
+                    case .signInView:
+                        SignInView()
+                    case .signUpView:
+                        SignupView(path: $authNavigationStack)
+                    case .signUpForm(let email, let pass):
+                        SignupForm(path: $authNavigationStack, email: email, pass: pass)
+                    case .confirmation:
+                        ConfirmationView(path: $authNavigationStack)
+                    }
+                })
+                
+                .navigationDestination(for: Int.self) { value in
+                    if value == 1{
+                        Text("1")
+                    }
+                }
+                .navigationBarBackButtonHidden()
             }
-            .navigationBarBackButtonHidden()
             
         }
     }

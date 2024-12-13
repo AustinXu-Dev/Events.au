@@ -19,8 +19,14 @@ struct ProfileViewInfo: View {
     @StateObject var participantVM : GetParticipantsByUserIdViewModel = GetParticipantsByUserIdViewModel()
     @StateObject var unitVM = GetUnitsByEventViewModel()
     @ObservedObject  var profileVM : GetOneUserByIdViewModel
-
+    @StateObject var updateUserViewModel = UpdateUserViewModel()
     
+    @State private var isEditMode = false
+    @State private var firstName: String = ""
+    @State private var phone: String = ""
+    @State private var gender: String = ""
+    @State private var dob: String = ""
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -29,21 +35,21 @@ struct ProfileViewInfo: View {
                     if let user = profileVM.userDetail {
                         UserProfileDetailAvatar(user: user)
                     }
-
-//                    if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-//                        RemoteProfleEdit(url: "\(imageUrl)")
-//                    }
                     Spacer()
                 }
                 .padding(.top, 20)
                 VStack(alignment: .leading, spacing: 10) {
-                    ProfileDetailRow(label: "First Name", value: profileVM.userDetail?.firstName ?? "")
-                        //MARK: add last name after dropping user database
-//                        ProfileDetailRow(label: "Last Name", value : "Last Name")
-                    ProfileDetailRow(label: "Email", value: profileVM.userDetail?.email ?? "")
-                    ProfileDetailRow(label: "Phone", value: "\(profileVM.userDetail?.phone ?? 00)")
-                        ProfileDetailRow(label: "Gender", value: "Gender")
-                        ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
+                    if isEditMode {
+                        ProfileEdit(label: "First Name", value: $firstName, placeholder: profileVM.userDetail?.firstName ?? "")
+                        ProfileEdit(label: "Phone", value: $phone, placeholder: "\(profileVM.userDetail?.phone ?? 00)")
+                        ProfileDetailRow(label: "Email", value: profileVM.userDetail?.email ?? "")
+                    } else {
+                        ProfileDetailRow(label: "First Name", value: profileVM.userDetail?.firstName ?? "")
+                        ProfileDetailRow(label: "Phone", value: "\(profileVM.userDetail?.phone ?? 00)")
+                        ProfileDetailRow(label: "Email", value: profileVM.userDetail?.email ?? "")
+                        //                        ProfileDetailRow(label: "Gender", value: "Gender")
+                        //                        ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
+                    }
                 }
                 .padding()
                 .padding(.horizontal, 16)
@@ -91,28 +97,41 @@ struct ProfileViewInfo: View {
         }
         .onAppear(perform: {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
-//                profileVM.getOneUserById(id: userId)
-            
-            //get all events based on userRole
-            if userRole == UserState.audience.rawValue {
-                self.participantEventsVM.fetchEvents(userId: userId)
-            } else {
-                self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                if userRole == UserState.audience.rawValue {
+                    self.participantEventsVM.fetchEvents(userId: userId)
+                } else {
+                    self.organizerEventsVM.fetchEventsByOrganizer(id: userId)
+                }
+                if let user = profileVM.userDetail {
+                    firstName = user.firstName ?? ""
+                    phone = "\(user.phone ?? 00)"
+                }
             }
-                
-        }
-            
-            })
+        })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(value: ProfileNavigation.profileEditView(user)) {
-                    Image(systemName: "pencil")
+                Button {
+                    if isEditMode {
+                        updateUserDetails()
+                    }
+                    isEditMode.toggle()
+                }label: {
+                    Image(systemName: isEditMode ? "checkmark" : "pencil")
                         .imageScale(.large)
                 }
             }
         }
-
-        
+        .onTapGesture {
+            UIApplication.shared.endEditing()
+        }
+    }
+    
+    private func updateUserDetails() {
+        updateUserViewModel.firstName = firstName
+        updateUserViewModel.phone = phone
+        if let userId = KeychainManager.shared.keychain.get("appUserId") {
+            updateUserViewModel.updateUser(id: userId, token: TokenManager.share.getToken() ?? "")
+        }
     }
 }
 
@@ -126,11 +145,11 @@ struct ProfileDetailRow: View {
                 Text(label)
                     .font(.body)
                     .bold()
-                    .frame(width: geometry.size.width * 0.4, alignment: .leading)  // Fixed width for label
+                    .frame(width: geometry.size.width * 0.4, alignment: .leading)
                 Text(value)
                     .font(.body)
                     .foregroundColor(.primary)
-                    .frame(width: geometry.size.width * 0.6, alignment: .leading)  // Fixed width for value
+                    .frame(width: geometry.size.width * 0.6, alignment: .leading)
             }
         }
         .frame(height: 40)
@@ -138,51 +157,35 @@ struct ProfileDetailRow: View {
     }
 }
 
-//struct EditProfileView: View {
-//    var body: some View {
-//        Text("Edit Profile")
-//            .navigationBarTitle("Edit Profile", displayMode: .inline)
-//    }
-//}
-
-//struct EventRow: View {
-//    var image: String
-//    var title: String
-//    var date: String
-//    var status: String
-//    
-//    var body: some View {
-//        HStack {
-//            Image(image)
-//                .resizable()
-//                .frame(width: 64, height: 64)
-//                .cornerRadius(5)
-//            
-//            VStack(alignment: .leading) {
-//                Text(title)
-//                    .font(.headline)
-//                Text(date)
-//                    .font(.system(size: 12))
-//            }
-//            
-//            Spacer()
-//            
-//            Text(status)
-//                .foregroundColor(status == "Approved" ? .black : .gray)
-//                .padding([.leading, .trailing], 10)
-//                .padding([.top, .bottom], 2)
-//                .font(.system(size: 12))
-//                .background(status == "Approved" ? Color.approved : Color.pending)
-//                .cornerRadius(5)
-//                .padding(.bottom, 25)
-//        }
-//        .padding(4)
-//        .background(Color.white)
-//        .cornerRadius(10)
-//        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 2)
-//        .padding(.horizontal, 16)
-//    }
-//}
+struct ProfileEdit: View {
+    var label: String
+    @Binding var value: String
+    var placeholder: String
+    
+    var body: some View {
+        GeometryReader { geometry in
+            HStack {
+                Text(label)
+                    .font(.body)
+                    .bold()
+                    .frame(width: geometry.size.width * 0.4, alignment: .leading)
+                
+                ZStack(alignment: .leading) {
+                    if value.isEmpty {
+                        Text(placeholder)
+                            .foregroundColor(.gray)
+                            .padding(.leading, 5)
+                    }
+                    TextField("", text: $value)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+                .frame(width: geometry.size.width * 0.6)
+            }
+        }
+        .frame(height: 40)
+        .padding(.bottom, 8)
+    }
+}
 
 struct ProfileViewInfo_Previews: PreviewProvider {
     static var previews: some View {
