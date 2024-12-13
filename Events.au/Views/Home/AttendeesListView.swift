@@ -105,8 +105,8 @@ struct SearchBarAttendee: UIViewRepresentable {
     }
 }
 
-struct AttendeesListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AttendeesListView(approvedParticipants: ParticipantMock.instance.participants, userUnitsVM: GetUnitsByUserIdViewModel())
-    }
-}
+//struct AttendeesListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AttendeesListView(approvedParticipants: ParticipantMock.instance.participants, userUnitsVM: GetUnitsByUserIdViewModel())
+//    }
+//}

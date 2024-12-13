@@ -30,23 +30,9 @@ struct ProfileEditView: View {
             
             HStack {
                 Spacer()
-//                Image("human_profile")
-//                    .resizable()
-//                    .frame(width: 100, height: 100)
-//                    .clipShape(Circle())
-//                    .overlay(
-//                        Image(systemName: "photo.badge.plus")
-//                            .foregroundColor(.white)
-//                            .padding(6)
-//                            .background(Color.black.opacity(0.7))
-//                            .clipShape(Circle())
-//                            .padding([.top, .trailing], 5)
-//                        , alignment: .bottomTrailing
-//                    )
+
                 UserProfileDetailAvatar(user: user)
-//                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
-//                    RemoteProfleEdit(url: "\(imageUrl)")
-//                }
+
                 Spacer()
             }
             .padding(.top, 20)
@@ -136,16 +122,7 @@ struct ProfileEditView: View {
             showAlert = true
             return false
         }
-        
-        
-        
-        // Validate email
-//        if !email.hasSuffix("@gmail.com") {
-//            alertMessage = "Please enter a valid Gmail address (must end with @gmail.com)."
-//            showAlert = true
-//            return false
-//        }
-        
+
         return true
     }
 }

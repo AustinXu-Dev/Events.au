@@ -66,21 +66,23 @@ struct EventRow: View {
                 unitVM.getUnitsByEvent(id: eventId)
                 
             }
+            
+//            if let userId = KeychainManager.shared.keychain.get("appUserId")
         }
         
     }
 }
 
-struct EventRow_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), unitVM: GetUnitsByEventViewModel(), participant: ParticipantMock.instance.participantA)
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.light)
-            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), unitVM: GetUnitsByEventViewModel(), participant: ParticipantMock.instance.participantA)            .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-                .padding()
-        }
-    }
-}
+//struct EventRow_Previews : PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), unitVM: GetUnitsByEventViewModel(), participant: ParticipantMock.instance.participantA)
+//                .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.light)
+//            EventRow(event: EventMock.instacne.eventA, eventParticipants: GetParticipantsByEventIdViewModel(), unitVM: GetUnitsByEventViewModel(), participant: ParticipantMock.instance.participantA)            .previewLayout(.sizeThatFits)
+//                .preferredColorScheme(.dark)
+//                .padding()
+//        }
+//    }
+//}
 
