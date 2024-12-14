@@ -16,7 +16,13 @@ struct Events_auApp: App {
 
     @State var homeNavigationStack: [HomeNavigation] = []
     @AppStorage("appState") var isSingIn = false
-    
+  @State var deeplinkedEvent: EventModel
+  
+  @StateObject private var eventVM : GetEventByIdViewModel = GetEventByIdViewModel()
+  @StateObject var participantsVM = GetParticipantsByEventIdViewModel()
+
+  
+  
     init(){
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -36,14 +42,50 @@ struct Events_auApp: App {
                 if isSingIn {
 //                    NavigationStack {
                     TabScreenView()
+                    .onOpenURL { url in
+                      handleIncomingLink(url)
+                    }
 //                    }
 //                    ProfileView()
 //                    TestView()
                 } else {
                     SignInView()
+                    .onOpenURL { url in
+                      handleIncomingLink(url)
+                    }
                 }
             }
           
         }
+    }
+  func handleIncomingLink(_ url: URL) {
+        guard let host = url.host, host == "events-au-v2.vercel.app" else { return }
+        
+        let path = url.path
+        if path.starts(with: "/event/") {
+            // Extract the event ID and navigate to the detail view
+            let eventId = String(path.split(separator: "/").last ?? "")
+            navigateToEventDetail(eventId: eventId)
+        }
+    }
+
+    func navigateToEventDetail(eventId: String) {
+        // Logic to navigate to the Event Detail View
+        print("Navigating to Event: \(eventId)")
+      if isSingIn {
+        eventVM.getOneEventById(id: eventId) {
+          if let event = eventVM.event {
+            homeNavigationStack.append(HomeNavigation.eventDetail(event , ParticipantMock.instance.participants))
+          }
+        }
+        
+        
+        
+        
+      }
+      
+      
+      
+      
     }
 }

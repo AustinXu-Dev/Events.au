@@ -77,6 +77,8 @@
 		B70C04992C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C04982C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift */; };
 		B70F99652C74F6A30013D449 /* DummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70F99642C74F6A30013D449 /* DummyView.swift */; };
 		B715B8CE2C1C8E510018130B /* ProfileImagesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */; };
+		B71ACE382D0E1F4A003E865A /* EventById.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACE372D0E1F4A003E865A /* EventById.swift */; };
+		B71ACE3A2D0E1FB1003E865A /* GetEventByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71ACE392D0E1FB1003E865A /* GetEventByIdViewModel.swift */; };
 		B72138F82C762DC40075DE7A /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72138F72C762DC40075DE7A /* UserAvatar.swift */; };
 		B731AAD32C15FEFC00A3E8C2 /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAD22C15FEFC00A3E8C2 /* EventMock.swift */; };
 		B731AAD52C16003300A3E8C2 /* ParticipantMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731AAD42C16003300A3E8C2 /* ParticipantMock.swift */; };
@@ -246,6 +248,8 @@
 		B70C04982C3FF0A00032B5BB /* GetUnitsByUserIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUnitsByUserIdViewModel.swift; sourceTree = "<group>"; };
 		B70F99642C74F6A30013D449 /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyView.swift; sourceTree = "<group>"; };
 		B715B8CD2C1C8E510018130B /* ProfileImagesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagesMock.swift; sourceTree = "<group>"; };
+		B71ACE372D0E1F4A003E865A /* EventById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventById.swift; sourceTree = "<group>"; };
+		B71ACE392D0E1FB1003E865A /* GetEventByIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventByIdViewModel.swift; sourceTree = "<group>"; };
 		B72138F72C762DC40075DE7A /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
 		B731AAD22C15FEFC00A3E8C2 /* EventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMock.swift; sourceTree = "<group>"; };
 		B731AAD42C16003300A3E8C2 /* ParticipantMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantMock.swift; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 				B34CB3992C3D2DD30034A562 /* FindEventForUnit.swift */,
 				B391CD4A2C4D723A0045BB96 /* UpdateEventBasicInfo.swift */,
 				BCE68B7D2C50E87D000C5102 /* GetPollsByEventId.swift */,
+				B71ACE372D0E1F4A003E865A /* EventById.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				B7B6C0412C637061007FBFA8 /* ParticipantEventsViewModel.swift */,
 				B34CB39B2C3D2FD70034A562 /* FindEventForUnitViewModel.swift */,
 				BCE68B832C50F1B8000C5102 /* GetPollsByEventIdViewModel.swift */,
+				B71ACE392D0E1FB1003E865A /* GetEventByIdViewModel.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -1139,6 +1145,7 @@
 				B7FC26DD2C19C48F00C1D7FD /* EventImageMock.swift in Sources */,
 				396685DD2C1FEBA400AAD5D4 /* GribView.swift in Sources */,
 				BC6157C52C1E0CF400F78A9E /* SearchBar.swift in Sources */,
+				B71ACE382D0E1F4A003E865A /* EventById.swift in Sources */,
 				B370C6C82C15251D00C28E67 /* APIManager.swift in Sources */,
 				B36CA9612C1F8E1D00FE6D46 /* UserSignUpViewModel.swift in Sources */,
 				BCE68B7C2C4F8E69000C5102 /* CreatePollViewModel.swift in Sources */,
@@ -1187,6 +1194,7 @@
 				B7FC26D92C19C19F00C1D7FD /* EventCard.swift in Sources */,
 				BC1CC9782C29502C0020DD06 /* EventRegistrationView.swift in Sources */,
 				B731AADD2C1606E300A3E8C2 /* UnitMock.swift in Sources */,
+				B71ACE3A2D0E1FB1003E865A /* GetEventByIdViewModel.swift in Sources */,
 				396685CE2C1F4AFF00AAD5D4 /* ProfileViewInfo.swift in Sources */,
 				B7C69A8D2C14F7850055DDD9 /* SignUpModel.swift in Sources */,
 				B36CA95F2C1F8D7100FE6D46 /* AllEventsViewModel.swift in Sources */,
@@ -1385,7 +1393,7 @@
 				CODE_SIGN_ENTITLEMENTS = Events.au/Events.au.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
 				DEVELOPMENT_TEAM = A89P8LLWX2;
 				ENABLE_PREVIEWS = YES;
@@ -1404,7 +1412,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.dcode.events-au";
 				PRODUCT_NAME = Avents;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1426,7 +1434,7 @@
 				CODE_SIGN_ENTITLEMENTS = Events.au/Events.au.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Events.au/Preview Content\"";
 				DEVELOPMENT_TEAM = A89P8LLWX2;
 				ENABLE_PREVIEWS = YES;
@@ -1445,7 +1453,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.austinxu.dcode.events-au";
 				PRODUCT_NAME = Avents;
 				PROVISIONING_PROFILE_SPECIFIER = "";
