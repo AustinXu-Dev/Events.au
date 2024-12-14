@@ -24,95 +24,65 @@ struct EventDetail: View {
     @State private var currentUserId: String? = nil
     @State private var isUserParticipant: Bool = false
     @State private var isUserPending: Bool = false
-
-  var comingFromProfileTab: Bool
-
     
-  var body: some View {
+    var comingFromProfileTab: Bool
     
-    ZStack {
-      Color.white
-    ScrollView(.vertical,showsIndicators: false) {
-      if eventUnitsVM.loader && participantsVM.isLoading {
-        ProgressView()
-      } else {
-        VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
-          if let eventImage = event.coverImageUrl {
-            RemoteImage(url:eventImage)
-          }
-          details
-          Divider()
-            .foregroundStyle(Theme.tintColor)
-        }
-        VStack(alignment:.center) {
-          dateAndLocation
-        }
-        VStack(alignment:.leading) {
-          if approvedParticipants.count > 0 {
-            if !comingFromProfileTab {
-              NavigationLink(value: HomeNavigation.attendeesList(approvedParticipants)) {
-                attendeesBox
-              }
-            } else {
-                VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
-                    if let eventImage = event.coverImageUrl {
-                        RemoteImage(url:eventImage)
+    
+    var body: some View {
+        
+        ZStack {
+            colorScheme == .light ? Color.white : Color.black
+            ScrollView(.vertical,showsIndicators: false) {
+                if eventUnitsVM.loader && participantsVM.isLoading {
+                    ProgressView()
+                } else {
+                    VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
+                        if let eventImage = event.coverImageUrl {
+                            RemoteImage(url:eventImage)
+                        }
+                        details
+                        Divider()
+                            .foregroundStyle(Theme.tintColor)
                     }
-                    details
-                    Divider()
-                        .foregroundStyle(Theme.tintColor)
-                }
-                VStack(alignment:.center) {
-                    dateAndLocation
-                }
-                VStack(alignment:.leading) {
-                    if approvedParticipants.count > 0 {
-                        NavigationLink {
-                            AttendeesListView(approvedParticipants: approvedParticipants)
-                        } label: {
-                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                                .foregroundStyle(Theme.backgroundColor)
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                                .frame(height: 80)
-                                .applyThemeDoubleShadow()
-                                .overlay (
-                                    HStack {
-                                        attendees
-                                            .tint(Theme.secondaryTextColor)
-                                        Spacer()
-                                    }
-                                        .padding()
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                )
+                    VStack(alignment:.center) {
+                        dateAndLocation
+                    }
+                    VStack(alignment:.leading) {
+                        if approvedParticipants.count > 0 {
+                            if !comingFromProfileTab {
+                                NavigationLink(value: HomeNavigation.attendeesList(approvedParticipants)) {
+                                    attendeesBox
+                                }
+                            } else {
+                                NavigationLink(value: ProfileNavigation.attendeesList(approvedParticipants)) {
+                                    attendeesBox
+                                }
+                            }
+                        }
+                    }
+
+                    if let userId = currentUserId {
+                        if participantsVM.isLoading {
+                            ProgressView()
+                        } else {
+                            if participantsVM.participantPending(userId: userId) {
+                                pendingButton
+                                    .padding(.vertical, 8)
+                            } else if participantsVM.participantExists(userId: userId) {
+                                alreadyRegisteredButton
+                                    .padding(.vertical, 8)
+                            } else if participantsVM.participantRejected(userId: userId){
+//                                rejectedMessage
+                            } else {
+                                registerButton
+                                    .padding(.vertical, 8)
+                            }
                         }
                     }
                 }
-                if participantsVM.isLoading {
-                    ProgressView()
-                } else {
-                    if isUserPending {
-                        pendingButton
-                            .padding(.vertical, 8)
-                    } else if isUserParticipant {
-                        alreadyRegisteredButton
-                            .padding(.vertical, 8)
-                    } else {
-                        registerButton
-                            .padding(.vertical, 8)
-                    }
-                }
-
-              NavigationLink(value: ProfileNavigation.attendeesList(approvedParticipants)) {
-                attendeesBox
-              }
-
             }
-          } 
+            .padding(.horizontal,Theme.large)
         }
-      }
-    }
-    .padding(.horizontal,Theme.large)
-  }
         .onAppear(perform: {
             if let eventId = event._id {
                 eventUnitsVM.getUnitsByEvent(id: eventId)
@@ -123,12 +93,6 @@ struct EventDetail: View {
                 currentUserId = userId
             }
         })
-        .onChange(of: participantsVM.allParticipants) { _, _ in
-            if let userId = currentUserId {
-                isUserParticipant = participantsVM.participantExists(userId: userId)
-                isUserPending = participantsVM.participantPending(userId: userId)
-            }
-        }
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Complete your profile setup first."),
@@ -234,24 +198,24 @@ extension EventDetail {
             
         }
     }
-  
-  private var attendeesBox: some View {
-    RoundedRectangle(cornerRadius: Theme.cornerRadius)
-      .foregroundStyle(Theme.backgroundColor)
-      .frame(maxWidth: .infinity,alignment: .leading)
-      .frame(height: 80)
-      .applyThemeDoubleShadow()
-      .overlay (
-        HStack {
-          attendees
-            .tint(Theme.secondaryTextColor)
-          Spacer()
-        }
-          .padding()
-          .frame(maxWidth: .infinity, alignment: .leading)
-      )
-  }
-  
+    
+    private var attendeesBox: some View {
+        RoundedRectangle(cornerRadius: Theme.cornerRadius)
+            .foregroundStyle(Theme.backgroundColor)
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .frame(height: 80)
+            .applyThemeDoubleShadow()
+            .overlay (
+                HStack {
+                    attendees
+                        .tint(Theme.secondaryTextColor)
+                    Spacer()
+                }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            )
+    }
+    
     private var registerButton : some View {
         Button {
             if let phNo = user.phone{
@@ -276,26 +240,12 @@ extension EventDetail {
         }
     }
     
-    //    private var pendingButton : some View {
-    //        ZStack {
-    //            RoundedRectangle(cornerRadius: Theme.cornerRadius)
-    //            Text("Request Pending")
-    //                .applyButtonFont()
-    //                .foregroundStyle(Theme.primaryTextColor)
-    //                .padding(.horizontal,Theme.large)
-    //                .frame(maxWidth: .infinity)
-    //                .frame(height: 40)
-    //                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius).fill(Color.gray.opacity(0.3)))
-    //                .foregroundStyle(Color.white)
-    //        }
-    //    }
     private var pendingButton: some View {
         Button(action: {
             
         }) {
             ZStack {
                 RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                    .fill(Theme.tintColor.opacity(0.5))
                 Text("Request Pending")
                     .applyButtonFont()
                     .foregroundStyle(Theme.primaryTextColor)
@@ -313,7 +263,6 @@ extension EventDetail {
         }) {
             ZStack {
                 RoundedRectangle(cornerRadius: Theme.cornerRadius)
-                    .fill(Theme.tintColor.opacity(0.5))
                 Text("Already Registered")
                     .applyButtonFont()
                     .foregroundStyle(Theme.primaryTextColor)
@@ -324,6 +273,20 @@ extension EventDetail {
         }
         .disabled(true)
     }
+    
+//    private var rejectedMessage: some View {
+//        HStack {
+//            Image(systemName: "xmark.circle.fill")
+//                .foregroundColor(.red)
+//            Text("You were rejected by this event's organizer")
+//                .font(.system(size: 16, weight: .semibold))
+//                .foregroundColor(.red)
+//        }
+//        .padding()
+//        .background(Color.red.opacity(0.1))
+//        .frame(maxWidth: .infinity)
+//        .cornerRadius(8)
+//    }
 }
 
 
@@ -333,6 +296,28 @@ extension EventDetail {
 //            .preferredColorScheme(.dark)
 //    }
 //    .padding(.horizontal,Theme.large)
-//    
+//
 //}
 
+//                                VStack(alignment:.leading) {
+//                                    if approvedParticipants.count > 0 {
+//                                        NavigationLink {
+//                                            AttendeesListView(approvedParticipants: approvedParticipants)
+//                                        } label: {
+//                                            RoundedRectangle(cornerRadius: Theme.cornerRadius)
+//                                                .foregroundStyle(Theme.backgroundColor)
+//                                                .frame(maxWidth: .infinity,alignment: .leading)
+//                                                .frame(height: 80)
+//                                                .applyThemeDoubleShadow()
+//                                                .overlay (
+//                                                    HStack {
+//                                                        attendees
+//                                                            .tint(Theme.secondaryTextColor)
+//                                                        Spacer()
+//                                                    }
+//                                                        .padding()
+//                                                        .frame(maxWidth: .infinity, alignment: .leading)
+//                                                )
+//                                        }
+//                                    }
+//                                }

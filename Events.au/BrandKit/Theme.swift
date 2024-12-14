@@ -128,9 +128,9 @@ struct Theme {
     static let calendar : String = "calendar"
     static let congratsText: String = "CongratsText"
     static let eventauText: String = "EventAUText"
-    static let eventauTextDarkMode: String = "EventAUText_DarkMode"
+    static let eventauTextDarkMode: String = "aventTextLogo"
     static let createEventImage: String = "CreateEventImage"
-    static let createEventImageDarkMode : String = "CreateEventImage_DarkMode"
+    static let createEventImageDarkMode : String = "aventsPeople"
 
     
     // MARK: - Icon Names

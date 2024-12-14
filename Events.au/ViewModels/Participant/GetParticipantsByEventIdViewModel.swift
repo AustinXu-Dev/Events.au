@@ -31,6 +31,10 @@ class GetParticipantsByEventIdViewModel : ObservableObject {
     func participantPending(userId: String) -> Bool {
         return allParticipants.contains { $0.userId?._id == userId && ($0.status == "pending") }
     }
+    
+    func participantRejected(userId: String) -> Bool {
+        return allParticipants.contains { $0.userId?._id == userId && ($0.status == "rejected") }
+    }
 
     func fetchParticipants(id:String) {
       isLoading = true

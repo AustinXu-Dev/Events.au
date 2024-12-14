@@ -13,6 +13,7 @@ class SignInEmailPasswordViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var token: String? = nil
     @Published var tokenIsExpired : Bool = false
+    @Published var isLoading: Bool = false
     
     var timer : AnyCancellable?
     var expirationDate : Date?
@@ -30,12 +31,14 @@ class SignInEmailPasswordViewModel: ObservableObject {
     func postSignInFirebaseId(firebaseId: String, email: String) {
         let webService = WebService()
         webService.signin(firebaseId: firebaseId, email: email) { result in
+            self.isLoading = true
             switch result {
             case .success(let (token, userId)):
 //                print("Login successful with token: \(token)")
 //                print("Login successful with user _id: \(userId)")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
+                    self.isLoading = false
                     self.token = token
                     TokenManager.share.saveTokens(token: token)
 //                    print("Token is",token)
@@ -52,6 +55,7 @@ class SignInEmailPasswordViewModel: ObservableObject {
                 }
             case .failure(let error):
 //                print("Login failed with error: \(error)")
+                self.isLoading = false
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(false, forKey: "appState")
                     self.errorMessage = "Failed to login with WebService: \(error)"
