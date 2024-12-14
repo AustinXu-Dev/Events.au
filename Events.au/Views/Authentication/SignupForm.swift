@@ -259,7 +259,7 @@ struct SignupForm: View {
     .onTapGesture(perform: {
       self.hideKeyboard()
     })
-        .alert("Sign Up", isPresented: $showAlert) {
+        .alert("Signed Up", isPresented: $showAlert) {
             NavigationLink(value: AuthNavigation.confirmation) {
                 Text("Ok")
 
