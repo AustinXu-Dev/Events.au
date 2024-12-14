@@ -20,6 +20,9 @@ struct ProfileViewInfo: View {
     @StateObject var unitVM = GetUnitsByEventViewModel()
     @ObservedObject  var profileVM : GetOneUserByIdViewModel
     @StateObject var updateUserViewModel = UpdateUserViewModel()
+  
+  
+  
     
     @State private var isEditMode = false
     @State private var firstName: String = ""
@@ -42,10 +45,15 @@ struct ProfileViewInfo: View {
                     if isEditMode {
                         ProfileEdit(label: "First Name", value: $firstName, placeholder: profileVM.userDetail?.firstName ?? "")
                         ProfileEdit(label: "Phone", value: $phone, placeholder: "\(profileVM.userDetail?.phone ?? 00)")
+                        .keyboardType(.numberPad)
                         ProfileDetailRow(label: "Email", value: profileVM.userDetail?.email ?? "")
                     } else {
                         ProfileDetailRow(label: "First Name", value: profileVM.userDetail?.firstName ?? "")
+                      if profileVM.userDetail?.phone == -1 {
+                        ProfileDetailRow(label: "Phone", value: "-")
+                      } else {
                         ProfileDetailRow(label: "Phone", value: "\(profileVM.userDetail?.phone ?? 00)")
+                      }
                         ProfileDetailRow(label: "Email", value: profileVM.userDetail?.email ?? "")
                         //                        ProfileDetailRow(label: "Gender", value: "Gender")
                         //                        ProfileDetailRow(label: "Date of Birth", value: "05/05/2001")
@@ -90,6 +98,7 @@ struct ProfileViewInfo: View {
                 Spacer()
             }
         }
+
         .refreshable {
             if let userId = KeychainManager.shared.keychain.get("appUserId") {
                 profileVM.getOneUserById(id: userId)
@@ -104,7 +113,9 @@ struct ProfileViewInfo: View {
                 }
                 if let user = profileVM.userDetail {
                     firstName = user.firstName ?? ""
+                  if profileVM.userDetail?.phone != -1 {
                     phone = "\(user.phone ?? 00)"
+                  }
                 }
             }
         })
