@@ -24,6 +24,7 @@ struct CreateEventPreScreen: View {
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: 300, maxHeight: 35)
+                    .zIndex(1.0)
                 Image(colorScheme == .light ? Theme.createEventImage : Theme.createEventImageDarkMode)
                     .resizable()
                     .frame(width: 361, height: 246)

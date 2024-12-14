@@ -25,80 +25,63 @@ struct ProfileEditView: View {
 
     let user: UserModel2
     
-    var body: some View {
-        VStack {
-            Spacer().frame(height: 20)
-            
-            HStack {
-                Spacer()
-
-                UserProfileDetailAvatar(user: user)
-
-                Spacer()
-            }
-            .padding(.top, 20)
-            
-            VStack(alignment: .leading, spacing: 15) {
-                HStack {
-                    Text("First Name")
-                        .font(.body)
-                        .bold()
-                    Spacer()
-                    TextField("First Name", text: $firstName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(maxWidth: 200)
-                }
-                HStack {
-                    Text("Last Name")
-                        .font(.body)
-                        .bold()
-                    Spacer()
-                    TextField("Last Name", text: $lastName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(maxWidth: 200)
-                        
-                }
-                HStack {
-                    Text("Phone")
-                        .font(.body)
-                        .bold()
-                    Spacer()
-                    TextField("Phone", text: $phone)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(maxWidth: 200)
-                }
-            }
-            .padding()
-            .cornerRadius(10)
-            .padding(.horizontal)
-            
-            Button(action: {
-                if validateFields() {
-                    updateUserViewModel.firstName = firstName
-                    updateUserViewModel.lastName = lastName
-                    updateUserViewModel.phone = phone
-//                    updateUserViewModel.email = email
-                    if let userId = KeychainManager.shared.keychain.get("appUserId") {
-                        updateUserViewModel.updateUser(id: userId, token: TokenManager.share.getToken() ?? "")
-                    }
-                    self.dismiss()
-                }
-            }) {
-                Text("Save")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 40)
-                    .background(Color.eventBackground)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Information Required"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-            }
-            
-            Spacer()
+  var body: some View {
+    ZStack {
+      colorMode == .light ? Color.white : Color.black
+    VStack {
+      Spacer().frame(height: 20)
+      
+      HStack {
+        Spacer()
+        //                Image("human_profile")
+        //                    .resizable()
+        //                    .frame(width: 100, height: 100)
+        //                    .clipShape(Circle())
+        //                    .overlay(
+        //                        Image(systemName: "photo.badge.plus")
+        //                            .foregroundColor(.white)
+        //                            .padding(6)
+        //                            .background(Color.black.opacity(0.7))
+        //                            .clipShape(Circle())
+        //                            .padding([.top, .trailing], 5)
+        //                        , alignment: .bottomTrailing
+        //                    )
+        UserProfileDetailAvatar(user: user)
+        //                if let imageUrl = FirebaseManager.shared.auth.currentUser?.photoURL {
+        //                    RemoteProfleEdit(url: "\(imageUrl)")
+        //                }
+        Spacer()
+      }
+      .padding(.top, 20)
+      
+      VStack(alignment: .leading, spacing: 15) {
+        HStack {
+          Text("First Name")
+            .font(.body)
+            .bold()
+          Spacer()
+          TextField("First Name", text: $firstName)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(maxWidth: 200)
+        }
+        HStack {
+          Text("Last Name")
+            .font(.body)
+            .bold()
+          Spacer()
+          TextField("Last Name", text: $lastName)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(maxWidth: 200)
+          
+        }
+        HStack {
+          Text("Phone")
+            .font(.body)
+            .bold()
+          Spacer()
+          TextField("Phone", text: $phone)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(maxWidth: 200)
         }
       }
       .padding()
@@ -161,7 +144,16 @@ struct ProfileEditView: View {
             showAlert = true
             return false
         }
-
+        
+        
+        
+        // Validate email
+//        if !email.hasSuffix("@gmail.com") {
+//            alertMessage = "Please enter a valid Gmail address (must end with @gmail.com)."
+//            showAlert = true
+//            return false
+//        }
+        
         return true
     }
 }

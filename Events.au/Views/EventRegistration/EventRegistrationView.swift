@@ -52,6 +52,9 @@ struct EventRegistrationView: View {
                     
                 }.frame(width: geometry.size.width, height: geometry.size.height)
                     .navigationTitle("Register Now")
+                    .onTapGesture {
+                        UIApplication.shared.endEditing()
+                    }
               if isLoading { LoadingView().zIndex(3) }
                 
                     

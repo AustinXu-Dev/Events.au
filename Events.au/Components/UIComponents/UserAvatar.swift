@@ -11,18 +11,16 @@ import SwiftUI
 struct UserAvatar: View {
     let user: UserModel2
     var body: some View {
-            ZStack {
-                Circle()
-                    .fill(Color.gray)
-                    .frame(width: Theme.circleWidth, height: Theme.circleHeight)
-                    .overlay (
-                        Text(user.firstName?.prefix(1) ?? "U")
-                            .font(.system(size: 8))
-                            .foregroundColor(.white)
-                    )
-            
+        ZStack {
+            Circle()
+                .fill(Color.gray)
+                .frame(width: Theme.circleWidth, height: Theme.circleHeight)
+                .overlay (
+                    Text(user.firstName?.prefix(1) ?? "U")
+                        .font(.system(size: 8))
+                        .foregroundColor(.white)
+                )
             }
-        
     }
 }
 
