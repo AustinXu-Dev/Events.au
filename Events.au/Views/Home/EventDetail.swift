@@ -37,8 +37,17 @@ struct EventDetail: View {
                     ProgressView()
                 } else {
                     VStack(alignment:.leading,spacing: Theme.headingBodySpacing) {
+                        shareButton
+                        .frame(maxWidth: .infinity,alignment: .trailing)
+                        .onTapGesture {
+                          copyEventLink()
+                        }
                         if let eventImage = event.coverImageUrl {
                             RemoteImage(url:eventImage)
+                           
+                            
+                                
+                            
                         }
                         details
                         Divider()
@@ -273,6 +282,21 @@ extension EventDetail {
         }
         .disabled(true)
     }
+  private var shareButton: some View {
+    Image(systemName:"arrow.uturn.right")
+      .resizable()
+      .foregroundStyle(Color.black)
+      .aspectRatio(contentMode: .fit)
+      .frame(width:20,height:20)
+  }
+  
+  
+  func copyEventLink()  {
+    guard let eventId = event.id else { return }
+    let eventLink = "https://events-au-v2.vercel.app/event/\(eventId)"
+    UIPasteboard.general.string = eventLink
+    print("Copied Link: \(eventLink)")
+  }
     
 //    private var rejectedMessage: some View {
 //        HStack {
