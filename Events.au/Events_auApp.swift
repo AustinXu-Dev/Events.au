@@ -16,7 +16,7 @@ struct Events_auApp: App {
 
     @State var homeNavigationStack: [HomeNavigation] = []
     @AppStorage("appState") var isSingIn = false
-  @State var deeplinkedEvent: EventModel
+  @State var deeplinkedEvent: EventModel = EventMock.instacne.eventA
   
   @StateObject private var eventVM : GetEventByIdViewModel = GetEventByIdViewModel()
   @StateObject var participantsVM = GetParticipantsByEventIdViewModel()
@@ -72,7 +72,7 @@ struct Events_auApp: App {
     func navigateToEventDetail(eventId: String) {
         // Logic to navigate to the Event Detail View
         print("Navigating to Event: \(eventId)")
-      if isSingIn {
+   //   if isSingIn {
         eventVM.getOneEventById(id: eventId) {
           if let event = eventVM.event {
             homeNavigationStack.append(HomeNavigation.eventDetail(event , ParticipantMock.instance.participants))
@@ -82,7 +82,7 @@ struct Events_auApp: App {
         
         
         
-      }
+   //   }
       
       
       
